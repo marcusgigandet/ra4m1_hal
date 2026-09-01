@@ -1,0 +1,9 @@
+name = "ra4m1_hal"
+description = ""
+version = "0.1.0-dev"
+
+authors = ["Marcus Gigandet"]
+maintainers = ["Marcus Gigandet <78104059+marcusgigandet@users.noreply.github.com>"]
+licenses = "LGPL-3.0-or-later"
+website = "https://github.com/marcusgigandet/ra4m1_hal"
+tags = []
