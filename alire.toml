@@ -7,3 +7,10 @@ maintainers = ["Marcus Gigandet <78104059+marcusgigandet@users.noreply.github.co
 licenses = "LGPL-3.0-or-later"
 website = "https://github.com/marcusgigandet/ra4m1_hal"
 tags = []
+
+[[depends-on]]
+cortex_m = "^1"
+gnat_arm_elf = ">=16.1"
+
+[configuration.values]
+cortex_m.core = "m0p"
