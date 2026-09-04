@@ -3,6 +3,7 @@ fix = true
 default_year = "2026"
 author = "Marcus Gigandet"
 license = "lgpl"
+exclude = ["^vendor/"]
 
 [licenses.lgpl]
 text = """

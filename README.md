@@ -12,6 +12,9 @@ Currently, the only RA4M1-series chip that is supported is the `r7fa4m1ab`.
 
 ## Running Copyright Enforcement
 
+`alr build` runs the copyright enforcer automatically before invoking
+`gprbuild`. To run it directly:
+
 ```bash
 python3 -m vendor.toolbox.scripts.copyright --config config.toml --directory . --verbose
 ```
