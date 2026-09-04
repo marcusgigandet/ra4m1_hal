@@ -1,8 +1,8 @@
--- 
+--
 -- Copyright (C) 2026 Marcus Gigandet
 --
 -- SPDX-License-Identifier: LGPL-3.0-or-later
--- 
+--
 
 with "config/ra4m1_hal_config.gpr";
 project RA4M1_HAL is
@@ -19,7 +19,7 @@ project RA4M1_HAL is
    package Compiler is
       for Default_Switches ("Ada") use
         RA4M1_HAL_Config.Ada_Compiler_Switches &
-      ("-mcpu=cortex-m4", "-mthumb", "-mfloat-abi=soft");
+      ("-mcpu=cortex-m4", "-mthumb", "-mfloat-abi=soft", "-gnatyN"); -- todo: Fix style issues at some point
    end Compiler;
 
    package Binder is

@@ -1,8 +1,8 @@
--- 
+--
 -- Copyright (C) 2026 Marcus Gigandet
 --
 -- SPDX-License-Identifier: LGPL-3.0-or-later
--- 
+--
 
 with HAL.GPIO; use HAL.GPIO;
 

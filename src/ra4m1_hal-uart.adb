@@ -1,23 +1,20 @@
--- 
+--
 -- Copyright (C) 2026 Marcus Gigandet
 --
 -- SPDX-License-Identifier: LGPL-3.0-or-later
--- 
+--
 
 package body RA4M1_HAL.UART is
 
    procedure Configure
      (This   : in out UART_Port;
-      Config : UART_Configuration := Default_UART_Configuration)
-   is
+      Config : UART_Configuration := Default_UART_Configuration) is
    begin
       null;
    end Configure;
 
    overriding
-   function Data_Size
-      (Port : UART_Port)
-      return UART_Data_Size
+   function Data_Size (Port : UART_Port) return UART_Data_Size
    is (Data_Size_8b);
 
    overriding
@@ -25,8 +22,7 @@ package body RA4M1_HAL.UART is
      (This    : in out UART_Port;
       Data    : UART_Data_8b;
       Status  : out UART_Status;
-      Timeout : Natural := 1000)
-   is
+      Timeout : Natural := 1000) is
    begin
       null;
    end Transmit;
@@ -36,8 +32,7 @@ package body RA4M1_HAL.UART is
      (This    : in out UART_Port;
       Data    : UART_Data_9b;
       Status  : out UART_Status;
-      Timeout : Natural := 1000)
-   is
+      Timeout : Natural := 1000) is
    begin
       null;
    end Transmit;
@@ -47,8 +42,7 @@ package body RA4M1_HAL.UART is
      (This    : in out UART_Port;
       Data    : out UART_Data_8b;
       Status  : out UART_Status;
-      Timeout : Natural := 1000)
-   is
+      Timeout : Natural := 1000) is
    begin
       null;
    end Receive;
@@ -58,8 +52,7 @@ package body RA4M1_HAL.UART is
      (This    : in out UART_Port;
       Data    : out UART_Data_9b;
       Status  : out UART_Status;
-      Timeout : Natural := 1000)
-   is
+      Timeout : Natural := 1000) is
    begin
       null;
    end Receive;

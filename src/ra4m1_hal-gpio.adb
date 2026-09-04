@@ -1,8 +1,8 @@
--- 
+--
 -- Copyright (C) 2026 Marcus Gigandet
 --
 -- SPDX-License-Identifier: LGPL-3.0-or-later
--- 
+--
 
 with R7FA4M1AB; use R7FA4M1AB;
 with R7FA4M1AB.PORT0;
@@ -19,7 +19,7 @@ with R7FA4M1AB.PORT9;
 package body RA4M1_HAL.GPIO is
 
    function Pin_Mask (Pin : GPIO_Pin) return UInt16
-   is (2 ** Natural (Pin));
+   is (2**Natural (Pin));
 
    overriding
    function Support (This : GPIO_Point; Capa : Capability) return Boolean is

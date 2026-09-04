@@ -1,18 +1,19 @@
--- 
+--
 -- Copyright (C) 2026 Marcus Gigandet
 --
 -- SPDX-License-Identifier: LGPL-3.0-or-later
--- 
+--
 
 pragma Style_Checks (Off);
 
---  This spec has been automatically generated from R7FA4M1AB-ada.svd
+--  This spec has been automatically generated from R7FA4M1AB.svd
 
 pragma Restrictions (No_Elaboration_Code);
 
 with System;
 
 --  Flash Cache
+
 package R7FA4M1AB.FCACHE is
    pragma Preelaborate;
 
@@ -23,13 +24,11 @@ package R7FA4M1AB.FCACHE is
    --  FCACHE Enable
    type FCACHEE_FCACHEEN_Field is
      (--  FCACHE is disabled
-      Val_0,
+     Val_0,
       --  FCACHE is enabled
       Val_1)
-     with Size => 1;
-   for FCACHEE_FCACHEEN_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for FCACHEE_FCACHEEN_Field use (Val_0 => 0, Val_1 => 1);
 
    subtype FCACHEE_Reserved_Field is R7FA4M1AB.UInt15;
 
@@ -41,24 +40,25 @@ package R7FA4M1AB.FCACHE is
       --  000000000000000.
       Reserved : FCACHEE_Reserved_Field := 16#0#;
    end record
-     with Volatile_Full_Access, Object_Size => 16,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 16,
+     Bit_Order   => System.Low_Order_First;
 
-   for FCACHEE_Register use record
-      FCACHEEN at 0 range 0 .. 0;
-      Reserved at 0 range 1 .. 15;
-   end record;
+   for FCACHEE_Register use
+     record
+       FCACHEEN at 0 range 0 .. 0;
+       Reserved at 0 range 1 .. 15;
+     end record;
 
    --  FCACHE Invalidation
    type FCACHEIV_FCACHEIV_Field is
      (--  (Read)not in progress / (Write) no effect.
-      Val_0,
+     Val_0,
       --  (Read)in progress /(Write) Starting Cache Invalidation
       Val_1)
-     with Size => 1;
-   for FCACHEIV_FCACHEIV_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for FCACHEIV_FCACHEIV_Field use (Val_0 => 0, Val_1 => 1);
 
    subtype FCACHEIV_Reserved_Field is R7FA4M1AB.UInt15;
 
@@ -72,32 +72,47 @@ package R7FA4M1AB.FCACHE is
       --  000000000000000.
       Reserved : FCACHEIV_Reserved_Field := 16#0#;
    end record
-     with Volatile_Full_Access, Object_Size => 16,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 16,
+     Bit_Order   => System.Low_Order_First;
 
-   for FCACHEIV_Register use record
-      FCACHEIV at 0 range 0 .. 0;
-      Reserved at 0 range 1 .. 15;
-   end record;
+   for FCACHEIV_Register use
+     record
+       FCACHEIV at 0 range 0 .. 0;
+       Reserved at 0 range 1 .. 15;
+     end record;
 
-   subtype FLWT_FLWT_Field is R7FA4M1AB.UInt3;
+   --  These bits represent the ratio of the CPU clock period to the Flash
+   --  memory access time.
+   type FLWT_FLWT_Field is
+     (--  zero wait
+     Val_000,
+      --  Setting prohibited
+      others_k)
+   with Size => 3;
+   for FLWT_FLWT_Field use (Val_000 => 0, others_k => 7);
+
    subtype FLWT_Reserved_Field is R7FA4M1AB.UInt5;
 
    --  Flash Wait Cycle Register
    type FLWT_Register is record
       --  These bits represent the ratio of the CPU clock period to the Flash
       --  memory access time.
-      FLWT     : FLWT_FLWT_Field := 16#0#;
+      FLWT     : FLWT_FLWT_Field := R7FA4M1AB.FCACHE.Val_000;
       --  These bits are read as 00000. The write value should be 00000.
       Reserved : FLWT_Reserved_Field := 16#0#;
    end record
-     with Volatile_Full_Access, Object_Size => 8,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 8,
+     Bit_Order   => System.Low_Order_First;
 
-   for FLWT_Register use record
-      FLWT     at 0 range 0 .. 2;
-      Reserved at 0 range 3 .. 7;
-   end record;
+   for FLWT_Register use
+     record
+       FLWT at 0 range 0 .. 2;
+       Reserved at 0 range 3 .. 7;
+     end record;
 
    -----------------
    -- Peripherals --
@@ -112,16 +127,17 @@ package R7FA4M1AB.FCACHE is
       --  Flash Wait Cycle Register
       FLWT     : aliased FLWT_Register;
    end record
-     with Volatile;
+   with Volatile;
 
-   for FCACHE_Peripheral use record
-      FCACHEE  at 16#100# range 0 .. 15;
-      FCACHEIV at 16#104# range 0 .. 15;
-      FLWT     at 16#11C# range 0 .. 7;
-   end record;
+   for FCACHE_Peripheral use
+     record
+       FCACHEE at 16#100# range 0 .. 15;
+       FCACHEIV at 16#104# range 0 .. 15;
+       FLWT at 16#11C# range 0 .. 7;
+     end record;
 
    --  Flash Cache
    FCACHE_Periph : aliased FCACHE_Peripheral
-     with Import, Address => FCACHE_Base;
+   with Import, Address => FCACHE_Base;
 
 end R7FA4M1AB.FCACHE;
