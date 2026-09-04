@@ -1,11 +1,15 @@
--- 
+--
 -- Copyright (C) 2026 Marcus Gigandet
 --
 -- SPDX-License-Identifier: LGPL-3.0-or-later
--- 
+--
 
 with "config/ra4m1_hal_config.gpr";
 project RA4M1_HAL is
+
+   for Target use "arm-eabi";
+   for Runtime ("Ada") use "light-cortex-m4";
+   for Languages use ("Ada");
 
    for Source_Dirs use
      ("src/", "src/generated/r7fa4m1ab/", "config/");
@@ -15,7 +19,7 @@ project RA4M1_HAL is
    package Compiler is
       for Default_Switches ("Ada") use
         RA4M1_HAL_Config.Ada_Compiler_Switches &
-      ("-mcpu=cortex-m4", "-mthumb", "-mfloat-abi=soft");
+      ("-mcpu=cortex-m4", "-mthumb", "-mfloat-abi=soft", "-gnatyN"); -- todo: Fix style issues at some point
    end Compiler;
 
    package Binder is

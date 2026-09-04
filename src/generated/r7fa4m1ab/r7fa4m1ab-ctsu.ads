@@ -1,18 +1,19 @@
--- 
+--
 -- Copyright (C) 2026 Marcus Gigandet
 --
 -- SPDX-License-Identifier: LGPL-3.0-or-later
--- 
+--
 
 pragma Style_Checks (Off);
 
---  This spec has been automatically generated from R7FA4M1AB-ada.svd
+--  This spec has been automatically generated from R7FA4M1AB.svd
 
 pragma Restrictions (No_Elaboration_Code);
 
 with System;
 
 --  Capacitive Touch Sensing Unit
+
 package R7FA4M1AB.CTSU is
    pragma Preelaborate;
 
@@ -23,46 +24,40 @@ package R7FA4M1AB.CTSU is
    --  CTSU Measurement Operation Start
    type CTSUCR0_CTSUSTRT_Field is
      (--  Measurement operation stops.
-      Val_0,
+     Val_0,
       --  Measurement operation starts.
       Val_1)
-     with Size => 1;
-   for CTSUCR0_CTSUSTRT_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUCR0_CTSUSTRT_Field use (Val_0 => 0, Val_1 => 1);
 
    --  CTSU Measurement Operation Start Trigger Select
    type CTSUCR0_CTSUCAP_Field is
      (--  Software trigger.
-      Val_0,
+     Val_0,
       --  External trigger.
       Val_1)
-     with Size => 1;
-   for CTSUCR0_CTSUCAP_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUCR0_CTSUCAP_Field use (Val_0 => 0, Val_1 => 1);
 
    --  CTSU Wait State Power-Saving Enable
    type CTSUCR0_CTSUSNZ_Field is
      (--  Power-saving function during wait state is disabled.
-      Val_0,
+     Val_0,
       --  Power-saving function during wait state is enabled.
       Val_1)
-     with Size => 1;
-   for CTSUCR0_CTSUSNZ_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUCR0_CTSUSNZ_Field use (Val_0 => 0, Val_1 => 1);
+
+   subtype CTSUCR0_Reserved_Field is R7FA4M1AB.Bit;
 
    --  CTSU Control Block Initialization
    type CTSUCR0_CTSUINIT_Field is
      (--  Writing a 0 has no effect, this bit is read as 0.
-      Val_0,
+     Val_0,
       --  initializes the CTSU control block and registers.
       Val_1)
-     with Size => 1;
-   for CTSUCR0_CTSUINIT_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUCR0_CTSUINIT_Field use (Val_0 => 0, Val_1 => 1);
 
    --  CTSU Control Register 0
    type CTSUCR0_Register is record
@@ -73,101 +68,90 @@ package R7FA4M1AB.CTSU is
       --  CTSU Wait State Power-Saving Enable
       CTSUSNZ      : CTSUCR0_CTSUSNZ_Field := R7FA4M1AB.CTSU.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      Reserved     : Boolean := False;
+      Reserved     : CTSUCR0_Reserved_Field := 16#0#;
       --  CTSU Control Block Initialization
       CTSUINIT     : CTSUCR0_CTSUINIT_Field := R7FA4M1AB.CTSU.Val_0;
       --  unspecified
       Reserved_5_7 : R7FA4M1AB.UInt3 := 16#0#;
    end record
-     with Volatile_Full_Access, Object_Size => 8,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 8,
+     Bit_Order   => System.Low_Order_First;
 
-   for CTSUCR0_Register use record
-      CTSUSTRT     at 0 range 0 .. 0;
-      CTSUCAP      at 0 range 1 .. 1;
-      CTSUSNZ      at 0 range 2 .. 2;
-      Reserved     at 0 range 3 .. 3;
-      CTSUINIT     at 0 range 4 .. 4;
-      Reserved_5_7 at 0 range 5 .. 7;
-   end record;
+   for CTSUCR0_Register use
+     record
+       CTSUSTRT at 0 range 0 .. 0;
+       CTSUCAP at 0 range 1 .. 1;
+       CTSUSNZ at 0 range 2 .. 2;
+       Reserved at 0 range 3 .. 3;
+       CTSUINIT at 0 range 4 .. 4;
+       Reserved_5_7 at 0 range 5 .. 7;
+     end record;
 
    --  CTSU Power Supply Enable
    type CTSUCR1_CTSUPON_Field is
      (--  Powered off the CTSU
-      Val_0,
+     Val_0,
       --  Powered on the CTSU
       Val_1)
-     with Size => 1;
-   for CTSUCR1_CTSUPON_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUCR1_CTSUPON_Field use (Val_0 => 0, Val_1 => 1);
 
    --  CTSU LPF Capacitance Charging Control
    type CTSUCR1_CTSUCSW_Field is
      (--  Turned off capacitance switch
-      Val_0,
+     Val_0,
       --  Turned on capacitance switch
       Val_1)
-     with Size => 1;
-   for CTSUCR1_CTSUCSW_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUCR1_CTSUCSW_Field use (Val_0 => 0, Val_1 => 1);
 
    --  CTSU Power Supply Operating Mode Setting
    type CTSUCR1_CTSUATUNE0_Field is
      (--  Normal operating mode
-      Val_0,
+     Val_0,
       --  Low-voltage operating mode
       Val_1)
-     with Size => 1;
-   for CTSUCR1_CTSUATUNE0_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUCR1_CTSUATUNE0_Field use (Val_0 => 0, Val_1 => 1);
 
    --  CTSU Power Supply Capacity Adjustment
    type CTSUCR1_CTSUATUNE1_Field is
      (--  Normal output
-      Val_0,
+     Val_0,
       --  High-current output
       Val_1)
-     with Size => 1;
-   for CTSUCR1_CTSUATUNE1_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUCR1_CTSUATUNE1_Field use (Val_0 => 0, Val_1 => 1);
 
    --  CTSU Operating Clock Select
    type CTSUCR1_CTSUCLK_Field is
      (--  PCLK
-      Val_00,
+     Val_00,
       --  PCLK/2 (PCLK divided by 2)
       Val_01,
       --  PCLK/2 (PCLK divided by 4)
       Val_10,
       --  Setting prohibited
       Val_11)
-     with Size => 2;
+   with Size => 2;
    for CTSUCR1_CTSUCLK_Field use
-     (Val_00 => 0,
-      Val_01 => 1,
-      Val_10 => 2,
-      Val_11 => 3);
+     (Val_00 => 0, Val_01 => 1, Val_10 => 2, Val_11 => 3);
 
    --  CTSU Measurement Mode Select
    type CTSUCR1_CTSUMD_Field is
      (--  Self-capacitance single scan mode
-      Val_00,
+     Val_00,
       --  Self-capacitance multi-scan mode
       Val_01,
       --  Mutual capacitance simple scan mode
       Val_10,
       --  Mutual capacitance full scan mode
       Val_11)
-     with Size => 2;
+   with Size => 2;
    for CTSUCR1_CTSUMD_Field use
-     (Val_00 => 0,
-      Val_01 => 1,
-      Val_10 => 2,
-      Val_11 => 3);
+     (Val_00 => 0, Val_01 => 1, Val_10 => 2, Val_11 => 3);
 
    --  CTSU Control Register 1
    type CTSUCR1_Register is record
@@ -184,47 +168,47 @@ package R7FA4M1AB.CTSU is
       --  CTSU Measurement Mode Select
       CTSUMD     : CTSUCR1_CTSUMD_Field := R7FA4M1AB.CTSU.Val_00;
    end record
-     with Volatile_Full_Access, Object_Size => 8,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 8,
+     Bit_Order   => System.Low_Order_First;
 
-   for CTSUCR1_Register use record
-      CTSUPON    at 0 range 0 .. 0;
-      CTSUCSW    at 0 range 1 .. 1;
-      CTSUATUNE0 at 0 range 2 .. 2;
-      CTSUATUNE1 at 0 range 3 .. 3;
-      CTSUCLK    at 0 range 4 .. 5;
-      CTSUMD     at 0 range 6 .. 7;
-   end record;
+   for CTSUCR1_Register use
+     record
+       CTSUPON at 0 range 0 .. 0;
+       CTSUCSW at 0 range 1 .. 1;
+       CTSUATUNE0 at 0 range 2 .. 2;
+       CTSUATUNE1 at 0 range 3 .. 3;
+       CTSUCLK at 0 range 4 .. 5;
+       CTSUMD at 0 range 6 .. 7;
+     end record;
 
    subtype CTSUSDPRS_CTSUPRRATIO_Field is R7FA4M1AB.UInt4;
 
    --  CTSU Base Period and Pulse Count Setting
    type CTSUSDPRS_CTSUPRMODE_Field is
      (--  510 pulses
-      Val_00,
+     Val_00,
       --  126 pulses
       Val_01,
       --  62 pulses (recommended setting value)
       Val_10,
       --  Setting prohibited
       Val_11)
-     with Size => 2;
+   with Size => 2;
    for CTSUSDPRS_CTSUPRMODE_Field use
-     (Val_00 => 0,
-      Val_01 => 1,
-      Val_10 => 2,
-      Val_11 => 3);
+     (Val_00 => 0, Val_01 => 1, Val_10 => 2, Val_11 => 3);
 
    --  CTSU High-Pass Noise Reduction Function Off Setting
    type CTSUSDPRS_CTSUSOFF_Field is
      (--  High-pass noise reduction function turned on
-      Val_0,
+     Val_0,
       --  High-pass noise reduction function turned off
       Val_1)
-     with Size => 1;
-   for CTSUSDPRS_CTSUSOFF_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUSDPRS_CTSUSOFF_Field use (Val_0 => 0, Val_1 => 1);
+
+   subtype CTSUSDPRS_Reserved_Field is R7FA4M1AB.Bit;
 
    --  CTSU Synchronous Noise Reduction Setting Register
    type CTSUSDPRS_Register is record
@@ -236,17 +220,20 @@ package R7FA4M1AB.CTSU is
       --  CTSU High-Pass Noise Reduction Function Off Setting
       CTSUSOFF    : CTSUSDPRS_CTSUSOFF_Field := R7FA4M1AB.CTSU.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      Reserved    : Boolean := False;
+      Reserved    : CTSUSDPRS_Reserved_Field := 16#0#;
    end record
-     with Volatile_Full_Access, Object_Size => 8,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 8,
+     Bit_Order   => System.Low_Order_First;
 
-   for CTSUSDPRS_Register use record
-      CTSUPRRATIO at 0 range 0 .. 3;
-      CTSUPRMODE  at 0 range 4 .. 5;
-      CTSUSOFF    at 0 range 6 .. 6;
-      Reserved    at 0 range 7 .. 7;
-   end record;
+   for CTSUSDPRS_Register use
+     record
+       CTSUPRRATIO at 0 range 0 .. 3;
+       CTSUPRMODE at 0 range 4 .. 5;
+       CTSUSOFF at 0 range 6 .. 6;
+       Reserved at 0 range 7 .. 7;
+     end record;
 
    --  CTSU Measurement Channel 0. Note1: Writing to these bits is only enabled
    --  in self-capacitance single-scan mode (CTSUCR1.CTSUMD[1:0] bits = 00b).
@@ -254,13 +241,12 @@ package R7FA4M1AB.CTSU is
    --  self-capacitor single scan mode, the measurement is stopped.
    type CTSUMCH0_CTSUMCH0_Field is
      (--  The value of CTSUMCH0 indicate to channel to be measured.
-      CTSUMCH0,
+     CTSUMCH0,
       --  Reset value for the field
       CTSUMCH0_CTSUMCH0_Field_Reset)
-     with Size => 6;
+   with Size => 6;
    for CTSUMCH0_CTSUMCH0_Field use
-     (CTSUMCH0 => 0,
-      CTSUMCH0_CTSUMCH0_Field_Reset => 63);
+     (CTSUMCH0 => 0, CTSUMCH0_CTSUMCH0_Field_Reset => 63);
 
    subtype CTSUMCH0_Reserved_Field is R7FA4M1AB.UInt2;
 
@@ -275,25 +261,27 @@ package R7FA4M1AB.CTSU is
       --  These bits are read as 00. The write value should be 00.
       Reserved : CTSUMCH0_Reserved_Field := 16#0#;
    end record
-     with Volatile_Full_Access, Object_Size => 8,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 8,
+     Bit_Order   => System.Low_Order_First;
 
-   for CTSUMCH0_Register use record
-      CTSUMCH0 at 0 range 0 .. 5;
-      Reserved at 0 range 6 .. 7;
-   end record;
+   for CTSUMCH0_Register use
+     record
+       CTSUMCH0 at 0 range 0 .. 5;
+       Reserved at 0 range 6 .. 7;
+     end record;
 
    --  CTSU Measurement Channel 1 Note1: If the value of CTSUMCH1 was set to
    --  b'111111, the measurement is stopped.
    type CTSUMCH1_CTSUMCH1_Field is
      (--  The value of CTSUMCH1 indicate to channel to be measured.
-      CTSUMCH1,
+     CTSUMCH1,
       --  Reset value for the field
       CTSUMCH1_CTSUMCH1_Field_Reset)
-     with Size => 6;
+   with Size => 6;
    for CTSUMCH1_CTSUMCH1_Field use
-     (CTSUMCH1 => 0,
-      CTSUMCH1_CTSUMCH1_Field_Reset => 63);
+     (CTSUMCH1 => 0, CTSUMCH1_CTSUMCH1_Field_Reset => 63);
 
    subtype CTSUMCH1_Reserved_Field is R7FA4M1AB.UInt2;
 
@@ -305,13 +293,16 @@ package R7FA4M1AB.CTSU is
       --  These bits are read as 00. The write value should be 00.
       Reserved : CTSUMCH1_Reserved_Field := 16#0#;
    end record
-     with Volatile_Full_Access, Object_Size => 8,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 8,
+     Bit_Order   => System.Low_Order_First;
 
-   for CTSUMCH1_Register use record
-      CTSUMCH1 at 0 range 0 .. 5;
-      Reserved at 0 range 6 .. 7;
-   end record;
+   for CTSUMCH1_Register use
+     record
+       CTSUMCH1 at 0 range 0 .. 5;
+       Reserved at 0 range 6 .. 7;
+     end record;
 
    --  CTSU Channel Enable Control 4. 0: Not measurement target 1: Measurement
    --  target Note: CTSUCHAC4[0] corresponds to TS32 and CTSUCHAC4[3]
@@ -319,11 +310,10 @@ package R7FA4M1AB.CTSU is
    --  CTSUCHAC0[4],CTSUCHAC4[5],CTSUCHAC4[6],CTSUCHAC4[7] should be 0.
    type CTSUCHAC4_CTSUCHAC4_Field is
      (--  TS pin which correspond to the bit number of CTSUCHAC4 register set whether
---  the measurement target.
-      CTSUCHAC4)
-     with Size => 4;
-   for CTSUCHAC4_CTSUCHAC4_Field use
-     (CTSUCHAC4 => 0);
+     --  the measurement target.
+     CTSUCHAC4)
+   with Size => 4;
+   for CTSUCHAC4_CTSUCHAC4_Field use (CTSUCHAC4 => 0);
 
    subtype CTSUCHAC4_Reserved_Field is R7FA4M1AB.UInt4;
 
@@ -337,31 +327,45 @@ package R7FA4M1AB.CTSU is
       --  These bits are read as 0000. The write value should be 0000.
       Reserved  : CTSUCHAC4_Reserved_Field := 16#0#;
    end record
-     with Volatile_Full_Access, Object_Size => 8,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 8,
+     Bit_Order   => System.Low_Order_First;
 
-   for CTSUCHAC4_Register use record
-      CTSUCHAC4 at 0 range 0 .. 3;
-      Reserved  at 0 range 4 .. 7;
-   end record;
+   for CTSUCHAC4_Register use
+     record
+       CTSUCHAC4 at 0 range 0 .. 3;
+       Reserved at 0 range 4 .. 7;
+     end record;
 
-   subtype CTSUCHTRC4_CTSUCHAC4_Field is R7FA4M1AB.UInt4;
+   --  CTSU Channel Transmit/Receive Control 4
+   type CTSUCHTRC4_CTSUCHAC4_Field is
+     (--  Reception
+     Val_0,
+      --  Transmission
+      Val_1)
+   with Size => 4;
+   for CTSUCHTRC4_CTSUCHAC4_Field use (Val_0 => 0, Val_1 => 1);
+
    subtype CTSUCHTRC4_Reserved_Field is R7FA4M1AB.UInt4;
 
    --  CTSU Channel Transmit/Receive Control Register 4
    type CTSUCHTRC4_Register is record
       --  CTSU Channel Transmit/Receive Control 4
-      CTSUCHAC4 : CTSUCHTRC4_CTSUCHAC4_Field := 16#0#;
+      CTSUCHAC4 : CTSUCHTRC4_CTSUCHAC4_Field := R7FA4M1AB.CTSU.Val_0;
       --  These bits are read as 0000. The write value should be 0000.
       Reserved  : CTSUCHTRC4_Reserved_Field := 16#0#;
    end record
-     with Volatile_Full_Access, Object_Size => 8,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 8,
+     Bit_Order   => System.Low_Order_First;
 
-   for CTSUCHTRC4_Register use record
-      CTSUCHAC4 at 0 range 0 .. 3;
-      Reserved  at 0 range 4 .. 7;
-   end record;
+   for CTSUCHTRC4_Register use
+     record
+       CTSUCHAC4 at 0 range 0 .. 3;
+       Reserved at 0 range 4 .. 7;
+     end record;
 
    subtype CTSUDCLKC_CTSUSSMOD_Field is R7FA4M1AB.UInt2;
    subtype CTSUDCLKC_Reserved_Field is R7FA4M1AB.UInt2;
@@ -379,20 +383,23 @@ package R7FA4M1AB.CTSU is
       --  These bits are read as 00. The write value should be 00.
       Reserved_1 : CTSUDCLKC_Reserved_Field := 16#0#;
    end record
-     with Volatile_Full_Access, Object_Size => 8,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 8,
+     Bit_Order   => System.Low_Order_First;
 
-   for CTSUDCLKC_Register use record
-      CTSUSSMOD  at 0 range 0 .. 1;
-      Reserved   at 0 range 2 .. 3;
-      CTSUSSCNT  at 0 range 4 .. 5;
-      Reserved_1 at 0 range 6 .. 7;
-   end record;
+   for CTSUDCLKC_Register use
+     record
+       CTSUSSMOD at 0 range 0 .. 1;
+       Reserved at 0 range 2 .. 3;
+       CTSUSSCNT at 0 range 4 .. 5;
+       Reserved_1 at 0 range 6 .. 7;
+     end record;
 
    --  CTSU Measurement Status Counter
    type CTSUST_CTSUSTC_Field is
      (--  Status 0
-      Val_000,
+     Val_000,
       --  Status 1
       Val_001,
       --  Status 2
@@ -403,7 +410,7 @@ package R7FA4M1AB.CTSU is
       Val_100,
       --  Status 5
       Val_101)
-     with Size => 3;
+   with Size => 3;
    for CTSUST_CTSUSTC_Field use
      (Val_000 => 0,
       Val_001 => 1,
@@ -412,56 +419,50 @@ package R7FA4M1AB.CTSU is
       Val_100 => 4,
       Val_101 => 5);
 
+   subtype CTSUST_Reserved_Field is R7FA4M1AB.Bit;
+
    --  CTSU Data Transfer Status Flag
    type CTSUST_CTSUDTSR_Field is
      (--  Measurement result has been read
-      Val_0,
+     Val_0,
       --  Measurement result has not been read
       Val_1)
-     with Size => 1;
-   for CTSUST_CTSUDTSR_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUST_CTSUDTSR_Field use (Val_0 => 0, Val_1 => 1);
 
    --  CTSU Sensor Counter Overflow Flag
    type CTSUST_CTSUSOVF_Field is
      (--  No overflow
-      Val_0,
+     Val_0,
       --  An overflow
       Val_1)
-     with Size => 1;
-   for CTSUST_CTSUSOVF_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUST_CTSUSOVF_Field use (Val_0 => 0, Val_1 => 1);
 
    --  CTSU Reference Counter Overflow Flag
    type CTSUST_CTSUROVF_Field is
      (--  No overflow
-      Val_0,
+     Val_0,
       --  An overflow
       Val_1)
-     with Size => 1;
-   for CTSUST_CTSUROVF_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUST_CTSUROVF_Field use (Val_0 => 0, Val_1 => 1);
 
    --  CTSU Mutual Capacitance Status Flag
    type CTSUST_CTSUPS_Field is
      (--  First measurement
-      Val_0,
+     Val_0,
       --  Second measurement
       Val_1)
-     with Size => 1;
-   for CTSUST_CTSUPS_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUST_CTSUPS_Field use (Val_0 => 0, Val_1 => 1);
 
    --  CTSU Status Register
    type CTSUST_Register is record
       --  Read-only. CTSU Measurement Status Counter
       CTSUSTC  : CTSUST_CTSUSTC_Field := R7FA4M1AB.CTSU.Val_000;
       --  This bit is read as 0. The write value should be 0.
-      Reserved : Boolean := False;
+      Reserved : CTSUST_Reserved_Field := 16#0#;
       --  Read-only. CTSU Data Transfer Status Flag
       CTSUDTSR : CTSUST_CTSUDTSR_Field := R7FA4M1AB.CTSU.Val_0;
       --  CTSU Sensor Counter Overflow Flag
@@ -471,24 +472,27 @@ package R7FA4M1AB.CTSU is
       --  Read-only. CTSU Mutual Capacitance Status Flag
       CTSUPS   : CTSUST_CTSUPS_Field := R7FA4M1AB.CTSU.Val_0;
    end record
-     with Volatile_Full_Access, Object_Size => 8,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 8,
+     Bit_Order   => System.Low_Order_First;
 
-   for CTSUST_Register use record
-      CTSUSTC  at 0 range 0 .. 2;
-      Reserved at 0 range 3 .. 3;
-      CTSUDTSR at 0 range 4 .. 4;
-      CTSUSOVF at 0 range 5 .. 5;
-      CTSUROVF at 0 range 6 .. 6;
-      CTSUPS   at 0 range 7 .. 7;
-   end record;
+   for CTSUST_Register use
+     record
+       CTSUSTC at 0 range 0 .. 2;
+       Reserved at 0 range 3 .. 3;
+       CTSUDTSR at 0 range 4 .. 4;
+       CTSUSOVF at 0 range 5 .. 5;
+       CTSUROVF at 0 range 6 .. 6;
+       CTSUPS at 0 range 7 .. 7;
+     end record;
 
    subtype CTSUSSC_Reserved_Field is R7FA4M1AB.Byte;
 
    --  CTSU Spectrum Diffusion Frequency Division Setting
    type CTSUSSC_CTSUSSDIV_Field is
      (--  4.00 <= fb
-      Val_0000,
+     Val_0000,
       --  2.00 <= fb < 4.00
       Val_0001,
       --  1.33 <= fb < 2.00
@@ -519,7 +523,7 @@ package R7FA4M1AB.CTSU is
       Val_1110,
       --  fb < 0.27
       Val_1111)
-     with Size => 4;
+   with Size => 4;
    for CTSUSSC_CTSUSSDIV_Field use
      (Val_0000 => 0,
       Val_0001 => 1,
@@ -549,14 +553,17 @@ package R7FA4M1AB.CTSU is
       --  These bits are read as 0000. The write value should be 0000.
       Reserved_1 : CTSUSSC_Reserved_Field_1 := 16#0#;
    end record
-     with Volatile_Full_Access, Object_Size => 16,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 16,
+     Bit_Order   => System.Low_Order_First;
 
-   for CTSUSSC_Register use record
-      Reserved   at 0 range 0 .. 7;
-      CTSUSSDIV  at 0 range 8 .. 11;
-      Reserved_1 at 0 range 12 .. 15;
-   end record;
+   for CTSUSSC_Register use
+     record
+       Reserved at 0 range 0 .. 7;
+       CTSUSSDIV at 0 range 8 .. 11;
+       Reserved_1 at 0 range 12 .. 15;
+     end record;
 
    subtype CTSUSO0_CTSUSO_Field is R7FA4M1AB.UInt10;
    subtype CTSUSO0_CTSUSNUM_Field is R7FA4M1AB.UInt6;
@@ -569,13 +576,16 @@ package R7FA4M1AB.CTSU is
       --  CTSU Measurement Count Setting
       CTSUSNUM : CTSUSO0_CTSUSNUM_Field := 16#0#;
    end record
-     with Volatile_Full_Access, Object_Size => 16,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 16,
+     Bit_Order   => System.Low_Order_First;
 
-   for CTSUSO0_Register use record
-      CTSUSO   at 0 range 0 .. 9;
-      CTSUSNUM at 0 range 10 .. 15;
-   end record;
+   for CTSUSO0_Register use
+     record
+       CTSUSO at 0 range 0 .. 9;
+       CTSUSNUM at 0 range 10 .. 15;
+     end record;
 
    subtype CTSUSO1_CTSURICOA_Field is R7FA4M1AB.Byte;
    subtype CTSUSO1_CTSUSDPA_Field is R7FA4M1AB.UInt5;
@@ -583,19 +593,18 @@ package R7FA4M1AB.CTSU is
    --  CTSU ICO Gain Adjustment
    type CTSUSO1_CTSUICOG_Field is
      (--  100 percent gain
-      Val_00,
+     Val_00,
       --  66 percent gain
       Val_01,
       --  50 percent gain
       Val_10,
       --  40 percent gain
       Val_11)
-     with Size => 2;
+   with Size => 2;
    for CTSUSO1_CTSUICOG_Field use
-     (Val_00 => 0,
-      Val_01 => 1,
-      Val_10 => 2,
-      Val_11 => 3);
+     (Val_00 => 0, Val_01 => 1, Val_10 => 2, Val_11 => 3);
+
+   subtype CTSUSO1_Reserved_Field is R7FA4M1AB.Bit;
 
    --  CTSU Sensor Offset Register 1
    type CTSUSO1_Register is record
@@ -608,30 +617,31 @@ package R7FA4M1AB.CTSU is
       --  CTSU ICO Gain Adjustment
       CTSUICOG  : CTSUSO1_CTSUICOG_Field := R7FA4M1AB.CTSU.Val_00;
       --  This bit is read as 0. The write value should be 0.
-      Reserved  : Boolean := False;
+      Reserved  : CTSUSO1_Reserved_Field := 16#0#;
    end record
-     with Volatile_Full_Access, Object_Size => 16,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 16,
+     Bit_Order   => System.Low_Order_First;
 
-   for CTSUSO1_Register use record
-      CTSURICOA at 0 range 0 .. 7;
-      CTSUSDPA  at 0 range 8 .. 12;
-      CTSUICOG  at 0 range 13 .. 14;
-      Reserved  at 0 range 15 .. 15;
-   end record;
+   for CTSUSO1_Register use
+     record
+       CTSURICOA at 0 range 0 .. 7;
+       CTSUSDPA at 0 range 8 .. 12;
+       CTSUICOG at 0 range 13 .. 14;
+       Reserved at 0 range 15 .. 15;
+     end record;
 
    subtype CTSUERRS_Reserved_Field is R7FA4M1AB.UInt15;
 
    --  TSCAP Voltage Error Monitor
    type CTSUERRS_CTSUICOMP_Field is
      (--  Normal TSCAP voltage
-      Val_0,
+     Val_0,
       --  Abnormal TSCAP voltage
       Val_1)
-     with Size => 1;
-   for CTSUERRS_CTSUICOMP_Field use
-     (Val_0 => 0,
-      Val_1 => 1);
+   with Size => 1;
+   for CTSUERRS_CTSUICOMP_Field use (Val_0 => 0, Val_1 => 1);
 
    --  CTSU Error Status Register
    type CTSUERRS_Register is record
@@ -640,13 +650,16 @@ package R7FA4M1AB.CTSU is
       --  Read-only. TSCAP Voltage Error Monitor
       CTSUICOMP : CTSUERRS_CTSUICOMP_Field;
    end record
-     with Volatile_Full_Access, Object_Size => 16,
-          Bit_Order => System.Low_Order_First;
+   with
+     Volatile_Full_Access,
+     Object_Size => 16,
+     Bit_Order   => System.Low_Order_First;
 
-   for CTSUERRS_Register use record
-      Reserved  at 0 range 0 .. 14;
-      CTSUICOMP at 0 range 15 .. 15;
-   end record;
+   for CTSUERRS_Register use
+     record
+       Reserved at 0 range 0 .. 14;
+       CTSUICOMP at 0 range 15 .. 15;
+     end record;
 
    -----------------
    -- Peripherals --
@@ -703,37 +716,38 @@ package R7FA4M1AB.CTSU is
       --  CTSU Error Status Register
       CTSUERRS   : aliased CTSUERRS_Register;
    end record
-     with Volatile;
+   with Volatile;
 
-   for CTSU_Peripheral use record
-      CTSUCR0    at 16#0# range 0 .. 7;
-      CTSUCR1    at 16#1# range 0 .. 7;
-      CTSUSDPRS  at 16#2# range 0 .. 7;
-      CTSUSST    at 16#3# range 0 .. 7;
-      CTSUMCH0   at 16#4# range 0 .. 7;
-      CTSUMCH1   at 16#5# range 0 .. 7;
-      CTSUCHAC0  at 16#6# range 0 .. 7;
-      CTSUCHAC1  at 16#7# range 0 .. 7;
-      CTSUCHAC2  at 16#8# range 0 .. 7;
-      CTSUCHAC3  at 16#9# range 0 .. 7;
-      CTSUCHAC4  at 16#A# range 0 .. 7;
-      CTSUCHTRC0 at 16#B# range 0 .. 7;
-      CTSUCHTRC1 at 16#C# range 0 .. 7;
-      CTSUCHTRC2 at 16#D# range 0 .. 7;
-      CTSUCHTRC3 at 16#E# range 0 .. 7;
-      CTSUCHTRC4 at 16#F# range 0 .. 7;
-      CTSUDCLKC  at 16#10# range 0 .. 7;
-      CTSUST     at 16#11# range 0 .. 7;
-      CTSUSSC    at 16#12# range 0 .. 15;
-      CTSUSO0    at 16#14# range 0 .. 15;
-      CTSUSO1    at 16#16# range 0 .. 15;
-      CTSUSC     at 16#18# range 0 .. 15;
-      CTSURC     at 16#1A# range 0 .. 15;
-      CTSUERRS   at 16#1C# range 0 .. 15;
-   end record;
+   for CTSU_Peripheral use
+     record
+       CTSUCR0 at 16#0# range 0 .. 7;
+       CTSUCR1 at 16#1# range 0 .. 7;
+       CTSUSDPRS at 16#2# range 0 .. 7;
+       CTSUSST at 16#3# range 0 .. 7;
+       CTSUMCH0 at 16#4# range 0 .. 7;
+       CTSUMCH1 at 16#5# range 0 .. 7;
+       CTSUCHAC0 at 16#6# range 0 .. 7;
+       CTSUCHAC1 at 16#7# range 0 .. 7;
+       CTSUCHAC2 at 16#8# range 0 .. 7;
+       CTSUCHAC3 at 16#9# range 0 .. 7;
+       CTSUCHAC4 at 16#A# range 0 .. 7;
+       CTSUCHTRC0 at 16#B# range 0 .. 7;
+       CTSUCHTRC1 at 16#C# range 0 .. 7;
+       CTSUCHTRC2 at 16#D# range 0 .. 7;
+       CTSUCHTRC3 at 16#E# range 0 .. 7;
+       CTSUCHTRC4 at 16#F# range 0 .. 7;
+       CTSUDCLKC at 16#10# range 0 .. 7;
+       CTSUST at 16#11# range 0 .. 7;
+       CTSUSSC at 16#12# range 0 .. 15;
+       CTSUSO0 at 16#14# range 0 .. 15;
+       CTSUSO1 at 16#16# range 0 .. 15;
+       CTSUSC at 16#18# range 0 .. 15;
+       CTSURC at 16#1A# range 0 .. 15;
+       CTSUERRS at 16#1C# range 0 .. 15;
+     end record;
 
    --  Capacitive Touch Sensing Unit
    CTSU_Periph : aliased CTSU_Peripheral
-     with Import, Address => CTSU_Base;
+   with Import, Address => CTSU_Base;
 
 end R7FA4M1AB.CTSU;
