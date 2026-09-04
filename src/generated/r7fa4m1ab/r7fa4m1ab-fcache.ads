@@ -1,3 +1,9 @@
+-- 
+-- Copyright (C) 2026 Marcus Gigandet
+--
+-- SPDX-License-Identifier: LGPL-3.0-or-later
+-- 
+
 pragma Style_Checks (Off);
 
 --  This spec has been automatically generated from R7FA4M1AB-ada.svd

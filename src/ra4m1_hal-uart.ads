@@ -1,3 +1,9 @@
+-- 
+-- Copyright (C) 2026 Marcus Gigandet
+--
+-- SPDX-License-Identifier: LGPL-3.0-or-later
+-- 
+
 with HAL.UART; use HAL.UART;
 
 package RA4M1_HAL.UART is

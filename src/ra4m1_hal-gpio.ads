@@ -1,3 +1,9 @@
+-- 
+-- Copyright (C) 2026 Marcus Gigandet
+--
+-- SPDX-License-Identifier: LGPL-3.0-or-later
+-- 
+
 with HAL.GPIO; use HAL.GPIO;
 
 package RA4M1_HAL.GPIO is
@@ -31,19 +37,31 @@ package RA4M1_HAL.GPIO is
 
    overriding
    function Set (This : GPIO_Point) return Boolean;
-   --  Return True if the GPIO pin is currently set.
+   -- Reads This GPIO pin state.
+   --
+   -- @param This The GPIO pin to read.
+   --
+   --  Return True if This GPIO pin is currently high.
 
    overriding
    procedure Set (This : in out GPIO_Point);
    --  Drive This GPIO pin high.
+   --
+   --  @param This The GPIO pin to drive high.
 
    overriding
    procedure Clear (This : in out GPIO_Point);
    --  Drive This GPIO pin low.
+   --
+   --  @param This The GPIO pin to drive low.
 
    overriding
    procedure Toggle (This : in out GPIO_Point);
-   --- Drives This GPIO pin to the opposite of the current state. E.g. high to low.
+   --  Toggle the state of This GPIO pin.
+   --
+   --  If the pin is high, drive it low. If the pin is low, drive it high.
+   --
+   --  @param This The GPIO pin to toggle.
 
 private
 
