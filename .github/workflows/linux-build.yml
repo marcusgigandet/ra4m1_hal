@@ -15,6 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
       - name: Install dependencies
         run: |
           sudo apt-get update
@@ -22,11 +27,6 @@ jobs:
 
       - name: Setup alire
         uses: alire-project/setup-alire@v6
-
-      - name: Checkout repository
-        uses: actions/checkout@v7
-        with:
-          submodules: recursive
 
       - name: Build
         run: alr build
