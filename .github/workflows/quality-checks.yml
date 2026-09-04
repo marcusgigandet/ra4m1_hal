@@ -1,0 +1,15 @@
+name: Code Quality Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  call-verify-copyright:
+    uses: marcusgigandet/toolbox/.github/workflows/verify_copyright.yml@c47391aa0be63bad84af411903d52977f87d88d6
+    with:
+      config: "config.toml"
+      directory: "src"
+
+  # Todo: Add checking for formatting

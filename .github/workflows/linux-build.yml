@@ -1,0 +1,34 @@
+name: Linux Build
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/linux-build.yml'
+      - 'src/**'
+      - 'svd/**'
+      - 'alire.toml'
+      - 'ra4m1_hal.gpr'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y software-properties-common
+
+      - name: Setup alire
+        uses: alire-project/setup-alire@v6
+
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Build
+        run: alr build
+
+  # Todo: Check GNATprove results and publish the outputted sarif
