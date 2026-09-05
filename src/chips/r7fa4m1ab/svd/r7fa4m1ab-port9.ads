@@ -1,0 +1,147 @@
+--
+--  Copyright (C) 2026 Marcus Gigandet
+--
+--  SPDX-License-Identifier: LGPL-3.0-or-later
+--
+
+pragma Style_Checks (Off);
+
+--  This spec has been automatically generated from R7FA4M1AB.svd
+
+pragma Restrictions (No_Elaboration_Code);
+
+with System;
+
+--  Port 9 Control Registers
+package R7FA4M1AB.PORT9 is
+   pragma Preelaborate;
+
+   ---------------
+   -- Registers --
+   ---------------
+
+   --  Pmn Direction
+   subtype PCNTR1_PDR_Field is R7FA4M1AB.UInt16;
+
+   --  Pmn Output Data
+   subtype PCNTR1_PODR_Field is R7FA4M1AB.UInt16;
+
+   --  Port Control Register 1
+   type PCNTR1_Register is record
+      PDR  : PCNTR1_PDR_Field := 16#0#;
+      --  Pmn Direction
+      PODR : PCNTR1_PODR_Field := 16#0#;
+      --  Pmn Output Data
+   end record
+     with Volatile_Full_Access, Object_Size => 32,
+          Bit_Order => System.Low_Order_First;
+
+   for PCNTR1_Register use record
+      PDR  at 0 range 0 .. 15;
+      PODR at 0 range 16 .. 31;
+   end record;
+
+   --  Pmn Input Data
+   subtype PCNTR2_PIDR_Field is R7FA4M1AB.UInt16;
+
+   subtype PCNTR2_Reserved_Field is R7FA4M1AB.UInt16;
+
+   --  Port Control Register 2
+   type PCNTR2_Register is record
+      PIDR     : PCNTR2_PIDR_Field;
+      --  Read-only. Pmn Input Data
+      Reserved : PCNTR2_Reserved_Field;
+      --  Read-only. These bits are read as 0000000000000000.
+   end record
+     with Volatile_Full_Access, Object_Size => 32,
+          Bit_Order => System.Low_Order_First;
+
+   for PCNTR2_Register use record
+      PIDR     at 0 range 0 .. 15;
+      Reserved at 0 range 16 .. 31;
+   end record;
+
+   --  Pmn Output Set
+   subtype PCNTR3_POSR_Field is R7FA4M1AB.UInt16;
+
+   --  Pmn Output Reset
+   subtype PCNTR3_PORR_Field is R7FA4M1AB.UInt16;
+
+   --  Port Control Register 3
+   type PCNTR3_Register is record
+      POSR : PCNTR3_POSR_Field := 16#0#;
+      --  Write-only. Pmn Output Set
+      PORR : PCNTR3_PORR_Field := 16#0#;
+      --  Write-only. Pmn Output Reset
+   end record
+     with Volatile_Full_Access, Object_Size => 32,
+          Bit_Order => System.Low_Order_First;
+
+   for PCNTR3_Register use record
+      POSR at 0 range 0 .. 15;
+      PORR at 0 range 16 .. 31;
+   end record;
+
+   -----------------
+   -- Peripherals --
+   -----------------
+
+   type PORT9_Disc is
+     (View_PDR,
+      View_PCNTR2,
+      View_PIDR,
+      View_POSR,
+      View_PCNTR1,
+      View_PODR,
+      View_PCNTR3,
+      View_PORR);
+
+   --  Port 9 Control Registers
+   type PORT9_Peripheral
+     (Discriminent : PORT9_Disc := View_PDR)
+   is record
+     case Discriminent is
+        when View_PDR =>
+           PDR : aliased R7FA4M1AB.UInt16;
+           --  Data direction register
+        when View_PCNTR2 =>
+           PCNTR2 : aliased PCNTR2_Register;
+           --  Port Control Register 2
+        when View_PIDR =>
+           PIDR : aliased R7FA4M1AB.UInt16;
+           --  Input data register
+        when View_POSR =>
+           POSR : aliased R7FA4M1AB.UInt16;
+           --  Output set register
+        when View_PCNTR1 =>
+           PCNTR1 : aliased PCNTR1_Register;
+           --  Port Control Register 1
+        when View_PODR =>
+           PODR : aliased R7FA4M1AB.UInt16;
+           --  Output data register
+        when View_PCNTR3 =>
+           PCNTR3 : aliased PCNTR3_Register;
+           --  Port Control Register 3
+        when View_PORR =>
+           PORR : aliased R7FA4M1AB.UInt16;
+           --  Output reset register
+     end case;
+   end record
+     with Unchecked_Union, Volatile;
+
+   for PORT9_Peripheral use record
+      PDR    at 16#2# range 0 .. 15;
+      PCNTR2 at 16#4# range 0 .. 31;
+      PIDR   at 16#6# range 0 .. 15;
+      POSR   at 16#A# range 0 .. 15;
+      PCNTR1 at 16#0# range 0 .. 31;
+      PODR   at 16#0# range 0 .. 15;
+      PCNTR3 at 16#8# range 0 .. 31;
+      PORR   at 16#8# range 0 .. 15;
+   end record;
+
+   --  Port 9 Control Registers
+   PORT9_Periph : aliased PORT9_Peripheral
+     with Import, Address => PORT9_Base;
+
+end R7FA4M1AB.PORT9;
