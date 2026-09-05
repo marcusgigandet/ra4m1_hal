@@ -1,7 +1,7 @@
 --
--- Copyright (C) 2026 Marcus Gigandet
+--  Copyright (C) 2026 Marcus Gigandet
 --
--- SPDX-License-Identifier: LGPL-3.0-or-later
+--  SPDX-License-Identifier: LGPL-3.0-or-later
 --
 
 with R7FA4M1AB; use R7FA4M1AB;
