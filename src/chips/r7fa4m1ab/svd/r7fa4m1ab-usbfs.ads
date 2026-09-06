@@ -103,28 +103,28 @@ package R7FA4M1AB.USBFS is
 
    --  System Configuration Control Register
    type SYSCFG_Register is record
-      USBE         : SYSCFG_USBE_Field := R7FA4M1AB.USBFS.Val_0;
       --  USB Operation Enable
-      Reserved_1_2 : R7FA4M1AB.UInt2 := 16#0#;
+      USBE         : SYSCFG_USBE_Field := R7FA4M1AB.USBFS.Val_0;
       --  unspecified
-      DMRPU        : SYSCFG_DMRPU_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_1_2 : R7FA4M1AB.UInt2 := 16#0#;
       --  D- Line Resistor Control
-      DPRPU        : SYSCFG_DPRPU_Field := R7FA4M1AB.USBFS.Val_0;
+      DMRPU        : SYSCFG_DMRPU_Field := R7FA4M1AB.USBFS.Val_0;
       --  D+ Line Resistor Control
-      DRPD         : SYSCFG_DRPD_Field := R7FA4M1AB.USBFS.Val_0;
+      DPRPU        : SYSCFG_DPRPU_Field := R7FA4M1AB.USBFS.Val_0;
       --  D+/D- Line Resistor Control
-      DCFM         : SYSCFG_DCFM_Field := R7FA4M1AB.USBFS.Val_0;
+      DRPD         : SYSCFG_DRPD_Field := R7FA4M1AB.USBFS.Val_0;
       --  Controller Function Select
+      DCFM         : SYSCFG_DCFM_Field := R7FA4M1AB.USBFS.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved     : SYSCFG_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      CNEN         : SYSCFG_CNEN_Field := R7FA4M1AB.USBFS.Val_0;
       --  CNEN Single End Receiver Enable
-      Reserved_1   : SYSCFG_Reserved_Field := 16#0#;
+      CNEN         : SYSCFG_CNEN_Field := R7FA4M1AB.USBFS.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      SCKE         : SYSCFG_SCKE_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_1   : SYSCFG_Reserved_Field := 16#0#;
       --  USB Clock Enable
-      Reserved_2   : SYSCFG_Reserved_Field_1 := 16#0#;
+      SCKE         : SYSCFG_SCKE_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved_2   : SYSCFG_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -189,20 +189,20 @@ package R7FA4M1AB.USBFS is
 
    --  System Configuration Status Register 0
    type SYSSTS0_Register is record
-      LNST       : SYSSTS0_LNST_Field;
       --  Read-only. USB Data Line Status Monitor
-      IDMON      : SYSSTS0_IDMON_Field;
+      LNST       : SYSSTS0_LNST_Field;
       --  Read-only. External ID0 Input Pin Monitor
-      Reserved   : SYSSTS0_Reserved_Field;
+      IDMON      : SYSSTS0_IDMON_Field;
       --  Read-only. These bits are read as 000.
-      HTACT      : SYSSTS0_HTACT_Field;
+      Reserved   : SYSSTS0_Reserved_Field;
       --  Read-only. USB Host Sequencer Status Monitor
-      Reserved_1 : SYSSTS0_Reserved_Field_1;
+      HTACT      : SYSSTS0_HTACT_Field;
       --  Read-only. These bits are read as 0000000.
-      OVCMON     : SYSSTS0_OVCMON_Field;
+      Reserved_1 : SYSSTS0_Reserved_Field_1;
       --  Read-only. External USB0_OVRCURA/ USB0_OVRCURB Input Pin Monitor The
       --  OCVMON[1] bit indicates the status of the USBHS_OVRCURA pin. The
       --  OCVMON[0] bit indicates the status of the USBHS_OVRCURB pin.
+      OVCMON     : SYSSTS0_OVCMON_Field;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -220,17 +220,18 @@ package R7FA4M1AB.USBFS is
    type DVSTCTR0_RHST_Field is
      (--  Communication speed not determined
       Val_000,
+      --  USB bus reset in progress(When the host controller function is selected)
+      Val_001,
       --  Low-speed connection(When the host controller is selected) /USB bus reset
 --  in progress( When the function controller is selected)
-      Val_001,
+      Val_010,
       --  Full-speed connection(When the host controller is selected) /USB bus reset
 --  in progress or full-speed connection(When the function controller is
 --  selected)
-      Val_010,
-      --  Setting prohibited
       Val_011,
-      --  USB bus reset in progress(When the host controller function is selected)
-      others_k)
+      --  Setting prohibited
+      others_k
+     )
      with Size => 3;
    for DVSTCTR0_RHST_Field use
      (Val_000 => 0,
@@ -336,32 +337,32 @@ package R7FA4M1AB.USBFS is
 
    --  Device State Control Register 0
    type DVSTCTR0_Register is record
-      RHST       : DVSTCTR0_RHST_Field := R7FA4M1AB.USBFS.Val_000;
       --  Read-only. USB Bus Reset Status
-      Reserved   : DVSTCTR0_Reserved_Field := 16#0#;
+      RHST       : DVSTCTR0_RHST_Field := R7FA4M1AB.USBFS.Val_000;
       --  This bit is read as 0. The write value should be 0.
-      UACT       : DVSTCTR0_UACT_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved   : DVSTCTR0_Reserved_Field := 16#0#;
       --  USB Bus Enable
-      RESUME     : DVSTCTR0_RESUME_Field := R7FA4M1AB.USBFS.Val_0;
+      UACT       : DVSTCTR0_UACT_Field := R7FA4M1AB.USBFS.Val_0;
       --  Resume Output
-      USBRST     : DVSTCTR0_USBRST_Field := R7FA4M1AB.USBFS.Val_0;
+      RESUME     : DVSTCTR0_RESUME_Field := R7FA4M1AB.USBFS.Val_0;
       --  USB Bus Reset Output
-      RWUPE      : DVSTCTR0_RWUPE_Field := R7FA4M1AB.USBFS.Val_0;
+      USBRST     : DVSTCTR0_USBRST_Field := R7FA4M1AB.USBFS.Val_0;
       --  Wakeup Detection Enable
-      WKUP       : DVSTCTR0_WKUP_Field := R7FA4M1AB.USBFS.Val_0;
+      RWUPE      : DVSTCTR0_RWUPE_Field := R7FA4M1AB.USBFS.Val_0;
       --  Wakeup Output
-      VBUSEN     : DVSTCTR0_VBUSEN_Field := R7FA4M1AB.USBFS.Val_0;
+      WKUP       : DVSTCTR0_WKUP_Field := R7FA4M1AB.USBFS.Val_0;
       --  USB_VBUSEN Output Pin Control
-      EXICEN     : DVSTCTR0_EXICEN_Field := R7FA4M1AB.USBFS.Val_0;
+      VBUSEN     : DVSTCTR0_VBUSEN_Field := R7FA4M1AB.USBFS.Val_0;
       --  USB_EXICEN Output Pin Control
-      HNPBTOA    : DVSTCTR0_HNPBTOA_Field := R7FA4M1AB.USBFS.Val_0;
+      EXICEN     : DVSTCTR0_EXICEN_Field := R7FA4M1AB.USBFS.Val_0;
       --  Host Negotiation Protocol (HNP) Control This bit is used when
       --  switching from device B to device A while in OTG mode. If the HNPBTOA
       --  bit is 1, the internal function control keeps the suspended state
       --  until the HNP processing ends even though SYSCFG.DPRPU = 0 or
       --  SYSCFG.DCFM = 1 is set.
-      Reserved_1 : DVSTCTR0_Reserved_Field_1 := 16#0#;
+      HNPBTOA    : DVSTCTR0_HNPBTOA_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 0000. The write value should be 0000.
+      Reserved_1 : DVSTCTR0_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -384,26 +385,27 @@ package R7FA4M1AB.USBFS is
    type CFIFOSEL_CURPIPE_Field is
      (--  DCP (Default control pipe)
       Val_0000,
-      --  Pipe 1
-      Val_0001,
-      --  Pipe 2
-      Val_0010,
-      --  Pipe 3
-      Val_0011,
-      --  Pipe 4
-      Val_0100,
-      --  Pipe 5
-      Val_0101,
-      --  Pipe 6
-      Val_0110,
-      --  Pipe 7
-      Val_0111,
-      --  Pipe 8
-      Val_1000,
-      --  Pipe 9
-      Val_1001,
       --  Setting prohibited
-      others_k)
+      Val_0001,
+      --  Pipe 1
+      Val_0010,
+      --  Pipe 2
+      Val_0011,
+      --  Pipe 3
+      Val_0100,
+      --  Pipe 4
+      Val_0101,
+      --  Pipe 5
+      Val_0110,
+      --  Pipe 6
+      Val_0111,
+      --  Pipe 7
+      Val_1000,
+      --  Pipe 8
+      Val_1001,
+      --  Pipe 9
+      others_k
+     )
      with Size => 4;
    for CFIFOSEL_CURPIPE_Field use
      (Val_0000 => 0,
@@ -485,26 +487,26 @@ package R7FA4M1AB.USBFS is
 
    --  CFIFO Port Select Register
    type CFIFOSEL_Register is record
-      CURPIPE    : CFIFOSEL_CURPIPE_Field := R7FA4M1AB.USBFS.Val_0000;
       --  CFIFO Port Access Pipe Specification
+      CURPIPE    : CFIFOSEL_CURPIPE_Field := R7FA4M1AB.USBFS.Val_0000;
+      --  This bit is read as 0. The write value should be 0.
       Reserved   : CFIFOSEL_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      ISEL       : CFIFOSEL_ISEL_Field := R7FA4M1AB.USBFS.Val_0;
       --  CFIFO Port Access Direction When DCP is Selected
-      Reserved_1 : CFIFOSEL_Reserved_Field_1 := 16#0#;
+      ISEL       : CFIFOSEL_ISEL_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      BIGEND     : CFIFOSEL_BIGEND_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_1 : CFIFOSEL_Reserved_Field_1 := 16#0#;
       --  CFIFO Port Endian Control
-      Reserved_2 : CFIFOSEL_Reserved_Field := 16#0#;
+      BIGEND     : CFIFOSEL_BIGEND_Field := R7FA4M1AB.USBFS.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      MBW        : CFIFOSEL_MBW_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_2 : CFIFOSEL_Reserved_Field := 16#0#;
       --  CFIFO Port Access Bit Width
-      Reserved_3 : CFIFOSEL_Reserved_Field_2 := 16#0#;
+      MBW        : CFIFOSEL_MBW_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000. The write value should be 000.
-      REW        : CFIFOSEL_REW_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_3 : CFIFOSEL_Reserved_Field_2 := 16#0#;
       --  Write-only. Buffer Pointer Rewind
-      RCNT       : CFIFOSEL_RCNT_Field := R7FA4M1AB.USBFS.Val_0;
+      REW        : CFIFOSEL_REW_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read Count Mode
+      RCNT       : CFIFOSEL_RCNT_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -560,17 +562,17 @@ package R7FA4M1AB.USBFS is
 
    --  CFIFO Port Control Register
    type CFIFOCTR_Register is record
-      DTLN     : CFIFOCTR_DTLN_Field := 16#0#;
       --  Read-only. Receive Data Length Indicates the length of the receive
       --  data.
-      Reserved : CFIFOCTR_Reserved_Field := 16#0#;
+      DTLN     : CFIFOCTR_DTLN_Field := 16#0#;
       --  These bits are read as 0000. The write value should be 0000.
-      FRDY     : CFIFOCTR_FRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved : CFIFOCTR_Reserved_Field := 16#0#;
       --  Read-only. FIFO Port Ready
-      BCLR     : CFIFOCTR_BCLR_Field := R7FA4M1AB.USBFS.Val_0;
+      FRDY     : CFIFOCTR_FRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write-only. CPU Buffer Clear Note: Only 0 can be read.
-      BVAL     : CFIFOCTR_BVAL_Field := R7FA4M1AB.USBFS.Val_0;
+      BCLR     : CFIFOCTR_BCLR_Field := R7FA4M1AB.USBFS.Val_0;
       --  Buffer Memory Valid Flag
+      BVAL     : CFIFOCTR_BVAL_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -587,26 +589,27 @@ package R7FA4M1AB.USBFS is
    type D0FIFOSEL_CURPIPE_Field is
      (--  DCP (Default control pipe)
       Val_0000,
-      --  Pipe 1
-      Val_0001,
-      --  Pipe 2
-      Val_0010,
-      --  Pipe 3
-      Val_0011,
-      --  Pipe 4
-      Val_0100,
-      --  Pipe 5
-      Val_0101,
-      --  Pipe 6
-      Val_0110,
-      --  Pipe 7
-      Val_0111,
-      --  Pipe 8
-      Val_1000,
-      --  Pipe 9
-      Val_1001,
       --  Setting prohibited
-      others_k)
+      Val_0001,
+      --  Pipe 1
+      Val_0010,
+      --  Pipe 2
+      Val_0011,
+      --  Pipe 3
+      Val_0100,
+      --  Pipe 4
+      Val_0101,
+      --  Pipe 5
+      Val_0110,
+      --  Pipe 6
+      Val_0111,
+      --  Pipe 7
+      Val_1000,
+      --  Pipe 8
+      Val_1001,
+      --  Pipe 9
+      others_k
+     )
      with Size => 4;
    for D0FIFOSEL_CURPIPE_Field use
      (Val_0000 => 0,
@@ -697,27 +700,27 @@ package R7FA4M1AB.USBFS is
 
    --  D0FIFO Port Select Register
    type D0FIFOSEL_Register is record
-      CURPIPE    : D0FIFOSEL_CURPIPE_Field := R7FA4M1AB.USBFS.Val_0000;
       --  FIFO Port Access Pipe Specification
-      Reserved   : D0FIFOSEL_Reserved_Field := 16#0#;
+      CURPIPE    : D0FIFOSEL_CURPIPE_Field := R7FA4M1AB.USBFS.Val_0000;
       --  These bits are read as 0000. The write value should be 0000.
-      BIGEND     : D0FIFOSEL_BIGEND_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved   : D0FIFOSEL_Reserved_Field := 16#0#;
       --  FIFO Port Endian Control
+      BIGEND     : D0FIFOSEL_BIGEND_Field := R7FA4M1AB.USBFS.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_1 : D0FIFOSEL_Reserved_Field_1 := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      MBW        : D0FIFOSEL_MBW_Field := R7FA4M1AB.USBFS.Val_0;
       --  FIFO Port Access Bit Width
-      Reserved_2 : D0FIFOSEL_Reserved_Field_1 := 16#0#;
+      MBW        : D0FIFOSEL_MBW_Field := R7FA4M1AB.USBFS.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      DREQE      : D0FIFOSEL_DREQE_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_2 : D0FIFOSEL_Reserved_Field_1 := 16#0#;
       --  DMA/DTC Transfer Request Enable
-      DCLRM      : D0FIFOSEL_DCLRM_Field := R7FA4M1AB.USBFS.Val_0;
+      DREQE      : D0FIFOSEL_DREQE_Field := R7FA4M1AB.USBFS.Val_0;
       --  Auto Buffer Memory Clear Mode Accessed after Specified Pipe Data is
       --  Read
-      REW        : D0FIFOSEL_REW_Field := R7FA4M1AB.USBFS.Val_0;
+      DCLRM      : D0FIFOSEL_DCLRM_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write-only. Buffer Pointer Rewind Note: Only 0 can be read.
-      RCNT       : D0FIFOSEL_RCNT_Field := R7FA4M1AB.USBFS.Val_0;
+      REW        : D0FIFOSEL_REW_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read Count Mode
+      RCNT       : D0FIFOSEL_RCNT_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -773,17 +776,17 @@ package R7FA4M1AB.USBFS is
 
    --  D0FIFO Port Control Register
    type D0FIFOCTR_Register is record
-      DTLN     : D0FIFOCTR_DTLN_Field := 16#0#;
       --  Read-only. Receive Data Length Indicates the length of the receive
       --  data.
-      Reserved : D0FIFOCTR_Reserved_Field := 16#0#;
+      DTLN     : D0FIFOCTR_DTLN_Field := 16#0#;
       --  These bits are read as 0000. The write value should be 0000.
-      FRDY     : D0FIFOCTR_FRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved : D0FIFOCTR_Reserved_Field := 16#0#;
       --  Read-only. FIFO Port Ready
-      BCLR     : D0FIFOCTR_BCLR_Field := R7FA4M1AB.USBFS.Val_0;
+      FRDY     : D0FIFOCTR_FRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write-only. CPU Buffer Clear Note: Only 0 can be read.
-      BVAL     : D0FIFOCTR_BVAL_Field := R7FA4M1AB.USBFS.Val_0;
+      BCLR     : D0FIFOCTR_BCLR_Field := R7FA4M1AB.USBFS.Val_0;
       --  Buffer Memory Valid Flag
+      BVAL     : D0FIFOCTR_BVAL_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -800,26 +803,27 @@ package R7FA4M1AB.USBFS is
    type D1FIFOSEL_CURPIPE_Field is
      (--  DCP (Default control pipe)
       Val_0000,
-      --  Pipe 1
-      Val_0001,
-      --  Pipe 2
-      Val_0010,
-      --  Pipe 3
-      Val_0011,
-      --  Pipe 4
-      Val_0100,
-      --  Pipe 5
-      Val_0101,
-      --  Pipe 6
-      Val_0110,
-      --  Pipe 7
-      Val_0111,
-      --  Pipe 8
-      Val_1000,
-      --  Pipe 9
-      Val_1001,
       --  Setting prohibited
-      others_k)
+      Val_0001,
+      --  Pipe 1
+      Val_0010,
+      --  Pipe 2
+      Val_0011,
+      --  Pipe 3
+      Val_0100,
+      --  Pipe 4
+      Val_0101,
+      --  Pipe 5
+      Val_0110,
+      --  Pipe 6
+      Val_0111,
+      --  Pipe 7
+      Val_1000,
+      --  Pipe 8
+      Val_1001,
+      --  Pipe 9
+      others_k
+     )
      with Size => 4;
    for D1FIFOSEL_CURPIPE_Field use
      (Val_0000 => 0,
@@ -910,27 +914,27 @@ package R7FA4M1AB.USBFS is
 
    --  D1FIFO Port Select Register
    type D1FIFOSEL_Register is record
-      CURPIPE    : D1FIFOSEL_CURPIPE_Field := R7FA4M1AB.USBFS.Val_0000;
       --  FIFO Port Access Pipe Specification
-      Reserved   : D1FIFOSEL_Reserved_Field := 16#0#;
+      CURPIPE    : D1FIFOSEL_CURPIPE_Field := R7FA4M1AB.USBFS.Val_0000;
       --  These bits are read as 0000. The write value should be 0000.
-      BIGEND     : D1FIFOSEL_BIGEND_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved   : D1FIFOSEL_Reserved_Field := 16#0#;
       --  FIFO Port Endian Control
+      BIGEND     : D1FIFOSEL_BIGEND_Field := R7FA4M1AB.USBFS.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_1 : D1FIFOSEL_Reserved_Field_1 := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      MBW        : D1FIFOSEL_MBW_Field := R7FA4M1AB.USBFS.Val_0;
       --  FIFO Port Access Bit Width
-      Reserved_2 : D1FIFOSEL_Reserved_Field_1 := 16#0#;
+      MBW        : D1FIFOSEL_MBW_Field := R7FA4M1AB.USBFS.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      DREQE      : D1FIFOSEL_DREQE_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_2 : D1FIFOSEL_Reserved_Field_1 := 16#0#;
       --  DMA/DTC Transfer Request Enable
-      DCLRM      : D1FIFOSEL_DCLRM_Field := R7FA4M1AB.USBFS.Val_0;
+      DREQE      : D1FIFOSEL_DREQE_Field := R7FA4M1AB.USBFS.Val_0;
       --  Auto Buffer Memory Clear Mode Accessed after Specified Pipe Data is
       --  Read
-      REW        : D1FIFOSEL_REW_Field := R7FA4M1AB.USBFS.Val_0;
+      DCLRM      : D1FIFOSEL_DCLRM_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write-only. Buffer Pointer Rewind
-      RCNT       : D1FIFOSEL_RCNT_Field := R7FA4M1AB.USBFS.Val_0;
+      REW        : D1FIFOSEL_REW_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read Count Mode
+      RCNT       : D1FIFOSEL_RCNT_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -986,17 +990,17 @@ package R7FA4M1AB.USBFS is
 
    --  D1FIFO Port Control Register
    type D1FIFOCTR_Register is record
-      DTLN     : D1FIFOCTR_DTLN_Field := 16#0#;
       --  Read-only. Receive Data Length Indicates the length of the receive
       --  data.
-      Reserved : D1FIFOCTR_Reserved_Field := 16#0#;
+      DTLN     : D1FIFOCTR_DTLN_Field := 16#0#;
       --  These bits are read as 0000. The write value should be 0000.
-      FRDY     : D1FIFOCTR_FRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved : D1FIFOCTR_Reserved_Field := 16#0#;
       --  Read-only. FIFO Port Ready
-      BCLR     : D1FIFOCTR_BCLR_Field := R7FA4M1AB.USBFS.Val_0;
+      FRDY     : D1FIFOCTR_FRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write-only. CPU Buffer Clear Note: Only 0 can be read.
-      BVAL     : D1FIFOCTR_BVAL_Field := R7FA4M1AB.USBFS.Val_0;
+      BCLR     : D1FIFOCTR_BCLR_Field := R7FA4M1AB.USBFS.Val_0;
       --  Buffer Memory Valid Flag
+      BVAL     : D1FIFOCTR_BVAL_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1101,24 +1105,24 @@ package R7FA4M1AB.USBFS is
 
    --  Interrupt Enable Register 0
    type INTENB0_Register is record
-      Reserved : INTENB0_Reserved_Field := 16#0#;
       --  These bits are read as 00000000. The write value should be 00000000.
-      BRDYE    : INTENB0_BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved : INTENB0_Reserved_Field := 16#0#;
       --  Buffer Ready Interrupt Enable
-      NRDYE    : INTENB0_NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      BRDYE    : INTENB0_BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  Buffer Not Ready Response Interrupt Enable
-      BEMPE    : INTENB0_BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
+      NRDYE    : INTENB0_NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  Buffer Empty Interrupt Enable
-      CTRE     : INTENB0_CTRE_Field := R7FA4M1AB.USBFS.Val_0;
+      BEMPE    : INTENB0_BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
       --  Control Transfer Stage Transition Interrupt Enable
-      DVSE     : INTENB0_DVSE_Field := R7FA4M1AB.USBFS.Val_0;
+      CTRE     : INTENB0_CTRE_Field := R7FA4M1AB.USBFS.Val_0;
       --  Device State Transition Interrupt Enable
-      SOFE     : INTENB0_SOFE_Field := R7FA4M1AB.USBFS.Val_0;
+      DVSE     : INTENB0_DVSE_Field := R7FA4M1AB.USBFS.Val_0;
       --  Frame Number Update Interrupt Enable
-      RSME     : INTENB0_RSME_Field := R7FA4M1AB.USBFS.Val_0;
+      SOFE     : INTENB0_SOFE_Field := R7FA4M1AB.USBFS.Val_0;
       --  Resume Interrupt Enable
-      VBSE     : INTENB0_VBSE_Field := R7FA4M1AB.USBFS.Val_0;
+      RSME     : INTENB0_RSME_Field := R7FA4M1AB.USBFS.Val_0;
       --  VBUS Interrupt Enable
+      VBSE     : INTENB0_VBSE_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1231,28 +1235,28 @@ package R7FA4M1AB.USBFS is
 
    --  Interrupt Enable Register 1
    type INTENB1_Register is record
-      PDDETINTE0 : INTENB1_PDDETINTE0_Field := R7FA4M1AB.USBFS.Val_0;
       --  PDDETINT0 Detection Interrupt Enable
-      Reserved   : INTENB1_Reserved_Field := 16#0#;
+      PDDETINTE0 : INTENB1_PDDETINTE0_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000. The write value should be 000.
-      SACKE      : INTENB1_SACKE_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved   : INTENB1_Reserved_Field := 16#0#;
       --  Setup Transaction Normal Response Interrupt Enable
-      SIGNE      : INTENB1_SIGNE_Field := R7FA4M1AB.USBFS.Val_0;
+      SACKE      : INTENB1_SACKE_Field := R7FA4M1AB.USBFS.Val_0;
       --  Setup Transaction Error Interrupt Enable
-      EOFERRE    : INTENB1_EOFERRE_Field := R7FA4M1AB.USBFS.Val_0;
+      SIGNE      : INTENB1_SIGNE_Field := R7FA4M1AB.USBFS.Val_0;
       --  EOF Error Detection Interrupt Enable
-      Reserved_1 : INTENB1_Reserved_Field_1 := 16#0#;
+      EOFERRE    : INTENB1_EOFERRE_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 0000. The write value should be 0000.
-      ATTCHE     : INTENB1_ATTCHE_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_1 : INTENB1_Reserved_Field_1 := 16#0#;
       --  Connection Detection Interrupt Enable
-      DTCHE      : INTENB1_DTCHE_Field := R7FA4M1AB.USBFS.Val_0;
+      ATTCHE     : INTENB1_ATTCHE_Field := R7FA4M1AB.USBFS.Val_0;
       --  Disconnection Detection Interrupt Enable
-      Reserved_2 : INTENB1_Reserved_Field_2 := 16#0#;
+      DTCHE      : INTENB1_DTCHE_Field := R7FA4M1AB.USBFS.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      BCHGE      : INTENB1_BCHGE_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_2 : INTENB1_Reserved_Field_2 := 16#0#;
       --  USB Bus Change Interrupt Enable
-      OVRCRE     : INTENB1_OVRCRE_Field := R7FA4M1AB.USBFS.Val_0;
+      BCHGE      : INTENB1_BCHGE_Field := R7FA4M1AB.USBFS.Val_0;
       --  Overcurrent Input Change Interrupt Enable
+      OVRCRE     : INTENB1_OVRCRE_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1385,28 +1389,28 @@ package R7FA4M1AB.USBFS is
 
    --  BRDY Interrupt Enable Register
    type BRDYENB_Register is record
-      PIPE0BRDYE : BRDYENB_PIPE0BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BRDY Interrupt Enable for PIPE0
-      PIPE1BRDYE : BRDYENB_PIPE1BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE0BRDYE : BRDYENB_PIPE0BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BRDY Interrupt Enable for PIPE1
-      PIPE2BRDYE : BRDYENB_PIPE2BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE1BRDYE : BRDYENB_PIPE1BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BRDY Interrupt Enable for PIPE2
-      PIPE3BRDYE : BRDYENB_PIPE3BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE2BRDYE : BRDYENB_PIPE2BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BRDY Interrupt Enable for PIPE3
-      PIPE4BRDYE : BRDYENB_PIPE4BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE3BRDYE : BRDYENB_PIPE3BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BRDY Interrupt Enable for PIPE4
-      PIPE5BRDYE : BRDYENB_PIPE5BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE4BRDYE : BRDYENB_PIPE4BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BRDY Interrupt Enable for PIPE5
-      PIPE6BRDYE : BRDYENB_PIPE6BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE5BRDYE : BRDYENB_PIPE5BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BRDY Interrupt Enable for PIPE6
-      PIPE7BRDYE : BRDYENB_PIPE7BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE6BRDYE : BRDYENB_PIPE6BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BRDY Interrupt Enable for PIPE7
-      PIPE8BRDYE : BRDYENB_PIPE8BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE7BRDYE : BRDYENB_PIPE7BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BRDY Interrupt Enable for PIPE8
-      PIPE9BRDYE : BRDYENB_PIPE9BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE8BRDYE : BRDYENB_PIPE8BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BRDY Interrupt Enable for PIPE9
-      Reserved   : BRDYENB_Reserved_Field := 16#0#;
+      PIPE9BRDYE : BRDYENB_PIPE9BRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved   : BRDYENB_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1539,28 +1543,28 @@ package R7FA4M1AB.USBFS is
 
    --  NRDY Interrupt Enable Register
    type NRDYENB_Register is record
-      PIPE0NRDYE : NRDYENB_PIPE0NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  NRDY Interrupt Enable for PIPE0
-      PIPE1NRDYE : NRDYENB_PIPE1NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE0NRDYE : NRDYENB_PIPE0NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  NRDY Interrupt Enable for PIPE1
-      PIPE2NRDYE : NRDYENB_PIPE2NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE1NRDYE : NRDYENB_PIPE1NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  NRDY Interrupt Enable for PIPE2
-      PIPE3NRDYE : NRDYENB_PIPE3NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE2NRDYE : NRDYENB_PIPE2NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  NRDY Interrupt Enable for PIPE3
-      PIPE4NRDYE : NRDYENB_PIPE4NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE3NRDYE : NRDYENB_PIPE3NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  NRDY Interrupt Enable for PIPE4
-      PIPE5NRDYE : NRDYENB_PIPE5NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE4NRDYE : NRDYENB_PIPE4NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  NRDY Interrupt Enable for PIPE5
-      PIPE6NRDYE : NRDYENB_PIPE6NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE5NRDYE : NRDYENB_PIPE5NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  NRDY Interrupt Enable for PIPE6
-      PIPE7NRDYE : NRDYENB_PIPE7NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE6NRDYE : NRDYENB_PIPE6NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  NRDY Interrupt Enable for PIPE7
-      PIPE8NRDYE : NRDYENB_PIPE8NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE7NRDYE : NRDYENB_PIPE7NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  NRDY Interrupt Enable for PIPE8
-      PIPE9NRDYE : NRDYENB_PIPE9NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE8NRDYE : NRDYENB_PIPE8NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  NRDY Interrupt Enable for PIPE9
-      Reserved   : NRDYENB_Reserved_Field := 16#0#;
+      PIPE9NRDYE : NRDYENB_PIPE9NRDYE_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved   : NRDYENB_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1693,28 +1697,28 @@ package R7FA4M1AB.USBFS is
 
    --  BEMP Interrupt Enable Register
    type BEMPENB_Register is record
-      PIPE0BEMPE : BEMPENB_PIPE0BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BEMP Interrupt Enable for PIPE0
-      PIPE1BEMPE : BEMPENB_PIPE1BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE0BEMPE : BEMPENB_PIPE0BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BEMP Interrupt Enable for PIPE1
-      PIPE2BEMPE : BEMPENB_PIPE2BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE1BEMPE : BEMPENB_PIPE1BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BEMP Interrupt Enable for PIPE2
-      PIPE3BEMPE : BEMPENB_PIPE3BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE2BEMPE : BEMPENB_PIPE2BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BEMP Interrupt Enable for PIPE3
-      PIPE4BEMPE : BEMPENB_PIPE4BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE3BEMPE : BEMPENB_PIPE3BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BEMP Interrupt Enable for PIPE4
-      PIPE5BEMPE : BEMPENB_PIPE5BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE4BEMPE : BEMPENB_PIPE4BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BEMP Interrupt Enable for PIPE5
-      PIPE6BEMPE : BEMPENB_PIPE6BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE5BEMPE : BEMPENB_PIPE5BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BEMP Interrupt Enable for PIPE6
-      PIPE7BEMPE : BEMPENB_PIPE7BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE6BEMPE : BEMPENB_PIPE6BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BEMP Interrupt Enable for PIPE7
-      PIPE8BEMPE : BEMPENB_PIPE8BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE7BEMPE : BEMPENB_PIPE7BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BEMP Interrupt Enable for PIPE8
-      PIPE9BEMPE : BEMPENB_PIPE9BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE8BEMPE : BEMPENB_PIPE8BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
       --  BEMP Interrupt Enable for PIPE9
-      Reserved   : BEMPENB_Reserved_Field := 16#0#;
+      PIPE9BEMPE : BEMPENB_PIPE9BEMPE_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved   : BEMPENB_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1775,20 +1779,20 @@ package R7FA4M1AB.USBFS is
 
    --  SOF Output Configuration Register
    type SOFCFG_Register is record
-      Reserved   : SOFCFG_Reserved_Field := 16#0#;
       --  These bits are read as 0000. The write value should be 0000.
-      EDGESTS    : SOFCFG_EDGESTS_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved   : SOFCFG_Reserved_Field := 16#0#;
       --  Read-only. Edge Interrupt Output Status Monitor
+      EDGESTS    : SOFCFG_EDGESTS_Field := R7FA4M1AB.USBFS.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_1 : SOFCFG_Reserved_Field_1 := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      BRDYM      : SOFCFG_BRDYM_Field := R7FA4M1AB.USBFS.Val_0;
       --  BRDY Interrupt Status Clear Timing
-      Reserved_2 : SOFCFG_Reserved_Field_1 := 16#0#;
+      BRDYM      : SOFCFG_BRDYM_Field := R7FA4M1AB.USBFS.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      TRNENSEL   : SOFCFG_TRNENSEL_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_2 : SOFCFG_Reserved_Field_1 := 16#0#;
       --  Transaction-Enabled Time Select
-      Reserved_3 : SOFCFG_Reserved_Field_2 := 16#0#;
+      TRNENSEL   : SOFCFG_TRNENSEL_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved_3 : SOFCFG_Reserved_Field_2 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1807,20 +1811,21 @@ package R7FA4M1AB.USBFS is
    type INTSTS0_CTSQ_Field is
      (--  Idle or setup stage
       Val_000,
-      --  Control read data stage
-      Val_001,
-      --  Control read status stage
-      Val_010,
-      --  Control write data stage
-      Val_011,
-      --  Control write status stage
-      Val_100,
-      --  Control write (no data) status stage
-      Val_101,
-      --  Control transfer sequence error
-      Val_110,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  Control read data stage
+      Val_010,
+      --  Control read status stage
+      Val_011,
+      --  Control write data stage
+      Val_100,
+      --  Control write status stage
+      Val_101,
+      --  Control write (no data) status stage
+      Val_110,
+      --  Control transfer sequence error
+      others_k
+     )
      with Size => 3;
    for INTSTS0_CTSQ_Field use
      (Val_000 => 0,
@@ -1847,14 +1852,15 @@ package R7FA4M1AB.USBFS is
    type INTSTS0_DVSQ_Field is
      (--  Powered state
       Val_000,
-      --  Default state
-      Val_001,
-      --  Address state
-      Val_010,
-      --  Configured state
-      Val_011,
       --  Suspended state
-      others_k)
+      Val_001,
+      --  Default state
+      Val_010,
+      --  Address state
+      Val_011,
+      --  Configured state
+      others_k
+     )
      with Size => 3;
    for INTSTS0_DVSQ_Field use
      (Val_000 => 0,
@@ -1964,40 +1970,40 @@ package R7FA4M1AB.USBFS is
 
    --  Interrupt Status Register 0
    type INTSTS0_Register is record
-      CTSQ  : INTSTS0_CTSQ_Field := R7FA4M1AB.USBFS.Val_000;
       --  Read-only. Control Transfer Stage
-      VALID : INTSTS0_VALID_Field := R7FA4M1AB.USBFS.Val_0;
+      CTSQ  : INTSTS0_CTSQ_Field := R7FA4M1AB.USBFS.Val_000;
       --  USB Request Reception
-      DVSQ  : INTSTS0_DVSQ_Field := R7FA4M1AB.USBFS.Val_000;
+      VALID : INTSTS0_VALID_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read-only. Device State
-      VBSTS : INTSTS0_VBSTS_Field := R7FA4M1AB.USBFS.Val_0;
+      DVSQ  : INTSTS0_DVSQ_Field := R7FA4M1AB.USBFS.Val_000;
       --  Read-only. VBUS Input Status
-      BRDY  : INTSTS0_BRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      VBSTS : INTSTS0_VBSTS_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read-only. Buffer Ready Interrupt Status
-      NRDY  : INTSTS0_NRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      BRDY  : INTSTS0_BRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read-only. Buffer Not Ready Interrupt Status
-      BEMP  : INTSTS0_BEMP_Field := R7FA4M1AB.USBFS.Val_0;
+      NRDY  : INTSTS0_NRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read-only. Buffer Empty Interrupt Status
-      CTRT  : INTSTS0_CTRT_Field := R7FA4M1AB.USBFS.Val_0;
+      BEMP  : INTSTS0_BEMP_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Control Transfer Stage Transition Interrupt Status
-      DVST  : INTSTS0_DVST_Field := R7FA4M1AB.USBFS.Val_0;
+      CTRT  : INTSTS0_CTRT_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Device State Transition Interrupt Status
-      SOFR  : INTSTS0_SOFR_Field := R7FA4M1AB.USBFS.Val_0;
+      DVST  : INTSTS0_DVST_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Frame Number Refresh Interrupt Status
-      RESM  : INTSTS0_RESM_Field := R7FA4M1AB.USBFS.Val_0;
+      SOFR  : INTSTS0_SOFR_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Resume Interrupt Status
-      VBINT : INTSTS0_VBINT_Field := R7FA4M1AB.USBFS.Val_0;
+      RESM  : INTSTS0_RESM_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. VBUS Interrupt Status
+      VBINT : INTSTS0_VBINT_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2113,44 +2119,44 @@ package R7FA4M1AB.USBFS is
 
    --  Interrupt Status Register 1
    type INTSTS1_Register is record
-      PDDETINT0  : INTSTS1_PDDETINT0_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. PDDET0 Detection Interrupt Status
-      Reserved   : INTSTS1_Reserved_Field := 16#0#;
+      PDDETINT0  : INTSTS1_PDDETINT0_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000. The write value should be 000.
-      SACK       : INTSTS1_SACK_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved   : INTSTS1_Reserved_Field := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Setup Transaction Normal Response Interrupt Status
-      SIGN       : INTSTS1_SIGN_Field := R7FA4M1AB.USBFS.Val_0;
+      SACK       : INTSTS1_SACK_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Setup Transaction Error Interrupt Status
-      EOFERR     : INTSTS1_EOFERR_Field := R7FA4M1AB.USBFS.Val_0;
+      SIGN       : INTSTS1_SIGN_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. EOF Error Detection Interrupt Status
-      Reserved_1 : INTSTS1_Reserved_Field_1 := 16#0#;
+      EOFERR     : INTSTS1_EOFERR_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 0000. The write value should be 0000.
-      ATTCH      : INTSTS1_ATTCH_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_1 : INTSTS1_Reserved_Field_1 := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. ATTCH Interrupt Status
-      DTCH       : INTSTS1_DTCH_Field := R7FA4M1AB.USBFS.Val_0;
+      ATTCH      : INTSTS1_ATTCH_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. USB Disconnection Detection Interrupt Status
-      Reserved_2 : INTSTS1_Reserved_Field_2 := 16#0#;
+      DTCH       : INTSTS1_DTCH_Field := R7FA4M1AB.USBFS.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      BCHG       : INTSTS1_BCHG_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_2 : INTSTS1_Reserved_Field_2 := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. USB Bus Change Interrupt Status
-      OVRCR      : INTSTS1_OVRCR_Field := R7FA4M1AB.USBFS.Val_0;
+      BCHG       : INTSTS1_BCHG_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Overcurrent Input Change Interrupt Status
+      OVRCR      : INTSTS1_OVRCR_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2283,48 +2289,48 @@ package R7FA4M1AB.USBFS is
 
    --  BRDY Interrupt Status Register
    type BRDYSTS_Register is record
-      PIPE0BRDY : BRDYSTS_PIPE0BRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BRDY Interrupt Status for PIPE0
-      PIPE1BRDY : BRDYSTS_PIPE1BRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE0BRDY : BRDYSTS_PIPE0BRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BRDY Interrupt Status for PIPE1
-      PIPE2BRDY : BRDYSTS_PIPE2BRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE1BRDY : BRDYSTS_PIPE1BRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BRDY Interrupt Status for PIPE2
-      PIPE3BRDY : BRDYSTS_PIPE3BRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE2BRDY : BRDYSTS_PIPE2BRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BRDY Interrupt Status for PIPE3
-      PIPE4BRDY : BRDYSTS_PIPE4BRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE3BRDY : BRDYSTS_PIPE3BRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BRDY Interrupt Status for PIPE4
-      PIPE5BRDY : BRDYSTS_PIPE5BRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE4BRDY : BRDYSTS_PIPE4BRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BRDY Interrupt Status for PIPE5
-      PIPE6BRDY : BRDYSTS_PIPE6BRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE5BRDY : BRDYSTS_PIPE5BRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BRDY Interrupt Status for PIPE6
-      PIPE7BRDY : BRDYSTS_PIPE7BRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE6BRDY : BRDYSTS_PIPE6BRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BRDY Interrupt Status for PIPE7
-      PIPE8BRDY : BRDYSTS_PIPE8BRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE7BRDY : BRDYSTS_PIPE7BRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BRDY Interrupt Status for PIPE8
-      PIPE9BRDY : BRDYSTS_PIPE9BRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE8BRDY : BRDYSTS_PIPE8BRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BRDY Interrupt Status for PIPE9
-      Reserved  : BRDYSTS_Reserved_Field := 16#0#;
+      PIPE9BRDY : BRDYSTS_PIPE9BRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved  : BRDYSTS_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2457,48 +2463,48 @@ package R7FA4M1AB.USBFS is
 
    --  NRDY Interrupt Status Register
    type NRDYSTS_Register is record
-      PIPE0NRDY : NRDYSTS_PIPE0NRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. NRDY Interrupt Status for PIPE0
-      PIPE1NRDY : NRDYSTS_PIPE1NRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE0NRDY : NRDYSTS_PIPE0NRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. NRDY Interrupt Status for PIPE1
-      PIPE2NRDY : NRDYSTS_PIPE2NRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE1NRDY : NRDYSTS_PIPE1NRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. NRDY Interrupt Status for PIPE2
-      PIPE3NRDY : NRDYSTS_PIPE3NRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE2NRDY : NRDYSTS_PIPE2NRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. NRDY Interrupt Status for PIPE3
-      PIPE4NRDY : NRDYSTS_PIPE4NRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE3NRDY : NRDYSTS_PIPE3NRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. NRDY Interrupt Status for PIPE4
-      PIPE5NRDY : NRDYSTS_PIPE5NRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE4NRDY : NRDYSTS_PIPE4NRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. NRDY Interrupt Status for PIPE5
-      PIPE6NRDY : NRDYSTS_PIPE6NRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE5NRDY : NRDYSTS_PIPE5NRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. NRDY Interrupt Status for PIPE6
-      PIPE7NRDY : NRDYSTS_PIPE7NRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE6NRDY : NRDYSTS_PIPE6NRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. NRDY Interrupt Status for PIPE7
-      PIPE8NRDY : NRDYSTS_PIPE8NRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE7NRDY : NRDYSTS_PIPE7NRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. NRDY Interrupt Status for PIPE8
-      PIPE9NRDY : NRDYSTS_PIPE9NRDY_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE8NRDY : NRDYSTS_PIPE8NRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. NRDY Interrupt Status for PIPE9
-      Reserved  : NRDYSTS_Reserved_Field := 16#0#;
+      PIPE9NRDY : NRDYSTS_PIPE9NRDY_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved  : NRDYSTS_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2631,48 +2637,48 @@ package R7FA4M1AB.USBFS is
 
    --  BEMP Interrupt Status Register
    type BEMPSTS_Register is record
-      PIPE0BEMP : BEMPSTS_PIPE0BEMP_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BEMP Interrupt Status for PIPE0
-      PIPE1BEMP : BEMPSTS_PIPE1BEMP_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE0BEMP : BEMPSTS_PIPE0BEMP_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BEMP Interrupt Status for PIPE1
-      PIPE2BEMP : BEMPSTS_PIPE2BEMP_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE1BEMP : BEMPSTS_PIPE1BEMP_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BEMP Interrupt Status for PIPE2
-      PIPE3BEMP : BEMPSTS_PIPE3BEMP_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE2BEMP : BEMPSTS_PIPE2BEMP_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BEMP Interrupt Status for PIPE3
-      PIPE4BEMP : BEMPSTS_PIPE4BEMP_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE3BEMP : BEMPSTS_PIPE3BEMP_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BEMP Interrupt Status for PIPE4
-      PIPE5BEMP : BEMPSTS_PIPE5BEMP_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE4BEMP : BEMPSTS_PIPE4BEMP_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BEMP Interrupt Status for PIPE5
-      PIPE6BEMP : BEMPSTS_PIPE6BEMP_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE5BEMP : BEMPSTS_PIPE5BEMP_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BEMP Interrupt Status for PIPE6
-      PIPE7BEMP : BEMPSTS_PIPE7BEMP_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE6BEMP : BEMPSTS_PIPE6BEMP_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BEMP Interrupt Status for PIPE7
-      PIPE8BEMP : BEMPSTS_PIPE8BEMP_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE7BEMP : BEMPSTS_PIPE7BEMP_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BEMP Interrupt Status for PIPE8
-      PIPE9BEMP : BEMPSTS_PIPE9BEMP_Field := R7FA4M1AB.USBFS.Val_0;
+      PIPE8BEMP : BEMPSTS_PIPE8BEMP_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. BEMP Interrupt Status for PIPE9
-      Reserved  : BEMPSTS_Reserved_Field := 16#0#;
+      PIPE9BEMP : BEMPSTS_PIPE9BEMP_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved  : BEMPSTS_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2718,14 +2724,14 @@ package R7FA4M1AB.USBFS is
 
    --  Frame Number Register
    type FRMNUM_Register is record
-      FRNM     : FRMNUM_FRNM_Field := 16#0#;
       --  Read-only. Frame Number Latest frame number
-      Reserved : FRMNUM_Reserved_Field := 16#0#;
+      FRNM     : FRMNUM_FRNM_Field := 16#0#;
       --  These bits are read as 000. The write value should be 000.
-      CRCE     : FRMNUM_CRCE_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved : FRMNUM_Reserved_Field := 16#0#;
       --  Receive Data Error
-      OVRN     : FRMNUM_OVRN_Field := R7FA4M1AB.USBFS.Val_0;
+      CRCE     : FRMNUM_CRCE_Field := R7FA4M1AB.USBFS.Val_0;
       --  Overrun/Underrun Detection Status
+      OVRN     : FRMNUM_OVRN_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2742,10 +2748,10 @@ package R7FA4M1AB.USBFS is
 
    --  USB Request Type Register
    type USBREQ_Register is record
-      BMREQUESTTYPE : USBREQ_BMREQUESTTYPE_Field := 16#0#;
       --  Request Type These bits store the USB request bmRequestType value.
-      BREQUEST      : USBREQ_BREQUEST_Field := 16#0#;
+      BMREQUESTTYPE : USBREQ_BMREQUESTTYPE_Field := 16#0#;
       --  Request These bits store the USB request bRequest value.
+      BREQUEST      : USBREQ_BREQUEST_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2785,16 +2791,16 @@ package R7FA4M1AB.USBFS is
 
    --  DCP Configuration Register
    type DCPCFG_Register is record
-      Reserved   : DCPCFG_Reserved_Field := 16#0#;
       --  These bits are read as 0000. The write value should be 0000.
-      DIR        : DCPCFG_DIR_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved   : DCPCFG_Reserved_Field := 16#0#;
       --  Transfer Direction
-      Reserved_1 : DCPCFG_Reserved_Field_1 := 16#0#;
+      DIR        : DCPCFG_DIR_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      SHTNAK     : DCPCFG_SHTNAK_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_1 : DCPCFG_Reserved_Field_1 := 16#0#;
       --  Pipe Disabled at End of Transfer
-      Reserved_2 : DCPCFG_Reserved_Field_2 := 16#0#;
+      SHTNAK     : DCPCFG_SHTNAK_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 00000000. The write value should be 00000000.
+      Reserved_2 : DCPCFG_Reserved_Field_2 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2810,38 +2816,39 @@ package R7FA4M1AB.USBFS is
    --  Maximum Packet Size These bits set the maximum amount of data (maximum
    --  packet size) in payloads for the DCP.
    type DCPMAXP_MXPS_Field is
-     (      --  8 bytes
+     (--  Setting prohibited
       Val_0x08,
-      --  16 bytes
+      --  8 bytes
       Val_0x10,
-      --  24 bytes
+      --  16 bytes
       Val_0x18,
-      --  32 bytes
+      --  24 bytes
       Val_0x20,
-      --  40 bytes
+      --  32 bytes
       Val_0x28,
-      --  48 bytes
+      --  40 bytes
       Val_0x30,
-      --  56 bytes
+      --  48 bytes
       Val_0x38,
-      --  64 bytes
+      --  56 bytes
       Val_0x40,
-      --  72 bytes
+      --  64 bytes
       Val_0x48,
-      --  80 bytes
+      --  72 bytes
       Val_0x50,
-      --  88 bytes
+      --  80 bytes
       Val_0x58,
-      --  96 bytes
+      --  88 bytes
       Val_0x60,
-      --  104 bytes
+      --  96 bytes
       Val_0x68,
-      --  112 bytes
+      --  104 bytes
       Val_0x70,
-      --  120 bytes
+      --  112 bytes
       Val_0x78,
---  Setting prohibited
-      others_k)
+      --  120 bytes
+      others_k
+     )
      with Size => 7;
    for DCPMAXP_MXPS_Field use
      (Val_0x08 => 8,
@@ -2867,18 +2874,19 @@ package R7FA4M1AB.USBFS is
    type DCPMAXP_DEVSEL_Field is
      (--  Address 0000
       Val_0000,
-      --  Address 0001
-      Val_0001,
-      --  Address 0010
-      Val_0010,
-      --  Address 0011
-      Val_0011,
-      --  Address 0100
-      Val_0100,
-      --  Address 0101
-      Val_0101,
       --  Settings prohibited.
-      others_k)
+      Val_0001,
+      --  Address 0001
+      Val_0010,
+      --  Address 0010
+      Val_0011,
+      --  Address 0011
+      Val_0100,
+      --  Address 0100
+      Val_0101,
+      --  Address 0101
+      others_k
+     )
      with Size => 4;
    for DCPMAXP_DEVSEL_Field use
      (Val_0000 => 0,
@@ -2891,13 +2899,13 @@ package R7FA4M1AB.USBFS is
 
    --  DCP Maximum Packet Size Register
    type DCPMAXP_Register is record
-      MXPS     : DCPMAXP_MXPS_Field := R7FA4M1AB.USBFS.Val_0x40;
       --  Maximum Packet Size These bits set the maximum amount of data
       --  (maximum packet size) in payloads for the DCP.
-      Reserved : DCPMAXP_Reserved_Field := 16#0#;
+      MXPS     : DCPMAXP_MXPS_Field := R7FA4M1AB.USBFS.Val_0x40;
       --  These bits are read as 00000. The write value should be 00000.
-      DEVSEL   : DCPMAXP_DEVSEL_Field := R7FA4M1AB.USBFS.Val_0000;
+      Reserved : DCPMAXP_Reserved_Field := 16#0#;
       --  Device Select
+      DEVSEL   : DCPMAXP_DEVSEL_Field := R7FA4M1AB.USBFS.Val_0000;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -3017,30 +3025,30 @@ package R7FA4M1AB.USBFS is
 
    --  DCP Control Register
    type DCPCTR_Register is record
-      PID        : DCPCTR_PID_Field := R7FA4M1AB.USBFS.Val_00;
       --  Response PID
-      CCPL       : DCPCTR_CCPL_Field := R7FA4M1AB.USBFS.Val_0;
+      PID        : DCPCTR_PID_Field := R7FA4M1AB.USBFS.Val_00;
       --  Control Transfer End Enable
+      CCPL       : DCPCTR_CCPL_Field := R7FA4M1AB.USBFS.Val_0;
+      --  These bits are read as 00. The write value should be 00.
       Reserved   : DCPCTR_Reserved_Field := 16#0#;
-      --  These bits are read as 00. The write value should be 00.
-      PBUSY      : DCPCTR_PBUSY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read-only. Pipe Busy
-      SQMON      : DCPCTR_SQMON_Field := R7FA4M1AB.USBFS.Val_1;
+      PBUSY      : DCPCTR_PBUSY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read-only. Sequence Toggle Bit Monitor
-      SQSET      : DCPCTR_SQSET_Field := R7FA4M1AB.USBFS.Val_0;
+      SQMON      : DCPCTR_SQMON_Field := R7FA4M1AB.USBFS.Val_1;
       --  Write-only. Sequence Toggle Bit Set
-      SQCLR      : DCPCTR_SQCLR_Field := R7FA4M1AB.USBFS.Val_0;
+      SQSET      : DCPCTR_SQSET_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write-only. Sequence Toggle Bit Clear
+      SQCLR      : DCPCTR_SQCLR_Field := R7FA4M1AB.USBFS.Val_0;
+      --  These bits are read as 00. The write value should be 00.
       Reserved_1 : DCPCTR_Reserved_Field := 16#0#;
-      --  These bits are read as 00. The write value should be 00.
-      SUREQCLR   : DCPCTR_SUREQCLR_Field := R7FA4M1AB.USBFS.Val_0;
       --  SUREQ Bit Clear
-      Reserved_2 : DCPCTR_Reserved_Field := 16#0#;
+      SUREQCLR   : DCPCTR_SUREQCLR_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      SUREQ      : DCPCTR_SUREQ_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_2 : DCPCTR_Reserved_Field := 16#0#;
       --  Setup Token Transmission
-      BSTS       : DCPCTR_BSTS_Field := R7FA4M1AB.USBFS.Val_0;
+      SUREQ      : DCPCTR_SUREQ_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read-only. Buffer Status
+      BSTS       : DCPCTR_BSTS_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -3064,26 +3072,27 @@ package R7FA4M1AB.USBFS is
    type PIPESEL_PIPESEL_Field is
      (--  No pipe selected
       Val_0000,
-      --  PIPE1
-      Val_0001,
-      --  PIPE2
-      Val_0010,
-      --  PIPE3
-      Val_0011,
-      --  PIPE4
-      Val_0100,
-      --  PIPE5
-      Val_0101,
-      --  PIPE6
-      Val_0110,
-      --  PIPE7
-      Val_0111,
-      --  PIPE8
-      Val_1000,
-      --  PIPE9
-      Val_1001,
       --  Settings prohibited.
-      others_k)
+      Val_0001,
+      --  PIPE1
+      Val_0010,
+      --  PIPE2
+      Val_0011,
+      --  PIPE3
+      Val_0100,
+      --  PIPE4
+      Val_0101,
+      --  PIPE5
+      Val_0110,
+      --  PIPE6
+      Val_0111,
+      --  PIPE7
+      Val_1000,
+      --  PIPE8
+      Val_1001,
+      --  PIPE9
+      others_k
+     )
      with Size => 4;
    for PIPESEL_PIPESEL_Field use
      (Val_0000 => 0,
@@ -3102,11 +3111,11 @@ package R7FA4M1AB.USBFS is
 
    --  Pipe Window Select Register
    type PIPESEL_Register is record
-      PIPESEL  : PIPESEL_PIPESEL_Field := R7FA4M1AB.USBFS.Val_0000;
       --  Pipe Window Select
-      Reserved : PIPESEL_Reserved_Field := 16#0#;
+      PIPESEL  : PIPESEL_PIPESEL_Field := R7FA4M1AB.USBFS.Val_0000;
       --  These bits are read as 000000000000. The write value should be
       --  000000000000.
+      Reserved : PIPESEL_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -3143,11 +3152,11 @@ package R7FA4M1AB.USBFS is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  Reserved as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : PIPECFG_Reserved_Field_Array;
             --  Reserved as an array
+            Arr : PIPECFG_Reserved_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -3213,26 +3222,26 @@ package R7FA4M1AB.USBFS is
 
    --  Pipe Configuration Register
    type PIPECFG_Register is record
-      EPNUM      : PIPECFG_EPNUM_Field := 16#0#;
       --  Endpoint Number These bits specify the endpoint number for the
       --  selected pipe. Setting 0000b means unused pipe.
-      DIR        : PIPECFG_DIR_Field := R7FA4M1AB.USBFS.Val_0;
+      EPNUM      : PIPECFG_EPNUM_Field := 16#0#;
       --  Transfer Direction
+      DIR        : PIPECFG_DIR_Field := R7FA4M1AB.USBFS.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved   : PIPECFG_Reserved_Field :=
                     (As_Array => False, Val => 16#0#);
-      --  This bit is read as 0. The write value should be 0.
-      SHTNAK     : PIPECFG_SHTNAK_Field := R7FA4M1AB.USBFS.Val_0;
       --  Pipe Disabled at End of Transfer
-      Reserved_1 : PIPECFG_Reserved_Field_1 := 16#0#;
+      SHTNAK     : PIPECFG_SHTNAK_Field := R7FA4M1AB.USBFS.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      DBLB       : PIPECFG_DBLB_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_1 : PIPECFG_Reserved_Field_1 := 16#0#;
       --  Double Buffer Mode
-      BFRE       : PIPECFG_BFRE_Field := R7FA4M1AB.USBFS.Val_0;
+      DBLB       : PIPECFG_DBLB_Field := R7FA4M1AB.USBFS.Val_0;
       --  BRDY Interrupt Operation Specification
-      Reserved_2 : PIPECFG_Reserved_Field_2 := 16#0#;
+      BFRE       : PIPECFG_BFRE_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000. The write value should be 000.
-      TYPE_k     : PIPECFG_TYPE_Field := R7FA4M1AB.USBFS.Val_00;
+      Reserved_2 : PIPECFG_Reserved_Field_2 := 16#0#;
       --  Transfer Type
+      TYPE_k     : PIPECFG_TYPE_Field := R7FA4M1AB.USBFS.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -3256,18 +3265,19 @@ package R7FA4M1AB.USBFS is
    type PIPEMAXP_DEVSEL_Field is
      (--  Address 0000
       Val_0000,
-      --  Address 0001
-      Val_0001,
-      --  Address 0010
-      Val_0010,
-      --  Address 0011
-      Val_0011,
-      --  Address 0100
-      Val_0100,
-      --  Address 0101
-      Val_0101,
       --  Settings prohibited.
-      others_k)
+      Val_0001,
+      --  Address 0001
+      Val_0010,
+      --  Address 0010
+      Val_0011,
+      --  Address 0011
+      Val_0100,
+      --  Address 0100
+      Val_0101,
+      --  Address 0101
+      others_k
+     )
      with Size => 4;
    for PIPEMAXP_DEVSEL_Field use
      (Val_0000 => 0,
@@ -3280,16 +3290,16 @@ package R7FA4M1AB.USBFS is
 
    --  Pipe Maximum Packet Size Register
    type PIPEMAXP_Register is record
-      MXPS     : PIPEMAXP_MXPS_Field := 16#0#;
       --  Maximum Packet Size PIPE1 and PIPE2: 1 byte (001h) to 256 bytes
       --  (100h) PIPE3 to PIPE5: 8 bytes (008h), 16 bytes (010h), 32 bytes
       --  (020h), 64 bytes (040h) (Bits [8:7] and [2:0] are not provided.)
       --  PIPE6 to PIPE9: 1 byte (001h) to 64 bytes (040h) (Bits [8:7] are not
       --  provided.)
-      Reserved : PIPEMAXP_Reserved_Field := 16#0#;
+      MXPS     : PIPEMAXP_MXPS_Field := 16#0#;
       --  These bits are read as 000. The write value should be 000.
-      DEVSEL   : PIPEMAXP_DEVSEL_Field := R7FA4M1AB.USBFS.Val_0000;
+      Reserved : PIPEMAXP_Reserved_Field := 16#0#;
       --  Device Select
+      DEVSEL   : PIPEMAXP_DEVSEL_Field := R7FA4M1AB.USBFS.Val_0000;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -3318,17 +3328,17 @@ package R7FA4M1AB.USBFS is
 
    --  Pipe Cycle Control Register
    type PIPEPERI_Register is record
-      IITV       : PIPEPERI_IITV_Field := 16#0#;
       --  Interval Error Detection Interval Specifies the interval error
       --  detection timing for the selected pipe in terms of frames, which is
       --  expressed as nth power of 2.
-      Reserved   : PIPEPERI_Reserved_Field := 16#0#;
+      IITV       : PIPEPERI_IITV_Field := 16#0#;
       --  These bits are read as 000000000. The write value should be
       --  000000000.
-      IFIS       : PIPEPERI_IFIS_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved   : PIPEPERI_Reserved_Field := 16#0#;
       --  Isochronous IN Buffer Flush
-      Reserved_1 : PIPEPERI_Reserved_Field_1 := 16#0#;
+      IFIS       : PIPEPERI_IFIS_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_1 : PIPEPERI_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -3449,28 +3459,28 @@ package R7FA4M1AB.USBFS is
 
    --  Pipe %s Control Register
    type PIPECTR_Register is record
-      PID        : PIPECTR_PID_Field := R7FA4M1AB.USBFS.Val_00;
       --  Response PID
+      PID        : PIPECTR_PID_Field := R7FA4M1AB.USBFS.Val_00;
+      --  These bits are read as 000. The write value should be 000.
       Reserved   : PIPECTR_Reserved_Field := 16#0#;
-      --  These bits are read as 000. The write value should be 000.
-      PBUSY      : PIPECTR_PBUSY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read-only. Pipe Busy
-      SQMON      : PIPECTR_SQMON_Field := R7FA4M1AB.USBFS.Val_0;
+      PBUSY      : PIPECTR_PBUSY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read-only. Sequence Toggle Bit Confirmation
-      SQSET      : PIPECTR_SQSET_Field := R7FA4M1AB.USBFS.Val_0;
+      SQMON      : PIPECTR_SQMON_Field := R7FA4M1AB.USBFS.Val_0;
       --  Sequence Toggle Bit Set
-      SQCLR      : PIPECTR_SQCLR_Field := R7FA4M1AB.USBFS.Val_0;
+      SQSET      : PIPECTR_SQSET_Field := R7FA4M1AB.USBFS.Val_0;
       --  Sequence Toggle Bit Clear
-      ACLRM      : PIPECTR_ACLRM_Field := R7FA4M1AB.USBFS.Val_0;
+      SQCLR      : PIPECTR_SQCLR_Field := R7FA4M1AB.USBFS.Val_0;
       --  Auto Buffer Clear Mode
-      ATREPM     : PIPECTR_ATREPM_Field := R7FA4M1AB.USBFS.Val_0;
+      ACLRM      : PIPECTR_ACLRM_Field := R7FA4M1AB.USBFS.Val_0;
       --  Auto Response Mode
-      Reserved_1 : PIPECTR_Reserved_Field := 16#0#;
+      ATREPM     : PIPECTR_ATREPM_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000. The write value should be 000.
-      INBUFM     : PIPECTR_INBUFM_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_1 : PIPECTR_Reserved_Field := 16#0#;
       --  Read-only. Transmit Buffer Monitor
-      BSTS       : PIPECTR_BSTS_Field := R7FA4M1AB.USBFS.Val_0;
+      INBUFM     : PIPECTR_INBUFM_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read-only. Buffer Status
+      BSTS       : PIPECTR_BSTS_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -3496,24 +3506,24 @@ package R7FA4M1AB.USBFS is
 
    --  Pipe %s Control Register
    type PIPECTR_Register_1 is record
-      PID        : PIPECTR_PID_Field := R7FA4M1AB.USBFS.Val_00;
       --  Response PID
-      Reserved   : PIPECTR_Reserved_Field := 16#0#;
+      PID        : PIPECTR_PID_Field := R7FA4M1AB.USBFS.Val_00;
       --  These bits are read as 000. The write value should be 000.
-      PBUSY      : PIPECTR_PBUSY_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved   : PIPECTR_Reserved_Field := 16#0#;
       --  Read-only. Pipe Busy
-      SQMON      : PIPECTR_SQMON_Field := R7FA4M1AB.USBFS.Val_0;
+      PBUSY      : PIPECTR_PBUSY_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read-only. Sequence Toggle Bit Confirmation
-      SQSET      : PIPECTR_SQSET_Field := R7FA4M1AB.USBFS.Val_0;
+      SQMON      : PIPECTR_SQMON_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write-only. Sequence Toggle Bit Set
-      SQCLR      : PIPECTR_SQCLR_Field := R7FA4M1AB.USBFS.Val_0;
+      SQSET      : PIPECTR_SQSET_Field := R7FA4M1AB.USBFS.Val_0;
       --  Write-only. Sequence Toggle Bit Clear
-      ACLRM      : PIPECTR_ACLRM_Field := R7FA4M1AB.USBFS.Val_0;
+      SQCLR      : PIPECTR_SQCLR_Field := R7FA4M1AB.USBFS.Val_0;
       --  Auto Buffer Clear Mode
-      Reserved_1 : PIPECTR_Reserved_Field_1 := 16#0#;
+      ACLRM      : PIPECTR_ACLRM_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 00000. The write value should be 00000.
-      BSTS       : PIPECTR_BSTS_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_1 : PIPECTR_Reserved_Field_1 := 16#0#;
       --  Read-only. Buffer Status
+      BSTS       : PIPECTR_BSTS_Field := R7FA4M1AB.USBFS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -3561,14 +3571,14 @@ package R7FA4M1AB.USBFS is
 
    --  Pipe %s Transaction Counter Enable Register
    type PIPETRE_Register is record
-      Reserved   : PIPETRE_Reserved_Field := 16#0#;
       --  These bits are read as 00000000. The write value should be 00000000.
-      TRCLR      : PIPETRE0_TRCLR_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved   : PIPETRE_Reserved_Field := 16#0#;
       --  Transaction Counter Clear
-      TRENB      : PIPETRE0_TRENB_Field := R7FA4M1AB.USBFS.Val_0;
+      TRCLR      : PIPETRE0_TRCLR_Field := R7FA4M1AB.USBFS.Val_0;
       --  Transaction Counter Enable
-      Reserved_1 : PIPETRE_Reserved_Field_1 := 16#0#;
+      TRENB      : PIPETRE0_TRENB_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved_1 : PIPETRE_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -3685,28 +3695,28 @@ package R7FA4M1AB.USBFS is
 
    --  BC Control Register 0
    type USBBCCTRL0_Register is record
-      RPDME0     : USBBCCTRL0_RPDME0_Field := R7FA4M1AB.USBFS.Val_0;
       --  D- Pin Pull-Down Control
-      IDPSRCE0   : USBBCCTRL0_IDPSRCE0_Field := R7FA4M1AB.USBFS.Val_0;
+      RPDME0     : USBBCCTRL0_RPDME0_Field := R7FA4M1AB.USBFS.Val_0;
       --  D+ Pin IDPSRC Output Control
-      IDMSINKE0  : USBBCCTRL0_IDMSINKE0_Field := R7FA4M1AB.USBFS.Val_0;
+      IDPSRCE0   : USBBCCTRL0_IDPSRCE0_Field := R7FA4M1AB.USBFS.Val_0;
       --  D- Pin 0.6 V Input Detection (Comparator and Sink) Control
-      VDPSRCE0   : USBBCCTRL0_VDPSRCE0_Field := R7FA4M1AB.USBFS.Val_0;
+      IDMSINKE0  : USBBCCTRL0_IDMSINKE0_Field := R7FA4M1AB.USBFS.Val_0;
       --  D+ Pin VDPSRC (0.6 V) Output Control
-      IDPSINKE0  : USBBCCTRL0_IDPSINKE0_Field := R7FA4M1AB.USBFS.Val_0;
+      VDPSRCE0   : USBBCCTRL0_VDPSRCE0_Field := R7FA4M1AB.USBFS.Val_0;
       --  D+ Pin 0.6 V Input Detection (Comparator and Sink) Control
-      VDMSRCE0   : USBBCCTRL0_VDMSRCE0_Field := R7FA4M1AB.USBFS.Val_0;
+      IDPSINKE0  : USBBCCTRL0_IDPSINKE0_Field := R7FA4M1AB.USBFS.Val_0;
       --  D- Pin VDMSRC (0.6 V) Output Control
-      Reserved   : USBBCCTRL0_Reserved_Field := 16#0#;
+      VDMSRCE0   : USBBCCTRL0_VDMSRCE0_Field := R7FA4M1AB.USBFS.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      BATCHGE0   : USBBCCTRL0_BATCHGE0_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved   : USBBCCTRL0_Reserved_Field := 16#0#;
       --  BC (Battery Charger) Function Ch0 General Enable Control
-      CHGDETSTS0 : USBBCCTRL0_CHGDETSTS0_Field := R7FA4M1AB.USBFS.Val_0;
+      BATCHGE0   : USBBCCTRL0_BATCHGE0_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read-only. D- Pin 0.6 V Input Detection Status
-      PDDETSTS0  : USBBCCTRL0_PDDETSTS0_Field := R7FA4M1AB.USBFS.Val_0;
+      CHGDETSTS0 : USBBCCTRL0_CHGDETSTS0_Field := R7FA4M1AB.USBFS.Val_0;
       --  Read-only. D+ Pin 0.6 V Input Detection Status
-      Reserved_1 : USBBCCTRL0_Reserved_Field_1 := 16#0#;
+      PDDETSTS0  : USBBCCTRL0_PDDETSTS0_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved_1 : USBBCCTRL0_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -3754,16 +3764,16 @@ package R7FA4M1AB.USBFS is
 
    --  USB Module Control Register
    type USBMC_Register is record
-      VDDUSBE    : USBMC_VDDUSBE_Field := R7FA4M1AB.USBFS.Val_0;
       --  USB Reference Power Supply Circuit On/Off Control
-      Reserved   : USBMC_Reserved_Field := 16#1#;
+      VDDUSBE    : USBMC_VDDUSBE_Field := R7FA4M1AB.USBFS.Val_0;
       --  This bit is read as 1. The write value should be 1.
-      Reserved_1 : USBMC_Reserved_Field_1 := 16#0#;
+      Reserved   : USBMC_Reserved_Field := 16#1#;
       --  These bits are read as 00000. The write value should be 00000.
-      VDCEN      : USBMC_VDCEN_Field := R7FA4M1AB.USBFS.Val_0;
+      Reserved_1 : USBMC_Reserved_Field_1 := 16#0#;
       --  USB Regulator On/Off Control
-      Reserved_2 : USBMC_Reserved_Field_2 := 16#0#;
+      VDCEN      : USBMC_VDCEN_Field := R7FA4M1AB.USBFS.Val_0;
       --  These bits are read as 00000000. The write value should be 00000000.
+      Reserved_2 : USBMC_Reserved_Field_2 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -3799,12 +3809,12 @@ package R7FA4M1AB.USBFS is
 
    --  Device Address %s Configuration Register
    type DEVADD_Register is record
-      Reserved   : DEVADD_Reserved_Field := 16#0#;
       --  These bits are read as 000000. The write value should be 000000.
-      USBSPD     : DEVADD_USBSPD_Field := R7FA4M1AB.USBFS.Val_00;
+      Reserved   : DEVADD_Reserved_Field := 16#0#;
       --  Transfer Speed of Communication Target Device
-      Reserved_1 : DEVADD_Reserved_Field_1 := 16#0#;
+      USBSPD     : DEVADD_USBSPD_Field := R7FA4M1AB.USBFS.Val_00;
       --  These bits are read as 00000000. The write value should be 00000000.
+      Reserved_1 : DEVADD_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -3884,163 +3894,110 @@ package R7FA4M1AB.USBFS is
      case Discriminent is
         when View_SYSCFG =>
            SYSCFG : aliased SYSCFG_Register;
-           --  System Configuration Control Register
         when View_SYSSTS0 =>
            SYSSTS0 : aliased SYSSTS0_Register;
-           --  System Configuration Status Register 0
         when View_DVSTCTR0 =>
            DVSTCTR0 : aliased DVSTCTR0_Register;
-           --  Device State Control Register 0
         when View_CFIFOSEL =>
            CFIFOSEL : aliased CFIFOSEL_Register;
-           --  CFIFO Port Select Register
         when View_CFIFOCTR =>
            CFIFOCTR : aliased CFIFOCTR_Register;
-           --  CFIFO Port Control Register
         when View_D0FIFOSEL =>
            D0FIFOSEL : aliased D0FIFOSEL_Register;
-           --  D0FIFO Port Select Register
         when View_D0FIFOCTR =>
            D0FIFOCTR : aliased D0FIFOCTR_Register;
-           --  D0FIFO Port Control Register
         when View_D1FIFOSEL =>
            D1FIFOSEL : aliased D1FIFOSEL_Register;
-           --  D1FIFO Port Select Register
         when View_D1FIFOCTR =>
            D1FIFOCTR : aliased D1FIFOCTR_Register;
-           --  D1FIFO Port Control Register
         when View_INTENB0 =>
            INTENB0 : aliased INTENB0_Register;
-           --  Interrupt Enable Register 0
         when View_INTENB1 =>
            INTENB1 : aliased INTENB1_Register;
-           --  Interrupt Enable Register 1
         when View_BRDYENB =>
            BRDYENB : aliased BRDYENB_Register;
-           --  BRDY Interrupt Enable Register
         when View_NRDYENB =>
            NRDYENB : aliased NRDYENB_Register;
-           --  NRDY Interrupt Enable Register
         when View_BEMPENB =>
            BEMPENB : aliased BEMPENB_Register;
-           --  BEMP Interrupt Enable Register
         when View_SOFCFG =>
            SOFCFG : aliased SOFCFG_Register;
-           --  SOF Output Configuration Register
         when View_INTSTS0 =>
            INTSTS0 : aliased INTSTS0_Register;
-           --  Interrupt Status Register 0
         when View_INTSTS1 =>
            INTSTS1 : aliased INTSTS1_Register;
-           --  Interrupt Status Register 1
         when View_BRDYSTS =>
            BRDYSTS : aliased BRDYSTS_Register;
-           --  BRDY Interrupt Status Register
         when View_NRDYSTS =>
            NRDYSTS : aliased NRDYSTS_Register;
-           --  NRDY Interrupt Status Register
         when View_BEMPSTS =>
            BEMPSTS : aliased BEMPSTS_Register;
-           --  BEMP Interrupt Status Register
         when View_FRMNUM =>
            FRMNUM : aliased FRMNUM_Register;
-           --  Frame Number Register
         when View_USBREQ =>
            USBREQ : aliased USBREQ_Register;
-           --  USB Request Type Register
         when View_USBVAL =>
            USBVAL : aliased R7FA4M1AB.UInt16;
-           --  USB Request Value Register
         when View_USBINDX =>
            USBINDX : aliased R7FA4M1AB.UInt16;
-           --  USB Request Index Register
         when View_USBLENG =>
            USBLENG : aliased R7FA4M1AB.UInt16;
-           --  USB Request Length Register
         when View_DCPCFG =>
            DCPCFG : aliased DCPCFG_Register;
-           --  DCP Configuration Register
         when View_DCPMAXP =>
            DCPMAXP : aliased DCPMAXP_Register;
-           --  DCP Maximum Packet Size Register
         when View_DCPCTR =>
            DCPCTR : aliased DCPCTR_Register;
-           --  DCP Control Register
         when View_PIPESEL =>
            PIPESEL : aliased PIPESEL_Register;
-           --  Pipe Window Select Register
         when View_PIPECFG =>
            PIPECFG : aliased PIPECFG_Register;
-           --  Pipe Configuration Register
         when View_PIPEMAXP =>
            PIPEMAXP : aliased PIPEMAXP_Register;
-           --  Pipe Maximum Packet Size Register
         when View_PIPEPERI =>
            PIPEPERI : aliased PIPEPERI_Register;
-           --  Pipe Cycle Control Register
         when View_PIPECTR =>
            PIPECTR : aliased PIPECTR_Registers;
-           --  Pipe %s Control Register
         when View_PIPECTR_1 =>
            PIPECTR_1 : aliased PIPECTR_Registers_1;
-           --  Pipe %s Control Register
         when View_PIPETRE0 =>
            PIPETRE0 : aliased PIPETRE_Register;
-           --  Pipe %s Transaction Counter Enable Register
         when View_PIPETRN0 =>
            PIPETRN0 : aliased R7FA4M1AB.UInt16;
-           --  Pipe %s Transaction Counter Register
         when View_PIPETRE1 =>
            PIPETRE1 : aliased PIPETRE_Register;
-           --  Pipe %s Transaction Counter Enable Register
         when View_PIPETRN1 =>
            PIPETRN1 : aliased R7FA4M1AB.UInt16;
-           --  Pipe %s Transaction Counter Register
         when View_PIPETRE2 =>
            PIPETRE2 : aliased PIPETRE_Register;
-           --  Pipe %s Transaction Counter Enable Register
         when View_PIPETRN2 =>
            PIPETRN2 : aliased R7FA4M1AB.UInt16;
-           --  Pipe %s Transaction Counter Register
         when View_PIPETRE3 =>
            PIPETRE3 : aliased PIPETRE_Register;
-           --  Pipe %s Transaction Counter Enable Register
         when View_PIPETRN3 =>
            PIPETRN3 : aliased R7FA4M1AB.UInt16;
-           --  Pipe %s Transaction Counter Register
         when View_PIPETRE4 =>
            PIPETRE4 : aliased PIPETRE_Register;
-           --  Pipe %s Transaction Counter Enable Register
         when View_PIPETRN4 =>
            PIPETRN4 : aliased R7FA4M1AB.UInt16;
-           --  Pipe %s Transaction Counter Register
         when View_USBBCCTRL0 =>
            USBBCCTRL0 : aliased USBBCCTRL0_Register;
-           --  BC Control Register 0
         when View_USBMC =>
            USBMC : aliased USBMC_Register;
-           --  USB Module Control Register
         when View_DEVADD =>
            DEVADD : aliased DEVADD_Registers;
-           --  Device Address %s Configuration Register
         when View_CFIFO =>
            CFIFO : aliased R7FA4M1AB.UInt16;
-           --  CFIFO Port Register
         when View_D0FIFO =>
            D0FIFO : aliased R7FA4M1AB.UInt16;
-           --  D0FIFO Port Register
         when View_D1FIFO =>
            D1FIFO : aliased R7FA4M1AB.UInt16;
-           --  D1FIFO Port Register
         when View_CFIFOL =>
            CFIFOL : aliased R7FA4M1AB.Byte;
-           --  CFIFO Port Register L
         when View_D0FIFOL =>
            D0FIFOL : aliased R7FA4M1AB.Byte;
-           --  D0FIFO Port Register L
         when View_D1FIFOL =>
            D1FIFOL : aliased R7FA4M1AB.Byte;
-           --  D1FIFO Port Register L
      end case;
    end record
      with Unchecked_Union, Volatile;

@@ -48,16 +48,16 @@ package R7FA4M1AB.CAN0 is
 
    --  Mailbox Register
    type MB_ID_Register is record
-      EID      : MB_ID_EID_Field := 16#0#;
       --  Extended ID
-      SID      : MB_ID_SID_Field := 16#0#;
+      EID      : MB_ID_EID_Field := 16#0#;
       --  Standard ID
-      Reserved : MB_ID_Reserved_Field := 16#0#;
+      SID      : MB_ID_SID_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      RTR      : MB_ID0_RTR_Field := R7FA4M1AB.CAN0.Val_0;
+      Reserved : MB_ID_Reserved_Field := 16#0#;
       --  Remote Transmission Request
-      IDE      : MB_ID0_IDE_Field := R7FA4M1AB.CAN0.Val_0;
+      RTR      : MB_ID0_RTR_Field := R7FA4M1AB.CAN0.Val_0;
       --  ID Extension
+      IDE      : MB_ID0_IDE_Field := R7FA4M1AB.CAN0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -74,22 +74,23 @@ package R7FA4M1AB.CAN0 is
    type MB_DL0_DLC_Field is
      (--  Data length = 0 byte
       Val_0000,
-      --  Data length = 1 byte
-      Val_0001,
-      --  Data length = 2 bytes
-      Val_0010,
-      --  Data length = 3 bytes
-      Val_0011,
-      --  Data length = 4 bytes
-      Val_0100,
-      --  Data length = 5 bytes
-      Val_0101,
-      --  Data length = 6 bytes
-      Val_0110,
-      --  Data length = 7 bytes
-      Val_0111,
       --  Data length = 8 bytes
-      others_k)
+      Val_0001,
+      --  Data length = 1 byte
+      Val_0010,
+      --  Data length = 2 bytes
+      Val_0011,
+      --  Data length = 3 bytes
+      Val_0100,
+      --  Data length = 4 bytes
+      Val_0101,
+      --  Data length = 5 bytes
+      Val_0110,
+      --  Data length = 6 bytes
+      Val_0111,
+      --  Data length = 7 bytes
+      others_k
+     )
      with Size => 4;
    for MB_DL0_DLC_Field use
      (Val_0000 => 0,
@@ -106,11 +107,11 @@ package R7FA4M1AB.CAN0 is
 
    --  Mailbox Register
    type MB_DL_Register is record
-      DLC      : MB_DL0_DLC_Field := R7FA4M1AB.CAN0.Val_0000;
       --  Data Length Code
-      Reserved : MB_DL_Reserved_Field := 16#0#;
+      DLC      : MB_DL0_DLC_Field := R7FA4M1AB.CAN0.Val_0000;
       --  These bits are read as 000000000000. The write value should be
       --  000000000000.
+      Reserved : MB_DL_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -125,12 +126,12 @@ package R7FA4M1AB.CAN0 is
 
    --  Mailbox Register
    type MB_TS_Register is record
-      TSL : MB_TS_TSL_Field := 16#0#;
       --  Time Stamp Higher Byte Bits TSL[7:0] store the counter value of the
       --  time stamp when received messages are stored in the mailbox.
-      TSH : MB_TS_TSH_Field := 16#0#;
+      TSL : MB_TS_TSL_Field := 16#0#;
       --  Time Stamp Lower Byte Bits TSH[7:0] store the counter value of the
       --  time stamp when received messages are stored in the mailbox.
+      TSH : MB_TS_TSH_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -146,12 +147,12 @@ package R7FA4M1AB.CAN0 is
 
    --  Mask Register
    type MKR_Register is record
-      EID      : MKR_EID_Field := 16#0#;
       --  Extended ID
-      SID      : MKR_SID_Field := 16#0#;
+      EID      : MKR_EID_Field := 16#0#;
       --  Standard ID
-      Reserved : MKR_Reserved_Field := 16#0#;
+      SID      : MKR_SID_Field := 16#0#;
       --  These bits are read as 000. The write value should be 000.
+      Reserved : MKR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -193,16 +194,16 @@ package R7FA4M1AB.CAN0 is
 
    --  FIFO Received ID Compare Registers
    type FIDCR_Register is record
-      EID      : FIDCR_EID_Field := 16#0#;
       --  Extended ID
-      SID      : FIDCR_SID_Field := 16#0#;
+      EID      : FIDCR_EID_Field := 16#0#;
       --  Standard ID
-      Reserved : FIDCR_Reserved_Field := 16#0#;
+      SID      : FIDCR_SID_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      RTR      : FIDCR_RTR_Field := R7FA4M1AB.CAN0.Val_0;
+      Reserved : FIDCR_Reserved_Field := 16#0#;
       --  Remote Transmission Request
-      IDE      : FIDCR_IDE_Field := R7FA4M1AB.CAN0.Val_0;
+      RTR      : FIDCR_RTR_Field := R7FA4M1AB.CAN0.Val_0;
       --  ID Extension
+      IDE      : FIDCR_IDE_Field := R7FA4M1AB.CAN0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -239,11 +240,11 @@ package R7FA4M1AB.CAN0 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt32;
             --  MB as a value
+            Val : R7FA4M1AB.UInt32;
          when True =>
-            Arr : MKIVLR_MB_Field_Array;
             --  MB as an array
+            Arr : MKIVLR_MB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access, Object_Size => 32,
@@ -275,11 +276,11 @@ package R7FA4M1AB.CAN0 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt32;
             --  MB as a value
+            Val : R7FA4M1AB.UInt32;
          when True =>
-            Arr : MIER_MB_Field_Array;
             --  MB as an array
+            Arr : MIER_MB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access, Object_Size => 32,
@@ -311,11 +312,11 @@ package R7FA4M1AB.CAN0 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt25;
             --  MB as a value
+            Val : R7FA4M1AB.UInt25;
          when True =>
-            Arr : MIER_FIFO_MB_Field_Array;
             --  MB as an array
+            Arr : MIER_FIFO_MB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 25;
@@ -362,19 +363,19 @@ package R7FA4M1AB.CAN0 is
 
    --  Mailbox Interrupt Enable Register for FIFO Mailbox Mode
    type MIER_FIFO_Register is record
+      --  mailbox 0 Interrupt Enable
       MB             : MIER_FIFO_MB_Field :=
                         (As_Array => False, Val => 16#0#);
-      --  mailbox 0 Interrupt Enable
-      MB25           : MIER_FIFO_MB25_Field := R7FA4M1AB.CAN0.Val_0;
       --  Transmit FIFO Interrupt Generation Timing Control
-      Reserved       : MIER_FIFO_Reserved_Field := 16#0#;
+      MB25           : MIER_FIFO_MB25_Field := R7FA4M1AB.CAN0.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      MB28           : MIER_FIFO_MB28_Field := R7FA4M1AB.CAN0.Val_0;
+      Reserved       : MIER_FIFO_Reserved_Field := 16#0#;
       --  Receive FIFO Interrupt Enable
-      MB29           : MIER_FIFO_MB29_Field := R7FA4M1AB.CAN0.Val_0;
+      MB28           : MIER_FIFO_MB28_Field := R7FA4M1AB.CAN0.Val_0;
       --  Receive FIFO Interrupt Generation Timing Control
-      Reserved_30_31 : R7FA4M1AB.UInt2 := 16#0#;
+      MB29           : MIER_FIFO_MB29_Field := R7FA4M1AB.CAN0.Val_0;
       --  unspecified
+      Reserved_30_31 : R7FA4M1AB.UInt2 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -460,23 +461,23 @@ package R7FA4M1AB.CAN0 is
 
    --  Message Control Register for Transmit
    type MCTL_TX_Register is record
-      SENTDATA   : MCTL_TX_SENTDATA_Field := R7FA4M1AB.CAN0.Val_0;
       --  Transmission Complete Flag
-      TRMACTIVE  : MCTL_TX_TRMACTIVE_Field := R7FA4M1AB.CAN0.Val_0;
+      SENTDATA   : MCTL_TX_SENTDATA_Field := R7FA4M1AB.CAN0.Val_0;
       --  Read-only. Transmission-in-Progress Status Flag (Transmit mailbox
       --  setting enabled)
-      TRMABT     : MCTL_TX_TRMABT_Field := R7FA4M1AB.CAN0.Val_0;
+      TRMACTIVE  : MCTL_TX_TRMACTIVE_Field := R7FA4M1AB.CAN0.Val_0;
       --  Transmission Abort Complete Flag (Transmit mailbox setting enabled)
+      TRMABT     : MCTL_TX_TRMABT_Field := R7FA4M1AB.CAN0.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved   : MCTL_TX_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      ONESHOT    : MCTL_TX_ONESHOT_Field := R7FA4M1AB.CAN0.Val_0;
       --  One-Shot Enable
-      Reserved_1 : MCTL_TX_Reserved_Field := 16#0#;
+      ONESHOT    : MCTL_TX_ONESHOT_Field := R7FA4M1AB.CAN0.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      RECREQ     : MCTL_TX_RECREQ_Field := R7FA4M1AB.CAN0.Val_0;
+      Reserved_1 : MCTL_TX_Reserved_Field := 16#0#;
       --  Receive Mailbox Request
-      TRMREQ     : MCTL_TX_TRMREQ_Field := R7FA4M1AB.CAN0.Val_0;
+      RECREQ     : MCTL_TX_RECREQ_Field := R7FA4M1AB.CAN0.Val_0;
       --  Transmit Mailbox Request
+      TRMREQ     : MCTL_TX_TRMREQ_Field := R7FA4M1AB.CAN0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -565,23 +566,23 @@ package R7FA4M1AB.CAN0 is
 
    --  Message Control Register for Receive
    type MCTL_RX_Register is record
-      NEWDATA    : MCTL_RX_NEWDATA_Field := R7FA4M1AB.CAN0.Val_0;
       --  Reception Complete Flag
-      INVALDATA  : MCTL_RX_INVALDATA_Field := R7FA4M1AB.CAN0.Val_0;
+      NEWDATA    : MCTL_RX_NEWDATA_Field := R7FA4M1AB.CAN0.Val_0;
       --  Read-only. Reception-in-Progress Status Flag (Receive mailbox setting
       --  enabled)
-      MSGLOST    : MCTL_RX_MSGLOST_Field := R7FA4M1AB.CAN0.Val_0;
+      INVALDATA  : MCTL_RX_INVALDATA_Field := R7FA4M1AB.CAN0.Val_0;
       --  Message Lost Flag (Receive mailbox setting enabled)
+      MSGLOST    : MCTL_RX_MSGLOST_Field := R7FA4M1AB.CAN0.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved   : MCTL_RX_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      ONESHOT    : MCTL_RX_ONESHOT_Field := R7FA4M1AB.CAN0.Val_0;
       --  One-Shot Enable
-      Reserved_1 : MCTL_RX_Reserved_Field := 16#0#;
+      ONESHOT    : MCTL_RX_ONESHOT_Field := R7FA4M1AB.CAN0.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      RECREQ     : MCTL_RX_RECREQ_Field := R7FA4M1AB.CAN0.Val_0;
+      Reserved_1 : MCTL_RX_Reserved_Field := 16#0#;
       --  Receive Mailbox Request
-      TRMREQ     : MCTL_RX_TRMREQ_Field := R7FA4M1AB.CAN0.Val_0;
+      RECREQ     : MCTL_RX_RECREQ_Field := R7FA4M1AB.CAN0.Val_0;
       --  Transmit Mailbox Request
+      TRMREQ     : MCTL_RX_TRMREQ_Field := R7FA4M1AB.CAN0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -746,28 +747,28 @@ package R7FA4M1AB.CAN0 is
 
    --  Control Register
    type CTLR_Register is record
-      MBM      : CTLR_MBM_Field := R7FA4M1AB.CAN0.Val_0;
       --  CAN Mailbox Mode Select
-      IDFM     : CTLR_IDFM_Field := R7FA4M1AB.CAN0.Val_00;
+      MBM      : CTLR_MBM_Field := R7FA4M1AB.CAN0.Val_0;
       --  ID Format Mode Select
-      MLM      : CTLR_MLM_Field := R7FA4M1AB.CAN0.Val_0;
+      IDFM     : CTLR_IDFM_Field := R7FA4M1AB.CAN0.Val_00;
       --  Message Lost Mode Select
-      TPM      : CTLR_TPM_Field := R7FA4M1AB.CAN0.Val_0;
+      MLM      : CTLR_MLM_Field := R7FA4M1AB.CAN0.Val_0;
       --  Transmission Priority Mode Select
-      TSRC     : CTLR_TSRC_Field := R7FA4M1AB.CAN0.Val_0;
+      TPM      : CTLR_TPM_Field := R7FA4M1AB.CAN0.Val_0;
       --  Time Stamp Counter Reset Command
-      TSPS     : CTLR_TSPS_Field := R7FA4M1AB.CAN0.Val_00;
+      TSRC     : CTLR_TSRC_Field := R7FA4M1AB.CAN0.Val_0;
       --  Time Stamp Prescaler Select
-      CANM     : CTLR_CANM_Field := R7FA4M1AB.CAN0.Val_01;
+      TSPS     : CTLR_TSPS_Field := R7FA4M1AB.CAN0.Val_00;
       --  CAN Operating Mode Select
-      SLPM     : CTLR_SLPM_Field := R7FA4M1AB.CAN0.Val_1;
+      CANM     : CTLR_CANM_Field := R7FA4M1AB.CAN0.Val_01;
       --  CAN Sleep Mode
-      BOM      : CTLR_BOM_Field := R7FA4M1AB.CAN0.Val_00;
+      SLPM     : CTLR_SLPM_Field := R7FA4M1AB.CAN0.Val_1;
       --  Bus-Off Recovery Mode by a program request
-      RBOC     : CTLR_RBOC_Field := R7FA4M1AB.CAN0.Val_0;
+      BOM      : CTLR_BOM_Field := R7FA4M1AB.CAN0.Val_00;
       --  Forcible Return From Bus-Off
-      Reserved : CTLR_Reserved_Field := 16#0#;
+      RBOC     : CTLR_RBOC_Field := R7FA4M1AB.CAN0.Val_0;
       --  These bits are read as 00. The write value should be 00.
+      Reserved : CTLR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -955,38 +956,38 @@ package R7FA4M1AB.CAN0 is
 
    --  Status Register
    type STR_Register is record
-      NDST     : STR_NDST_Field;
       --  Read-only. NEWDATA Status Flag
-      SDST     : STR_SDST_Field;
+      NDST     : STR_NDST_Field;
       --  Read-only. SENTDATA Status Flag
-      RFST     : STR_RFST_Field;
+      SDST     : STR_SDST_Field;
       --  Read-only. Receive FIFO Status Flag
-      TFST     : STR_TFST_Field;
+      RFST     : STR_RFST_Field;
       --  Read-only. Transmit FIFO Status Flag
-      NMLST    : STR_NMLST_Field;
+      TFST     : STR_TFST_Field;
       --  Read-only. Normal Mailbox Message Lost Status Flag
-      FMLST    : STR_FMLST_Field;
+      NMLST    : STR_NMLST_Field;
       --  Read-only. FIFO Mailbox Message Lost Status Flag
-      TABST    : STR_TABST_Field;
+      FMLST    : STR_FMLST_Field;
       --  Read-only. Transmission Abort Status Flag
-      EST      : STR_EST_Field;
+      TABST    : STR_TABST_Field;
       --  Read-only. Error Status Flag
-      RSTST    : STR_RSTST_Field;
+      EST      : STR_EST_Field;
       --  Read-only. CAN Reset Status Flag
-      HLTST    : STR_HLTST_Field;
+      RSTST    : STR_RSTST_Field;
       --  Read-only. CAN Halt Status Flag
-      SLPST    : STR_SLPST_Field;
+      HLTST    : STR_HLTST_Field;
       --  Read-only. CAN Sleep Status Flag
-      EPST     : STR_EPST_Field;
+      SLPST    : STR_SLPST_Field;
       --  Read-only. Error-Passive Status Flag
-      BOST     : STR_BOST_Field;
+      EPST     : STR_EPST_Field;
       --  Read-only. Bus-Off Status Flag
-      TRMST    : STR_TRMST_Field;
+      BOST     : STR_BOST_Field;
       --  Read-only. Transmit Status Flag (transmitter)
-      RECST    : STR_RECST_Field;
+      TRMST    : STR_TRMST_Field;
       --  Read-only. Receive Status Flag (receiver)
-      Reserved : STR_Reserved_Field;
+      RECST    : STR_RECST_Field;
       --  Read-only. This bit is read as 0.
+      Reserved : STR_Reserved_Field;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1103,7 +1104,8 @@ package R7FA4M1AB.CAN0 is
       --  15 Tq
       Val_1110,
       --  16 Tq
-      Val_1111)
+      Val_1111
+     )
      with Size => 4;
    for BCR_TSEG1_Field use
      (others_k => 2,
@@ -1123,25 +1125,25 @@ package R7FA4M1AB.CAN0 is
 
    --  Bit Configuration Register
    type BCR_Register is record
-      CCLKS      : BCR_CCLKS_Field := R7FA4M1AB.CAN0.Val_0;
       --  CAN Clock Source Selection
-      Reserved   : BCR_Reserved_Field := 16#0#;
+      CCLKS      : BCR_CCLKS_Field := R7FA4M1AB.CAN0.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      TSEG2      : BCR_TSEG2_Field := R7FA4M1AB.CAN0.Val_000;
+      Reserved   : BCR_Reserved_Field := 16#0#;
       --  Time Segment 2 Control
-      Reserved_1 : BCR_Reserved_Field_1 := 16#0#;
+      TSEG2      : BCR_TSEG2_Field := R7FA4M1AB.CAN0.Val_000;
       --  This bit is read as 0. The write value should be 0.
-      SJW        : BCR_SJW_Field := R7FA4M1AB.CAN0.Val_00;
+      Reserved_1 : BCR_Reserved_Field_1 := 16#0#;
       --  Resynchronization Jump Width Control
-      Reserved_2 : BCR_Reserved_Field_2 := 16#0#;
+      SJW        : BCR_SJW_Field := R7FA4M1AB.CAN0.Val_00;
       --  These bits are read as 00. The write value should be 00.
-      BRP        : BCR_BRP_Field := 16#0#;
+      Reserved_2 : BCR_Reserved_Field_2 := 16#0#;
       --  Prescaler Division Ratio Select . These bits set the frequency of the
       --  CAN communication clock (fCANCLK).
-      Reserved_3 : BCR_Reserved_Field_2 := 16#0#;
+      BRP        : BCR_BRP_Field := 16#0#;
       --  These bits are read as 00. The write value should be 00.
-      TSEG1      : BCR_TSEG1_Field := R7FA4M1AB.CAN0.others_k;
+      Reserved_3 : BCR_Reserved_Field_2 := 16#0#;
       --  Time Segment 1 Control
+      TSEG1      : BCR_TSEG1_Field := R7FA4M1AB.CAN0.others_k;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -1173,16 +1175,17 @@ package R7FA4M1AB.CAN0 is
    type RFCR_RFUST_Field is
      (--  No unread message
       Val_000,
-      --  1 unread message
-      Val_001,
-      --  2 unread messages
-      Val_010,
-      --  3 unread messages
-      Val_011,
-      --  4 unread messages
-      Val_100,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  1 unread message
+      Val_010,
+      --  2 unread messages
+      Val_011,
+      --  3 unread messages
+      Val_100,
+      --  4 unread messages
+      others_k
+     )
      with Size => 3;
    for RFCR_RFUST_Field use
      (Val_000 => 0,
@@ -1238,18 +1241,18 @@ package R7FA4M1AB.CAN0 is
 
    --  Receive FIFO Control Register
    type RFCR_Register is record
-      RFE   : RFCR_RFE_Field := R7FA4M1AB.CAN0.Val_0;
       --  Receive FIFO Enable
-      RFUST : RFCR_RFUST_Field := R7FA4M1AB.CAN0.Val_000;
+      RFE   : RFCR_RFE_Field := R7FA4M1AB.CAN0.Val_0;
       --  Read-only. Receive FIFO Unread Message Number Status
-      RFMLF : RFCR_RFMLF_Field := R7FA4M1AB.CAN0.Val_0;
+      RFUST : RFCR_RFUST_Field := R7FA4M1AB.CAN0.Val_000;
       --  Receive FIFO Message Lost Flag
-      RFFST : RFCR_RFFST_Field := R7FA4M1AB.CAN0.Val_0;
+      RFMLF : RFCR_RFMLF_Field := R7FA4M1AB.CAN0.Val_0;
       --  Read-only. Receive FIFO Full Status Flag
-      RFWST : RFCR_RFWST_Field := R7FA4M1AB.CAN0.Val_0;
+      RFFST : RFCR_RFFST_Field := R7FA4M1AB.CAN0.Val_0;
       --  Read-only. Receive FIFO Buffer Warning Status Flag
-      RFEST : RFCR_RFEST_Field := R7FA4M1AB.CAN0.Val_1;
+      RFWST : RFCR_RFWST_Field := R7FA4M1AB.CAN0.Val_0;
       --  Read-only. Receive FIFO Empty Status Flag
+      RFEST : RFCR_RFEST_Field := R7FA4M1AB.CAN0.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1278,16 +1281,17 @@ package R7FA4M1AB.CAN0 is
    type TFCR_TFUST_Field is
      (--  No unsent message
       Val_000,
-      --  1 unsent message
-      Val_001,
-      --  2 unsent messages
-      Val_010,
-      --  3 unsent messages
-      Val_011,
-      --  4 unsent messages
-      Val_100,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  1 unsent message
+      Val_010,
+      --  2 unsent messages
+      Val_011,
+      --  3 unsent messages
+      Val_100,
+      --  4 unsent messages
+      others_k
+     )
      with Size => 3;
    for TFCR_TFUST_Field use
      (Val_000 => 0,
@@ -1323,16 +1327,16 @@ package R7FA4M1AB.CAN0 is
 
    --  Transmit FIFO Control Register
    type TFCR_Register is record
-      TFE      : TFCR_TFE_Field := R7FA4M1AB.CAN0.Val_0;
       --  Transmit FIFO Enable
-      TFUST    : TFCR_TFUST_Field := R7FA4M1AB.CAN0.Val_000;
+      TFE      : TFCR_TFE_Field := R7FA4M1AB.CAN0.Val_0;
       --  Read-only. Transmit FIFO Unsent Message Number Status
-      Reserved : TFCR_Reserved_Field := 16#0#;
+      TFUST    : TFCR_TFUST_Field := R7FA4M1AB.CAN0.Val_000;
       --  These bits are read as 00. The write value should be 00.
-      TFFST    : TFCR_TFFST_Field := R7FA4M1AB.CAN0.Val_0;
+      Reserved : TFCR_Reserved_Field := 16#0#;
       --  Read-only. Transmit FIFO Full Status
-      TFEST    : TFCR_TFEST_Field := R7FA4M1AB.CAN0.Val_1;
+      TFFST    : TFCR_TFFST_Field := R7FA4M1AB.CAN0.Val_0;
       --  Read-only. Transmit FIFO Empty Status
+      TFEST    : TFCR_TFEST_Field := R7FA4M1AB.CAN0.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1435,22 +1439,22 @@ package R7FA4M1AB.CAN0 is
 
    --  Error Interrupt Enable Register
    type EIER_Register is record
-      BEIE  : EIER_BEIE_Field := R7FA4M1AB.CAN0.Val_0;
       --  Bus Error Interrupt Enable
-      EWIE  : EIER_EWIE_Field := R7FA4M1AB.CAN0.Val_0;
+      BEIE  : EIER_BEIE_Field := R7FA4M1AB.CAN0.Val_0;
       --  Error-Warning Interrupt Enable
-      EPIE  : EIER_EPIE_Field := R7FA4M1AB.CAN0.Val_0;
+      EWIE  : EIER_EWIE_Field := R7FA4M1AB.CAN0.Val_0;
       --  Error-Passive Interrupt Enable
-      BOEIE : EIER_BOEIE_Field := R7FA4M1AB.CAN0.Val_0;
+      EPIE  : EIER_EPIE_Field := R7FA4M1AB.CAN0.Val_0;
       --  Bus-Off Entry Interrupt Enable
-      BORIE : EIER_BORIE_Field := R7FA4M1AB.CAN0.Val_0;
+      BOEIE : EIER_BOEIE_Field := R7FA4M1AB.CAN0.Val_0;
       --  Bus-Off Recovery Interrupt Enable
-      ORIE  : EIER_ORIE_Field := R7FA4M1AB.CAN0.Val_0;
+      BORIE : EIER_BORIE_Field := R7FA4M1AB.CAN0.Val_0;
       --  Overrun Interrupt Enable
-      OLIE  : EIER_OLIE_Field := R7FA4M1AB.CAN0.Val_0;
+      ORIE  : EIER_ORIE_Field := R7FA4M1AB.CAN0.Val_0;
       --  Overload Frame Transmit Interrupt Enable
-      BLIE  : EIER_BLIE_Field := R7FA4M1AB.CAN0.Val_0;
+      OLIE  : EIER_OLIE_Field := R7FA4M1AB.CAN0.Val_0;
       --  Bus Lock Interrupt Enable
+      BLIE  : EIER_BLIE_Field := R7FA4M1AB.CAN0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1556,22 +1560,22 @@ package R7FA4M1AB.CAN0 is
 
    --  Error Interrupt Factor Judge Register
    type EIFR_Register is record
-      BEIF  : EIFR_BEIF_Field := R7FA4M1AB.CAN0.Val_0;
       --  Bus Error Detect Flag
-      EWIF  : EIFR_EWIF_Field := R7FA4M1AB.CAN0.Val_0;
+      BEIF  : EIFR_BEIF_Field := R7FA4M1AB.CAN0.Val_0;
       --  Error-Warning Detect Flag
-      EPIF  : EIFR_EPIF_Field := R7FA4M1AB.CAN0.Val_0;
+      EWIF  : EIFR_EWIF_Field := R7FA4M1AB.CAN0.Val_0;
       --  Error-Passive Detect Flag
-      BOEIF : EIFR_BOEIF_Field := R7FA4M1AB.CAN0.Val_0;
+      EPIF  : EIFR_EPIF_Field := R7FA4M1AB.CAN0.Val_0;
       --  Bus-Off Entry Detect Flag
-      BORIF : EIFR_BORIF_Field := R7FA4M1AB.CAN0.Val_0;
+      BOEIF : EIFR_BOEIF_Field := R7FA4M1AB.CAN0.Val_0;
       --  Bus-Off Recovery Detect Flag
-      ORIF  : EIFR_ORIF_Field := R7FA4M1AB.CAN0.Val_0;
+      BORIF : EIFR_BORIF_Field := R7FA4M1AB.CAN0.Val_0;
       --  Receive Overrun Detect Flag
-      OLIF  : EIFR_OLIF_Field := R7FA4M1AB.CAN0.Val_0;
+      ORIF  : EIFR_ORIF_Field := R7FA4M1AB.CAN0.Val_0;
       --  Overload Frame Transmission Detect Flag
-      BLIF  : EIFR_BLIF_Field := R7FA4M1AB.CAN0.Val_0;
+      OLIF  : EIFR_OLIF_Field := R7FA4M1AB.CAN0.Val_0;
       --  Bus Lock Detect Flag
+      BLIF  : EIFR_BLIF_Field := R7FA4M1AB.CAN0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1677,22 +1681,22 @@ package R7FA4M1AB.CAN0 is
 
    --  Error Code Store Register
    type ECSR_Register is record
-      SEF  : ECSR_SEF_Field := R7FA4M1AB.CAN0.Val_0;
       --  Stuff Error Flag
-      FEF  : ECSR_FEF_Field := R7FA4M1AB.CAN0.Val_0;
+      SEF  : ECSR_SEF_Field := R7FA4M1AB.CAN0.Val_0;
       --  Form Error Flag
-      AEF  : ECSR_AEF_Field := R7FA4M1AB.CAN0.Val_0;
+      FEF  : ECSR_FEF_Field := R7FA4M1AB.CAN0.Val_0;
       --  ACK Error Flag
-      CEF  : ECSR_CEF_Field := R7FA4M1AB.CAN0.Val_0;
+      AEF  : ECSR_AEF_Field := R7FA4M1AB.CAN0.Val_0;
       --  CRC Error Flag
-      BE1F : ECSR_BE1F_Field := R7FA4M1AB.CAN0.Val_0;
+      CEF  : ECSR_CEF_Field := R7FA4M1AB.CAN0.Val_0;
       --  Bit Error (recessive) Flag
-      BE0F : ECSR_BE0F_Field := R7FA4M1AB.CAN0.Val_0;
+      BE1F : ECSR_BE1F_Field := R7FA4M1AB.CAN0.Val_0;
       --  Bit Error (dominant) Flag
-      ADEF : ECSR_ADEF_Field := R7FA4M1AB.CAN0.Val_0;
+      BE0F : ECSR_BE0F_Field := R7FA4M1AB.CAN0.Val_0;
       --  ACK Delimiter Error Flag
-      EDPM : ECSR_EDPM_Field := R7FA4M1AB.CAN0.Val_0;
+      ADEF : ECSR_ADEF_Field := R7FA4M1AB.CAN0.Val_0;
       --  Error Display Mode Select
+      EDPM : ECSR_EDPM_Field := R7FA4M1AB.CAN0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1724,13 +1728,13 @@ package R7FA4M1AB.CAN0 is
 
    --  Mailbox Search Status Register
    type MSSR_Register is record
-      MBNST    : MSSR_MBNST_Field;
       --  Read-only. Search Result Mailbox Number Status These bits output the
       --  smallest mailbox number that is searched in each mode of MSMR.
-      Reserved : MSSR_Reserved_Field;
+      MBNST    : MSSR_MBNST_Field;
       --  Read-only. These bits are read as 00.
-      SEST     : MSSR_SEST_Field;
+      Reserved : MSSR_Reserved_Field;
       --  Read-only. Search Result Status
+      SEST     : MSSR_SEST_Field;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1762,10 +1766,10 @@ package R7FA4M1AB.CAN0 is
 
    --  Mailbox Search Mode Register
    type MSMR_Register is record
-      MBSM     : MSMR_MBSM_Field := R7FA4M1AB.CAN0.Val_00;
       --  Mailbox Search Mode Select
-      Reserved : MSMR_Reserved_Field := 16#0#;
+      MBSM     : MSMR_MBSM_Field := R7FA4M1AB.CAN0.Val_00;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : MSMR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1807,12 +1811,12 @@ package R7FA4M1AB.CAN0 is
 
    --  Test Control Register
    type TCR_Register is record
-      TSTE     : TCR_TSTE_Field := R7FA4M1AB.CAN0.Val_0;
       --  CAN Test Mode Enable
-      TSTM     : TCR_TSTM_Field := R7FA4M1AB.CAN0.Val_00;
+      TSTE     : TCR_TSTE_Field := R7FA4M1AB.CAN0.Val_0;
       --  CAN Test Mode Select
-      Reserved : TCR_Reserved_Field := 16#0#;
+      TSTM     : TCR_TSTM_Field := R7FA4M1AB.CAN0.Val_00;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : TCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -2213,1135 +2217,758 @@ package R7FA4M1AB.CAN0 is
      case Discriminent is
         when View_MB_ID0 =>
            MB_ID0 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL0 =>
            MB_DL0 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D00 =>
            MB_D00 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D10 =>
            MB_D10 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D20 =>
            MB_D20 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D30 =>
            MB_D30 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D40 =>
            MB_D40 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D50 =>
            MB_D50 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D60 =>
            MB_D60 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D70 =>
            MB_D70 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS0 =>
            MB_TS0 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID1 =>
            MB_ID1 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL1 =>
            MB_DL1 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D01 =>
            MB_D01 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D11 =>
            MB_D11 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D21 =>
            MB_D21 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D31 =>
            MB_D31 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D41 =>
            MB_D41 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D51 =>
            MB_D51 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D61 =>
            MB_D61 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D71 =>
            MB_D71 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS1 =>
            MB_TS1 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID2 =>
            MB_ID2 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL2 =>
            MB_DL2 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D02 =>
            MB_D02 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D12 =>
            MB_D12 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D22 =>
            MB_D22 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D32 =>
            MB_D32 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D42 =>
            MB_D42 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D52 =>
            MB_D52 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D62 =>
            MB_D62 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D72 =>
            MB_D72 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS2 =>
            MB_TS2 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID3 =>
            MB_ID3 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL3 =>
            MB_DL3 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D03 =>
            MB_D03 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D13 =>
            MB_D13 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D23 =>
            MB_D23 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D33 =>
            MB_D33 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D43 =>
            MB_D43 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D53 =>
            MB_D53 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D63 =>
            MB_D63 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D73 =>
            MB_D73 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS3 =>
            MB_TS3 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID4 =>
            MB_ID4 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL4 =>
            MB_DL4 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D04 =>
            MB_D04 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D14 =>
            MB_D14 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D24 =>
            MB_D24 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D34 =>
            MB_D34 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D44 =>
            MB_D44 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D54 =>
            MB_D54 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D64 =>
            MB_D64 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D74 =>
            MB_D74 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS4 =>
            MB_TS4 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID5 =>
            MB_ID5 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL5 =>
            MB_DL5 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D05 =>
            MB_D05 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D15 =>
            MB_D15 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D25 =>
            MB_D25 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D35 =>
            MB_D35 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D45 =>
            MB_D45 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D55 =>
            MB_D55 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D65 =>
            MB_D65 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D75 =>
            MB_D75 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS5 =>
            MB_TS5 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID6 =>
            MB_ID6 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL6 =>
            MB_DL6 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D06 =>
            MB_D06 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D16 =>
            MB_D16 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D26 =>
            MB_D26 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D36 =>
            MB_D36 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D46 =>
            MB_D46 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D56 =>
            MB_D56 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D66 =>
            MB_D66 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D76 =>
            MB_D76 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS6 =>
            MB_TS6 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID7 =>
            MB_ID7 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL7 =>
            MB_DL7 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D07 =>
            MB_D07 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D17 =>
            MB_D17 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D27 =>
            MB_D27 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D37 =>
            MB_D37 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D47 =>
            MB_D47 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D57 =>
            MB_D57 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D67 =>
            MB_D67 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D77 =>
            MB_D77 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS7 =>
            MB_TS7 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID8 =>
            MB_ID8 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL8 =>
            MB_DL8 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D08 =>
            MB_D08 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D18 =>
            MB_D18 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D28 =>
            MB_D28 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D38 =>
            MB_D38 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D48 =>
            MB_D48 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D58 =>
            MB_D58 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D68 =>
            MB_D68 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D78 =>
            MB_D78 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS8 =>
            MB_TS8 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID9 =>
            MB_ID9 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL9 =>
            MB_DL9 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D09 =>
            MB_D09 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D19 =>
            MB_D19 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D29 =>
            MB_D29 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D39 =>
            MB_D39 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D49 =>
            MB_D49 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D59 =>
            MB_D59 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D69 =>
            MB_D69 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D79 =>
            MB_D79 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS9 =>
            MB_TS9 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID10 =>
            MB_ID10 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL10 =>
            MB_DL10 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D010 =>
            MB_D010 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D110 =>
            MB_D110 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D210 =>
            MB_D210 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D310 =>
            MB_D310 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D410 =>
            MB_D410 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D510 =>
            MB_D510 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D610 =>
            MB_D610 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D710 =>
            MB_D710 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS10 =>
            MB_TS10 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID11 =>
            MB_ID11 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL11 =>
            MB_DL11 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D011 =>
            MB_D011 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D111 =>
            MB_D111 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D211 =>
            MB_D211 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D311 =>
            MB_D311 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D411 =>
            MB_D411 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D511 =>
            MB_D511 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D611 =>
            MB_D611 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D711 =>
            MB_D711 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS11 =>
            MB_TS11 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID12 =>
            MB_ID12 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL12 =>
            MB_DL12 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D012 =>
            MB_D012 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D112 =>
            MB_D112 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D212 =>
            MB_D212 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D312 =>
            MB_D312 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D412 =>
            MB_D412 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D512 =>
            MB_D512 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D612 =>
            MB_D612 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D712 =>
            MB_D712 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS12 =>
            MB_TS12 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID13 =>
            MB_ID13 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL13 =>
            MB_DL13 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D013 =>
            MB_D013 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D113 =>
            MB_D113 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D213 =>
            MB_D213 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D313 =>
            MB_D313 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D413 =>
            MB_D413 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D513 =>
            MB_D513 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D613 =>
            MB_D613 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D713 =>
            MB_D713 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS13 =>
            MB_TS13 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID14 =>
            MB_ID14 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL14 =>
            MB_DL14 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D014 =>
            MB_D014 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D114 =>
            MB_D114 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D214 =>
            MB_D214 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D314 =>
            MB_D314 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D414 =>
            MB_D414 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D514 =>
            MB_D514 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D614 =>
            MB_D614 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D714 =>
            MB_D714 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS14 =>
            MB_TS14 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID15 =>
            MB_ID15 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL15 =>
            MB_DL15 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D015 =>
            MB_D015 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D115 =>
            MB_D115 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D215 =>
            MB_D215 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D315 =>
            MB_D315 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D415 =>
            MB_D415 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D515 =>
            MB_D515 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D615 =>
            MB_D615 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D715 =>
            MB_D715 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS15 =>
            MB_TS15 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID16 =>
            MB_ID16 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL16 =>
            MB_DL16 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D016 =>
            MB_D016 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D116 =>
            MB_D116 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D216 =>
            MB_D216 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D316 =>
            MB_D316 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D416 =>
            MB_D416 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D516 =>
            MB_D516 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D616 =>
            MB_D616 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D716 =>
            MB_D716 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS16 =>
            MB_TS16 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID17 =>
            MB_ID17 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL17 =>
            MB_DL17 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D017 =>
            MB_D017 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D117 =>
            MB_D117 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D217 =>
            MB_D217 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D317 =>
            MB_D317 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D417 =>
            MB_D417 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D517 =>
            MB_D517 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D617 =>
            MB_D617 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D717 =>
            MB_D717 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS17 =>
            MB_TS17 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID18 =>
            MB_ID18 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL18 =>
            MB_DL18 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D018 =>
            MB_D018 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D118 =>
            MB_D118 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D218 =>
            MB_D218 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D318 =>
            MB_D318 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D418 =>
            MB_D418 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D518 =>
            MB_D518 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D618 =>
            MB_D618 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D718 =>
            MB_D718 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS18 =>
            MB_TS18 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID19 =>
            MB_ID19 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL19 =>
            MB_DL19 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D019 =>
            MB_D019 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D119 =>
            MB_D119 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D219 =>
            MB_D219 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D319 =>
            MB_D319 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D419 =>
            MB_D419 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D519 =>
            MB_D519 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D619 =>
            MB_D619 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D719 =>
            MB_D719 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS19 =>
            MB_TS19 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID20 =>
            MB_ID20 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL20 =>
            MB_DL20 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D020 =>
            MB_D020 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D120 =>
            MB_D120 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D220 =>
            MB_D220 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D320 =>
            MB_D320 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D420 =>
            MB_D420 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D520 =>
            MB_D520 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D620 =>
            MB_D620 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D720 =>
            MB_D720 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS20 =>
            MB_TS20 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID21 =>
            MB_ID21 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL21 =>
            MB_DL21 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D021 =>
            MB_D021 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D121 =>
            MB_D121 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D221 =>
            MB_D221 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D321 =>
            MB_D321 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D421 =>
            MB_D421 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D521 =>
            MB_D521 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D621 =>
            MB_D621 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D721 =>
            MB_D721 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS21 =>
            MB_TS21 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID22 =>
            MB_ID22 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL22 =>
            MB_DL22 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D022 =>
            MB_D022 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D122 =>
            MB_D122 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D222 =>
            MB_D222 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D322 =>
            MB_D322 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D422 =>
            MB_D422 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D522 =>
            MB_D522 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D622 =>
            MB_D622 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D722 =>
            MB_D722 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS22 =>
            MB_TS22 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID23 =>
            MB_ID23 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL23 =>
            MB_DL23 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D023 =>
            MB_D023 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D123 =>
            MB_D123 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D223 =>
            MB_D223 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D323 =>
            MB_D323 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D423 =>
            MB_D423 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D523 =>
            MB_D523 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D623 =>
            MB_D623 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D723 =>
            MB_D723 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS23 =>
            MB_TS23 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID24 =>
            MB_ID24 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL24 =>
            MB_DL24 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D024 =>
            MB_D024 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D124 =>
            MB_D124 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D224 =>
            MB_D224 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D324 =>
            MB_D324 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D424 =>
            MB_D424 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D524 =>
            MB_D524 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D624 =>
            MB_D624 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D724 =>
            MB_D724 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS24 =>
            MB_TS24 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID25 =>
            MB_ID25 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL25 =>
            MB_DL25 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D025 =>
            MB_D025 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D125 =>
            MB_D125 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D225 =>
            MB_D225 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D325 =>
            MB_D325 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D425 =>
            MB_D425 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D525 =>
            MB_D525 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D625 =>
            MB_D625 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D725 =>
            MB_D725 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS25 =>
            MB_TS25 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID26 =>
            MB_ID26 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL26 =>
            MB_DL26 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D026 =>
            MB_D026 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D126 =>
            MB_D126 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D226 =>
            MB_D226 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D326 =>
            MB_D326 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D426 =>
            MB_D426 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D526 =>
            MB_D526 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D626 =>
            MB_D626 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D726 =>
            MB_D726 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS26 =>
            MB_TS26 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID27 =>
            MB_ID27 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL27 =>
            MB_DL27 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D027 =>
            MB_D027 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D127 =>
            MB_D127 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D227 =>
            MB_D227 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D327 =>
            MB_D327 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D427 =>
            MB_D427 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D527 =>
            MB_D527 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D627 =>
            MB_D627 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D727 =>
            MB_D727 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS27 =>
            MB_TS27 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID28 =>
            MB_ID28 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL28 =>
            MB_DL28 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D028 =>
            MB_D028 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D128 =>
            MB_D128 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D228 =>
            MB_D228 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D328 =>
            MB_D328 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D428 =>
            MB_D428 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D528 =>
            MB_D528 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D628 =>
            MB_D628 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D728 =>
            MB_D728 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS28 =>
            MB_TS28 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID29 =>
            MB_ID29 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL29 =>
            MB_DL29 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D029 =>
            MB_D029 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D129 =>
            MB_D129 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D229 =>
            MB_D229 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D329 =>
            MB_D329 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D429 =>
            MB_D429 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D529 =>
            MB_D529 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D629 =>
            MB_D629 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D729 =>
            MB_D729 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS29 =>
            MB_TS29 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID30 =>
            MB_ID30 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL30 =>
            MB_DL30 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D030 =>
            MB_D030 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D130 =>
            MB_D130 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D230 =>
            MB_D230 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D330 =>
            MB_D330 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D430 =>
            MB_D430 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D530 =>
            MB_D530 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D630 =>
            MB_D630 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D730 =>
            MB_D730 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS30 =>
            MB_TS30 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MB_ID31 =>
            MB_ID31 : aliased MB_ID_Register;
-           --  Mailbox Register
         when View_MB_DL31 =>
            MB_DL31 : aliased MB_DL_Register;
-           --  Mailbox Register
         when View_MB_D031 =>
            MB_D031 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D131 =>
            MB_D131 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D231 =>
            MB_D231 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D331 =>
            MB_D331 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D431 =>
            MB_D431 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D531 =>
            MB_D531 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D631 =>
            MB_D631 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_D731 =>
            MB_D731 : aliased R7FA4M1AB.Byte;
-           --  Mailbox Register
         when View_MB_TS31 =>
            MB_TS31 : aliased MB_TS_Register;
-           --  Mailbox Register
         when View_MKR =>
            MKR : aliased MKR_Registers;
-           --  Mask Register
         when View_FIDCR =>
            FIDCR : aliased FIDCR_Registers;
-           --  FIFO Received ID Compare Registers
         when View_MKIVLR =>
            MKIVLR : aliased MKIVLR_Register;
-           --  Mask Invalid Register
         when View_CTLR =>
            CTLR : aliased CTLR_Register;
-           --  Control Register
         when View_STR =>
            STR : aliased STR_Register;
-           --  Status Register
         when View_BCR =>
            BCR : aliased BCR_Register;
-           --  Bit Configuration Register
         when View_RFCR =>
            RFCR : aliased RFCR_Register;
-           --  Receive FIFO Control Register
         when View_RFPCR =>
            RFPCR : aliased R7FA4M1AB.Byte;
-           --  Receive FIFO Pointer Control Register
         when View_TFCR =>
            TFCR : aliased TFCR_Register;
-           --  Transmit FIFO Control Register
         when View_TFPCR =>
            TFPCR : aliased R7FA4M1AB.Byte;
-           --  Transmit FIFO Pointer Control Register
         when View_EIER =>
            EIER : aliased EIER_Register;
-           --  Error Interrupt Enable Register
         when View_EIFR =>
            EIFR : aliased EIFR_Register;
-           --  Error Interrupt Factor Judge Register
         when View_RECR =>
            RECR : aliased R7FA4M1AB.Byte;
-           --  Receive Error Count Register
         when View_TECR =>
            TECR : aliased R7FA4M1AB.Byte;
-           --  Transmit Error Count Register
         when View_ECSR =>
            ECSR : aliased ECSR_Register;
-           --  Error Code Store Register
         when View_CSSR =>
            CSSR : aliased R7FA4M1AB.Byte;
-           --  Channel Search Support Register
         when View_MSSR =>
            MSSR : aliased MSSR_Register;
-           --  Mailbox Search Status Register
         when View_MSMR =>
            MSMR : aliased MSMR_Register;
-           --  Mailbox Search Mode Register
         when View_TSR =>
            TSR : aliased R7FA4M1AB.UInt16;
-           --  Time Stamp Register
         when View_AFSR =>
            AFSR : aliased R7FA4M1AB.UInt16;
-           --  Acceptance Filter Support Register
         when View_TCR =>
            TCR : aliased TCR_Register;
-           --  Test Control Register
         when View_MIER =>
            MIER : aliased MIER_Register;
-           --  Mailbox Interrupt Enable Register
         when View_MIER_FIFO =>
            MIER_FIFO : aliased MIER_FIFO_Register;
-           --  Mailbox Interrupt Enable Register for FIFO Mailbox Mode
         when View_MCTL_TX =>
            MCTL_TX : aliased MCTL_TX_Registers;
-           --  Message Control Register for Transmit
         when View_MCTL_RX =>
            MCTL_RX : aliased MCTL_RX_Registers;
-           --  Message Control Register for Receive
      end case;
    end record
      with Unchecked_Union, Volatile;

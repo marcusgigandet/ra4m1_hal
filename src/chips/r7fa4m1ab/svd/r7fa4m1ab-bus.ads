@@ -35,11 +35,11 @@ package R7FA4M1AB.BUS is
 
    --  Master Bus Control Register %s
    type BUSMCNT_Register is record
-      Reserved : BUSMCNT_Reserved_Field := 16#0#;
       --  These bits are read as 000000000000000. The write value should be
       --  000000000000000.
-      IERES    : BUSMCNT0_IERES_Field := R7FA4M1AB.BUS.Val_0;
+      Reserved : BUSMCNT_Reserved_Field := 16#0#;
       --  Ignore Error Responses
+      IERES    : BUSMCNT0_IERES_Field := R7FA4M1AB.BUS.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -55,10 +55,11 @@ package R7FA4M1AB.BUS is
    type BUSSCNTFLI_ARBMET_Field is
      (--  fixed priority
       Val_00,
-      --  round-robin
-      Val_01,
       --  Setting prohibited
-      others_k)
+      Val_01,
+      --  round-robin
+      others_k
+     )
      with Size => 2;
    for BUSSCNTFLI_ARBMET_Field use
      (Val_00 => 0,
@@ -69,13 +70,13 @@ package R7FA4M1AB.BUS is
 
    --  Slave Bus Control Register FLI
    type BUSSCNTFLI_Register is record
-      Reserved   : BUSSCNTFLI_Reserved_Field := 16#0#;
       --  These bits are read as 0000. The write value should be 0000.
-      ARBMET     : BUSSCNTFLI_ARBMET_Field := R7FA4M1AB.BUS.Val_00;
+      Reserved   : BUSSCNTFLI_Reserved_Field := 16#0#;
       --  Arbitration Method Specify the priority between groups
-      Reserved_1 : BUSSCNTFLI_Reserved_Field_1 := 16#0#;
+      ARBMET     : BUSSCNTFLI_ARBMET_Field := R7FA4M1AB.BUS.Val_00;
       --  These bits are read as 0000000000. The write value should be
       --  0000000000.
+      Reserved_1 : BUSSCNTFLI_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -92,10 +93,11 @@ package R7FA4M1AB.BUS is
    type BUSSCNT0_ARBMET_Field is
      (--  fixed priority
       Val_00,
-      --  round-robin
-      Val_01,
       --  Setting prohibited
-      others_k)
+      Val_01,
+      --  round-robin
+      others_k
+     )
      with Size => 2;
    for BUSSCNT0_ARBMET_Field use
      (Val_00 => 0,
@@ -106,13 +108,13 @@ package R7FA4M1AB.BUS is
 
    --  Slave Bus Control Register %s
    type BUSSCNT_Register is record
-      Reserved   : BUSSCNT_Reserved_Field := 16#0#;
       --  These bits are read as 0000. The write value should be 0000.
-      ARBMET     : BUSSCNT0_ARBMET_Field := R7FA4M1AB.BUS.Val_00;
+      Reserved   : BUSSCNT_Reserved_Field := 16#0#;
       --  Arbitration Method Specify the priority between groups
-      Reserved_1 : BUSSCNT_Reserved_Field_1 := 16#0#;
+      ARBMET     : BUSSCNT0_ARBMET_Field := R7FA4M1AB.BUS.Val_00;
       --  These bits are read as 0000000000. The write value should be
       --  0000000000.
+      Reserved_1 : BUSSCNT_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -129,10 +131,11 @@ package R7FA4M1AB.BUS is
    type BUSSCNTP6B_ARBMET_Field is
      (--  fixed priority
       Val_00,
-      --  round-robin
-      Val_01,
       --  Setting prohibited
-      others_k)
+      Val_01,
+      --  round-robin
+      others_k
+     )
      with Size => 2;
    for BUSSCNTP6B_ARBMET_Field use
      (Val_00 => 0,
@@ -143,13 +146,13 @@ package R7FA4M1AB.BUS is
 
    --  Slave Bus Control Register P6B
    type BUSSCNTP6B_Register is record
-      Reserved   : BUSSCNTP6B_Reserved_Field := 16#0#;
       --  These bits are read as 0000. The write value should be 0000.
-      ARBMET     : BUSSCNTP6B_ARBMET_Field := R7FA4M1AB.BUS.Val_00;
+      Reserved   : BUSSCNTP6B_Reserved_Field := 16#0#;
       --  Arbitration Method Specify the priority between groups
-      Reserved_1 : BUSSCNTP6B_Reserved_Field_1 := 16#0#;
+      ARBMET     : BUSSCNTP6B_ARBMET_Field := R7FA4M1AB.BUS.Val_00;
       --  These bits are read as 0000000000. The write value should be
       --  0000000000.
+      Reserved_1 : BUSSCNTP6B_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -166,10 +169,11 @@ package R7FA4M1AB.BUS is
    type BUSSCNTFBU_ARBMET_Field is
      (--  fixed priority
       Val_00,
-      --  round-robin
-      Val_01,
       --  Setting prohibited
-      others_k)
+      Val_01,
+      --  round-robin
+      others_k
+     )
      with Size => 2;
    for BUSSCNTFBU_ARBMET_Field use
      (Val_00 => 0,
@@ -180,13 +184,13 @@ package R7FA4M1AB.BUS is
 
    --  Slave Bus Control Register FBU
    type BUSSCNTFBU_Register is record
-      Reserved   : BUSSCNTFBU_Reserved_Field := 16#0#;
       --  These bits are read as 0000. The write value should be 0000.
-      ARBMET     : BUSSCNTFBU_ARBMET_Field := R7FA4M1AB.BUS.Val_00;
+      Reserved   : BUSSCNTFBU_Reserved_Field := 16#0#;
       --  Arbitration Method Specify the priority between groups
-      Reserved_1 : BUSSCNTFBU_Reserved_Field_1 := 16#0#;
+      ARBMET     : BUSSCNTFBU_ARBMET_Field := R7FA4M1AB.BUS.Val_00;
       --  These bits are read as 0000000000. The write value should be
       --  0000000000.
+      Reserved_1 : BUSSCNTFBU_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -223,12 +227,12 @@ package R7FA4M1AB.BUS is
 
    --  Bus Error Status Register %s
    type BUSERRSTAT_Register is record
-      ACCSTAT  : BUSERRSTAT0_ACCSTAT_Field;
       --  Read-only. Error Access Status The status at the time of the error
-      Reserved : BUSERRSTAT_Reserved_Field;
+      ACCSTAT  : BUSERRSTAT0_ACCSTAT_Field;
       --  Read-only. These bits are read as 000000.
-      ERRSTAT  : BUSERRSTAT0_ERRSTAT_Field;
+      Reserved : BUSERRSTAT_Reserved_Field;
       --  Read-only. Bus Error Status When bus error assert, error flag occurs.
+      ERRSTAT  : BUSERRSTAT0_ERRSTAT_Field;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -245,6 +249,7 @@ package R7FA4M1AB.BUS is
 
    --  BUS Control
    type BUS_Peripheral is record
+      --  Master Bus Control Register %s
       BUSMCNT0    : aliased BUSMCNT_Register;
       --  Master Bus Control Register %s
       BUSMCNT1    : aliased BUSMCNT_Register;
@@ -252,9 +257,9 @@ package R7FA4M1AB.BUS is
       BUSMCNT2    : aliased BUSMCNT_Register;
       --  Master Bus Control Register %s
       BUSMCNT3    : aliased BUSMCNT_Register;
-      --  Master Bus Control Register %s
-      BUSSCNTFLI  : aliased BUSSCNTFLI_Register;
       --  Slave Bus Control Register FLI
+      BUSSCNTFLI  : aliased BUSSCNTFLI_Register;
+      --  Slave Bus Control Register %s
       BUSSCNT0    : aliased BUSSCNT_Register;
       --  Slave Bus Control Register %s
       BUSSCNT1    : aliased BUSSCNT_Register;
@@ -266,27 +271,26 @@ package R7FA4M1AB.BUS is
       BUSSCNT2    : aliased BUSSCNT_Register;
       --  Slave Bus Control Register %s
       BUSSCNT3    : aliased BUSSCNT_Register;
-      --  Slave Bus Control Register %s
-      BUSSCNTP6B  : aliased BUSSCNTP6B_Register;
       --  Slave Bus Control Register P6B
-      BUSSCNTFBU  : aliased BUSSCNTFBU_Register;
+      BUSSCNTP6B  : aliased BUSSCNTP6B_Register;
       --  Slave Bus Control Register FBU
+      BUSSCNTFBU  : aliased BUSSCNTFBU_Register;
+      --  Bus Error Address Register %s
       BUSERRADD0  : aliased R7FA4M1AB.UInt32;
-      --  Bus Error Address Register %s
+      --  Bus Error Status Register %s
       BUSERRSTAT0 : aliased BUSERRSTAT_Register;
-      --  Bus Error Status Register %s
+      --  Bus Error Address Register %s
       BUSERRADD1  : aliased R7FA4M1AB.UInt32;
-      --  Bus Error Address Register %s
+      --  Bus Error Status Register %s
       BUSERRSTAT1 : aliased BUSERRSTAT_Register;
-      --  Bus Error Status Register %s
+      --  Bus Error Address Register %s
       BUSERRADD2  : aliased R7FA4M1AB.UInt32;
-      --  Bus Error Address Register %s
+      --  Bus Error Status Register %s
       BUSERRSTAT2 : aliased BUSERRSTAT_Register;
-      --  Bus Error Status Register %s
-      BUSERRADD3  : aliased R7FA4M1AB.UInt32;
       --  Bus Error Address Register %s
-      BUSERRSTAT3 : aliased BUSERRSTAT_Register;
+      BUSERRADD3  : aliased R7FA4M1AB.UInt32;
       --  Bus Error Status Register %s
+      BUSERRSTAT3 : aliased BUSERRSTAT_Register;
    end record
      with Volatile;
 

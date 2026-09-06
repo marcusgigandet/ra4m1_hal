@@ -154,42 +154,42 @@ package R7FA4M1AB.POEG is
 
    --  POEG Group %s Setting Register
    type POEGG_Register is record
-      PIDF          : POEGG0_PIDF_Field := R7FA4M1AB.POEG.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Port Input Detection Flag
-      IOCF          : POEGG0_IOCF_Field := R7FA4M1AB.POEG.Val_0;
+      PIDF          : POEGG0_PIDF_Field := R7FA4M1AB.POEG.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Output-disable Request Detection Flag from GPT
-      OSTPF         : POEGG0_OSTPF_Field := R7FA4M1AB.POEG.Val_0;
+      IOCF          : POEGG0_IOCF_Field := R7FA4M1AB.POEG.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Oscillation Stop Detection Flag
-      SSF           : POEGG0_SSF_Field := R7FA4M1AB.POEG.Val_0;
+      OSTPF         : POEGG0_OSTPF_Field := R7FA4M1AB.POEG.Val_0;
       --  Software Stop Flag
-      PIDE          : POEGG0_PIDE_Field := R7FA4M1AB.POEG.Val_0;
+      SSF           : POEGG0_SSF_Field := R7FA4M1AB.POEG.Val_0;
       --  Port Input Detection Enable Note: Can be modified only once after a
       --  reset.
-      IOCE          : POEGG0_IOCE_Field := R7FA4M1AB.POEG.Val_0;
+      PIDE          : POEGG0_PIDE_Field := R7FA4M1AB.POEG.Val_0;
       --  Output-disable Request Enable from GPT Note: Can be modified only
       --  once after a reset.
-      OSTPE         : POEGG0_OSTPE_Field := R7FA4M1AB.POEG.Val_0;
+      IOCE          : POEGG0_IOCE_Field := R7FA4M1AB.POEG.Val_0;
       --  Oscillation Stop Detection Enable Note: Can be modified only once
       --  after a reset.
-      Reserved_7_15 : R7FA4M1AB.UInt9 := 16#0#;
+      OSTPE         : POEGG0_OSTPE_Field := R7FA4M1AB.POEG.Val_0;
       --  unspecified
-      ST            : POEGG0_ST_Field := R7FA4M1AB.POEG.Val_0;
+      Reserved_7_15 : R7FA4M1AB.UInt9 := 16#0#;
       --  Read-only. GTETRG Input Status Flag
-      Reserved      : POEGG_Reserved_Field := 16#0#;
+      ST            : POEGG0_ST_Field := R7FA4M1AB.POEG.Val_0;
       --  These bits are read as 00000000000. The write value should be
       --  00000000000.
-      INV           : POEGG0_INV_Field := R7FA4M1AB.POEG.Val_0;
+      Reserved      : POEGG_Reserved_Field := 16#0#;
       --  GTETRG Input Reverse
-      NFEN          : POEGG0_NFEN_Field := R7FA4M1AB.POEG.Val_0;
+      INV           : POEGG0_INV_Field := R7FA4M1AB.POEG.Val_0;
       --  Noise Filter Enable
-      NFCS          : POEGG0_NFCS_Field := R7FA4M1AB.POEG.Val_00;
+      NFEN          : POEGG0_NFEN_Field := R7FA4M1AB.POEG.Val_0;
       --  Noise Filter Clock Select
+      NFCS          : POEGG0_NFCS_Field := R7FA4M1AB.POEG.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -216,10 +216,10 @@ package R7FA4M1AB.POEG is
 
    --  Port Output Enable Module for GPT
    type POEG_Peripheral is record
+      --  POEG Group %s Setting Register
       POEGG0 : aliased POEGG_Register;
       --  POEG Group %s Setting Register
       POEGG1 : aliased POEGG_Register;
-      --  POEG Group %s Setting Register
    end record
      with Volatile;
 

@@ -47,15 +47,15 @@ package R7FA4M1AB.MMPU is
 
    --  Bus Master MPU Control Register A
    type MMPUCTLA_Register is record
-      ENABLE   : MMPUCTLA_ENABLE_Field := R7FA4M1AB.MMPU.Val_0;
       --  Master Group enable
-      OAD      : MMPUCTLA_OAD_Field := R7FA4M1AB.MMPU.Val_0;
+      ENABLE   : MMPUCTLA_ENABLE_Field := R7FA4M1AB.MMPU.Val_0;
       --  Operation after detection
-      Reserved : MMPUCTLA_Reserved_Field := 16#0#;
+      OAD      : MMPUCTLA_OAD_Field := R7FA4M1AB.MMPU.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
-      KEY      : MMPUCTLA_KEY_Field := 16#0#;
+      Reserved : MMPUCTLA_Reserved_Field := 16#0#;
       --  Write-only. Key Code These bits are used to enable or disable writing
       --  of the OAD and ENABLE bit.
+      KEY      : MMPUCTLA_KEY_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -82,10 +82,11 @@ package R7FA4M1AB.MMPU is
 
    --  Write Keyword The data written to these bits are not stored.
    type MMPUPTA_KEY_Field is
-     (      --  Writing to the PROTECT bit is valid, when the KEY bits are written 0xA5.
+     (--  Writing to the PROTECT bit is invalid.
       Val_0xA5,
---  Writing to the PROTECT bit is invalid.
-      others_k)
+      --  Writing to the PROTECT bit is valid, when the KEY bits are written 0xA5.
+      others_k
+     )
      with Size => 8;
    for MMPUPTA_KEY_Field use
      (Val_0xA5 => 165,
@@ -93,13 +94,13 @@ package R7FA4M1AB.MMPU is
 
    --  Group A Protection of Register
    type MMPUPTA_Register is record
-      PROTECT  : MMPUPTA_PROTECT_Field := R7FA4M1AB.MMPU.Val_0;
       --  Protection of register (MMPUSAn, MMPUEAn and MMPUACAn)
-      Reserved : MMPUPTA_Reserved_Field := 16#0#;
+      PROTECT  : MMPUPTA_PROTECT_Field := R7FA4M1AB.MMPU.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      KEY      : MMPUPTA_KEY_Field := R7FA4M1AB.MMPU.others_k;
+      Reserved : MMPUPTA_Reserved_Field := 16#0#;
       --  Write-only. Write Keyword The data written to these bits are not
       --  stored.
+      KEY      : MMPUPTA_KEY_Field := R7FA4M1AB.MMPU.others_k;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -147,15 +148,15 @@ package R7FA4M1AB.MMPU is
 
    --  Group A Region %s Access Control Register
    type MMPUACA_Register is record
-      ENABLE   : MMPUACA0_ENABLE_Field := R7FA4M1AB.MMPU.Val_0;
       --  Region enable
-      RP       : MMPUACA0_RP_Field := R7FA4M1AB.MMPU.Val_0;
+      ENABLE   : MMPUACA0_ENABLE_Field := R7FA4M1AB.MMPU.Val_0;
       --  Read protection
-      WP       : MMPUACA0_WP_Field := R7FA4M1AB.MMPU.Val_0;
+      RP       : MMPUACA0_RP_Field := R7FA4M1AB.MMPU.Val_0;
       --  Write protection
-      Reserved : MMPUACA_Reserved_Field := 16#0#;
+      WP       : MMPUACA0_WP_Field := R7FA4M1AB.MMPU.Val_0;
       --  These bits are read as 0000000000000. The write value should be
       --  0000000000000.
+      Reserved : MMPUACA_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -173,106 +174,106 @@ package R7FA4M1AB.MMPU is
 
    --  Bus Master MPU
    type MMPU_Peripheral is record
-      MMPUCTLA  : aliased MMPUCTLA_Register;
       --  Bus Master MPU Control Register A
-      MMPUPTA   : aliased MMPUPTA_Register;
+      MMPUCTLA  : aliased MMPUCTLA_Register;
       --  Group A Protection of Register
+      MMPUPTA   : aliased MMPUPTA_Register;
+      --  Group A Region %s Access Control Register
       MMPUACA0  : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA0   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA0   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA1  : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA1   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA1   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA2  : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA2   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA2   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA3  : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA3   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA3   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA4  : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA4   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA4   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA5  : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA5   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA5   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA6  : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA6   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA6   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA7  : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA7   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA7   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA8  : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA8   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA8   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA9  : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA9   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA9   : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA10 : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA10  : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA10  : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA11 : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA11  : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA11  : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA12 : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA12  : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA12  : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA13 : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA13  : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA13  : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
+      --  Group A Region %s Access Control Register
       MMPUACA14 : aliased MMPUACA_Register;
-      --  Group A Region %s Access Control Register
+      --  Group A Region %s Start Address Register
       MMPUSA14  : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s Start Address Register
+      --  Group A Region %s End Address Register
       MMPUEA14  : aliased R7FA4M1AB.UInt32;
-      --  Group A Region %s End Address Register
-      MMPUACA15 : aliased MMPUACA_Register;
       --  Group A Region %s Access Control Register
-      MMPUSA15  : aliased R7FA4M1AB.UInt32;
+      MMPUACA15 : aliased MMPUACA_Register;
       --  Group A Region %s Start Address Register
-      MMPUEA15  : aliased R7FA4M1AB.UInt32;
+      MMPUSA15  : aliased R7FA4M1AB.UInt32;
       --  Group A Region %s End Address Register
+      MMPUEA15  : aliased R7FA4M1AB.UInt32;
    end record
      with Volatile;
 

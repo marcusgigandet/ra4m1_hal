@@ -37,14 +37,14 @@ package R7FA4M1AB.DAC12 is
 
    --  D/A Control Register
    type DACR_Register is record
-      Reserved   : DACR_Reserved_Field := 16#1F#;
       --  These bits are read as 11111. The write value should be 11111.
+      Reserved   : DACR_Reserved_Field := 16#1F#;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_1 : DACR_Reserved_Field_1 := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      DAOE0      : DACR_DAOE0_Field := R7FA4M1AB.DAC12.Val_0;
       --  D/A Output Enable 0
-      Reserved_2 : DACR_Reserved_Field_1 := 16#0#;
+      DAOE0      : DACR_DAOE0_Field := R7FA4M1AB.DAC12.Val_0;
       --  This bit is read as 0. The write value should be 0.
+      Reserved_2 : DACR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -71,10 +71,10 @@ package R7FA4M1AB.DAC12 is
 
    --  DADR0 Format Select Register
    type DADPR_Register is record
-      Reserved : DADPR_Reserved_Field := 16#0#;
       --  These bits are read as 0000000. The write value should be 0000000.
-      DPSEL    : DADPR_DPSEL_Field := R7FA4M1AB.DAC12.Val_0;
+      Reserved : DADPR_Reserved_Field := 16#0#;
       --  DADRm Format Select
+      DPSEL    : DADPR_DPSEL_Field := R7FA4M1AB.DAC12.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -101,10 +101,10 @@ package R7FA4M1AB.DAC12 is
 
    --  D/A-A/D Synchronous Start Control Register
    type DAADSCR_Register is record
-      Reserved_0_6 : R7FA4M1AB.UInt7 := 16#0#;
       --  unspecified
-      DAADST       : DAADSCR_DAADST_Field := R7FA4M1AB.DAC12.Val_0;
+      Reserved_0_6 : R7FA4M1AB.UInt7 := 16#0#;
       --  D/A-A/D Synchronous Conversion
+      DAADST       : DAADSCR_DAADST_Field := R7FA4M1AB.DAC12.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -118,14 +118,15 @@ package R7FA4M1AB.DAC12 is
    type DAVREFCR_REF_Field is
      (--  Not selected
       Val_000,
-      --  AVCC0/AVSS0
-      Val_001,
-      --  Internal reference voltage/AVSS0
-      Val_011,
-      --  VREFH/VREFL
-      Val_110,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  AVCC0/AVSS0
+      Val_011,
+      --  Internal reference voltage/AVSS0
+      Val_110,
+      --  VREFH/VREFL
+      others_k
+     )
      with Size => 3;
    for DAVREFCR_REF_Field use
      (Val_000 => 0,
@@ -138,10 +139,10 @@ package R7FA4M1AB.DAC12 is
 
    --  D/A VREF Control Register
    type DAVREFCR_Register is record
-      REF      : DAVREFCR_REF_Field := R7FA4M1AB.DAC12.Val_000;
       --  D/A Reference Voltage Select
-      Reserved : DAVREFCR_Reserved_Field := 16#0#;
+      REF      : DAVREFCR_REF_Field := R7FA4M1AB.DAC12.Val_000;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : DAVREFCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -157,16 +158,16 @@ package R7FA4M1AB.DAC12 is
 
    --  12-bit D/A converter
    type DAC12_Peripheral is record
-      DADR0    : aliased R7FA4M1AB.UInt16;
       --  D/A Data Register 0
-      DACR     : aliased DACR_Register;
+      DADR0    : aliased R7FA4M1AB.UInt16;
       --  D/A Control Register
-      DADPR    : aliased DADPR_Register;
+      DACR     : aliased DACR_Register;
       --  DADR0 Format Select Register
-      DAADSCR  : aliased DAADSCR_Register;
+      DADPR    : aliased DADPR_Register;
       --  D/A-A/D Synchronous Start Control Register
-      DAVREFCR : aliased DAVREFCR_Register;
+      DAADSCR  : aliased DAADSCR_Register;
       --  D/A VREF Control Register
+      DAVREFCR : aliased DAVREFCR_Register;
    end record
      with Volatile;
 

@@ -36,14 +36,14 @@ package R7FA4M1AB.DTC is
 
    --  DTC Control Register
    type DTCCR_Register is record
+      --  These bits are read as 000. The write value should be 000.
       Reserved   : DTCCR_Reserved_Field := 16#0#;
-      --  These bits are read as 000. The write value should be 000.
-      Reserved_1 : DTCCR_Reserved_Field_1 := 16#1#;
       --  This bit is read as 1. The write value should be 1.
-      RRS        : DTCCR_RRS_Field := R7FA4M1AB.DTC.Val_0;
+      Reserved_1 : DTCCR_Reserved_Field_1 := 16#1#;
       --  DTC Transfer Information Read Skip Enable.
-      Reserved_2 : DTCCR_Reserved_Field := 16#0#;
+      RRS        : DTCCR_RRS_Field := R7FA4M1AB.DTC.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_2 : DTCCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -70,10 +70,10 @@ package R7FA4M1AB.DTC is
 
    --  DTC Module Start Register
    type DTCST_Register is record
-      DTCST    : DTCST_DTCST_Field := R7FA4M1AB.DTC.Val_0;
       --  DTC Module Start
-      Reserved : DTCST_Reserved_Field := 16#0#;
+      DTCST    : DTCST_DTCST_Field := R7FA4M1AB.DTC.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : DTCST_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -99,15 +99,15 @@ package R7FA4M1AB.DTC is
 
    --  DTC Status Register
    type DTCSTS_Register is record
-      VECN     : DTCSTS_VECN_Field;
       --  Read-only. DTC-Activating Vector Number Monitoring These bits
       --  indicate the vector number for the activating source when DTC
       --  transfer is in progress. The value is only valid if DTC transfer is
       --  in progress (the value of the ACT flag is 1)
-      Reserved : DTCSTS_Reserved_Field;
+      VECN     : DTCSTS_VECN_Field;
       --  Read-only. These bits are read as 0000000.
-      ACT      : DTCSTS_ACT_Field;
+      Reserved : DTCSTS_Reserved_Field;
       --  Read-only. DTC Active Flag
+      ACT      : DTCSTS_ACT_Field;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -124,14 +124,14 @@ package R7FA4M1AB.DTC is
 
    --  Data Transfer Controller
    type DTC_Peripheral is record
-      DTCCR  : aliased DTCCR_Register;
       --  DTC Control Register
-      DTCVBR : aliased R7FA4M1AB.UInt32;
+      DTCCR  : aliased DTCCR_Register;
       --  DTC Vector Base Register
-      DTCST  : aliased DTCST_Register;
+      DTCVBR : aliased R7FA4M1AB.UInt32;
       --  DTC Module Start Register
-      DTCSTS : aliased DTCSTS_Register;
+      DTCST  : aliased DTCST_Register;
       --  DTC Status Register
+      DTCSTS : aliased DTCSTS_Register;
    end record
      with Volatile;
 

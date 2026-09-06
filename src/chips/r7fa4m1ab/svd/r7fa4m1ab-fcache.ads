@@ -35,11 +35,11 @@ package R7FA4M1AB.FCACHE is
 
    --  Flash Cache Enable Register
    type FCACHEE_Register is record
-      FCACHEEN : FCACHEE_FCACHEEN_Field := R7FA4M1AB.FCACHE.Val_0;
       --  FCACHE Enable
-      Reserved : FCACHEE_Reserved_Field := 16#0#;
+      FCACHEEN : FCACHEE_FCACHEEN_Field := R7FA4M1AB.FCACHE.Val_0;
       --  These bits are read as 000000000000000. The write value should be
       --  000000000000000.
+      Reserved : FCACHEE_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -64,13 +64,13 @@ package R7FA4M1AB.FCACHE is
 
    --  Flash Cache Invalidate Register
    type FCACHEIV_Register is record
-      FCACHEIV : FCACHEIV_FCACHEIV_Field := R7FA4M1AB.FCACHE.Val_0;
       --  Write data bit of one shall set (set to one) the corresponding bit in
       --  the field. *** This field is modified following a read operation ***.
       --  FCACHE Invalidation
-      Reserved : FCACHEIV_Reserved_Field := 16#0#;
+      FCACHEIV : FCACHEIV_FCACHEIV_Field := R7FA4M1AB.FCACHE.Val_0;
       --  These bits are read as 000000000000000. The write value should be
       --  000000000000000.
+      Reserved : FCACHEIV_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -86,7 +86,8 @@ package R7FA4M1AB.FCACHE is
      (--  zero wait
       Val_000,
       --  Setting prohibited
-      others_k)
+      others_k
+     )
      with Size => 3;
    for FLWT_FLWT_Field use
      (Val_000 => 0,
@@ -96,11 +97,11 @@ package R7FA4M1AB.FCACHE is
 
    --  Flash Wait Cycle Register
    type FLWT_Register is record
-      FLWT     : FLWT_FLWT_Field := R7FA4M1AB.FCACHE.Val_000;
       --  These bits represent the ratio of the CPU clock period to the Flash
       --  memory access time.
-      Reserved : FLWT_Reserved_Field := 16#0#;
+      FLWT     : FLWT_FLWT_Field := R7FA4M1AB.FCACHE.Val_000;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : FLWT_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -116,12 +117,12 @@ package R7FA4M1AB.FCACHE is
 
    --  Flash Cache
    type FCACHE_Peripheral is record
-      FCACHEE  : aliased FCACHEE_Register;
       --  Flash Cache Enable Register
-      FCACHEIV : aliased FCACHEIV_Register;
+      FCACHEE  : aliased FCACHEE_Register;
       --  Flash Cache Invalidate Register
-      FLWT     : aliased FLWT_Register;
+      FCACHEIV : aliased FCACHEIV_Register;
       --  Flash Wait Cycle Register
+      FLWT     : aliased FLWT_Register;
    end record
      with Volatile;
 

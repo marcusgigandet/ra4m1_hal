@@ -109,20 +109,20 @@ package R7FA4M1AB.SCI0 is
 
    --  Serial Mode Register (SCMR.SMIF = 0)
    type SMR_Register is record
-      CKS  : SMR_CKS_Field := R7FA4M1AB.SCI0.Val_00;
       --  Clock Select
-      MP   : SMR_MP_Field := R7FA4M1AB.SCI0.Val_0;
+      CKS  : SMR_CKS_Field := R7FA4M1AB.SCI0.Val_00;
       --  Multi-Processor Mode (Valid only in asynchronous mode)
-      STOP : SMR_STOP_Field := R7FA4M1AB.SCI0.Val_0;
+      MP   : SMR_MP_Field := R7FA4M1AB.SCI0.Val_0;
       --  Stop Bit Length (Valid only in asynchronous mode)
-      PM   : SMR_PM_Field := R7FA4M1AB.SCI0.Val_0;
+      STOP : SMR_STOP_Field := R7FA4M1AB.SCI0.Val_0;
       --  Parity Mode (Valid only when the PE bit is 1)
-      PE   : SMR_PE_Field := R7FA4M1AB.SCI0.Val_0;
+      PM   : SMR_PM_Field := R7FA4M1AB.SCI0.Val_0;
       --  Parity Enable (Valid only in asynchronous mode)
-      CHR  : SMR_CHR_Field := R7FA4M1AB.SCI0.Val_0;
+      PE   : SMR_PE_Field := R7FA4M1AB.SCI0.Val_0;
       --  Character Length (Valid only in asynchronous mode)
-      CM   : SMR_CM_Field := R7FA4M1AB.SCI0.Val_0;
+      CHR  : SMR_CHR_Field := R7FA4M1AB.SCI0.Val_0;
       --  Communication Mode
+      CM   : SMR_CM_Field := R7FA4M1AB.SCI0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -219,18 +219,18 @@ package R7FA4M1AB.SCI0 is
 
    --  Serial mode register (SCMR.SMIF = 1)
    type SMR_SMCI_Register is record
-      CKS : SMR_SMCI_CKS_Field := R7FA4M1AB.SCI0.Val_00;
       --  Clock Select
-      BCP : SMR_SMCI_BCP_Field := R7FA4M1AB.SCI0.Val_00;
+      CKS : SMR_SMCI_CKS_Field := R7FA4M1AB.SCI0.Val_00;
       --  Base Clock Pulse (Valid only in asynchronous mode)
-      PM  : SMR_SMCI_PM_Field := R7FA4M1AB.SCI0.Val_0;
+      BCP : SMR_SMCI_BCP_Field := R7FA4M1AB.SCI0.Val_00;
       --  Parity Mode (Valid only when the PE bit is 1)
-      PE  : SMR_SMCI_PE_Field := R7FA4M1AB.SCI0.Val_0;
+      PM  : SMR_SMCI_PM_Field := R7FA4M1AB.SCI0.Val_0;
       --  Parity Enable (Valid only in asynchronous mode)
-      BLK : SMR_SMCI_BLK_Field := R7FA4M1AB.SCI0.Val_0;
+      PE  : SMR_SMCI_PE_Field := R7FA4M1AB.SCI0.Val_0;
       --  Block Transfer Mode
-      GM  : SMR_SMCI_GM_Field := R7FA4M1AB.SCI0.Val_0;
+      BLK : SMR_SMCI_BLK_Field := R7FA4M1AB.SCI0.Val_0;
       --  GSM Mode
+      GM  : SMR_SMCI_GM_Field := R7FA4M1AB.SCI0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -250,15 +250,16 @@ package R7FA4M1AB.SCI0 is
 --  port settings.(Asynchronous mode) / The SCKn pin functions as the clock
 --  output pin(Clock synchronous mode)
       Val_00,
-      --  The clock with the same frequency as the bit rate is output from the SCKn
---  pin.(Asynchronous mode) / The SCKn pin functions as the clock output
---  pin(Clock synchronous mode)
-      Val_01,
       --  The clock with a frequency 16 times the bit rate should be input from the
 --  SCKn pin. (when SEMR.ABCS bit is 0) Input a clock signal with a frequency 8
 --  times the bit rate when the SEMR.ABCS bit is 1.(Asynchronous mode) / The
 --  SCKn pin functions as the clock input pin(Clock synchronous mode)
-      others_k)
+      Val_01,
+      --  The clock with the same frequency as the bit rate is output from the SCKn
+--  pin.(Asynchronous mode) / The SCKn pin functions as the clock output
+--  pin(Clock synchronous mode)
+      others_k
+     )
      with Size => 2;
    for SCR_CKE_Field use
      (Val_00 => 0,
@@ -338,21 +339,21 @@ package R7FA4M1AB.SCI0 is
 
    --  Serial Control Register (SCMR.SMIF = 0)
    type SCR_Register is record
-      CKE  : SCR_CKE_Field := R7FA4M1AB.SCI0.Val_00;
       --  Clock Enable
-      TEIE : SCR_TEIE_Field := R7FA4M1AB.SCI0.Val_0;
+      CKE  : SCR_CKE_Field := R7FA4M1AB.SCI0.Val_00;
       --  Transmit End Interrupt Enable
-      MPIE : SCR_MPIE_Field := R7FA4M1AB.SCI0.Val_0;
+      TEIE : SCR_TEIE_Field := R7FA4M1AB.SCI0.Val_0;
       --  Multi-Processor Interrupt Enable (Valid in asynchronous mode when
       --  SMR.MP = 1)
-      RE   : SCR_RE_Field := R7FA4M1AB.SCI0.Val_0;
+      MPIE : SCR_MPIE_Field := R7FA4M1AB.SCI0.Val_0;
       --  Receive Enable
-      TE   : SCR_TE_Field := R7FA4M1AB.SCI0.Val_0;
+      RE   : SCR_RE_Field := R7FA4M1AB.SCI0.Val_0;
       --  Transmit Enable
-      RIE  : SCR_RIE_Field := R7FA4M1AB.SCI0.Val_0;
+      TE   : SCR_TE_Field := R7FA4M1AB.SCI0.Val_0;
       --  Receive Interrupt Enable
-      TIE  : SCR_TIE_Field := R7FA4M1AB.SCI0.Val_0;
+      RIE  : SCR_RIE_Field := R7FA4M1AB.SCI0.Val_0;
       --  Transmit Interrupt Enable
+      TIE  : SCR_TIE_Field := R7FA4M1AB.SCI0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -433,20 +434,20 @@ package R7FA4M1AB.SCI0 is
 
    --  Serial Control Register (SCMR.SMIF =1)
    type SCR_SMCI_Register is record
-      CKE  : SCR_SMCI_CKE_Field := R7FA4M1AB.SCI0.Val_00;
       --  Clock Enable
-      TEIE : SCR_SMCI_TEIE_Field := 16#0#;
+      CKE  : SCR_SMCI_CKE_Field := R7FA4M1AB.SCI0.Val_00;
       --  Transmit End Interrupt Enable
-      MPIE : SCR_SMCI_MPIE_Field := 16#0#;
+      TEIE : SCR_SMCI_TEIE_Field := 16#0#;
       --  Multi-Processor Interrupt Enable
-      RE   : SCR_SMCI_RE_Field := R7FA4M1AB.SCI0.Val_0;
+      MPIE : SCR_SMCI_MPIE_Field := 16#0#;
       --  Receive Enable
-      TE   : SCR_SMCI_TE_Field := R7FA4M1AB.SCI0.Val_0;
+      RE   : SCR_SMCI_RE_Field := R7FA4M1AB.SCI0.Val_0;
       --  Transmit Enable
-      RIE  : SCR_SMCI_RIE_Field := R7FA4M1AB.SCI0.Val_0;
+      TE   : SCR_SMCI_TE_Field := R7FA4M1AB.SCI0.Val_0;
       --  Receive Interrupt Enable
-      TIE  : SCR_SMCI_TIE_Field := R7FA4M1AB.SCI0.Val_0;
+      RIE  : SCR_SMCI_RIE_Field := R7FA4M1AB.SCI0.Val_0;
       --  Transmit Interrupt Enable
+      TIE  : SCR_SMCI_TIE_Field := R7FA4M1AB.SCI0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -551,32 +552,32 @@ package R7FA4M1AB.SCI0 is
 
    --  Serial Status Register(SCMR.SMIF = 0 and FCR.FM=0)
    type SSR_Register is record
-      MPBT : SSR_MPBT_Field := R7FA4M1AB.SCI0.Val_0;
       --  Multi-Processor Bit Transfer
-      MPB  : SSR_MPB_Field := R7FA4M1AB.SCI0.Val_0;
+      MPBT : SSR_MPBT_Field := R7FA4M1AB.SCI0.Val_0;
       --  Read-only. Multi-Processor
-      TEND : SSR_TEND_Field := R7FA4M1AB.SCI0.Val_1;
+      MPB  : SSR_MPB_Field := R7FA4M1AB.SCI0.Val_0;
       --  Read-only. Transmit End Flag
-      PER  : SSR_PER_Field := R7FA4M1AB.SCI0.Val_0;
+      TEND : SSR_TEND_Field := R7FA4M1AB.SCI0.Val_1;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Parity Error Flag
-      FER  : SSR_FER_Field := R7FA4M1AB.SCI0.Val_0;
+      PER  : SSR_PER_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Framing Error Flag
-      ORER : SSR_ORER_Field := R7FA4M1AB.SCI0.Val_0;
+      FER  : SSR_FER_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Overrun Error Flag
-      RDRF : SSR_RDRF_Field := R7FA4M1AB.SCI0.Val_0;
+      ORER : SSR_ORER_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Receive Data Full Flag
-      TDRE : SSR_TDRE_Field := R7FA4M1AB.SCI0.Val_1;
+      RDRF : SSR_RDRF_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Transmit Data Empty Flag
+      TDRE : SSR_TDRE_Field := R7FA4M1AB.SCI0.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -681,37 +682,37 @@ package R7FA4M1AB.SCI0 is
 
    --  Serial Status Register(SCMR.SMIF = 0 and FCR.FM=1)
    type SSR_FIFO_Register is record
-      DR       : SSR_FIFO_DR_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Receive Data Ready flag (Valid only in asynchronous
       --  mode(including multi-processor) and FIFO selected)
-      Reserved : SSR_FIFO_Reserved_Field := 16#0#;
+      DR       : SSR_FIFO_DR_Field := R7FA4M1AB.SCI0.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      TEND     : SSR_FIFO_TEND_Field := R7FA4M1AB.SCI0.Val_0;
+      Reserved : SSR_FIFO_Reserved_Field := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Transmit End Flag
-      PER      : SSR_FIFO_PER_Field := R7FA4M1AB.SCI0.Val_0;
+      TEND     : SSR_FIFO_TEND_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Parity Error Flag
-      FER      : SSR_FIFO_FER_Field := R7FA4M1AB.SCI0.Val_0;
+      PER      : SSR_FIFO_PER_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Framing Error Flag
-      ORER     : SSR_FIFO_ORER_Field := R7FA4M1AB.SCI0.Val_0;
+      FER      : SSR_FIFO_FER_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Overrun Error Flag
-      RDF      : SSR_FIFO_RDF_Field := R7FA4M1AB.SCI0.Val_0;
+      ORER     : SSR_FIFO_ORER_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Receive FIFO data full flag
-      TDFE     : SSR_FIFO_TDFE_Field := R7FA4M1AB.SCI0.Val_1;
+      RDF      : SSR_FIFO_RDF_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Transmit FIFO data empty flag
+      TDFE     : SSR_FIFO_TDFE_Field := R7FA4M1AB.SCI0.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -798,34 +799,34 @@ package R7FA4M1AB.SCI0 is
 
    --  Serial Status Register(SCMR.SMIF = 1)
    type SSR_SMCI_Register is record
-      MPBT : SSR_SMCI_MPBT_Field := 16#0#;
       --  Multi-Processor Bit Transfer This bit should be 0 in smart card
       --  interface mode.
-      MPB  : SSR_SMCI_MPB_Field := 16#0#;
+      MPBT : SSR_SMCI_MPBT_Field := 16#0#;
       --  Read-only. Multi-Processor This bit should be 0 in smart card
       --  interface mode.
-      TEND : SSR_SMCI_TEND_Field := R7FA4M1AB.SCI0.Val_1;
+      MPB  : SSR_SMCI_MPB_Field := 16#0#;
       --  Read-only. Transmit End Flag
-      PER  : SSR_SMCI_PER_Field := R7FA4M1AB.SCI0.Val_0;
+      TEND : SSR_SMCI_TEND_Field := R7FA4M1AB.SCI0.Val_1;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Parity Error Flag
-      ERS  : SSR_SMCI_ERS_Field := R7FA4M1AB.SCI0.Val_0;
+      PER  : SSR_SMCI_PER_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Error Signal Status Flag
-      ORER : SSR_SMCI_ORER_Field := R7FA4M1AB.SCI0.Val_0;
+      ERS  : SSR_SMCI_ERS_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Overrun Error Flag
-      RDRF : SSR_SMCI_RDRF_Field := R7FA4M1AB.SCI0.Val_0;
+      ORER : SSR_SMCI_ORER_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Receive Data Full Flag
-      TDRE : SSR_SMCI_TDRE_Field := R7FA4M1AB.SCI0.Val_1;
+      RDRF : SSR_SMCI_RDRF_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Transmit Data Empty Flag
+      TDRE : SSR_SMCI_TDRE_Field := R7FA4M1AB.SCI0.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -913,25 +914,25 @@ package R7FA4M1AB.SCI0 is
 
    --  Smart Card Mode Register
    type SCMR_Register is record
-      SMIF       : SCMR_SMIF_Field := R7FA4M1AB.SCI0.Val_0;
       --  Smart Card Interface Mode Select
-      Reserved   : SCMR_Reserved_Field := 16#1#;
+      SMIF       : SCMR_SMIF_Field := R7FA4M1AB.SCI0.Val_0;
       --  This bit is read as 1. The write value should be 1.
-      SINV       : SCMR_SINV_Field := R7FA4M1AB.SCI0.Val_0;
+      Reserved   : SCMR_Reserved_Field := 16#1#;
       --  Transmitted/Received Data Invert Set this bit to 0 if operation is to
       --  be in simple I2C mode.
-      SDIR       : SCMR_SDIR_Field := R7FA4M1AB.SCI0.Val_0;
+      SINV       : SCMR_SINV_Field := R7FA4M1AB.SCI0.Val_0;
       --  Transmitted/Received Data Transfer Direction NOTE: The setting is
       --  invalid and a fixed data length of 8 bits is used in modes other than
       --  asynchronous mode. Set this bit to 1 if operation is to be in simple
       --  I2C mode.
-      CHR1       : SCMR_CHR1_Field := R7FA4M1AB.SCI0.Val_1;
+      SDIR       : SCMR_SDIR_Field := R7FA4M1AB.SCI0.Val_0;
       --  Character Length 1 (Only valid in asynchronous mode)
-      Reserved_1 : SCMR_Reserved_Field_1 := 16#3#;
+      CHR1       : SCMR_CHR1_Field := R7FA4M1AB.SCI0.Val_1;
       --  These bits are read as 11. The write value should be 11.
-      BCP2       : SCMR_BCP2_Field := R7FA4M1AB.SCI0.Val_1;
+      Reserved_1 : SCMR_Reserved_Field_1 := 16#3#;
       --  Base Clock Pulse 2 Selects the number of base clock cycles in
       --  combination with the SMR.BCP[1:0] bits
+      BCP2       : SCMR_BCP2_Field := R7FA4M1AB.SCI0.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1025,25 +1026,25 @@ package R7FA4M1AB.SCI0 is
 
    --  Serial Extended Mode Register
    type SEMR_Register is record
-      Reserved : SEMR_Reserved_Field := 16#0#;
       --  These bits are read as 00. The write value should be 00.
-      BRME     : SEMR_BRME_Field := R7FA4M1AB.SCI0.Val_0;
+      Reserved : SEMR_Reserved_Field := 16#0#;
       --  Bit Rate Modulation Enable
-      ABCSE    : SEMR_ABCSE_Field := R7FA4M1AB.SCI0.Val_0;
+      BRME     : SEMR_BRME_Field := R7FA4M1AB.SCI0.Val_0;
       --  Asynchronous Mode Extended Base Clock Select 1 (Valid only in
       --  asynchronous mode and SCR.CKE[1]=0)
-      ABCS     : SEMR_ABCS_Field := R7FA4M1AB.SCI0.Val_0;
+      ABCSE    : SEMR_ABCSE_Field := R7FA4M1AB.SCI0.Val_0;
       --  Asynchronous Mode Base Clock Select (Valid only in asynchronous mode)
-      NFEN     : SEMR_NFEN_Field := R7FA4M1AB.SCI0.Val_0;
+      ABCS     : SEMR_ABCS_Field := R7FA4M1AB.SCI0.Val_0;
       --  Digital Noise Filter Function Enable (The NFEN bit should be 0
       --  without simple I2C mode and asynchronous mode.) In asynchronous mode,
       --  for RXDn input only. In simple I2C mode, for RXDn/TxDn input.
-      BGDM     : SEMR_BGDM_Field := R7FA4M1AB.SCI0.Val_0;
+      NFEN     : SEMR_NFEN_Field := R7FA4M1AB.SCI0.Val_0;
       --  Baud Rate Generator Double-Speed Mode Select (Only valid the CKE[1]
       --  bit in SCR is 0 in asynchronous mode).
-      RXDESEL  : SEMR_RXDESEL_Field := R7FA4M1AB.SCI0.Val_0;
+      BGDM     : SEMR_BGDM_Field := R7FA4M1AB.SCI0.Val_0;
       --  Asynchronous Start Bit Edge Detection Select (Valid only in
       --  asynchronous mode)
+      RXDESEL  : SEMR_RXDESEL_Field := R7FA4M1AB.SCI0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1063,20 +1064,21 @@ package R7FA4M1AB.SCI0 is
      (--  The clock signal divided by 1 is used with the noise filter.(In
 --  asynchronous mode)
       Val_000,
+      --  Settings prohibited.
+      Val_001,
       --  The clock signal divided by 1 is used with the noise filter.(In simple I2C
 --  mode)
-      Val_001,
+      Val_010,
       --  The clock signal divided by 2 is used with the noise filter.(In simple I2C
 --  mode)
-      Val_010,
+      Val_011,
       --  The clock signal divided by 4 is used with the noise filter.(In simple I2C
 --  mode)
-      Val_011,
+      Val_100,
       --  The clock signal divided by 8 is used with the noise filter.(In simple I2C
 --  mode)
-      Val_100,
-      --  Settings prohibited.
-      others_k)
+      others_k
+     )
      with Size => 3;
    for SNFR_NFCS_Field use
      (Val_000 => 0,
@@ -1090,10 +1092,10 @@ package R7FA4M1AB.SCI0 is
 
    --  Noise Filter Setting Register
    type SNFR_Register is record
-      NFCS     : SNFR_NFCS_Field := R7FA4M1AB.SCI0.Val_000;
       --  Noise Filter Clock Select
-      Reserved : SNFR_Reserved_Field := 16#0#;
+      NFCS     : SNFR_NFCS_Field := R7FA4M1AB.SCI0.Val_000;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : SNFR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1124,7 +1126,8 @@ package R7FA4M1AB.SCI0 is
       Val_00000,
       --  (IICDL - 1 ) to IIDCDL cycles. The delay is in the clock cycles from the
 --  on-chip baud rate generator.
-      others_k)
+      others_k
+     )
      with Size => 5;
    for SIMR1_IICDL_Field use
      (Val_00000 => 0,
@@ -1132,13 +1135,13 @@ package R7FA4M1AB.SCI0 is
 
    --  I2C Mode Register 1
    type SIMR1_Register is record
-      IICM     : SIMR1_IICM_Field := R7FA4M1AB.SCI0.Val_0;
       --  Simple I2C Mode Select
-      Reserved : SIMR1_Reserved_Field := 16#0#;
+      IICM     : SIMR1_IICM_Field := R7FA4M1AB.SCI0.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      IICDL    : SIMR1_IICDL_Field := R7FA4M1AB.SCI0.Val_00000;
+      Reserved : SIMR1_Reserved_Field := 16#0#;
       --  SDA Delay Output Select Cycles below are of the clock signal from the
       --  on-chip baud rate generator.
+      IICDL    : SIMR1_IICDL_Field := R7FA4M1AB.SCI0.Val_00000;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1188,16 +1191,16 @@ package R7FA4M1AB.SCI0 is
 
    --  I2C Mode Register 2
    type SIMR2_Register is record
-      IICINTM    : SIMR2_IICINTM_Field := R7FA4M1AB.SCI0.Val_0;
       --  I2C Interrupt Mode Select
-      IICCSC     : SIMR2_IICCSC_Field := R7FA4M1AB.SCI0.Val_0;
+      IICINTM    : SIMR2_IICINTM_Field := R7FA4M1AB.SCI0.Val_0;
       --  Clock Synchronization
-      Reserved   : SIMR2_Reserved_Field := 16#0#;
+      IICCSC     : SIMR2_IICCSC_Field := R7FA4M1AB.SCI0.Val_0;
       --  These bits are read as 000. The write value should be 000.
-      IICACKT    : SIMR2_IICACKT_Field := R7FA4M1AB.SCI0.Val_0;
+      Reserved   : SIMR2_Reserved_Field := 16#0#;
       --  ACK Transmission Data
-      Reserved_1 : SIMR2_Reserved_Field_1 := 16#0#;
+      IICACKT    : SIMR2_IICACKT_Field := R7FA4M1AB.SCI0.Val_0;
       --  These bits are read as 00. The write value should be 00.
+      Reserved_1 : SIMR2_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1292,21 +1295,21 @@ package R7FA4M1AB.SCI0 is
 
    --  I2C Mode Register 3
    type SIMR3_Register is record
-      IICSTAREQ  : SIMR3_IICSTAREQ_Field := R7FA4M1AB.SCI0.Val_0;
       --  Start Condition Generation
-      IICRSTAREQ : SIMR3_IICRSTAREQ_Field := R7FA4M1AB.SCI0.Val_0;
+      IICSTAREQ  : SIMR3_IICSTAREQ_Field := R7FA4M1AB.SCI0.Val_0;
       --  Restart Condition Generation
-      IICSTPREQ  : SIMR3_IICSTPREQ_Field := R7FA4M1AB.SCI0.Val_0;
+      IICRSTAREQ : SIMR3_IICRSTAREQ_Field := R7FA4M1AB.SCI0.Val_0;
       --  Stop Condition Generation
-      IICSTIF    : SIMR3_IICSTIF_Field := R7FA4M1AB.SCI0.Val_0;
+      IICSTPREQ  : SIMR3_IICSTPREQ_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Issuing of Start, Restart, or Stop Condition Completed
       --  Flag (When 0 is written to IICSTIF, it is cleared to 0.)
-      IICSDAS    : SIMR3_IICSDAS_Field := R7FA4M1AB.SCI0.Val_00;
+      IICSTIF    : SIMR3_IICSTIF_Field := R7FA4M1AB.SCI0.Val_0;
       --  SDA Output Select
-      IICSCLS    : SIMR3_IICSCLS_Field := R7FA4M1AB.SCI0.Val_00;
+      IICSDAS    : SIMR3_IICSDAS_Field := R7FA4M1AB.SCI0.Val_00;
       --  SCL Output Select
+      IICSCLS    : SIMR3_IICSCLS_Field := R7FA4M1AB.SCI0.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1344,11 +1347,11 @@ package R7FA4M1AB.SCI0 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt5;
             --  Reserved as a value
+            Val : R7FA4M1AB.UInt5;
          when True =>
-            Arr : SISR_Reserved_Field_Array;
             --  Reserved as an array
+            Arr : SISR_Reserved_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 5;
@@ -1362,12 +1365,12 @@ package R7FA4M1AB.SCI0 is
 
    --  I2C Status Register
    type SISR_Register is record
-      IICACKR    : SISR_IICACKR_Field;
       --  Read-only. ACK Reception Data Flag
-      Reserved   : SISR_Reserved_Field;
+      IICACKR    : SISR_IICACKR_Field;
       --  Read-only. This bit is read as 0.
-      Reserved_1 : SISR_Reserved_Field_1;
+      Reserved   : SISR_Reserved_Field;
       --  Read-only. These bits are read as 00.
+      Reserved_1 : SISR_Reserved_Field_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1450,24 +1453,24 @@ package R7FA4M1AB.SCI0 is
 
    --  SPI Mode Register
    type SPMR_Register is record
-      SSE        : SPMR_SSE_Field := R7FA4M1AB.SCI0.Val_0;
       --  SSn Pin Function Enable
-      CTSE       : SPMR_CTSE_Field := R7FA4M1AB.SCI0.Val_0;
+      SSE        : SPMR_SSE_Field := R7FA4M1AB.SCI0.Val_0;
       --  CTS Enable
-      MSS        : SPMR_MSS_Field := R7FA4M1AB.SCI0.Val_0;
+      CTSE       : SPMR_CTSE_Field := R7FA4M1AB.SCI0.Val_0;
       --  Master Slave Select
-      Reserved   : SPMR_Reserved_Field := 16#0#;
+      MSS        : SPMR_MSS_Field := R7FA4M1AB.SCI0.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      MFF        : SPMR_MFF_Field := R7FA4M1AB.SCI0.Val_0;
+      Reserved   : SPMR_Reserved_Field := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Mode Fault Flag
-      Reserved_1 : SPMR_Reserved_Field := 16#0#;
+      MFF        : SPMR_MFF_Field := R7FA4M1AB.SCI0.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      CKPOL      : SPMR_CKPOL_Field := R7FA4M1AB.SCI0.Val_0;
+      Reserved_1 : SPMR_Reserved_Field := 16#0#;
       --  Clock Polarity Select
-      CKPH       : SPMR_CKPH_Field := R7FA4M1AB.SCI0.Val_0;
+      CKPOL      : SPMR_CKPOL_Field := R7FA4M1AB.SCI0.Val_0;
       --  Clock Phase Select
+      CKPH       : SPMR_CKPH_Field := R7FA4M1AB.SCI0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1501,15 +1504,15 @@ package R7FA4M1AB.SCI0 is
 
    --  Transmit FIFO Data Register HL
    type FTDRHL_Register is record
-      TDAT     : FTDRHL_TDAT_Field := 16#1FF#;
       --  Write-only. Serial transmit data (Valid only in asynchronous
       --  mode(including multi-processor) or clock synchronous mode, and FIFO
       --  selected)
-      MPBT     : FTDRHL_MPBT_Field := R7FA4M1AB.SCI0.Val_1;
+      TDAT     : FTDRHL_TDAT_Field := 16#1FF#;
       --  Write-only. Multi-processor transfer bit flag (Valid only in
       --  asynchronous mode and SMR.MP=1 and FIFO selected)
-      Reserved : FTDRHL_Reserved_Field := 16#3F#;
+      MPBT     : FTDRHL_MPBT_Field := R7FA4M1AB.SCI0.Val_1;
       --  Write-only. The write value should be 111111.
+      Reserved : FTDRHL_Reserved_Field := 16#3F#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1538,15 +1541,15 @@ package R7FA4M1AB.SCI0 is
 
    --  Transmit FIFO Data Register H
    type FTDRH_Register is record
-      TDATH    : FTDRH_TDATH_Field := 16#1#;
       --  Write-only. Serial transmit data (b8) (Valid only in asynchronous
       --  mode(including multi-processor) or clock synchronous mode, and FIFO
       --  selected)
-      MPBT     : FTDRH_MPBT_Field := R7FA4M1AB.SCI0.Val_1;
+      TDATH    : FTDRH_TDATH_Field := 16#1#;
       --  Write-only. Multi-processor transfer bit flag (Valid only in
       --  asynchronous mode and SMR.MP=1 and FIFO selected)
-      Reserved : FTDRH_Reserved_Field := 16#3F#;
+      MPBT     : FTDRH_MPBT_Field := R7FA4M1AB.SCI0.Val_1;
       --  Write-only. The write value should be 111111.
+      Reserved : FTDRH_Reserved_Field := 16#3F#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1635,26 +1638,26 @@ package R7FA4M1AB.SCI0 is
 
    --  Receive FIFO Data Register HL
    type FRDRHL_Register is record
-      RDAT     : FRDRHL_RDAT_Field;
       --  Read-only. Serial receive data (Valid only in asynchronous
       --  mode(including multi-processor) or clock synchronous mode, and FIFO
       --  selected)
-      MPB      : FRDRHL_MPB_Field;
+      RDAT     : FRDRHL_RDAT_Field;
       --  Read-only. Multi-processor bit flag (Valid only in asynchronous mode
       --  with SMR.MP=1 and FIFO selected) It can read multi-processor bit
       --  corresponded to serial receive data(RDATA[8:0])
-      DR       : FRDRHL_DR_Field;
+      MPB      : FRDRHL_MPB_Field;
       --  Read-only. Receive data ready flag (It is same as SSR.DR)
-      PER      : FRDRHL_PER_Field;
+      DR       : FRDRHL_DR_Field;
       --  Read-only. Parity error flag
-      FER      : FRDRHL_FER_Field;
+      PER      : FRDRHL_PER_Field;
       --  Read-only. Framing error flag
-      ORER     : FRDRHL_ORER_Field;
+      FER      : FRDRHL_FER_Field;
       --  Read-only. Overrun error flag (It is same as SSR.ORER)
-      RDF      : FRDRHL_RDF_Field;
+      ORER     : FRDRHL_ORER_Field;
       --  Read-only. Receive FIFO data full flag (It is same as SSR.RDF)
-      Reserved : FRDRHL_Reserved_Field;
+      RDF      : FRDRHL_RDF_Field;
       --  Read-only. This bit is read as 0.
+      Reserved : FRDRHL_Reserved_Field;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1748,26 +1751,26 @@ package R7FA4M1AB.SCI0 is
 
    --  Receive FIFO Data Register H
    type FRDRH_Register is record
-      RDATH    : FRDRH_RDATH_Field;
       --  Read-only. Serial receive data(b8) (Valid only in asynchronous
       --  mode(including multi-processor) or clock synchronous mode, and FIFO
       --  selected)
-      MPB      : FRDRH_MPB_Field;
+      RDATH    : FRDRH_RDATH_Field;
       --  Read-only. Multi-processor bit flag (Valid only in asynchronous mode
       --  with SMR.MP=1 and FIFO selected) It can read multi-processor bit
       --  corresponded to serial receive data(RDATA[8:0])
-      DR       : FRDRH_DR_Field;
+      MPB      : FRDRH_MPB_Field;
       --  Read-only. Receive data ready flag (It is same as SSR.DR)
-      PER      : FRDRH_PER_Field;
+      DR       : FRDRH_DR_Field;
       --  Read-only. Parity error flag
-      FER      : FRDRH_FER_Field;
+      PER      : FRDRH_PER_Field;
       --  Read-only. Framing error flag
-      ORER     : FRDRH_ORER_Field;
+      FER      : FRDRH_FER_Field;
       --  Read-only. Overrun error flag (It is same as SSR.ORER)
-      RDF      : FRDRH_RDF_Field;
+      ORER     : FRDRH_ORER_Field;
       --  Read-only. Receive FIFO data full flag (It is same as SSR.RDF)
-      Reserved : FRDRH_Reserved_Field;
+      RDF      : FRDRH_RDF_Field;
       --  Read-only. This bit is read as 0.
+      Reserved : FRDRH_Reserved_Field;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1846,28 +1849,28 @@ package R7FA4M1AB.SCI0 is
 
    --  Data Compare Match Control Register
    type DCCR_Register is record
-      DCMF       : DCCR_DCMF_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Data Compare Match Flag
-      Reserved   : DCCR_Reserved_Field := 16#0#;
+      DCMF       : DCCR_DCMF_Field := R7FA4M1AB.SCI0.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      DPER       : DCCR_DPER_Field := R7FA4M1AB.SCI0.Val_0;
+      Reserved   : DCCR_Reserved_Field := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Data Compare Match Parity Error Flag
-      DFER       : DCCR_DFER_Field := R7FA4M1AB.SCI0.Val_0;
+      DPER       : DCCR_DPER_Field := R7FA4M1AB.SCI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Data Compare Match Framing Error Flag
-      Reserved_1 : DCCR_Reserved_Field_1 := 16#0#;
+      DFER       : DCCR_DFER_Field := R7FA4M1AB.SCI0.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      IDSEL      : DCCR_IDSEL_Field := R7FA4M1AB.SCI0.Val_1;
+      Reserved_1 : DCCR_Reserved_Field_1 := 16#0#;
       --  ID frame select (Valid only in asynchronous mode(including
       --  multi-processor)
-      DCME       : DCCR_DCME_Field := R7FA4M1AB.SCI0.Val_0;
+      IDSEL      : DCCR_IDSEL_Field := R7FA4M1AB.SCI0.Val_1;
       --  Data Compare Match Enable (Valid only in asynchronous mode(including
       --  multi-processor)
+      DCME       : DCCR_DCME_Field := R7FA4M1AB.SCI0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1934,7 +1937,8 @@ package R7FA4M1AB.SCI0 is
      (--  Trigger number 0
       Val_0000,
       --  Triger number n (n= 0-15)
-      others_k)
+      others_k
+     )
      with Size => 4;
    for FCR_TTRG_Field use
      (Val_0000 => 0,
@@ -1945,10 +1949,11 @@ package R7FA4M1AB.SCI0 is
    type FCR_RTRG_Field is
      (--  Trigger number 0
       Val_0000,
-      --  Reset value for the field
-      FCR_RTRG_Field_Reset,
       --  Triger number n (n= 0-15)
-      others_k)
+      FCR_RTRG_Field_Reset,
+      --  Reset value for the field
+      others_k
+     )
      with Size => 4;
    for FCR_RTRG_Field use
      (Val_0000 => 0,
@@ -1963,7 +1968,8 @@ package R7FA4M1AB.SCI0 is
       --  Triger number n (n= 0-15)
       others_k,
       --  Reset value for the field
-      FCR_RSTRG_Field_Reset)
+      FCR_RSTRG_Field_Reset
+     )
      with Size => 4;
    for FCR_RSTRG_Field use
      (Val_0000 => 0,
@@ -1972,25 +1978,25 @@ package R7FA4M1AB.SCI0 is
 
    --  FIFO Control Register
    type FCR_Register is record
-      FM    : FCR_FM_Field := R7FA4M1AB.SCI0.Val_0;
       --  FIFO Mode Select (Valid only in asynchronous mode(including
       --  multi-processor) or clock synchronous mode)
-      RFRST : FCR_RFRST_Field := R7FA4M1AB.SCI0.Val_0;
+      FM    : FCR_FM_Field := R7FA4M1AB.SCI0.Val_0;
       --  Receive FIFO Data Register Reset (Valid only in FCR.FM=1)
-      TFRST : FCR_TFRST_Field := R7FA4M1AB.SCI0.Val_0;
+      RFRST : FCR_RFRST_Field := R7FA4M1AB.SCI0.Val_0;
       --  Transmit FIFO Data Register Reset (Valid only in FCR.FM=1)
-      DRES  : FCR_DRES_Field := R7FA4M1AB.SCI0.Val_0;
+      TFRST : FCR_TFRST_Field := R7FA4M1AB.SCI0.Val_0;
       --  Receive data ready error select bit (When detecting a reception data
       --  ready, the interrupt request is selected.)
-      TTRG  : FCR_TTRG_Field := R7FA4M1AB.SCI0.Val_0000;
+      DRES  : FCR_DRES_Field := R7FA4M1AB.SCI0.Val_0;
       --  Transmit FIFO data trigger number (Valid only in asynchronous
       --  mode(including multi-processor) or clock synchronous mode)
-      RTRG  : FCR_RTRG_Field := FCR_RTRG_Field_Reset;
+      TTRG  : FCR_TTRG_Field := R7FA4M1AB.SCI0.Val_0000;
       --  Receive FIFO data trigger number (Valid only in asynchronous
       --  mode(including multi-processor) or clock synchronous mode)
-      RSTRG : FCR_RSTRG_Field := FCR_RSTRG_Field_Reset;
+      RTRG  : FCR_RTRG_Field := FCR_RTRG_Field_Reset;
       --  RTS Output Active Trigger Number Select (Valid only in asynchronous
       --  mode(including multi-processor) or clock synchronous mode)
+      RSTRG : FCR_RSTRG_Field := FCR_RSTRG_Field_Reset;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2011,20 +2017,20 @@ package R7FA4M1AB.SCI0 is
 
    --  FIFO Data Count Register
    type FDR_Register is record
-      R          : FDR_R_Field;
       --  Read-only. Receive FIFO Data Count Indicate the quantity of receive
       --  data stored in FRDRH and FRDRL (Valid only in asynchronous
       --  mode(including multi-processor) or clock synchronous mode, while
       --  FCR.FM=1)
-      Reserved   : FDR_Reserved_Field;
+      R          : FDR_R_Field;
       --  Read-only. These bits are read as 000.
-      T          : FDR_T_Field;
+      Reserved   : FDR_Reserved_Field;
       --  Read-only. Transmit FIFO Data Count Indicate the quantity of
       --  non-transmit data stored in FTDRH and FTDRL (Valid only in
       --  asynchronous mode(including multi-processor) or clock synchronous
       --  mode, while FCR.FM=1)
-      Reserved_1 : FDR_Reserved_Field;
+      T          : FDR_T_Field;
       --  Read-only. These bits are read as 000.
+      Reserved_1 : FDR_Reserved_Field;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2055,24 +2061,24 @@ package R7FA4M1AB.SCI0 is
 
    --  Line Status Register
    type LSR_Register is record
-      ORER       : LSR_ORER_Field;
       --  Read-only. Overrun Error Flag (Valid only in asynchronous
       --  mode(including multi-processor) or clock synchronous mode, and FIFO
       --  selected)
-      Reserved   : LSR_Reserved_Field;
+      ORER       : LSR_ORER_Field;
       --  Read-only. This bit is read as 0.
-      FNUM       : LSR_FNUM_Field;
+      Reserved   : LSR_Reserved_Field;
       --  Read-only. Framing Error Count Indicates the quantity of data with a
       --  framing error among the receive data stored in the receive FIFO data
       --  register (FRDRH and FRDRL).
-      Reserved_1 : LSR_Reserved_Field;
+      FNUM       : LSR_FNUM_Field;
       --  Read-only. This bit is read as 0.
-      PNUM       : LSR_PNUM_Field;
+      Reserved_1 : LSR_Reserved_Field;
       --  Read-only. Parity Error Count Indicates the quantity of data with a
       --  parity error among the receive data stored in the receive FIFO data
       --  register (FRDRH and FRDRL).
-      Reserved_2 : LSR_Reserved_Field_1;
+      PNUM       : LSR_PNUM_Field;
       --  Read-only. These bits are read as 000.
+      Reserved_2 : LSR_Reserved_Field_1;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2091,11 +2097,11 @@ package R7FA4M1AB.SCI0 is
 
    --  Compare Match Data Register
    type CDR_Register is record
-      CMPD     : CDR_CMPD_Field := 16#0#;
       --  Compare Match Data Compare data pattern for address match wake-up
       --  function
-      Reserved : CDR_Reserved_Field := 16#0#;
+      CMPD     : CDR_CMPD_Field := 16#0#;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : CDR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2144,17 +2150,17 @@ package R7FA4M1AB.SCI0 is
 
    --  Serial Port Register
    type SPTR_Register is record
-      RXDMON   : SPTR_RXDMON_Field := R7FA4M1AB.SCI0.Val_1;
       --  Read-only. Serial input data monitor bit (The state of the RXD
       --  terminal is shown.)
-      SPB2DT   : SPTR_SPB2DT_Field := R7FA4M1AB.SCI0.Val_1;
+      RXDMON   : SPTR_RXDMON_Field := R7FA4M1AB.SCI0.Val_1;
       --  Serial port break data select bit (The output level of TxD terminal
       --  is selected when SCR.TE = 0.)
-      SPB2IO   : SPTR_SPB2IO_Field := R7FA4M1AB.SCI0.Val_0;
+      SPB2DT   : SPTR_SPB2DT_Field := R7FA4M1AB.SCI0.Val_1;
       --  Serial port break I/O bit (It's selected whether the value of SPB2DT
       --  is output to TxD terminal.)
-      Reserved : SPTR_Reserved_Field := 16#0#;
+      SPB2IO   : SPTR_SPB2IO_Field := R7FA4M1AB.SCI0.Val_0;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : SPTR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -2212,103 +2218,70 @@ package R7FA4M1AB.SCI0 is
      case Discriminent is
         when View_BRR =>
            BRR : aliased R7FA4M1AB.Byte;
-           --  Bit Rate Register
         when View_TDR =>
            TDR : aliased R7FA4M1AB.Byte;
-           --  Transmit Data Register
         when View_RDR =>
            RDR : aliased R7FA4M1AB.Byte;
-           --  Receive Data Register
         when View_SCMR =>
            SCMR : aliased SCMR_Register;
-           --  Smart Card Mode Register
         when View_SEMR =>
            SEMR : aliased SEMR_Register;
-           --  Serial Extended Mode Register
         when View_SNFR =>
            SNFR : aliased SNFR_Register;
-           --  Noise Filter Setting Register
         when View_SIMR1 =>
            SIMR1 : aliased SIMR1_Register;
-           --  I2C Mode Register 1
         when View_SIMR2 =>
            SIMR2 : aliased SIMR2_Register;
-           --  I2C Mode Register 2
         when View_SIMR3 =>
            SIMR3 : aliased SIMR3_Register;
-           --  I2C Mode Register 3
         when View_SISR =>
            SISR : aliased SISR_Register;
-           --  I2C Status Register
         when View_SPMR =>
            SPMR : aliased SPMR_Register;
-           --  SPI Mode Register
         when View_FTDRL =>
            FTDRL : aliased R7FA4M1AB.Byte;
-           --  Transmit FIFO Data Register L
         when View_FRDRL =>
            FRDRL : aliased R7FA4M1AB.Byte;
-           --  Receive FIFO Data Register L
         when View_MDDR =>
            MDDR : aliased R7FA4M1AB.Byte;
-           --  Modulation Duty Register
         when View_DCCR =>
            DCCR : aliased DCCR_Register;
-           --  Data Compare Match Control Register
         when View_FCR =>
            FCR : aliased FCR_Register;
-           --  FIFO Control Register
         when View_FDR =>
            FDR : aliased FDR_Register;
-           --  FIFO Data Count Register
         when View_LSR =>
            LSR : aliased LSR_Register;
-           --  Line Status Register
         when View_CDR =>
            CDR : aliased CDR_Register;
-           --  Compare Match Data Register
         when View_SPTR =>
            SPTR : aliased SPTR_Register;
-           --  Serial Port Register
         when View_SMR =>
            SMR : aliased SMR_Register;
-           --  Serial Mode Register (SCMR.SMIF = 0)
         when View_SCR =>
            SCR : aliased SCR_Register;
-           --  Serial Control Register (SCMR.SMIF = 0)
         when View_SSR =>
            SSR : aliased SSR_Register;
-           --  Serial Status Register(SCMR.SMIF = 0 and FCR.FM=0)
         when View_SMR_SMCI =>
            SMR_SMCI : aliased SMR_SMCI_Register;
-           --  Serial mode register (SCMR.SMIF = 1)
         when View_SCR_SMCI =>
            SCR_SMCI : aliased SCR_SMCI_Register;
-           --  Serial Control Register (SCMR.SMIF =1)
         when View_SSR_SMCI =>
            SSR_SMCI : aliased SSR_SMCI_Register;
-           --  Serial Status Register(SCMR.SMIF = 1)
         when View_SSR_FIFO =>
            SSR_FIFO : aliased SSR_FIFO_Register;
-           --  Serial Status Register(SCMR.SMIF = 0 and FCR.FM=1)
         when View_TDRHL =>
            TDRHL : aliased R7FA4M1AB.UInt16;
-           --  Transmit 9-bit Data Register
         when View_RDRHL =>
            RDRHL : aliased R7FA4M1AB.UInt16;
-           --  Receive 9-bit Data Register
         when View_FTDRHL =>
            FTDRHL : aliased FTDRHL_Register;
-           --  Transmit FIFO Data Register HL
         when View_FRDRHL =>
            FRDRHL : aliased FRDRHL_Register;
-           --  Receive FIFO Data Register HL
         when View_FTDRH =>
            FTDRH : aliased FTDRH_Register;
-           --  Transmit FIFO Data Register H
         when View_FRDRH =>
            FRDRH : aliased FRDRH_Register;
-           --  Receive FIFO Data Register H
      end case;
    end record
      with Unchecked_Union, Volatile;

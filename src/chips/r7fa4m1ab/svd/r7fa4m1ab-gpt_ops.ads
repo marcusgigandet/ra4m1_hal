@@ -114,10 +114,11 @@ package R7FA4M1AB.GPT_OPS is
    type OPSCR_GRP_Field is
      (--  Select Group A output disable source
       Val_00,
-      --  Select Group B output disable source
-      Val_01,
       --  Setting prohibited
-      others_k)
+      Val_01,
+      --  Select Group B output disable source
+      others_k
+     )
      with Size => 2;
    for OPSCR_GRP_Field use
      (Val_00 => 0,
@@ -166,64 +167,64 @@ package R7FA4M1AB.GPT_OPS is
 
    --  Output Phase Switching Control Register
    type OPSCR_Register is record
-      UF         : OPSCR_UF_Field := 16#0#;
       --  Input Phase Soft Setting WF This bit sets the input phase by the
       --  software settings. This bit setting is valid when the OPSCR.FB bit =
       --  1.
-      VF         : OPSCR_VF_Field := 16#0#;
+      UF         : OPSCR_UF_Field := 16#0#;
       --  Input Phase Soft Setting VF This bit sets the input phase by the
       --  software settings. This bit setting is valid when the OPSCR.FB bit =
       --  1.
-      WF         : OPSCR_WF_Field := 16#0#;
+      VF         : OPSCR_VF_Field := 16#0#;
       --  Input Phase Soft Setting UF This bit sets the input phase by the
       --  software settings. This bit setting is valid when the OPSCR.FB bit =
       --  1.
-      Reserved   : OPSCR_Reserved_Field := 16#0#;
+      WF         : OPSCR_WF_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      U          : OPSCR_U_Field := 16#0#;
+      Reserved   : OPSCR_Reserved_Field := 16#0#;
       --  Read-only. Input U-Phase Monitor This bit monitors the state of the
       --  input phase. OPSCR.FB=0:External input monitoring by PCLK
       --  OPSCR.FB=1:Software settings (UF/VF/WF)
-      V          : OPSCR_V_Field := 16#0#;
+      U          : OPSCR_U_Field := 16#0#;
       --  Read-only. Input V-Phase Monitor This bit monitors the state of the
       --  input phase. OPSCR.FB=0:External input monitoring by PCLK
       --  OPSCR.FB=1:Software settings (UF/VF/WF)
-      W          : OPSCR_W_Field := 16#0#;
+      V          : OPSCR_V_Field := 16#0#;
       --  Read-only. Input W-Phase Monitor This bit monitors the state of the
       --  input phase. OPSCR.FB=0:External input monitoring by PCLK
       --  OPSCR.FB=1:Software settings (UF/VF/WF)
-      Reserved_1 : OPSCR_Reserved_Field := 16#0#;
+      W          : OPSCR_W_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      EN         : OPSCR_EN_Field := R7FA4M1AB.GPT_OPS.Val_0;
+      Reserved_1 : OPSCR_Reserved_Field := 16#0#;
       --  Enable-Phase Output Control
-      Reserved_2 : OPSCR_Reserved_Field_1 := 16#0#;
+      EN         : OPSCR_EN_Field := R7FA4M1AB.GPT_OPS.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      FB         : OPSCR_FB_Field := R7FA4M1AB.GPT_OPS.Val_0;
+      Reserved_2 : OPSCR_Reserved_Field_1 := 16#0#;
       --  External Feedback Signal Enable This bit selects the input phase from
       --  the software settings and external input.
-      P          : OPSCR_P_Field := R7FA4M1AB.GPT_OPS.Val_0;
+      FB         : OPSCR_FB_Field := R7FA4M1AB.GPT_OPS.Val_0;
       --  Positive-Phase Output (P) Control
-      N          : OPSCR_N_Field := R7FA4M1AB.GPT_OPS.Val_0;
+      P          : OPSCR_P_Field := R7FA4M1AB.GPT_OPS.Val_0;
       --  Negative-Phase Output (N) Control
-      INV        : OPSCR_INV_Field := R7FA4M1AB.GPT_OPS.Val_0;
+      N          : OPSCR_N_Field := R7FA4M1AB.GPT_OPS.Val_0;
       --  Invert-Phase Output Control
-      RV         : OPSCR_RV_Field := R7FA4M1AB.GPT_OPS.Val_0;
+      INV        : OPSCR_INV_Field := R7FA4M1AB.GPT_OPS.Val_0;
       --  Output phase rotation direction reversal
-      ALIGN      : OPSCR_ALIGN_Field := R7FA4M1AB.GPT_OPS.Val_0;
+      RV         : OPSCR_RV_Field := R7FA4M1AB.GPT_OPS.Val_0;
       --  Input phase alignment
+      ALIGN      : OPSCR_ALIGN_Field := R7FA4M1AB.GPT_OPS.Val_0;
+      --  These bits are read as 00. The write value should be 00.
       Reserved_3 : OPSCR_Reserved_Field_2 := 16#0#;
-      --  These bits are read as 00. The write value should be 00.
-      GRP        : OPSCR_GRP_Field := R7FA4M1AB.GPT_OPS.Val_00;
       --  Output disabled source selection
-      GODF       : OPSCR_GODF_Field := R7FA4M1AB.GPT_OPS.Val_0;
+      GRP        : OPSCR_GRP_Field := R7FA4M1AB.GPT_OPS.Val_00;
       --  Group output disable function
-      Reserved_4 : OPSCR_Reserved_Field_2 := 16#0#;
+      GODF       : OPSCR_GODF_Field := R7FA4M1AB.GPT_OPS.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      NFEN       : OPSCR_NFEN_Field := R7FA4M1AB.GPT_OPS.Val_0;
+      Reserved_4 : OPSCR_Reserved_Field_2 := 16#0#;
       --  External Input Noise Filter Enable
-      NFCS       : OPSCR_NFCS_Field := R7FA4M1AB.GPT_OPS.Val_00;
+      NFEN       : OPSCR_NFEN_Field := R7FA4M1AB.GPT_OPS.Val_0;
       --  External Input Noise Filter Clock selection Noise filter sampling
       --  clock setting of the external input.
+      NFCS       : OPSCR_NFCS_Field := R7FA4M1AB.GPT_OPS.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -259,8 +260,8 @@ package R7FA4M1AB.GPT_OPS is
 
    --  Output Phase Switching Controller
    type GPT_OPS_Peripheral is record
-      OPSCR : aliased OPSCR_Register;
       --  Output Phase Switching Control Register
+      OPSCR : aliased OPSCR_Register;
    end record
      with Volatile;
 

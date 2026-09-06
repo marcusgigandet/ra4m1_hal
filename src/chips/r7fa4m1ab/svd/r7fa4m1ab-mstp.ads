@@ -56,11 +56,11 @@ package R7FA4M1AB.MSTP is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  MSTPB as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : MSTPCRB_MSTPB_Field_Array;
             --  MSTPB as an array
+            Arr : MSTPCRB_MSTPB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -107,11 +107,11 @@ package R7FA4M1AB.MSTP is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  MSTPB as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : MSTPCRB_MSTPB_Field_Array_1;
             --  MSTPB as an array
+            Arr : MSTPCRB_MSTPB_Field_Array_1;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -154,11 +154,11 @@ package R7FA4M1AB.MSTP is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt3;
             --  MSTPB as a value
+            Val : R7FA4M1AB.UInt3;
          when True =>
-            Arr : MSTPCRB_MSTPB_Field_Array_2;
             --  MSTPB as an array
+            Arr : MSTPCRB_MSTPB_Field_Array_2;
       end case;
    end record
      with Unchecked_Union, Size => 3;
@@ -170,30 +170,30 @@ package R7FA4M1AB.MSTP is
 
    --  Module Stop Control Register B
    type MSTPCRB_Register is record
+      --  These bits are read as 11. The write value should be 11.
       Reserved   : MSTPCRB_Reserved_Field := 16#3#;
-      --  These bits are read as 11. The write value should be 11.
-      MSTPB2     : MSTPCRB_MSTPB2_Field := R7FA4M1AB.MSTP.Val_1;
       --  Controller Area Network Module Stop
-      Reserved_1 : MSTPCRB_Reserved_Field_1 := 16#1F#;
+      MSTPB2     : MSTPCRB_MSTPB2_Field := R7FA4M1AB.MSTP.Val_1;
       --  These bits are read as 11111. The write value should be 11111.
-      MSTPB      : MSTPCRB_MSTPB_Field := (As_Array => False, Val => 16#1#);
+      Reserved_1 : MSTPCRB_Reserved_Field_1 := 16#1F#;
       --  I2C Bus Interface 1 Module Stop
-      Reserved_2 : MSTPCRB_Reserved_Field_2 := 16#1#;
+      MSTPB      : MSTPCRB_MSTPB_Field := (As_Array => False, Val => 16#1#);
       --  This bit is read as 1. The write value should be 1.
-      MSTPB11    : MSTPCRB_MSTPB11_Field := R7FA4M1AB.MSTP.Val_1;
+      Reserved_2 : MSTPCRB_Reserved_Field_2 := 16#1#;
       --  Universal Serial Bus 2.0 FS Interface Module Stop
+      MSTPB11    : MSTPCRB_MSTPB11_Field := R7FA4M1AB.MSTP.Val_1;
+      --  These bits are read as 111111. The write value should be 111111.
       Reserved_3 : MSTPCRB_Reserved_Field_3 := 16#3F#;
-      --  These bits are read as 111111. The write value should be 111111.
-      MSTPB_1    : MSTPCRB_MSTPB_Field_1 := (As_Array => False, Val => 16#1#);
       --  Serial Peripheral Interface 1 Module Stop
-      Reserved_4 : MSTPCRB_Reserved_Field := 16#3#;
+      MSTPB_1    : MSTPCRB_MSTPB_Field_1 := (As_Array => False, Val => 16#1#);
       --  These bits are read as 11. The write value should be 11.
-      MSTPB22    : MSTPCRB_MSTPB22_Field := R7FA4M1AB.MSTP.Val_1;
+      Reserved_4 : MSTPCRB_Reserved_Field := 16#3#;
       --  Serial Communication Interface 9 Module Stop
-      Reserved_5 : MSTPCRB_Reserved_Field_3 := 16#3F#;
+      MSTPB22    : MSTPCRB_MSTPB22_Field := R7FA4M1AB.MSTP.Val_1;
       --  These bits are read as 111111. The write value should be 111111.
-      MSTPB_2    : MSTPCRB_MSTPB_Field_2 := (As_Array => False, Val => 16#1#);
+      Reserved_5 : MSTPCRB_Reserved_Field_3 := 16#3F#;
       --  Serial Communication Interface 2 Module Stop
+      MSTPB_2    : MSTPCRB_MSTPB_Field_2 := (As_Array => False, Val => 16#1#);
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -234,11 +234,11 @@ package R7FA4M1AB.MSTP is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  MSTPC as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : MSTPCRC_MSTPC_Field_Array;
             --  MSTPC as an array
+            Arr : MSTPCRC_MSTPC_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -271,11 +271,11 @@ package R7FA4M1AB.MSTP is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  MSTPC as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : MSTPCRC_MSTPC_Field_Array_1;
             --  MSTPC as an array
+            Arr : MSTPCRC_MSTPC_Field_Array_1;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -322,11 +322,11 @@ package R7FA4M1AB.MSTP is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  MSTPC as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : MSTPCRC_MSTPC_Field_Array_2;
             --  MSTPC as an array
+            Arr : MSTPCRC_MSTPC_Field_Array_2;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -351,25 +351,25 @@ package R7FA4M1AB.MSTP is
 
    --  Module Stop Control Register C
    type MSTPCRC_Register is record
-      MSTPC      : MSTPCRC_MSTPC_Field := (As_Array => False, Val => 16#1#);
       --  Clock Frequency Accuracy Measurement Circuit Module Stop
-      Reserved   : MSTPCRC_Reserved_Field := 16#1#;
+      MSTPC      : MSTPCRC_MSTPC_Field := (As_Array => False, Val => 16#1#);
       --  This bit is read as 1. The write value should be 1.
-      MSTPC_1    : MSTPCRC_MSTPC_Field_1 := (As_Array => False, Val => 16#1#);
+      Reserved   : MSTPCRC_Reserved_Field := 16#1#;
       --  Capacitive Touch Sensing Unit Module Stop
-      Reserved_1 : MSTPCRC_Reserved_Field_1 := 16#7#;
+      MSTPC_1    : MSTPCRC_MSTPC_Field_1 := (As_Array => False, Val => 16#1#);
       --  These bits are read as 111. The write value should be 111.
-      MSTPC8     : MSTPCRC_MSTPC8_Field := R7FA4M1AB.MSTP.Val_1;
+      Reserved_1 : MSTPCRC_Reserved_Field_1 := 16#7#;
       --  Synchronous Serial Interface 0 Module Stop
-      Reserved_2 : MSTPCRC_Reserved_Field_2 := 16#F#;
+      MSTPC8     : MSTPCRC_MSTPC8_Field := R7FA4M1AB.MSTP.Val_1;
       --  These bits are read as 1111. The write value should be 1111.
-      MSTPC_2    : MSTPCRC_MSTPC_Field_2 := (As_Array => False, Val => 16#1#);
+      Reserved_2 : MSTPCRC_Reserved_Field_2 := 16#F#;
       --  Data Operation Circuit Module Stop
-      Reserved_3 : MSTPCRC_Reserved_Field_3 := 16#FFFF#;
+      MSTPC_2    : MSTPCRC_MSTPC_Field_2 := (As_Array => False, Val => 16#1#);
       --  These bits are read as 1111111111111111. The write value should be
       --  1111111111111111.
-      MSTPC31    : MSTPCRC_MSTPC31_Field := R7FA4M1AB.MSTP.Val_1;
+      Reserved_3 : MSTPCRC_Reserved_Field_3 := 16#FFFF#;
       --  SCE5 Module Stop
+      MSTPC31    : MSTPCRC_MSTPC31_Field := R7FA4M1AB.MSTP.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -409,11 +409,11 @@ package R7FA4M1AB.MSTP is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  MSTPD as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : MSTPCRD_MSTPD_Field_Array;
             --  MSTPD as an array
+            Arr : MSTPCRD_MSTPD_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -446,11 +446,11 @@ package R7FA4M1AB.MSTP is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  MSTPD as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : MSTPCRD_MSTPD_Field_Array_1;
             --  MSTPD as an array
+            Arr : MSTPCRD_MSTPD_Field_Array_1;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -506,11 +506,11 @@ package R7FA4M1AB.MSTP is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  MSTPD as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : MSTPCRD_MSTPD_Field_Array_2;
             --  MSTPD as an array
+            Arr : MSTPCRD_MSTPD_Field_Array_2;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -546,34 +546,34 @@ package R7FA4M1AB.MSTP is
 
    --  Module Stop Control Register D
    type MSTPCRD_Register is record
+      --  These bits are read as 11. The write value should be 11.
       Reserved   : MSTPCRD_Reserved_Field := 16#3#;
-      --  These bits are read as 11. The write value should be 11.
-      MSTPD      : MSTPCRD_MSTPD_Field := (As_Array => False, Val => 16#1#);
       --  Asynchronous General Purpose Timer 1 Module Stop
+      MSTPD      : MSTPCRD_MSTPD_Field := (As_Array => False, Val => 16#1#);
+      --  This bit is read as 1. The write value should be 1.
       Reserved_1 : MSTPCRD_Reserved_Field_1 := 16#1#;
-      --  This bit is read as 1. The write value should be 1.
-      MSTPD_1    : MSTPCRD_MSTPD_Field_1 := (As_Array => False, Val => 16#1#);
       --  General PWM Timer 323 to 320 Module Stop
-      Reserved_2 : MSTPCRD_Reserved_Field_2 := 16#7F#;
+      MSTPD_1    : MSTPCRD_MSTPD_Field_1 := (As_Array => False, Val => 16#1#);
       --  These bits are read as 1111111. The write value should be 1111111.
-      MSTPD14    : MSTPCRD_MSTPD14_Field := R7FA4M1AB.MSTP.Val_1;
+      Reserved_2 : MSTPCRD_Reserved_Field_2 := 16#7F#;
       --  Port Output Enable for GPT Module Stop
+      MSTPD14    : MSTPCRD_MSTPD14_Field := R7FA4M1AB.MSTP.Val_1;
+      --  This bit is read as 1. The write value should be 1.
       Reserved_3 : MSTPCRD_Reserved_Field_1 := 16#1#;
-      --  This bit is read as 1. The write value should be 1.
-      MSTPD16    : MSTPCRD_MSTPD16_Field := R7FA4M1AB.MSTP.Val_1;
       --  14-Bit A/D Converter Module Stop
-      Reserved_4 : MSTPCRD_Reserved_Field := 16#3#;
+      MSTPD16    : MSTPCRD_MSTPD16_Field := R7FA4M1AB.MSTP.Val_1;
       --  These bits are read as 11. The write value should be 11.
-      MSTPD_2    : MSTPCRD_MSTPD_Field_2 := (As_Array => False, Val => 16#1#);
+      Reserved_4 : MSTPCRD_Reserved_Field := 16#3#;
       --  8-bit D/A Converter Module Stop
-      Reserved_5 : MSTPCRD_Reserved_Field_3 := 16#FF#;
+      MSTPD_2    : MSTPCRD_MSTPD_Field_2 := (As_Array => False, Val => 16#1#);
       --  These bits are read as 11111111. The write value should be 11111111.
-      MSTPD29    : MSTPCRD_MSTPD29_Field := R7FA4M1AB.MSTP.Val_1;
+      Reserved_5 : MSTPCRD_Reserved_Field_3 := 16#FF#;
       --  Low-Power Analog Comparator Module Stop
-      Reserved_6 : MSTPCRD_Reserved_Field_1 := 16#1#;
+      MSTPD29    : MSTPCRD_MSTPD29_Field := R7FA4M1AB.MSTP.Val_1;
       --  This bit is read as 1. The write value should be 1.
-      MSTPD31    : MSTPCRD_MSTPD31_Field := R7FA4M1AB.MSTP.Val_1;
+      Reserved_6 : MSTPCRD_Reserved_Field_1 := 16#1#;
       --  Operational Amplifier Module Stop
+      MSTPD31    : MSTPCRD_MSTPD31_Field := R7FA4M1AB.MSTP.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -601,12 +601,12 @@ package R7FA4M1AB.MSTP is
 
    --  Module Stop Control B,C,D
    type MSTP_Peripheral is record
-      MSTPCRB : aliased MSTPCRB_Register;
       --  Module Stop Control Register B
-      MSTPCRC : aliased MSTPCRC_Register;
+      MSTPCRB : aliased MSTPCRB_Register;
       --  Module Stop Control Register C
-      MSTPCRD : aliased MSTPCRD_Register;
+      MSTPCRC : aliased MSTPCRC_Register;
       --  Module Stop Control Register D
+      MSTPCRD : aliased MSTPCRD_Register;
    end record
      with Volatile;
 

@@ -35,10 +35,11 @@ package R7FA4M1AB.SPMON is
 
    --  Write Keyword The data written to these bits are not stored.
    type MSPMPUOAD_KEY_Field is
-     (      --  Writing to the OAD bit is valid, when the KEY bits are written 0xA5.
+     (--  Writing to the OAD bit is invalid.
       Val_0xA5,
---  Writing to the OAD bit is invalid.
-      others_k)
+      --  Writing to the OAD bit is valid, when the KEY bits are written 0xA5.
+      others_k
+     )
      with Size => 8;
    for MSPMPUOAD_KEY_Field use
      (Val_0xA5 => 165,
@@ -46,13 +47,13 @@ package R7FA4M1AB.SPMON is
 
    --  Stack Pointer Monitor Operation After Detection Register
    type MSPMPUOAD_Register is record
-      OAD      : MSPMPUOAD_OAD_Field := R7FA4M1AB.SPMON.Val_0;
       --  Operation after detection
-      Reserved : MSPMPUOAD_Reserved_Field := 16#0#;
+      OAD      : MSPMPUOAD_OAD_Field := R7FA4M1AB.SPMON.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      KEY      : MSPMPUOAD_KEY_Field := R7FA4M1AB.SPMON.others_k;
+      Reserved : MSPMPUOAD_Reserved_Field := 16#0#;
       --  Write-only. Write Keyword The data written to these bits are not
       --  stored.
+      KEY      : MSPMPUOAD_KEY_Field := R7FA4M1AB.SPMON.others_k;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -89,14 +90,14 @@ package R7FA4M1AB.SPMON is
 
    --  Stack Pointer Monitor Access Control Register
    type MSPMPUCTL_Register is record
-      ENABLE     : MSPMPUCTL_ENABLE_Field := R7FA4M1AB.SPMON.Val_0;
       --  Stack Pointer Monitor Enable
+      ENABLE     : MSPMPUCTL_ENABLE_Field := R7FA4M1AB.SPMON.Val_0;
+      --  These bits are read as 0000000. The write value should be 0000000.
       Reserved   : MSPMPUCTL_Reserved_Field := 16#0#;
-      --  These bits are read as 0000000. The write value should be 0000000.
-      ERROR      : MSPMPUCTL_ERROR_Field := R7FA4M1AB.SPMON.Val_0;
       --  Stack Pointer Monitor Error Flag
-      Reserved_1 : MSPMPUCTL_Reserved_Field := 16#0#;
+      ERROR      : MSPMPUCTL_ERROR_Field := R7FA4M1AB.SPMON.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved_1 : MSPMPUCTL_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -123,10 +124,11 @@ package R7FA4M1AB.SPMON is
 
    --  Write Keyword The data written to these bits are not stored.
    type MSPMPUPT_KEY_Field is
-     (      --  Writing to the PROTECT bit is valid, when the KEY bits are written 0xA5.
+     (--  Writing to the PROTECT bit is invalid.
       Val_0xA5,
---  Writing to the PROTECT bit is invalid.
-      others_k)
+      --  Writing to the PROTECT bit is valid, when the KEY bits are written 0xA5.
+      others_k
+     )
      with Size => 8;
    for MSPMPUPT_KEY_Field use
      (Val_0xA5 => 165,
@@ -134,13 +136,13 @@ package R7FA4M1AB.SPMON is
 
    --  Stack Pointer Monitor Protection Register
    type MSPMPUPT_Register is record
-      PROTECT  : MSPMPUPT_PROTECT_Field := R7FA4M1AB.SPMON.Val_0;
       --  Protection of register (MSPMPUAC, MSPMPUSA and MSPMPUSE)
-      Reserved : MSPMPUPT_Reserved_Field := 16#0#;
+      PROTECT  : MSPMPUPT_PROTECT_Field := R7FA4M1AB.SPMON.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      KEY      : MSPMPUPT_KEY_Field := R7FA4M1AB.SPMON.others_k;
+      Reserved : MSPMPUPT_Reserved_Field := 16#0#;
       --  Write-only. Write Keyword The data written to these bits are not
       --  stored.
+      KEY      : MSPMPUPT_KEY_Field := R7FA4M1AB.SPMON.others_k;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -166,10 +168,11 @@ package R7FA4M1AB.SPMON is
 
    --  Key Code The data written to these bits are not stored.
    type PSPMPUOAD_KEY_Field is
-     (      --  Writing to the OAD bit is valid, when the KEY bits are written 0xA5.
+     (--  Writing to the OAD bit is invalid.
       Val_0xA5,
---  Writing to the OAD bit is invalid.
-      others_k)
+      --  Writing to the OAD bit is valid, when the KEY bits are written 0xA5.
+      others_k
+     )
      with Size => 8;
    for PSPMPUOAD_KEY_Field use
      (Val_0xA5 => 165,
@@ -177,12 +180,12 @@ package R7FA4M1AB.SPMON is
 
    --  Stack Pointer Monitor Operation After Detection Register
    type PSPMPUOAD_Register is record
-      OAD      : PSPMPUOAD_OAD_Field := R7FA4M1AB.SPMON.Val_0;
       --  Operation after detection
-      Reserved : PSPMPUOAD_Reserved_Field := 16#0#;
+      OAD      : PSPMPUOAD_OAD_Field := R7FA4M1AB.SPMON.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      KEY      : PSPMPUOAD_KEY_Field := R7FA4M1AB.SPMON.others_k;
+      Reserved : PSPMPUOAD_Reserved_Field := 16#0#;
       --  Write-only. Key Code The data written to these bits are not stored.
+      KEY      : PSPMPUOAD_KEY_Field := R7FA4M1AB.SPMON.others_k;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -219,14 +222,14 @@ package R7FA4M1AB.SPMON is
 
    --  Stack Pointer Monitor Access Control Register
    type PSPMPUCTL_Register is record
-      ENABLE     : PSPMPUCTL_ENABLE_Field := R7FA4M1AB.SPMON.Val_0;
       --  Stack Pointer Monitor Enable
+      ENABLE     : PSPMPUCTL_ENABLE_Field := R7FA4M1AB.SPMON.Val_0;
+      --  These bits are read as 0000000. The write value should be 0000000.
       Reserved   : PSPMPUCTL_Reserved_Field := 16#0#;
-      --  These bits are read as 0000000. The write value should be 0000000.
-      ERROR      : PSPMPUCTL_ERROR_Field := R7FA4M1AB.SPMON.Val_0;
       --  Stack Pointer Monitor Error Flag
-      Reserved_1 : PSPMPUCTL_Reserved_Field := 16#0#;
+      ERROR      : PSPMPUCTL_ERROR_Field := R7FA4M1AB.SPMON.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved_1 : PSPMPUCTL_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -253,10 +256,11 @@ package R7FA4M1AB.SPMON is
 
    --  Key Code The data written to these bits are not stored.
    type PSPMPUPT_KEY_Field is
-     (      --  Writing to the PROTECT bit is valid, when the KEY bits are written 0xA5.
+     (--  Writing to the PROTECT bit is invalid.
       Val_0xA5,
---  Writing to the PROTECT bit is invalid.
-      others_k)
+      --  Writing to the PROTECT bit is valid, when the KEY bits are written 0xA5.
+      others_k
+     )
      with Size => 8;
    for PSPMPUPT_KEY_Field use
      (Val_0xA5 => 165,
@@ -264,12 +268,12 @@ package R7FA4M1AB.SPMON is
 
    --  Stack Pointer Monitor Protection Register
    type PSPMPUPT_Register is record
-      PROTECT  : PSPMPUPT_PROTECT_Field := R7FA4M1AB.SPMON.Val_0;
       --  Protection register (PSPMPUAC, PSPMPUSA and PSPMPUSE)
-      Reserved : PSPMPUPT_Reserved_Field := 16#0#;
+      PROTECT  : PSPMPUPT_PROTECT_Field := R7FA4M1AB.SPMON.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      KEY      : PSPMPUPT_KEY_Field := R7FA4M1AB.SPMON.others_k;
+      Reserved : PSPMPUPT_Reserved_Field := 16#0#;
       --  Write-only. Key Code The data written to these bits are not stored.
+      KEY      : PSPMPUPT_KEY_Field := R7FA4M1AB.SPMON.others_k;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -286,26 +290,26 @@ package R7FA4M1AB.SPMON is
 
    --  CPU Stack Pointer Monitor
    type SPMON_Peripheral is record
+      --  Stack Pointer Monitor Operation After Detection Register
       MSPMPUOAD : aliased MSPMPUOAD_Register;
-      --  Stack Pointer Monitor Operation After Detection Register
+      --  Stack Pointer Monitor Access Control Register
       MSPMPUCTL : aliased MSPMPUCTL_Register;
-      --  Stack Pointer Monitor Access Control Register
+      --  Stack Pointer Monitor Protection Register
       MSPMPUPT  : aliased MSPMPUPT_Register;
-      --  Stack Pointer Monitor Protection Register
-      MSPMPUSA  : aliased R7FA4M1AB.UInt32;
       --  Main Stack Pointer (MSP) Monitor Start Address Register
-      MSPMPUEA  : aliased R7FA4M1AB.UInt32;
+      MSPMPUSA  : aliased R7FA4M1AB.UInt32;
       --  Main Stack Pointer (MSP) Monitor End Address Register
-      PSPMPUOAD : aliased PSPMPUOAD_Register;
+      MSPMPUEA  : aliased R7FA4M1AB.UInt32;
       --  Stack Pointer Monitor Operation After Detection Register
-      PSPMPUCTL : aliased PSPMPUCTL_Register;
+      PSPMPUOAD : aliased PSPMPUOAD_Register;
       --  Stack Pointer Monitor Access Control Register
-      PSPMPUPT  : aliased PSPMPUPT_Register;
+      PSPMPUCTL : aliased PSPMPUCTL_Register;
       --  Stack Pointer Monitor Protection Register
-      PSPMPUSA  : aliased R7FA4M1AB.UInt32;
+      PSPMPUPT  : aliased PSPMPUPT_Register;
       --  Process Stack Pointer (PSP) Monitor Start Address Register
-      PSPMPUEA  : aliased R7FA4M1AB.UInt32;
+      PSPMPUSA  : aliased R7FA4M1AB.UInt32;
       --  Process Stack Pointer (PSP) Monitor End Address Register
+      PSPMPUEA  : aliased R7FA4M1AB.UInt32;
    end record
      with Volatile;
 

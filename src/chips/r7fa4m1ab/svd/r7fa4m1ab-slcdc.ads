@@ -41,16 +41,17 @@ package R7FA4M1AB.SLCDC is
    type LCDM0_LDTY_Field is
      (--  Static
       Val_000,
-      --  2-time slice
-      Val_001,
-      --  3-time slice
-      Val_010,
-      --  4-time slice
-      Val_011,
-      --  8-time slice
-      Val_101,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  2-time slice
+      Val_010,
+      --  3-time slice
+      Val_011,
+      --  4-time slice
+      Val_101,
+      --  8-time slice
+      others_k
+     )
      with Size => 3;
    for LCDM0_LDTY_Field use
      (Val_000 => 0,
@@ -90,14 +91,14 @@ package R7FA4M1AB.SLCDC is
 
    --  LCD Mode Register 0
    type LCDM0_Register is record
-      LBAS  : LCDM0_LBAS_Field := R7FA4M1AB.SLCDC.Val_00;
       --  LCD Display Bias Method Select
-      LDTY  : LCDM0_LDTY_Field := R7FA4M1AB.SLCDC.Val_000;
+      LBAS  : LCDM0_LBAS_Field := R7FA4M1AB.SLCDC.Val_00;
       --  Time Slice of LCD Display Select
-      LWAVE : LCDM0_LWAVE_Field := R7FA4M1AB.SLCDC.Val_0;
+      LDTY  : LCDM0_LDTY_Field := R7FA4M1AB.SLCDC.Val_000;
       --  LCD display waveform selection
-      MDSET : LCDM0_MDSET_Field := R7FA4M1AB.SLCDC.Val_00;
+      LWAVE : LCDM0_LWAVE_Field := R7FA4M1AB.SLCDC.Val_0;
       --  LCD drive voltage generator selection
+      MDSET : LCDM0_MDSET_Field := R7FA4M1AB.SLCDC.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -193,21 +194,21 @@ package R7FA4M1AB.SLCDC is
 
    --  LCD Mode Register 1
    type LCDM1_Register is record
-      LCDVLM   : LCDM1_LCDVLM_Field := R7FA4M1AB.SLCDC.Val_0;
       --  Voltage Boosting Pin Initial Value Switching Control
-      Reserved : LCDM1_Reserved_Field := 16#0#;
+      LCDVLM   : LCDM1_LCDVLM_Field := R7FA4M1AB.SLCDC.Val_0;
       --  These bits are read as 00. The write value should be 00.
+      Reserved : LCDM1_Reserved_Field := 16#0#;
+      --  Display data area control
       LCDSEL   : LCDM1_LCDSEL_Field := R7FA4M1AB.SLCDC.Val_0;
       --  Display data area control
       BLON     : LCDM1_BLON_Field := R7FA4M1AB.SLCDC.Val_0;
-      --  Display data area control
-      VLCON    : LCDM1_VLCON_Field := R7FA4M1AB.SLCDC.Val_0;
       --  Voltage boost circuit or capacitor split circuit operation
       --  enable/disable
+      VLCON    : LCDM1_VLCON_Field := R7FA4M1AB.SLCDC.Val_0;
+      --  LCD Display Enable/Disable
       SCOC     : LCDM1_SCOC_Field := R7FA4M1AB.SLCDC.Val_0;
       --  LCD Display Enable/Disable
       LCDON    : LCDM1_LCDON_Field := R7FA4M1AB.SLCDC.Val_0;
-      --  LCD Display Enable/Disable
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -224,50 +225,51 @@ package R7FA4M1AB.SLCDC is
 
    --  LCD clock (LCDCL)
    type LCDC0_LCDC_Field is
-     (      --  (Sub clock)/22 or (LOCO clock)/22
+     (--  Other than above Setting prohibited
       Val_000001,
-      --  (Sub clock)/23 or (LOCO clock)/23
+      --  (Sub clock)/22 or (LOCO clock)/22
       Val_000010,
-      --  (Sub clock)/24 or (LOCO clock)/24
+      --  (Sub clock)/23 or (LOCO clock)/23
       Val_000011,
-      --  (Sub clock)/25 or (LOCO clock)/25
+      --  (Sub clock)/24 or (LOCO clock)/24
       Val_000100,
-      --  (Sub clock)/26 or (LOCO clock)/26
+      --  (Sub clock)/25 or (LOCO clock)/25
       Val_000101,
-      --  (Sub clock)/27 or (LOCO clock)/27
+      --  (Sub clock)/26 or (LOCO clock)/26
       Val_000110,
-      --  (Sub clock)/28 or (LOCO clock)/28
+      --  (Sub clock)/27 or (LOCO clock)/27
       Val_000111,
-      --  (Sub clock)/29 or (LOCO clock)/29
+      --  (Sub clock)/28 or (LOCO clock)/28
       Val_001000,
-      --  (Sub clock)/210 or (LOCO clock)/210
+      --  (Sub clock)/29 or (LOCO clock)/29
       Val_001001,
-      --  (Main clock)/28 or (HOCO clock)/28
+      --  (Sub clock)/210 or (LOCO clock)/210
       Val_010001,
-      --  (Main clock)/29 or (HOCO clock)/29
+      --  (Main clock)/28 or (HOCO clock)/28
       Val_010010,
-      --  (Main clock)/210 or (HOCO clock)/210
+      --  (Main clock)/29 or (HOCO clock)/29
       Val_010011,
-      --  (Main clock)/211 or (HOCO clock)/211
+      --  (Main clock)/210 or (HOCO clock)/210
       Val_010100,
-      --  (Main clock)/212 or (HOCO clock)/212
+      --  (Main clock)/211 or (HOCO clock)/211
       Val_010101,
-      --  (Main clock)/213 or (HOCO clock)/213
+      --  (Main clock)/212 or (HOCO clock)/212
       Val_010110,
-      --  (Main clock)/214 or (HOCO clock)/214
+      --  (Main clock)/213 or (HOCO clock)/213
       Val_010111,
-      --  (Main clock)/215 or (HOCO clock)/215
+      --  (Main clock)/214 or (HOCO clock)/214
       Val_011000,
-      --  (Main clock)/216 or (HOCO clock)/216
+      --  (Main clock)/215 or (HOCO clock)/215
       Val_011001,
-      --  (Main clock)/217 or (HOCO clock)/217
+      --  (Main clock)/216 or (HOCO clock)/216
       Val_011010,
-      --  (Main clock)/218 or (HOCO clock)/218
+      --  (Main clock)/217 or (HOCO clock)/217
       Val_011011,
-      --  (Main clock)/219 or (HOCO clock)/219
+      --  (Main clock)/218 or (HOCO clock)/218
       Val_101011,
---  Other than above Setting prohibited
-      others_k)
+      --  (Main clock)/219 or (HOCO clock)/219
+      others_k
+     )
      with Size => 6;
    for LCDC0_LCDC_Field use
      (Val_000001 => 1,
@@ -295,10 +297,10 @@ package R7FA4M1AB.SLCDC is
 
    --  LCD Clock Control Register 0
    type LCDC0_Register is record
-      LCDC         : LCDC0_LCDC_Field := R7FA4M1AB.SLCDC.others_k;
       --  LCD clock (LCDCL)
-      Reserved_6_7 : R7FA4M1AB.UInt2 := 16#0#;
+      LCDC         : LCDC0_LCDC_Field := R7FA4M1AB.SLCDC.others_k;
       --  unspecified
+      Reserved_6_7 : R7FA4M1AB.UInt2 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -310,56 +312,57 @@ package R7FA4M1AB.SLCDC is
 
    --  Reference Voltage(Contrast Adjustment) Select
    type VLCD_VLCD_Field is
-     (      --  Reference voltageselection(contrast adjustment): 1.00 V (default) VL4
---  voltage: 3.00 V(1/3 bias method)/4.00 V(1/4 bias method)
+     (--  Setting prohibited
       Val_00100,
+      --  Reference voltageselection(contrast adjustment): 1.00 V (default) VL4
+--  voltage: 3.00 V(1/3 bias method)/4.00 V(1/4 bias method)
+      Val_00101,
       --  Reference voltageselection(contrast adjustment): 1.05 V VL4 voltage: 3.15
 --  V(1/3 bias method)/4.20 V(1/4 bias method)
-      Val_00101,
+      Val_00110,
       --  Reference voltageselection(contrast adjustment): 1.10 V VL4 voltage: 3.30
 --  V(1/3 bias method)/4.40 V(1/4 bias method)
-      Val_00110,
+      Val_00111,
       --  Reference voltageselection(contrast adjustment): 1.15 V VL4 voltage: 3.45
 --  V(1/3 bias method)/4.60 V(1/4 bias method)
-      Val_00111,
+      Val_01000,
       --  Reference voltageselection(contrast adjustment): 1.20 V VL4 voltage: 3.60
 --  V(1/3 bias method)/4.80 V(1/4 bias method)
-      Val_01000,
+      Val_01001,
       --  Reference voltageselection(contrast adjustment): 1.25 V VL4 voltage: 3.75
 --  V(1/3 bias method)/5.00 V(1/4 bias method)
-      Val_01001,
+      Val_01010,
       --  Reference voltageselection(contrast adjustment): 1.30 V VL4 voltage: 3.90
 --  V(1/3 bias method)/5.20 V(1/4 bias method)
-      Val_01010,
+      Val_01011,
       --  Reference voltageselection(contrast adjustment): 1.35 V VL4 voltage: 4.05
 --  V(1/3 bias method)/Setting prohibited(1/4 bias method)
-      Val_01011,
+      Val_01100,
       --  Reference voltageselection(contrast adjustment): 1.40 V VL4 voltage: 4.20
 --  V(1/3 bias method)/Setting prohibited(1/4 bias method)
-      Val_01100,
+      Val_01101,
       --  Reference voltageselection(contrast adjustment): 1.45 V VL4 voltage: 4.35
 --  V(1/3 bias method)/Setting prohibited(1/4 bias method)
-      Val_01101,
+      Val_01110,
       --  Reference voltageselection(contrast adjustment): 1.50 V VL4 voltage: 4.50
 --  V(1/3 bias method)/Setting prohibited(1/4 bias method)
-      Val_01110,
+      Val_01111,
       --  Reference voltageselection(contrast adjustment): 1.55 V VL4 voltage: 4.65
 --  V(1/3 bias method)/Setting prohibited(1/4 bias method)
-      Val_01111,
+      Val_10000,
       --  Reference voltageselection(contrast adjustment): 1.60 V VL4 voltage: 4.80
 --  V(1/3 bias method)/Setting prohibited(1/4 bias method)
-      Val_10000,
+      Val_10001,
       --  Reference voltageselection(contrast adjustment): 1.65 V VL4 voltage: 4.95
 --  V(1/3 bias method)/Setting prohibited(1/4 bias method)
-      Val_10001,
+      Val_10010,
       --  Reference voltageselection(contrast adjustment): 1.70 V VL4 voltage: 5.10
 --  V(1/3 bias method)/Setting prohibited(1/4 bias method)
-      Val_10010,
+      Val_10011,
       --  Reference voltageselection(contrast adjustment): 1.75 V VL4 voltage: 5.25
 --  V(1/3 bias method)/Setting prohibited(1/4 bias method)
-      Val_10011,
---  Setting prohibited
-      others_k)
+      others_k
+     )
      with Size => 5;
    for VLCD_VLCD_Field use
      (Val_00100 => 4,
@@ -382,10 +385,10 @@ package R7FA4M1AB.SLCDC is
 
    --  LCD Boost Level Control Register
    type VLCD_Register is record
-      VLCD         : VLCD_VLCD_Field := R7FA4M1AB.SLCDC.Val_00100;
       --  Reference Voltage(Contrast Adjustment) Select
-      Reserved_5_7 : R7FA4M1AB.UInt3 := 16#0#;
+      VLCD         : VLCD_VLCD_Field := R7FA4M1AB.SLCDC.Val_00100;
       --  unspecified
+      Reserved_5_7 : R7FA4M1AB.UInt3 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -406,16 +409,16 @@ package R7FA4M1AB.SLCDC is
 
    --  Segment LCD Controller/Driver
    type SLCDC_Peripheral is record
-      LCDM0 : aliased LCDM0_Register;
       --  LCD Mode Register 0
-      LCDM1 : aliased LCDM1_Register;
+      LCDM0 : aliased LCDM0_Register;
       --  LCD Mode Register 1
-      LCDC0 : aliased LCDC0_Register;
+      LCDM1 : aliased LCDM1_Register;
       --  LCD Clock Control Register 0
-      VLCD  : aliased VLCD_Register;
+      LCDC0 : aliased LCDC0_Register;
       --  LCD Boost Level Control Register
-      SEG   : aliased SEG_Registers;
+      VLCD  : aliased VLCD_Register;
       --  LCD Display Data Register %s
+      SEG   : aliased SEG_Registers;
    end record
      with Volatile;
 

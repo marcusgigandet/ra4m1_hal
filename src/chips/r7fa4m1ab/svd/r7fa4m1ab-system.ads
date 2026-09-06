@@ -36,13 +36,13 @@ package R7FA4M1AB.SYSTEM is
 
    --  Standby Control Register
    type SBYCR_Register is record
-      Reserved   : SBYCR_Reserved_Field := 16#0#;
       --  These bits are read as 00000000000000. The write value should be
       --  00000000000000.
-      Reserved_1 : SBYCR_Reserved_Field_1 := 16#1#;
+      Reserved   : SBYCR_Reserved_Field := 16#0#;
       --  This bit is read as 1. The write value should be 1.
-      SSBY       : SBYCR_SSBY_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved_1 : SBYCR_Reserved_Field_1 := 16#1#;
       --  Software Standby
+      SSBY       : SBYCR_SSBY_Field := R7FA4M1AB.SYSTEM.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => Standard.System.Low_Order_First;
@@ -94,20 +94,20 @@ package R7FA4M1AB.SYSTEM is
 
    --  Module Stop Control Register A
    type MSTPCRA_Register is record
-      MSTPA0     : MSTPCRA_MSTPA0_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  RAM0 Module Stop
-      Reserved   : MSTPCRA_Reserved_Field := 16#1F#;
+      MSTPA0     : MSTPCRA_MSTPA0_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 11111. The write value should be 11111.
-      MSTPA6     : MSTPCRA_MSTPA6_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved   : MSTPCRA_Reserved_Field := 16#1F#;
       --  ECCRAM Module Stop
-      Reserved_1 : MSTPCRA_Reserved_Field_1 := 16#7FFF#;
+      MSTPA6     : MSTPCRA_MSTPA6_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 111111111111111. The write value should be
       --  111111111111111.
-      MSTPA22    : MSTPCRA_MSTPA22_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved_1 : MSTPCRA_Reserved_Field_1 := 16#7FFF#;
       --  DMA Controller/Data Transfer Controller Module Stop
-      Reserved_2 : MSTPCRA_Reserved_Field_2 := 16#1FF#;
+      MSTPA22    : MSTPCRA_MSTPA22_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 111111111. The write value should be
       --  111111111.
+      Reserved_2 : MSTPCRA_Reserved_Field_2 := 16#1FF#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => Standard.System.Low_Order_First;
@@ -125,20 +125,21 @@ package R7FA4M1AB.SYSTEM is
    type SCKDIVCR_PCKD_Field is
      (--  /1
       Val_000,
-      --  /2
-      Val_001,
-      --  /4
-      Val_010,
-      --  /8
-      Val_011,
-      --  /16
-      Val_100,
-      --  /32
-      Val_101,
-      --  /64
-      Val_110,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  /2
+      Val_010,
+      --  /4
+      Val_011,
+      --  /8
+      Val_100,
+      --  /16
+      Val_101,
+      --  /32
+      Val_110,
+      --  /64
+      others_k
+     )
      with Size => 3;
    for SCKDIVCR_PCKD_Field use
      (Val_000 => 0,
@@ -156,20 +157,21 @@ package R7FA4M1AB.SYSTEM is
    type SCKDIVCR_PCKC_Field is
      (--  /1
       Val_000,
-      --  /2
-      Val_001,
-      --  /4
-      Val_010,
-      --  /8
-      Val_011,
-      --  /16
-      Val_100,
-      --  /32
-      Val_101,
-      --  /64
-      Val_110,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  /2
+      Val_010,
+      --  /4
+      Val_011,
+      --  /8
+      Val_100,
+      --  /16
+      Val_101,
+      --  /32
+      Val_110,
+      --  /64
+      others_k
+     )
      with Size => 3;
    for SCKDIVCR_PCKC_Field use
      (Val_000 => 0,
@@ -185,20 +187,21 @@ package R7FA4M1AB.SYSTEM is
    type SCKDIVCR_PCKB_Field is
      (--  /1
       Val_000,
-      --  /2
-      Val_001,
-      --  /4
-      Val_010,
-      --  /8
-      Val_011,
-      --  /16
-      Val_100,
-      --  /32
-      Val_101,
-      --  /64
-      Val_110,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  /2
+      Val_010,
+      --  /4
+      Val_011,
+      --  /8
+      Val_100,
+      --  /16
+      Val_101,
+      --  /32
+      Val_110,
+      --  /64
+      others_k
+     )
      with Size => 3;
    for SCKDIVCR_PCKB_Field use
      (Val_000 => 0,
@@ -214,20 +217,21 @@ package R7FA4M1AB.SYSTEM is
    type SCKDIVCR_PCKA_Field is
      (--  /1
       Val_000,
-      --  /2
-      Val_001,
-      --  /4
-      Val_010,
-      --  /8
-      Val_011,
-      --  /16
-      Val_100,
-      --  /32
-      Val_101,
-      --  /64
-      Val_110,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  /2
+      Val_010,
+      --  /4
+      Val_011,
+      --  /8
+      Val_100,
+      --  /16
+      Val_101,
+      --  /32
+      Val_110,
+      --  /64
+      others_k
+     )
      with Size => 3;
    for SCKDIVCR_PCKA_Field use
      (Val_000 => 0,
@@ -246,20 +250,21 @@ package R7FA4M1AB.SYSTEM is
    type SCKDIVCR_ICK_Field is
      (--  /1
       Val_000,
-      --  /2
-      Val_001,
-      --  /4
-      Val_010,
-      --  /8
-      Val_011,
-      --  /16
-      Val_100,
-      --  /32
-      Val_101,
-      --  /64
-      Val_110,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  /2
+      Val_010,
+      --  /4
+      Val_011,
+      --  /8
+      Val_100,
+      --  /16
+      Val_101,
+      --  /32
+      Val_110,
+      --  /64
+      others_k
+     )
      with Size => 3;
    for SCKDIVCR_ICK_Field use
      (Val_000 => 0,
@@ -275,20 +280,21 @@ package R7FA4M1AB.SYSTEM is
    type SCKDIVCR_FCK_Field is
      (--  /1
       Val_000,
-      --  /2
-      Val_001,
-      --  /4
-      Val_010,
-      --  /8
-      Val_011,
-      --  /16
-      Val_100,
-      --  /32
-      Val_101,
-      --  /64
-      Val_110,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  /2
+      Val_010,
+      --  /4
+      Val_011,
+      --  /8
+      Val_100,
+      --  /16
+      Val_101,
+      --  /32
+      Val_110,
+      --  /64
+      others_k
+     )
      with Size => 3;
    for SCKDIVCR_FCK_Field use
      (Val_000 => 0,
@@ -302,36 +308,36 @@ package R7FA4M1AB.SYSTEM is
 
    --  System Clock Division Control Register
    type SCKDIVCR_Register is record
-      PCKD       : SCKDIVCR_PCKD_Field := R7FA4M1AB.SYSTEM.Val_100;
       --  Peripheral Module Clock D (PCLKD) Select
+      PCKD       : SCKDIVCR_PCKD_Field := R7FA4M1AB.SYSTEM.Val_100;
+      --  This bit is read as 0. The write value should be 0.
       Reserved   : SCKDIVCR_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      PCKC       : SCKDIVCR_PCKC_Field := R7FA4M1AB.SYSTEM.Val_100;
       --  Peripheral Module Clock C (PCLKC) Select
+      PCKC       : SCKDIVCR_PCKC_Field := R7FA4M1AB.SYSTEM.Val_100;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_1 : SCKDIVCR_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      PCKB       : SCKDIVCR_PCKB_Field := R7FA4M1AB.SYSTEM.Val_100;
       --  Peripheral Module Clock B (PCLKB) Select
+      PCKB       : SCKDIVCR_PCKB_Field := R7FA4M1AB.SYSTEM.Val_100;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_2 : SCKDIVCR_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      PCKA       : SCKDIVCR_PCKA_Field := R7FA4M1AB.SYSTEM.Val_100;
       --  Peripheral Module Clock A (PCLKA) Select
+      PCKA       : SCKDIVCR_PCKA_Field := R7FA4M1AB.SYSTEM.Val_100;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_3 : SCKDIVCR_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      Reserved_4 : SCKDIVCR_Reserved_Field_1 := 16#0#;
       --  These bits are read as 00. The write value should be 00.
-      Reserved_5 : SCKDIVCR_Reserved_Field := 16#1#;
+      Reserved_4 : SCKDIVCR_Reserved_Field_1 := 16#0#;
       --  This bit is read as 1. The write value should be 1.
-      Reserved_6 : SCKDIVCR_Reserved_Field_2 := 16#0#;
+      Reserved_5 : SCKDIVCR_Reserved_Field := 16#1#;
       --  These bits are read as 00000. The write value should be 00000.
-      ICK        : SCKDIVCR_ICK_Field := R7FA4M1AB.SYSTEM.Val_100;
+      Reserved_6 : SCKDIVCR_Reserved_Field_2 := 16#0#;
       --  System Clock (ICLK) Select
+      ICK        : SCKDIVCR_ICK_Field := R7FA4M1AB.SYSTEM.Val_100;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_7 : SCKDIVCR_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      FCK        : SCKDIVCR_FCK_Field := R7FA4M1AB.SYSTEM.Val_100;
       --  Flash IF Clock (FCLK) Select
-      Reserved_8 : SCKDIVCR_Reserved_Field := 16#0#;
+      FCK        : SCKDIVCR_FCK_Field := R7FA4M1AB.SYSTEM.Val_100;
       --  This bit is read as 0. The write value should be 0.
+      Reserved_8 : SCKDIVCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => Standard.System.Low_Order_First;
@@ -360,18 +366,19 @@ package R7FA4M1AB.SYSTEM is
    type SCKSCR_CKSEL_Field is
      (--  HOCO
       Val_000,
-      --  MOCO
-      Val_001,
-      --  LOCO
-      Val_010,
-      --  Main clock oscillator
-      Val_011,
-      --  Sub-clock oscillator
-      Val_100,
-      --  PLL
-      Val_101,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  MOCO
+      Val_010,
+      --  LOCO
+      Val_011,
+      --  Main clock oscillator
+      Val_100,
+      --  Sub-clock oscillator
+      Val_101,
+      --  PLL
+      others_k
+     )
      with Size => 3;
    for SCKSCR_CKSEL_Field use
      (Val_000 => 0,
@@ -386,13 +393,13 @@ package R7FA4M1AB.SYSTEM is
 
    --  System Clock Source Control Register
    type SCKSCR_Register is record
-      CKSEL    : SCKSCR_CKSEL_Field := R7FA4M1AB.SYSTEM.Val_001;
       --  Clock Source Select Selecting the system clock source faster than
       --  32MHz(system clock source > 32MHz ) is prohibit when
       --  SCKDIVCR.ICK[2:0] bits select the division-by-1 and MEMWAIT.MEMWAIT
       --  =0.
-      Reserved : SCKSCR_Reserved_Field := 16#0#;
+      CKSEL    : SCKSCR_CKSEL_Field := R7FA4M1AB.SYSTEM.Val_001;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : SCKSCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -417,10 +424,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  PLL Control Register
    type PLLCR_Register is record
-      PLLSTP   : PLLCR_PLLSTP_Field := R7FA4M1AB.SYSTEM.Val_1;
       --  PLL Stop Control
-      Reserved : PLLCR_Reserved_Field := 16#0#;
+      PLLSTP   : PLLCR_PLLSTP_Field := R7FA4M1AB.SYSTEM.Val_1;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : PLLCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -432,12 +439,13 @@ package R7FA4M1AB.SYSTEM is
 
    --  PLL Frequency Multiplication Factor Select
    type PLLCCR2_PLLMUL_Field is
-     (      --  Reset value for the field
+     (--  x PLLMUL[4:0] +1
       PLLCCR2_PLLMUL_Field_Reset,
-      --  Settings prohibited.
+      --  Reset value for the field
       Val_1111,
---  x PLLMUL[4:0] +1
-      others_k)
+      --  Settings prohibited.
+      others_k
+     )
      with Size => 5;
    for PLLCCR2_PLLMUL_Field use
      (PLLCCR2_PLLMUL_Field_Reset => 7,
@@ -465,12 +473,12 @@ package R7FA4M1AB.SYSTEM is
 
    --  PLL Clock Control Register2
    type PLLCCR2_Register is record
-      PLLMUL   : PLLCCR2_PLLMUL_Field := PLLCCR2_PLLMUL_Field_Reset;
       --  PLL Frequency Multiplication Factor Select
-      Reserved : PLLCCR2_Reserved_Field := 16#0#;
+      PLLMUL   : PLLCCR2_PLLMUL_Field := PLLCCR2_PLLMUL_Field_Reset;
       --  This bit is read as 0. The write value should be 0.
-      PLODIV   : PLLCCR2_PLODIV_Field := R7FA4M1AB.SYSTEM.Val_00;
+      Reserved : PLLCCR2_Reserved_Field := 16#0#;
       --  PLL Output Frequency Division Ratio Select
+      PLODIV   : PLLCCR2_PLODIV_Field := R7FA4M1AB.SYSTEM.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -499,13 +507,13 @@ package R7FA4M1AB.SYSTEM is
 
    --  Memory Wait Cycle Control Register
    type MEMWAIT_Register is record
-      MEMWAIT  : MEMWAIT_MEMWAIT_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Memory Wait Cycle Select Note: Writing 0 to the MEMWAIT is prohibited
       --  when SCKDIVCR.ICK selects division by 1 and SCKSCR.CKSEL[2:0] bits
       --  select the system clock source that is faster than 32 MHz (ICLK > 32
       --  MHz).
-      Reserved : MEMWAIT_Reserved_Field := 16#0#;
+      MEMWAIT  : MEMWAIT_MEMWAIT_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : MEMWAIT_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -531,11 +539,11 @@ package R7FA4M1AB.SYSTEM is
 
    --  Main Clock Oscillator Control Register
    type MOSCCR_Register is record
-      MOSTP    : MOSCCR_MOSTP_Field := R7FA4M1AB.SYSTEM.Val_1;
       --  Main Clock Oscillator Stop Note: MOMCR register must be set before
       --  setting MOSTP to 0.
-      Reserved : MOSCCR_Reserved_Field := 16#0#;
+      MOSTP    : MOSCCR_MOSTP_Field := R7FA4M1AB.SYSTEM.Val_1;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : MOSCCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -560,10 +568,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  High-Speed On-Chip Oscillator Control Register
    type HOCOCR_Register is record
-      HCSTP    : HOCOCR_HCSTP_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  HOCO Stop
-      Reserved : HOCOCR_Reserved_Field := 16#0#;
+      HCSTP    : HOCOCR_HCSTP_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : HOCOCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -588,10 +596,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  Middle-Speed On-Chip Oscillator Control Register
    type MOCOCR_Register is record
-      MCSTP    : MOCOCR_MCSTP_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  MOCO Stop
-      Reserved : MOCOCR_Reserved_Field := 16#0#;
+      MCSTP    : MOCOCR_MCSTP_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : MOCOCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -648,20 +656,20 @@ package R7FA4M1AB.SYSTEM is
 
    --  Oscillation Stabilization Flag Register
    type OSCSF_Register is record
-      HOCOSF     : OSCSF_HOCOSF_Field;
       --  Read-only. HOCO Clock Oscillation Stabilization Flag NOTE: The HOCOSF
       --  bit value after a reset is 1 when the OFS1.HOCOEN bit is 0. It is 0
       --  when the OFS1.HOCOEN bit is 1.
+      HOCOSF     : OSCSF_HOCOSF_Field;
+      --  Read-only. These bits are read as 00.
       Reserved   : OSCSF_Reserved_Field;
-      --  Read-only. These bits are read as 00.
-      MOSCSF     : OSCSF_MOSCSF_Field;
       --  Read-only. Main Clock Oscillation Stabilization Flag
-      Reserved_1 : OSCSF_Reserved_Field_1;
+      MOSCSF     : OSCSF_MOSCSF_Field;
       --  Read-only. This bit is read as 0.
-      PLLSF      : OSCSF_PLLSF_Field;
+      Reserved_1 : OSCSF_Reserved_Field_1;
       --  Read-only. PLL Clock Oscillation Stabilization Flag
-      Reserved_2 : OSCSF_Reserved_Field;
+      PLLSF      : OSCSF_PLLSF_Field;
       --  Read-only. These bits are read as 00.
+      Reserved_2 : OSCSF_Reserved_Field;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -679,16 +687,17 @@ package R7FA4M1AB.SYSTEM is
    type CKOCR_CKOSEL_Field is
      (--  HOCO
       Val_000,
-      --  MOCO
-      Val_001,
-      --  LOCO
-      Val_010,
-      --  MOSC
-      Val_011,
-      --  SOSC
-      Val_100,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  MOCO
+      Val_010,
+      --  LOCO
+      Val_011,
+      --  MOSC
+      Val_100,
+      --  SOSC
+      others_k
+     )
      with Size => 3;
    for CKOCR_CKOSEL_Field use
      (Val_000 => 0,
@@ -742,14 +751,14 @@ package R7FA4M1AB.SYSTEM is
 
    --  Clock Out Control Register
    type CKOCR_Register is record
-      CKOSEL   : CKOCR_CKOSEL_Field := R7FA4M1AB.SYSTEM.Val_000;
       --  Clock out source select
-      Reserved : CKOCR_Reserved_Field := 16#0#;
+      CKOSEL   : CKOCR_CKOSEL_Field := R7FA4M1AB.SYSTEM.Val_000;
       --  This bit is read as 0. The write value should be 0.
-      CKODIV   : CKOCR_CKODIV_Field := R7FA4M1AB.SYSTEM.Val_000;
+      Reserved : CKOCR_Reserved_Field := 16#0#;
       --  Clock out input frequency Division Select
-      CKOEN    : CKOCR_CKOEN_Field := R7FA4M1AB.SYSTEM.Val_0;
+      CKODIV   : CKOCR_CKODIV_Field := R7FA4M1AB.SYSTEM.Val_000;
       --  Clock out enable
+      CKOEN    : CKOCR_CKOEN_Field := R7FA4M1AB.SYSTEM.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -765,12 +774,13 @@ package R7FA4M1AB.SYSTEM is
    type TRCKCR_TRCK_Field is
      (--  /1
       Val_0000,
-      --  /2(value after reset)
-      Val_0001,
-      --  /4
-      Val_0010,
       --  Setting prohibited
-      others_k)
+      Val_0001,
+      --  /2(value after reset)
+      Val_0010,
+      --  /4
+      others_k
+     )
      with Size => 4;
    for TRCKCR_TRCK_Field use
      (Val_0000 => 0,
@@ -793,12 +803,12 @@ package R7FA4M1AB.SYSTEM is
 
    --  Trace Clock Control Register
    type TRCKCR_Register is record
-      TRCK     : TRCKCR_TRCK_Field := R7FA4M1AB.SYSTEM.Val_0001;
       --  Trace Clock operating frequency select
-      Reserved : TRCKCR_Reserved_Field := 16#0#;
+      TRCK     : TRCKCR_TRCK_Field := R7FA4M1AB.SYSTEM.Val_0001;
       --  These bits are read as 000. The write value should be 000.
-      TRCKEN   : TRCKCR_TRCKEN_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved : TRCKCR_Reserved_Field := 16#0#;
       --  Trace Clock operating enable
+      TRCKEN   : TRCKCR_TRCKEN_Field := R7FA4M1AB.SYSTEM.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -837,12 +847,12 @@ package R7FA4M1AB.SYSTEM is
 
    --  Oscillation Stop Detection Control Register
    type OSTDCR_Register is record
-      OSTDIE   : OSTDCR_OSTDIE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Oscillation Stop Detection Interrupt Enable
-      Reserved : OSTDCR_Reserved_Field := 16#0#;
+      OSTDIE   : OSTDCR_OSTDIE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
-      OSTDE    : OSTDCR_OSTDE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved : OSTDCR_Reserved_Field := 16#0#;
       --  Oscillation Stop Detection Function Enable
+      OSTDE    : OSTDCR_OSTDE_Field := R7FA4M1AB.SYSTEM.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -868,12 +878,12 @@ package R7FA4M1AB.SYSTEM is
 
    --  Oscillation Stop Detection Status Register
    type OSTDSR_Register is record
-      OSTDF    : OSTDSR_OSTDF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Oscillation Stop Detection Flag
-      Reserved : OSTDSR_Reserved_Field := 16#0#;
+      OSTDF    : OSTDSR_OSTDF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : OSTDSR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -887,14 +897,15 @@ package R7FA4M1AB.SYSTEM is
    type SLCDSCKCR_LCDSCKSEL_Field is
      (--  LOCO
       Val_000,
-      --  SOSC
-      Val_001,
-      --  MOSC
-      Val_010,
-      --  HOCO
-      Val_100,
       --  Settings other than above are prohibited.
-      others_k)
+      Val_001,
+      --  SOSC
+      Val_010,
+      --  MOSC
+      Val_100,
+      --  HOCO
+      others_k
+     )
      with Size => 3;
    for SLCDSCKCR_LCDSCKSEL_Field use
      (Val_000 => 0,
@@ -918,12 +929,12 @@ package R7FA4M1AB.SYSTEM is
 
    --  Segment LCD Source Clock Control Register
    type SLCDSCKCR_Register is record
-      LCDSCKSEL : SLCDSCKCR_LCDSCKSEL_Field := R7FA4M1AB.SYSTEM.Val_000;
       --  LCD Source Clock (LCDSRCCLK) Select
-      Reserved  : SLCDSCKCR_Reserved_Field := 16#0#;
+      LCDSCKSEL : SLCDSCKCR_LCDSCKSEL_Field := R7FA4M1AB.SYSTEM.Val_000;
       --  These bits are read as 0000. The write value should be 0000.
-      LCDSCKEN  : SLCDSCKCR_LCDSCKEN_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved  : SLCDSCKCR_Reserved_Field := 16#0#;
       --  LCD Source Clock Out Enable
+      LCDSCKEN  : SLCDSCKCR_LCDSCKEN_Field := R7FA4M1AB.SYSTEM.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -973,15 +984,15 @@ package R7FA4M1AB.SYSTEM is
 
    --  Snooze Control Register
    type SNZCR_Register is record
-      RXDREQEN : SNZCR_RXDREQEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  RXD0 Snooze Request Enable NOTE: Do not set to 1 other than in
       --  asynchronous mode.
-      SNZDTCEN : SNZCR_SNZDTCEN_Field := R7FA4M1AB.SYSTEM.Val_0;
+      RXDREQEN : SNZCR_RXDREQEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  DTC Enable in Snooze Mode
-      Reserved : SNZCR_Reserved_Field := 16#0#;
+      SNZDTCEN : SNZCR_SNZDTCEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 00000. The write value should be 00000.
-      SNZE     : SNZCR_SNZE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved : SNZCR_Reserved_Field := 16#0#;
       --  Snooze Mode Enable
+      SNZE     : SNZCR_SNZE_Field := R7FA4M1AB.SYSTEM.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1063,20 +1074,20 @@ package R7FA4M1AB.SYSTEM is
 
    --  Snooze End Control Register
    type SNZEDCR_Register is record
-      AGTUNFED  : SNZEDCR_AGTUNFED_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  AGT1 Underflow Snooze End Enable
-      DTCZRED   : SNZEDCR_DTCZRED_Field := R7FA4M1AB.SYSTEM.Val_0;
+      AGTUNFED  : SNZEDCR_AGTUNFED_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Last DTC Transmission Completion Snooze End Enable
-      DTCNZRED  : SNZEDCR_DTCNZRED_Field := R7FA4M1AB.SYSTEM.Val_0;
+      DTCZRED   : SNZEDCR_DTCZRED_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Not Last DTC Transmission Completion Snooze End Enable
-      AD0MATED  : SNZEDCR_AD0MATED_Field := R7FA4M1AB.SYSTEM.Val_0;
+      DTCNZRED  : SNZEDCR_DTCNZRED_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  ADC140 Compare Match Snooze End Enable
-      AD0UMTED  : SNZEDCR_AD0UMTED_Field := R7FA4M1AB.SYSTEM.Val_0;
+      AD0MATED  : SNZEDCR_AD0MATED_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  ADC140 Compare Mismatch Snooze End Enable
-      Reserved  : SNZEDCR_Reserved_Field := 16#0#;
+      AD0UMTED  : SNZEDCR_AD0UMTED_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      SCI0UMTED : SNZEDCR_SCI0UMTED_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved  : SNZEDCR_Reserved_Field := 16#0#;
       --  SCI0 Address Mismatch Snooze End Enable
+      SCI0UMTED : SNZEDCR_SCI0UMTED_Field := R7FA4M1AB.SYSTEM.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1113,11 +1124,11 @@ package R7FA4M1AB.SYSTEM is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt13;
             --  SNZREQEN as a value
+            Val : R7FA4M1AB.UInt13;
          when True =>
-            Arr : SNZREQCR_SNZREQEN_Field_Array;
             --  SNZREQEN as an array
+            Arr : SNZREQCR_SNZREQEN_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 13;
@@ -1151,11 +1162,11 @@ package R7FA4M1AB.SYSTEM is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  SNZREQEN as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : SNZREQCR_SNZREQEN_Field_Array_1;
             --  SNZREQEN as an array
+            Arr : SNZREQCR_SNZREQEN_Field_Array_1;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -1200,11 +1211,11 @@ package R7FA4M1AB.SYSTEM is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt3;
             --  SNZREQEN as a value
+            Val : R7FA4M1AB.UInt3;
          when True =>
-            Arr : SNZREQCR_SNZREQEN_Field_Array_2;
             --  SNZREQEN as an array
+            Arr : SNZREQCR_SNZREQEN_Field_Array_2;
       end case;
    end record
      with Unchecked_Union, Size => 3;
@@ -1238,11 +1249,11 @@ package R7FA4M1AB.SYSTEM is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt3;
             --  SNZREQEN as a value
+            Val : R7FA4M1AB.UInt3;
          when True =>
-            Arr : SNZREQCR_SNZREQEN_Field_Array_3;
             --  SNZREQEN as an array
+            Arr : SNZREQCR_SNZREQEN_Field_Array_3;
       end case;
    end record
      with Unchecked_Union, Size => 3;
@@ -1254,30 +1265,30 @@ package R7FA4M1AB.SYSTEM is
 
    --  Snooze Request Control Register
    type SNZREQCR_Register is record
+      --  Snooze Request Enable 0 Enable IRQ0 pin snooze request
       SNZREQEN   : SNZREQCR_SNZREQEN_Field :=
                     (As_Array => False, Val => 16#0#);
-      --  Snooze Request Enable 0 Enable IRQ0 pin snooze request
-      Reserved   : SNZREQCR_Reserved_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
+      Reserved   : SNZREQCR_Reserved_Field := 16#0#;
+      --  Snooze Request Enable 14 Enable IRQ14 pin snooze request
       SNZREQEN_1 : SNZREQCR_SNZREQEN_Field_1 :=
                     (As_Array => False, Val => 16#0#);
-      --  Snooze Request Enable 14 Enable IRQ14 pin snooze request
-      Reserved_1 : SNZREQCR_Reserved_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      SNZREQEN17 : SNZREQCR_SNZREQEN17_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved_1 : SNZREQCR_Reserved_Field := 16#0#;
       --  Snooze Request Enable 17 Enable KINT snooze request
-      Reserved_2 : SNZREQCR_Reserved_Field_1 := 16#0#;
+      SNZREQEN17 : SNZREQCR_SNZREQEN17_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved_2 : SNZREQCR_Reserved_Field_1 := 16#0#;
+      --  Snooze Request Enable 23 Enable RTC alarm snooze request
       SNZREQEN_2 : SNZREQCR_SNZREQEN_Field_2 :=
                     (As_Array => False, Val => 16#0#);
-      --  Snooze Request Enable 23 Enable RTC alarm snooze request
-      Reserved_3 : SNZREQCR_Reserved_Field_2 := 16#0#;
       --  These bits are read as 00. The write value should be 00.
+      Reserved_3 : SNZREQCR_Reserved_Field_2 := 16#0#;
+      --  Snooze Request Enable 28 Enable AGT1 underflow snooze request
       SNZREQEN_3 : SNZREQCR_SNZREQEN_Field_3 :=
                     (As_Array => False, Val => 16#0#);
-      --  Snooze Request Enable 28 Enable AGT1 underflow snooze request
-      Reserved_4 : SNZREQCR_Reserved_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
+      Reserved_4 : SNZREQCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1322,14 +1333,14 @@ package R7FA4M1AB.SYSTEM is
 
    --  Flash Operation Control Register
    type FLSTOP_Register is record
-      FLSTOP     : FLSTOP_FLSTOP_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Selecting ON/OFF of the Flash Memory Operation
+      FLSTOP     : FLSTOP_FLSTOP_Field := R7FA4M1AB.SYSTEM.Val_0;
+      --  These bits are read as 000. The write value should be 000.
       Reserved   : FLSTOP_Reserved_Field := 16#0#;
-      --  These bits are read as 000. The write value should be 000.
-      FLSTPF     : FLSTOP_FLSTPF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Read-only. Flash Memory Operation Status Flag
-      Reserved_1 : FLSTOP_Reserved_Field := 16#0#;
+      FLSTPF     : FLSTOP_FLSTPF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_1 : FLSTOP_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1375,14 +1386,14 @@ package R7FA4M1AB.SYSTEM is
 
    --  Operating Power Control Register
    type OPCCR_Register is record
-      OPCM       : OPCCR_OPCM_Field := R7FA4M1AB.SYSTEM.Val_10;
       --  Operating Power Control Mode Select
-      Reserved   : OPCCR_Reserved_Field := 16#0#;
+      OPCM       : OPCCR_OPCM_Field := R7FA4M1AB.SYSTEM.Val_10;
       --  These bits are read as 00. The write value should be 00.
-      OPCMTSF    : OPCCR_OPCMTSF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved   : OPCCR_Reserved_Field := 16#0#;
       --  Read-only. Operating Power Control Mode Transition Status Flag
-      Reserved_1 : OPCCR_Reserved_Field_1 := 16#0#;
+      OPCMTSF    : OPCCR_OPCMTSF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_1 : OPCCR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1398,26 +1409,27 @@ package R7FA4M1AB.SYSTEM is
    type MOSCWTCR_MSTS_Field is
      (--  Wait time = 2 cycles (0.25 us)
       Val_0000,
-      --  Wait time = 1024 cycles (128 us)
-      Val_0001,
-      --  Wait time = 2048 cycles (256 us)
-      Val_0010,
-      --  Wait time = 4096 cycles (512 us)
-      Val_0011,
-      --  Wait time = 8192 cycles (1024 us)
-      Val_0100,
-      --  Wait time = 16384 cycles (2048 us) (value after reset)
-      Val_0101,
-      --  Wait time = 32768 cycles (4096 us)
-      Val_0110,
-      --  Wait time = 65536 cycles (8192 us)
-      Val_0111,
-      --  Wait time = 131072 cycles (16384 us)
-      Val_1000,
-      --  Wait time = 262144 cycles (32768 us).
-      Val_1001,
       --  Setting prohibited
-      others_k)
+      Val_0001,
+      --  Wait time = 1024 cycles (128 us)
+      Val_0010,
+      --  Wait time = 2048 cycles (256 us)
+      Val_0011,
+      --  Wait time = 4096 cycles (512 us)
+      Val_0100,
+      --  Wait time = 8192 cycles (1024 us)
+      Val_0101,
+      --  Wait time = 16384 cycles (2048 us) (value after reset)
+      Val_0110,
+      --  Wait time = 32768 cycles (4096 us)
+      Val_0111,
+      --  Wait time = 65536 cycles (8192 us)
+      Val_1000,
+      --  Wait time = 131072 cycles (16384 us)
+      Val_1001,
+      --  Wait time = 262144 cycles (32768 us).
+      others_k
+     )
      with Size => 4;
    for MOSCWTCR_MSTS_Field use
      (Val_0000 => 0,
@@ -1436,10 +1448,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  Main Clock Oscillator Wait Control Register
    type MOSCWTCR_Register is record
-      MSTS     : MOSCWTCR_MSTS_Field := R7FA4M1AB.SYSTEM.Val_0101;
       --  Main clock oscillator wait time setting
-      Reserved : MOSCWTCR_Reserved_Field := 16#0#;
+      MSTS     : MOSCWTCR_MSTS_Field := R7FA4M1AB.SYSTEM.Val_0101;
       --  These bits are read as 0000. The write value should be 0000.
+      Reserved : MOSCWTCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1451,12 +1463,13 @@ package R7FA4M1AB.SYSTEM is
 
    --  HOCO wait time setting
    type HOCOWTCR_HSTS_Field is
-     (      --  If HOCO frequency is other than 64MHz, should set the value to 101b.
+     (--  Setting prohibited
       Val_101,
-      --  If HOCO frequency = 64MHz, should set the value to 110b.
+      --  If HOCO frequency is other than 64MHz, should set the value to 101b.
       Val_110,
---  Setting prohibited
-      others_k)
+      --  If HOCO frequency = 64MHz, should set the value to 110b.
+      others_k
+     )
      with Size => 3;
    for HOCOWTCR_HSTS_Field use
      (Val_101 => 5,
@@ -1467,10 +1480,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  High-Speed On-Chip Oscillator Wait Control Register
    type HOCOWTCR_Register is record
-      HSTS     : HOCOWTCR_HSTS_Field := R7FA4M1AB.SYSTEM.Val_101;
       --  HOCO wait time setting
-      Reserved : HOCOWTCR_Reserved_Field := 16#0#;
+      HSTS     : HOCOWTCR_HSTS_Field := R7FA4M1AB.SYSTEM.Val_101;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : HOCOWTCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1506,14 +1519,14 @@ package R7FA4M1AB.SYSTEM is
 
    --  Sub Operating Power Control Register
    type SOPCCR_Register is record
-      SOPCM      : SOPCCR_SOPCM_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Sub Operating Power Control Mode Select
+      SOPCM      : SOPCCR_SOPCM_Field := R7FA4M1AB.SYSTEM.Val_0;
+      --  These bits are read as 000. The write value should be 000.
       Reserved   : SOPCCR_Reserved_Field := 16#0#;
-      --  These bits are read as 000. The write value should be 000.
-      SOPCMTSF   : SOPCCR_SOPCMTSF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Read-only. Sub Operating Power Control Mode Transition Status Flag
-      Reserved_1 : SOPCCR_Reserved_Field := 16#0#;
+      SOPCMTSF   : SOPCCR_SOPCMTSF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_1 : SOPCCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1635,58 +1648,58 @@ package R7FA4M1AB.SYSTEM is
 
    --  Reset Status Register 1
    type RSTSR1_Register is record
-      IWDTRF     : RSTSR1_IWDTRF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Independent Watchdog Timer Reset Detect Flag Note:
       --  Only 0 can be written to clear the flag. The reset flag must be
       --  written as 0 after the reset flag is read as 1.
-      WDTRF      : RSTSR1_WDTRF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      IWDTRF     : RSTSR1_IWDTRF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Watchdog Timer Reset Detect Flag Note: Only 0 can be
       --  written to clear the flag. The reset flag must be written as 0 after
       --  the reset flag is read as 1.
-      SWRF       : RSTSR1_SWRF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      WDTRF      : RSTSR1_WDTRF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Software Reset Detect Flag Note: Only 0 can be written
       --  to clear the flag. The reset flag must be written as 0 after the
       --  reset flag is read as 1.
-      Reserved   : RSTSR1_Reserved_Field := 16#0#;
+      SWRF       : RSTSR1_SWRF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 00000. The write value should be 00000.
-      RPERF      : RSTSR1_RPERF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved   : RSTSR1_Reserved_Field := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. RAM Parity Error Reset Detect Flag Note: Only 0 can be
       --  written to clear the flag. The reset flag must be written as 0 after
       --  the reset flag is read as 1.
-      REERF      : RSTSR1_REERF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      RPERF      : RSTSR1_RPERF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. RAM ECC Error Reset Detect Flag Note: Only 0 can be
       --  written to clear the flag. The reset flag must be written as 0 after
       --  the reset flag is read as 1.
-      BUSSRF     : RSTSR1_BUSSRF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      REERF      : RSTSR1_REERF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Bus Slave MPU Reset Detect Flag Note: Only 0 can be
       --  written to clear the flag. The reset flag must be written as 0 after
       --  the reset flag is read as 1.
-      BUSMRF     : RSTSR1_BUSMRF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      BUSSRF     : RSTSR1_BUSSRF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Bus Master MPU Reset Detect Flag Note: Only 0 can be
       --  written to clear the flag. The reset flag must be written as 0 after
       --  the reset flag is read as 1.
-      SPERF      : RSTSR1_SPERF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      BUSMRF     : RSTSR1_BUSMRF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. SP Error Reset Detect Flag Note: Only 0 can be written
       --  to clear the flag. The reset flag must be written as 0 after the
       --  reset flag is read as 1.
-      Reserved_1 : RSTSR1_Reserved_Field_1 := 16#0#;
+      SPERF      : RSTSR1_SPERF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_1 : RSTSR1_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1708,10 +1721,11 @@ package R7FA4M1AB.SYSTEM is
    type BKRACR_BKRACS_Field is
      (--  Access control disable. When System clock source is SOSC or LOCO.
       Val_000,
-      --  Access control enable. System clock source is other than SOSC or LOCO.
-      Val_110,
       --  Setting prohibited
-      others_k)
+      Val_110,
+      --  Access control enable. System clock source is other than SOSC or LOCO.
+      others_k
+     )
      with Size => 3;
    for BKRACR_BKRACS_Field use
      (Val_000 => 0,
@@ -1722,10 +1736,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  Backup Register Access Control Register
    type BKRACR_Register is record
-      BKRACS   : BKRACR_BKRACS_Field := R7FA4M1AB.SYSTEM.Val_110;
       --  Backup Register Access Control Register
-      Reserved : BKRACR_Reserved_Field := 16#0#;
+      BKRACS   : BKRACR_BKRACS_Field := R7FA4M1AB.SYSTEM.Val_110;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : BKRACR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1750,10 +1764,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  USB Clock Control register
    type USBCKCR_Register is record
-      USBCLKSEL : USBCKCR_USBCLKSEL_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  USB Clock Source Select
-      Reserved  : USBCKCR_Reserved_Field := 16#0#;
+      USBCLKSEL : USBCKCR_USBCLKSEL_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved  : USBCKCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1795,12 +1809,12 @@ package R7FA4M1AB.SYSTEM is
 
    --  Voltage Monitor %s Circuit Control Register 1
    type LVDCR_Register is record
-      IDTSEL   : LVDCR10_IDTSEL_Field := R7FA4M1AB.SYSTEM.Val_01;
       --  Voltage Monitor Interrupt Generation Condition Select
-      IRQSEL   : LVDCR10_IRQSEL_Field := R7FA4M1AB.SYSTEM.Val_0;
+      IDTSEL   : LVDCR10_IDTSEL_Field := R7FA4M1AB.SYSTEM.Val_01;
       --  Voltage Monitor Interrupt Type Select
-      Reserved : LVDCR_Reserved_Field := 16#0#;
+      IRQSEL   : LVDCR10_IRQSEL_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : LVDCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1839,16 +1853,16 @@ package R7FA4M1AB.SYSTEM is
 
    --  Voltage Monitor %s Circuit Status Register
    type LVDSR_Register is record
-      DET      : LVDSR0_DET_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Voltage Monitor Voltage Change Detection Flag NOTE:
       --  Only 0 can be written to this bit. After writing 0 to this bit, it
       --  takes 2 system clock cycles for the bit to be read as 0.
-      MON      : LVDSR0_MON_Field := R7FA4M1AB.SYSTEM.Val_1;
+      DET      : LVDSR0_DET_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Read-only. Voltage Monitor 1 Signal Monitor Flag
-      Reserved : LVDSR_Reserved_Field := 16#0#;
+      MON      : LVDSR0_MON_Field := R7FA4M1AB.SYSTEM.Val_1;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : LVDSR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1880,11 +1894,11 @@ package R7FA4M1AB.SYSTEM is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  PRC as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : PRCR_PRC_Field_Array;
             --  PRC as an array
+            Arr : PRCR_PRC_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -1911,10 +1925,11 @@ package R7FA4M1AB.SYSTEM is
 
    --  PRC Key Code
    type PRCR_PRKEY_Field is
-     (      --  Enables writing to the PRCR register.
+     (--  Disables writing to the PRCR register.
       Val_0x5A,
---  Disables writing to the PRCR register.
-      others_k)
+      --  Enables writing to the PRCR register.
+      others_k
+     )
      with Size => 8;
    for PRCR_PRKEY_Field use
      (Val_0x5A => 90,
@@ -1922,16 +1937,16 @@ package R7FA4M1AB.SYSTEM is
 
    --  Protect Register
    type PRCR_Register is record
-      PRC        : PRCR_PRC_Field := (As_Array => False, Val => 16#0#);
       --  Protect Bit 0
-      Reserved   : PRCR_Reserved_Field := 16#0#;
+      PRC        : PRCR_PRC_Field := (As_Array => False, Val => 16#0#);
       --  This bit is read as 0. The write value should be 0.
-      PRC3       : PRCR_PRC3_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved   : PRCR_Reserved_Field := 16#0#;
       --  Protect Bit 3
-      Reserved_1 : PRCR_Reserved_Field_1 := 16#0#;
+      PRC3       : PRCR_PRC3_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 0000. The write value should be 0000.
-      PRKEY      : PRCR_PRKEY_Field := R7FA4M1AB.SYSTEM.others_k;
+      Reserved_1 : PRCR_Reserved_Field_1 := 16#0#;
       --  Write-only. PRC Key Code
+      PRKEY      : PRCR_PRKEY_Field := R7FA4M1AB.SYSTEM.others_k;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => Standard.System.Low_Order_First;
@@ -1959,10 +1974,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  System Control OCD Control Register
    type SYOCDCR_Register is record
-      Reserved : SYOCDCR_Reserved_Field := 16#0#;
       --  These bits are read as 0000000. The write value should be 0000000.
-      DBGEN    : SYOCDCR_DBGEN_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved : SYOCDCR_Reserved_Field := 16#0#;
       --  Debugger Enable bit
+      DBGEN    : SYOCDCR_DBGEN_Field := R7FA4M1AB.SYSTEM.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2028,32 +2043,32 @@ package R7FA4M1AB.SYSTEM is
 
    --  Reset Status Register 0
    type RSTSR0_Register is record
-      PORF     : RSTSR0_PORF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Power-On Reset Detect Flag Note: Only 0 can be written
       --  to clear the flag. The reset flag must be written with 0 after the
       --  reset flag is read as 1.
-      LVD0RF   : RSTSR0_LVD0RF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      PORF     : RSTSR0_PORF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Voltage Monitor 0 Reset Detect Flag Note: Only 0 can
       --  be written to clear the flag. The reset flag must be written with 0
       --  after the reset flag is read as 1.
-      LVD1RF   : RSTSR0_LVD1RF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      LVD0RF   : RSTSR0_LVD0RF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Voltage Monitor 1 Reset Detect Flag Note: Only 0 can
       --  be written to clear the flag. The reset flag must be written with 0
       --  after the reset flag is read as 1.
-      LVD2RF   : RSTSR0_LVD2RF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      LVD1RF   : RSTSR0_LVD1RF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Voltage Monitor 2 Reset Detect Flag Note: Only 0 can
       --  be written to clear the flag. The reset flag must be written with 0
       --  after the reset flag is read as 1.
-      Reserved : RSTSR0_Reserved_Field := 16#0#;
+      LVD2RF   : RSTSR0_LVD2RF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 0000. The write value should be 0000.
+      Reserved : RSTSR0_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2082,13 +2097,13 @@ package R7FA4M1AB.SYSTEM is
 
    --  Reset Status Register 2
    type RSTSR2_Register is record
-      CWSF     : RSTSR2_CWSF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of one shall set (set to one) the corresponding bit in
       --  the field. *** This field is modified following a read operation ***.
       --  Cold/Warm Start Determination Flag Note: Only 1 can be written to set
       --  the flag.
-      Reserved : RSTSR2_Reserved_Field := 16#0#;
+      CWSF     : RSTSR2_CWSF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : RSTSR2_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2128,16 +2143,16 @@ package R7FA4M1AB.SYSTEM is
 
    --  Main Clock Oscillator Mode Oscillation Control Register
    type MOMCR_Register is record
-      Reserved   : MOMCR_Reserved_Field := 16#0#;
       --  These bits are read as 000. The write value should be 000.
-      MODRV1     : MOMCR_MODRV1_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved   : MOMCR_Reserved_Field := 16#0#;
       --  Main Clock Oscillator Drive Capability 1 Switching
-      Reserved_1 : MOMCR_Reserved_Field_1 := 16#0#;
+      MODRV1     : MOMCR_MODRV1_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      MOSEL      : MOMCR_MOSEL_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved_1 : MOMCR_Reserved_Field_1 := 16#0#;
       --  Main Clock Oscillator Switching
-      Reserved_2 : MOMCR_Reserved_Field_2 := 16#0#;
+      MOSEL      : MOMCR_MOSEL_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  This bit is read as 0. The write value should be 0.
+      Reserved_2 : MOMCR_Reserved_Field_2 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2164,11 +2179,11 @@ package R7FA4M1AB.SYSTEM is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt4;
             --  Reserved as a value
+            Val : R7FA4M1AB.UInt4;
          when True =>
-            Arr : LVCMPCR_Reserved_Field_Array;
             --  Reserved as an array
+            Arr : LVCMPCR_Reserved_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 4;
@@ -2204,17 +2219,17 @@ package R7FA4M1AB.SYSTEM is
 
    --  Voltage Monitor Circuit Control Register
    type LVCMPCR_Register is record
+      --  These bits are read as 00. The write value should be 00.
       Reserved   : LVCMPCR_Reserved_Field :=
                     (As_Array => False, Val => 16#0#);
-      --  These bits are read as 00. The write value should be 00.
+      --  This bit is read as 0. The write value should be 0.
       Reserved_1 : LVCMPCR_Reserved_Field_1 := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      LVD1E      : LVCMPCR_LVD1E_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Voltage Detection 1 Enable
-      LVD2E      : LVCMPCR_LVD2E_Field := R7FA4M1AB.SYSTEM.Val_0;
+      LVD1E      : LVCMPCR_LVD1E_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Voltage Detection 2 Enable
-      Reserved_2 : LVCMPCR_Reserved_Field_1 := 16#0#;
+      LVD2E      : LVCMPCR_LVD2E_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  This bit is read as 0. The write value should be 0.
+      Reserved_2 : LVCMPCR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2232,38 +2247,39 @@ package R7FA4M1AB.SYSTEM is
    type LVDLVLR_LVD1LVL_Field is
      (--  4.29V (Vdet1_0)
       Val_00000,
-      --  4.14V (Vdet1_1)
-      Val_00001,
-      --  4.02V (Vdet1_2)
-      Val_00010,
-      --  3.84V (Vdet1_3)
-      Val_00011,
-      --  3.10V (Vdet1_4)
-      Val_00100,
-      --  3.00V (Vdet1_5)
-      Val_00101,
-      --  2.90V (Vdet1_6)
-      Val_00110,
-      --  2.79V (Vdet1_7)
-      Val_00111,
-      --  2.68V (Vdet1_8)
-      Val_01000,
-      --  2.58V (Vdet1_9)
-      Val_01001,
-      --  2.48V (Vdet1_A)
-      Val_01010,
-      --  2.20V (Vdet1_B)
-      Val_01011,
-      --  1.96V (Vdet1_C)
-      Val_01100,
-      --  1.86V (Vdet1_D)
-      Val_01101,
-      --  1.75V (Vdet1_E)
-      Val_01110,
-      --  1.65V (Vdet1_F)
-      Val_01111,
       --  Setting prohibited
-      others_k)
+      Val_00001,
+      --  4.14V (Vdet1_1)
+      Val_00010,
+      --  4.02V (Vdet1_2)
+      Val_00011,
+      --  3.84V (Vdet1_3)
+      Val_00100,
+      --  3.10V (Vdet1_4)
+      Val_00101,
+      --  3.00V (Vdet1_5)
+      Val_00110,
+      --  2.90V (Vdet1_6)
+      Val_00111,
+      --  2.79V (Vdet1_7)
+      Val_01000,
+      --  2.68V (Vdet1_8)
+      Val_01001,
+      --  2.58V (Vdet1_9)
+      Val_01010,
+      --  2.48V (Vdet1_A)
+      Val_01011,
+      --  2.20V (Vdet1_B)
+      Val_01100,
+      --  1.96V (Vdet1_C)
+      Val_01101,
+      --  1.86V (Vdet1_D)
+      Val_01110,
+      --  1.75V (Vdet1_E)
+      Val_01111,
+      --  1.65V (Vdet1_F)
+      others_k
+     )
      with Size => 5;
    for LVDLVLR_LVD1LVL_Field use
      (Val_00000 => 0,
@@ -2289,14 +2305,15 @@ package R7FA4M1AB.SYSTEM is
    type LVDLVLR_LVD2LVL_Field is
      (--  4.29V (Vdet2_0)
       Val_000,
-      --  4.14V (Vdet2_1)
-      Val_001,
-      --  4.02V (Vdet2_2)
-      Val_010,
-      --  3.84V (Vdet2_3)
-      Val_011,
       --  Setting prohibited.
-      others_k)
+      Val_001,
+      --  4.14V (Vdet2_1)
+      Val_010,
+      --  4.02V (Vdet2_2)
+      Val_011,
+      --  3.84V (Vdet2_3)
+      others_k
+     )
      with Size => 3;
    for LVDLVLR_LVD2LVL_Field use
      (Val_000 => 0,
@@ -2307,12 +2324,12 @@ package R7FA4M1AB.SYSTEM is
 
    --  Voltage Detection Level Select Register
    type LVDLVLR_Register is record
-      LVD1LVL : LVDLVLR_LVD1LVL_Field := R7FA4M1AB.SYSTEM.Val_00111;
       --  Voltage Detection 1 Level Select (Standard voltage during drop in
       --  voltage)
-      LVD2LVL : LVDLVLR_LVD2LVL_Field := R7FA4M1AB.SYSTEM.Val_000;
+      LVD1LVL : LVDLVLR_LVD1LVL_Field := R7FA4M1AB.SYSTEM.Val_00111;
       --  Voltage Detection 2 Level Select (Standard voltage during drop in
       --  voltage)
+      LVD2LVL : LVDLVLR_LVD2LVL_Field := R7FA4M1AB.SYSTEM.Val_000;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2373,18 +2390,18 @@ package R7FA4M1AB.SYSTEM is
 
    --  Voltage Monitor %s Circuit Control Register 0
    type LVDCR0_Register is record
-      RIE        : LVDCR0_RIE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Voltage Monitor Interrupt/Reset Enable
-      Reserved   : LVDCR0_Reserved_Field := 16#0#;
+      RIE        : LVDCR0_RIE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      CMPE       : LVDCR0_CMPE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved   : LVDCR0_Reserved_Field := 16#0#;
       --  Voltage Monitor Circuit Comparison Result Output Enable
-      Reserved_1 : LVDCR0_Reserved_Field_1 := 16#0#;
+      CMPE       : LVDCR0_CMPE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 000. The write value should be 000.
-      RI         : LVDCR0_RI_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved_1 : LVDCR0_Reserved_Field_1 := 16#0#;
       --  Voltage Monitor Circuit Mode Select
-      RN         : LVDCR0_RN_Field := R7FA4M1AB.SYSTEM.Val_1;
+      RI         : LVDCR0_RI_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Voltage Monitor Reset Negate Select
+      RN         : LVDCR0_RN_Field := R7FA4M1AB.SYSTEM.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2416,10 +2433,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Control Register1
    type VBTCR1_Register is record
-      BPWSWSTP : VBTCR1_BPWSWSTP_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Battery Power supply Switch Stop
-      Reserved : VBTCR1_Reserved_Field := 16#0#;
+      BPWSWSTP : VBTCR1_BPWSWSTP_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : VBTCR1_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2444,10 +2461,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  Sub-Clock Oscillator Control Register
    type SOSCCR_Register is record
-      SOSTP    : SOSCCR_SOSTP_Field := R7FA4M1AB.SYSTEM.Val_1;
       --  Sub-Clock Oscillator Stop
-      Reserved : SOSCCR_Reserved_Field := 16#0#;
+      SOSTP    : SOSCCR_SOSTP_Field := R7FA4M1AB.SYSTEM.Val_1;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : SOSCCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2478,10 +2495,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  Sub Clock Oscillator Mode Control Register
    type SOMCR_Register is record
-      SODRV    : SOMCR_SODRV_Field := R7FA4M1AB.SYSTEM.Val_00;
       --  Sub-Clock Oscillator Drive Capability Switching
-      Reserved : SOMCR_Reserved_Field := 16#0#;
+      SODRV    : SOMCR_SODRV_Field := R7FA4M1AB.SYSTEM.Val_00;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : SOMCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2506,10 +2523,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  Low-Speed On-Chip Oscillator Control Register
    type LOCOCR_Register is record
-      LCSTP    : LOCOCR_LCSTP_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  LOCO Stop
-      Reserved : LOCOCR_Reserved_Field := 16#0#;
+      LCSTP    : LOCOCR_LCSTP_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : LOCOCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2553,14 +2570,14 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Control Register2
    type VBTCR2_Register is record
-      Reserved   : VBTCR2_Reserved_Field := 16#0#;
       --  These bits are read as 0000. The write value should be 0000.
-      VBTLVDEN   : VBTCR2_VBTLVDEN_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved   : VBTCR2_Reserved_Field := 16#0#;
       --  VBATT Pin Low Voltage Detect Enable Bit
-      Reserved_1 : VBTCR2_Reserved_Field_1 := 16#0#;
+      VBTLVDEN   : VBTCR2_VBTLVDEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      VBTLVDLVL  : VBTCR2_VBTLVDLVL_Field := R7FA4M1AB.SYSTEM.Val_00;
+      Reserved_1 : VBTCR2_Reserved_Field_1 := 16#0#;
       --  VBATT Pin Voltage Low Voltage Detect Level Select Bit
+      VBTLVDLVL  : VBTCR2_VBTLVDLVL_Field := R7FA4M1AB.SYSTEM.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2611,20 +2628,20 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Status Register
    type VBTSR_Register is record
-      VBTRDF     : VBTSR_VBTRDF_Field := R7FA4M1AB.SYSTEM.Val_1;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. VBAT_R Reset Detect Flag
-      VBTBLDF    : VBTSR_VBTBLDF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VBTRDF     : VBTSR_VBTRDF_Field := R7FA4M1AB.SYSTEM.Val_1;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. VBATT Battery Low voltage Detect Flag
-      Reserved   : VBTSR_Reserved_Field := 16#0#;
+      VBTBLDF    : VBTSR_VBTBLDF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      VBTRVLD    : VBTSR_VBTRVLD_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved   : VBTSR_Reserved_Field := 16#0#;
       --  Read-only. VBATT_R Valid
-      Reserved_1 : VBTSR_Reserved_Field_1 := 16#0#;
+      VBTRVLD    : VBTSR_VBTRVLD_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_1 : VBTSR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2652,10 +2669,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Comparator Control Register
    type VBTCMPCR_Register is record
-      VBTCMPE  : VBTCMPCR_VBTCMPE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATT pin low voltage detect circuit output enable
-      Reserved : VBTCMPCR_Reserved_Field := 16#0#;
+      VBTCMPE  : VBTCMPCR_VBTCMPE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : VBTCMPCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2691,12 +2708,12 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Pin Low Voltage Detect Interrupt Control Register
    type VBTLVDICR_Register is record
-      VBTLVDIE   : VBTLVDICR_VBTLVDIE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATT Pin Low Voltage Detect Interrupt Enable bit
-      VBTLVDISEL : VBTLVDICR_VBTLVDISEL_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VBTLVDIE   : VBTLVDICR_VBTLVDIE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Pin Low Voltage Detect Interrupt Select bit
-      Reserved   : VBTLVDICR_Reserved_Field := 16#0#;
+      VBTLVDISEL : VBTLVDICR_VBTLVDISEL_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved   : VBTLVDICR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2722,10 +2739,10 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Wakeup function Control Register
    type VBTWCTLR_Register is record
-      VWEN     : VBTWCTLR_VWEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATT wakeup enable
-      Reserved : VBTWCTLR_Reserved_Field := 16#0#;
+      VWEN     : VBTWCTLR_VWEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : VBTWCTLR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2785,18 +2802,18 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Wakeup I/O 0 Output Trigger Select Register
    type VBTWCH0OTSR_Register is record
-      Reserved   : VBTWCH0OTSR_Reserved_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      CH0VCH1TE  : VBTWCH0OTSR_CH0VCH1TE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved   : VBTWCH0OTSR_Reserved_Field := 16#0#;
       --  VBATWIO0 Output VBATWIO1 Trigger Enable
-      CH0VCH2TE  : VBTWCH0OTSR_CH0VCH2TE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      CH0VCH1TE  : VBTWCH0OTSR_CH0VCH1TE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO0 Output VBATWIO2 Trigger Enable
-      CH0VRTCTE  : VBTWCH0OTSR_CH0VRTCTE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      CH0VCH2TE  : VBTWCH0OTSR_CH0VCH2TE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO0 Output RTC Periodic Signal Enable
-      CH0VRTCATE : VBTWCH0OTSR_CH0VRTCATE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      CH0VRTCTE  : VBTWCH0OTSR_CH0VRTCTE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO0 Output RTC Alarm Signal Enable
-      Reserved_1 : VBTWCH0OTSR_Reserved_Field_1 := 16#0#;
+      CH0VRTCATE : VBTWCH0OTSR_CH0VRTCATE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_1 : VBTWCH0OTSR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2860,18 +2877,18 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Wakeup I/O 1 Output Trigger Select Register
    type VBTWCH1OTSR_Register is record
-      CH1VCH0TE  : VBTWCH1OTSR_CH1VCH0TE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO1 Output VBATWIO0 Trigger Enable
-      Reserved   : VBTWCH1OTSR_Reserved_Field := 16#0#;
+      CH1VCH0TE  : VBTWCH1OTSR_CH1VCH0TE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      CH1VCH2TE  : VBTWCH1OTSR_CH1VCH2TE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved   : VBTWCH1OTSR_Reserved_Field := 16#0#;
       --  VBATWIO1 Output VBATWIO2 Trigger Enable
-      CH1VRTCTE  : VBTWCH1OTSR_CH1VRTCTE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      CH1VCH2TE  : VBTWCH1OTSR_CH1VCH2TE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO1 Output RTC Periodic Signal Enable
-      CH1VRTCATE : VBTWCH1OTSR_CH1VRTCATE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      CH1VRTCTE  : VBTWCH1OTSR_CH1VRTCTE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO1 Output RTC Alarm Signal Enable
-      Reserved_1 : VBTWCH1OTSR_Reserved_Field_1 := 16#0#;
+      CH1VRTCATE : VBTWCH1OTSR_CH1VRTCATE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_1 : VBTWCH1OTSR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2935,18 +2952,18 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Wakeup I/O 2 Output Trigger Select Register
    type VBTWCH2OTSR_Register is record
-      CH2VCH0TE  : VBTWCH2OTSR_CH2VCH0TE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO2 Output VBATWIO0 Trigger Enable
-      CH2VCH1TE  : VBTWCH2OTSR_CH2VCH1TE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      CH2VCH0TE  : VBTWCH2OTSR_CH2VCH0TE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO2 Output VBATWIO1 Trigger Enable
-      Reserved   : VBTWCH2OTSR_Reserved_Field := 16#0#;
+      CH2VCH1TE  : VBTWCH2OTSR_CH2VCH1TE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      CH2VRTCTE  : VBTWCH2OTSR_CH2VRTCTE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      Reserved   : VBTWCH2OTSR_Reserved_Field := 16#0#;
       --  VBATWIO2 Output RTC Periodic Signal Enable
-      CH2VRTCATE : VBTWCH2OTSR_CH2VRTCATE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      CH2VRTCTE  : VBTWCH2OTSR_CH2VRTCTE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO2 Output RTC Alarm Signal Enable
-      Reserved_1 : VBTWCH2OTSR_Reserved_Field_1 := 16#0#;
+      CH2VRTCATE : VBTWCH2OTSR_CH2VRTCATE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_1 : VBTWCH2OTSR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -2997,14 +3014,14 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Input Control Register
    type VBTICTLR_Register is record
-      VCH0INEN : VBTICTLR_VCH0INEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATT Wakeup I/O 0 Input Enable
-      VCH1INEN : VBTICTLR_VCH1INEN_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VCH0INEN : VBTICTLR_VCH0INEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATT Wakeup I/O 1 Input Enable
-      VCH2INEN : VBTICTLR_VCH2INEN_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VCH1INEN : VBTICTLR_VCH1INEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATT Wakeup I/O 2 Input Enable
-      Reserved : VBTICTLR_Reserved_Field := 16#0#;
+      VCH2INEN : VBTICTLR_VCH2INEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : VBTICTLR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -3086,20 +3103,20 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Output Control Register
    type VBTOCTLR_Register is record
-      VCH0OEN   : VBTOCTLR_VCH0OEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATT Wakeup I/O 0 Output Enable
-      VCH1OEN   : VBTOCTLR_VCH1OEN_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VCH0OEN   : VBTOCTLR_VCH0OEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATT Wakeup I/O 1 Output Enable
-      VCH2OEN   : VBTOCTLR_VCH2OEN_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VCH1OEN   : VBTOCTLR_VCH1OEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATT Wakeup I/O 2 Output Enable
-      VOUT0LSEL : VBTOCTLR_VOUT0LSEL_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VCH2OEN   : VBTOCTLR_VCH2OEN_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATT Wakeup I/O 0 Output Level Selection
-      VOUT1LSEL : VBTOCTLR_VOUT1LSEL_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VOUT0LSEL : VBTOCTLR_VOUT0LSEL_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATT Wakeup I/O 1 Output Level Selection
-      VOUT2LSEL : VBTOCTLR_VOUT2LSEL_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VOUT1LSEL : VBTOCTLR_VOUT1LSEL_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATT Wakeup I/O 2 Output Level Selection
-      Reserved  : VBTOCTLR_Reserved_Field := 16#0#;
+      VOUT2LSEL : VBTOCTLR_VOUT2LSEL_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 00. The write value should be 00.
+      Reserved  : VBTOCTLR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -3173,18 +3190,18 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Wakeup Trigger source Enable Register
    type VBTWTER_Register is record
-      VCH0E    : VBTWTER_VCH0E_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO0 Pin Enable
-      VCH1E    : VBTWTER_VCH1E_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VCH0E    : VBTWTER_VCH0E_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO1 Pin Enable
-      VCH2E    : VBTWTER_VCH2E_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VCH1E    : VBTWTER_VCH1E_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO2 Pin Enable
-      VRTCIE   : VBTWTER_VRTCIE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VCH2E    : VBTWTER_VCH2E_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  RTC Periodic Signal Enable
-      VRTCAE   : VBTWTER_VRTCAE_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VRTCIE   : VBTWTER_VRTCIE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  RTC Alarm Signal Enable
-      Reserved : VBTWTER_Reserved_Field := 16#0#;
+      VRTCAE   : VBTWTER_VRTCAE_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved : VBTWTER_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -3235,14 +3252,14 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Wakeup Trigger source Edge Register
    type VBTWEGR_Register is record
-      VCH0EG   : VBTWEGR_VCH0EG_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO0 Wakeup Trigger Source Edge Select
-      VCH1EG   : VBTWEGR_VCH1EG_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VCH0EG   : VBTWEGR_VCH0EG_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO1 Wakeup Trigger Source Edge Select
-      VCH2EG   : VBTWEGR_VCH2EG_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VCH1EG   : VBTWEGR_VCH1EG_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  VBATWIO2 Wakeup Trigger Source Edge Select
-      Reserved : VBTWEGR_Reserved_Field := 16#0#;
+      VCH2EG   : VBTWEGR_VCH2EG_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : VBTWEGR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -3313,28 +3330,28 @@ package R7FA4M1AB.SYSTEM is
 
    --  VBATT Wakeup trigger source Flag Register
    type VBTWFR_Register is record
-      VCH0F    : VBTWFR_VCH0F_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. VBATWIO0 Wakeup Trigger Flag
-      VCH1F    : VBTWFR_VCH1F_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VCH0F    : VBTWFR_VCH0F_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. VBATWIO1 Wakeup Trigger Flag
-      VCH2F    : VBTWFR_VCH2F_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VCH1F    : VBTWFR_VCH1F_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. VBATWIO2 Wakeup Trigger Flag
-      VRTCIF   : VBTWFR_VRTCIF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VCH2F    : VBTWFR_VCH2F_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. VBATT RTC-Interval Wakeup Trigger Flag
-      VRTCAF   : VBTWFR_VRTCAF_Field := R7FA4M1AB.SYSTEM.Val_0;
+      VRTCIF   : VBTWFR_VRTCIF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. VBATT RTC-Alarm Wakeup Trigger Flag
-      Reserved : VBTWFR_Reserved_Field := 16#0#;
+      VRTCAF   : VBTWFR_VRTCAF_Field := R7FA4M1AB.SYSTEM.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved : VBTWFR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => Standard.System.Low_Order_First;
@@ -3359,126 +3376,126 @@ package R7FA4M1AB.SYSTEM is
 
    --  System Control
    type SYSTEM_Peripheral is record
-      SBYCR       : aliased SBYCR_Register;
       --  Standby Control Register
-      MSTPCRA     : aliased MSTPCRA_Register;
+      SBYCR       : aliased SBYCR_Register;
       --  Module Stop Control Register A
-      SCKDIVCR    : aliased SCKDIVCR_Register;
+      MSTPCRA     : aliased MSTPCRA_Register;
       --  System Clock Division Control Register
-      SCKSCR      : aliased SCKSCR_Register;
+      SCKDIVCR    : aliased SCKDIVCR_Register;
       --  System Clock Source Control Register
-      PLLCR       : aliased PLLCR_Register;
+      SCKSCR      : aliased SCKSCR_Register;
       --  PLL Control Register
-      PLLCCR2     : aliased PLLCCR2_Register;
+      PLLCR       : aliased PLLCR_Register;
       --  PLL Clock Control Register2
-      MEMWAIT     : aliased MEMWAIT_Register;
+      PLLCCR2     : aliased PLLCCR2_Register;
       --  Memory Wait Cycle Control Register
-      MOSCCR      : aliased MOSCCR_Register;
+      MEMWAIT     : aliased MEMWAIT_Register;
       --  Main Clock Oscillator Control Register
-      HOCOCR      : aliased HOCOCR_Register;
+      MOSCCR      : aliased MOSCCR_Register;
       --  High-Speed On-Chip Oscillator Control Register
-      MOCOCR      : aliased MOCOCR_Register;
+      HOCOCR      : aliased HOCOCR_Register;
       --  Middle-Speed On-Chip Oscillator Control Register
-      OSCSF       : aliased OSCSF_Register;
+      MOCOCR      : aliased MOCOCR_Register;
       --  Oscillation Stabilization Flag Register
-      CKOCR       : aliased CKOCR_Register;
+      OSCSF       : aliased OSCSF_Register;
       --  Clock Out Control Register
-      TRCKCR      : aliased TRCKCR_Register;
+      CKOCR       : aliased CKOCR_Register;
       --  Trace Clock Control Register
-      OSTDCR      : aliased OSTDCR_Register;
+      TRCKCR      : aliased TRCKCR_Register;
       --  Oscillation Stop Detection Control Register
-      OSTDSR      : aliased OSTDSR_Register;
+      OSTDCR      : aliased OSTDCR_Register;
       --  Oscillation Stop Detection Status Register
-      SLCDSCKCR   : aliased SLCDSCKCR_Register;
+      OSTDSR      : aliased OSTDSR_Register;
       --  Segment LCD Source Clock Control Register
-      MOCOUTCR    : aliased R7FA4M1AB.Byte;
+      SLCDSCKCR   : aliased SLCDSCKCR_Register;
       --  MOCO User Trimming Control Register
-      HOCOUTCR    : aliased R7FA4M1AB.Byte;
+      MOCOUTCR    : aliased R7FA4M1AB.Byte;
       --  HOCO User Trimming Control Register
-      SNZCR       : aliased SNZCR_Register;
+      HOCOUTCR    : aliased R7FA4M1AB.Byte;
       --  Snooze Control Register
-      SNZEDCR     : aliased SNZEDCR_Register;
+      SNZCR       : aliased SNZCR_Register;
       --  Snooze End Control Register
-      SNZREQCR    : aliased SNZREQCR_Register;
+      SNZEDCR     : aliased SNZEDCR_Register;
       --  Snooze Request Control Register
-      FLSTOP      : aliased FLSTOP_Register;
+      SNZREQCR    : aliased SNZREQCR_Register;
       --  Flash Operation Control Register
-      OPCCR       : aliased OPCCR_Register;
+      FLSTOP      : aliased FLSTOP_Register;
       --  Operating Power Control Register
-      MOSCWTCR    : aliased MOSCWTCR_Register;
+      OPCCR       : aliased OPCCR_Register;
       --  Main Clock Oscillator Wait Control Register
-      HOCOWTCR    : aliased HOCOWTCR_Register;
+      MOSCWTCR    : aliased MOSCWTCR_Register;
       --  High-Speed On-Chip Oscillator Wait Control Register
-      SOPCCR      : aliased SOPCCR_Register;
+      HOCOWTCR    : aliased HOCOWTCR_Register;
       --  Sub Operating Power Control Register
-      RSTSR1      : aliased RSTSR1_Register;
+      SOPCCR      : aliased SOPCCR_Register;
       --  Reset Status Register 1
-      BKRACR      : aliased BKRACR_Register;
+      RSTSR1      : aliased RSTSR1_Register;
       --  Backup Register Access Control Register
-      USBCKCR     : aliased USBCKCR_Register;
+      BKRACR      : aliased BKRACR_Register;
       --  USB Clock Control register
+      USBCKCR     : aliased USBCKCR_Register;
+      --  Voltage Monitor %s Circuit Control Register 1
       LVDCR10     : aliased LVDCR_Register;
-      --  Voltage Monitor %s Circuit Control Register 1
+      --  Voltage Monitor %s Circuit Status Register
       LVDSR0      : aliased LVDSR_Register;
-      --  Voltage Monitor %s Circuit Status Register
-      LVDCR11     : aliased LVDCR_Register;
       --  Voltage Monitor %s Circuit Control Register 1
-      LVDSR1      : aliased LVDSR_Register;
+      LVDCR11     : aliased LVDCR_Register;
       --  Voltage Monitor %s Circuit Status Register
-      PRCR        : aliased PRCR_Register;
+      LVDSR1      : aliased LVDSR_Register;
       --  Protect Register
-      SYOCDCR     : aliased SYOCDCR_Register;
+      PRCR        : aliased PRCR_Register;
       --  System Control OCD Control Register
-      RSTSR0      : aliased RSTSR0_Register;
+      SYOCDCR     : aliased SYOCDCR_Register;
       --  Reset Status Register 0
-      RSTSR2      : aliased RSTSR2_Register;
+      RSTSR0      : aliased RSTSR0_Register;
       --  Reset Status Register 2
-      MOMCR       : aliased MOMCR_Register;
+      RSTSR2      : aliased RSTSR2_Register;
       --  Main Clock Oscillator Mode Oscillation Control Register
-      LVCMPCR     : aliased LVCMPCR_Register;
+      MOMCR       : aliased MOMCR_Register;
       --  Voltage Monitor Circuit Control Register
-      LVDLVLR     : aliased LVDLVLR_Register;
+      LVCMPCR     : aliased LVCMPCR_Register;
       --  Voltage Detection Level Select Register
-      LVDCR0      : aliased LVDCR0_Registers;
+      LVDLVLR     : aliased LVDLVLR_Register;
       --  Voltage Monitor %s Circuit Control Register 0
-      VBTCR1      : aliased VBTCR1_Register;
+      LVDCR0      : aliased LVDCR0_Registers;
       --  VBATT Control Register1
-      SOSCCR      : aliased SOSCCR_Register;
+      VBTCR1      : aliased VBTCR1_Register;
       --  Sub-Clock Oscillator Control Register
-      SOMCR       : aliased SOMCR_Register;
+      SOSCCR      : aliased SOSCCR_Register;
       --  Sub Clock Oscillator Mode Control Register
-      LOCOCR      : aliased LOCOCR_Register;
+      SOMCR       : aliased SOMCR_Register;
       --  Low-Speed On-Chip Oscillator Control Register
-      LOCOUTCR    : aliased R7FA4M1AB.Byte;
+      LOCOCR      : aliased LOCOCR_Register;
       --  LOCO User Trimming Control Register
-      VBTCR2      : aliased VBTCR2_Register;
+      LOCOUTCR    : aliased R7FA4M1AB.Byte;
       --  VBATT Control Register2
-      VBTSR       : aliased VBTSR_Register;
+      VBTCR2      : aliased VBTCR2_Register;
       --  VBATT Status Register
-      VBTCMPCR    : aliased VBTCMPCR_Register;
+      VBTSR       : aliased VBTSR_Register;
       --  VBATT Comparator Control Register
-      VBTLVDICR   : aliased VBTLVDICR_Register;
+      VBTCMPCR    : aliased VBTCMPCR_Register;
       --  VBATT Pin Low Voltage Detect Interrupt Control Register
-      VBTWCTLR    : aliased VBTWCTLR_Register;
+      VBTLVDICR   : aliased VBTLVDICR_Register;
       --  VBATT Wakeup function Control Register
-      VBTWCH0OTSR : aliased VBTWCH0OTSR_Register;
+      VBTWCTLR    : aliased VBTWCTLR_Register;
       --  VBATT Wakeup I/O 0 Output Trigger Select Register
-      VBTWCH1OTSR : aliased VBTWCH1OTSR_Register;
+      VBTWCH0OTSR : aliased VBTWCH0OTSR_Register;
       --  VBATT Wakeup I/O 1 Output Trigger Select Register
-      VBTWCH2OTSR : aliased VBTWCH2OTSR_Register;
+      VBTWCH1OTSR : aliased VBTWCH1OTSR_Register;
       --  VBATT Wakeup I/O 2 Output Trigger Select Register
-      VBTICTLR    : aliased VBTICTLR_Register;
+      VBTWCH2OTSR : aliased VBTWCH2OTSR_Register;
       --  VBATT Input Control Register
-      VBTOCTLR    : aliased VBTOCTLR_Register;
+      VBTICTLR    : aliased VBTICTLR_Register;
       --  VBATT Output Control Register
-      VBTWTER     : aliased VBTWTER_Register;
+      VBTOCTLR    : aliased VBTOCTLR_Register;
       --  VBATT Wakeup Trigger source Enable Register
-      VBTWEGR     : aliased VBTWEGR_Register;
+      VBTWTER     : aliased VBTWTER_Register;
       --  VBATT Wakeup Trigger source Edge Register
-      VBTWFR      : aliased VBTWFR_Register;
+      VBTWEGR     : aliased VBTWEGR_Register;
       --  VBATT Wakeup trigger source Flag Register
-      VBTBKR      : aliased VBTBKR_Registers;
+      VBTWFR      : aliased VBTWFR_Register;
       --  VBATT Backup Register [%s]
+      VBTBKR      : aliased VBTBKR_Registers;
    end record
      with Volatile;
 

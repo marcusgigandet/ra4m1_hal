@@ -66,19 +66,19 @@ package R7FA4M1AB.DOC is
 
    --  DOC Control Register
    type DOCR_Register is record
-      OMS        : DOCR_OMS_Field := R7FA4M1AB.DOC.Val_00;
       --  Operating Mode Select
-      DCSEL      : DOCR_DCSEL_Field := R7FA4M1AB.DOC.Val_0;
+      OMS        : DOCR_OMS_Field := R7FA4M1AB.DOC.Val_00;
       --  Detection Condition Select
-      Reserved   : DOCR_Reserved_Field := 16#0#;
+      DCSEL      : DOCR_DCSEL_Field := R7FA4M1AB.DOC.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      DOPCF      : DOCR_DOPCF_Field := 16#0#;
+      Reserved   : DOCR_Reserved_Field := 16#0#;
       --  Read-only. Data Operation Circuit Flag Indicates the result of an
       --  operation.
-      DOPCFCL    : DOCR_DOPCFCL_Field := R7FA4M1AB.DOC.Val_0;
+      DOPCF      : DOCR_DOPCF_Field := 16#0#;
       --  DOPCF Clear
-      Reserved_1 : DOCR_Reserved_Field_1 := 16#0#;
+      DOPCFCL    : DOCR_DOPCFCL_Field := R7FA4M1AB.DOC.Val_0;
       --  This bit is read as 0. The write value should be 0.
+      Reserved_1 : DOCR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -98,12 +98,12 @@ package R7FA4M1AB.DOC is
 
    --  Data Operation Circuit
    type DOC_Peripheral is record
-      DOCR  : aliased DOCR_Register;
       --  DOC Control Register
-      DODIR : aliased R7FA4M1AB.UInt16;
+      DOCR  : aliased DOCR_Register;
       --  DOC Data Input Register
-      DODSR : aliased R7FA4M1AB.UInt16;
+      DODIR : aliased R7FA4M1AB.UInt16;
       --  DOC Data Setting Register
+      DODSR : aliased R7FA4M1AB.UInt16;
    end record
      with Volatile;
 

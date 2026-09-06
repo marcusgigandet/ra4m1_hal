@@ -118,22 +118,22 @@ package R7FA4M1AB.ACMPLP is
 
    --  ACMPLP Mode Setting Register
    type COMPMDR_Register is record
-      C0ENB : COMPMDR_C0ENB_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  ACMPLP0 Operation Enable
-      C0WDE : COMPMDR_C0WDE_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C0ENB : COMPMDR_C0ENB_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  ACMPLP0 Window Function Mode Enable
-      C0VRF : COMPMDR_C0VRF_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C0WDE : COMPMDR_C0WDE_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  ACMPLP0 Reference Voltage Selection
-      C0MON : COMPMDR_C0MON_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C0VRF : COMPMDR_C0VRF_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  Read-only. ACMPLP0 Monitor Flag
-      C1ENB : COMPMDR_C1ENB_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C0MON : COMPMDR_C0MON_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  ACMPLP1 Operation Enable
-      C1WDE : COMPMDR_C1WDE_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C1ENB : COMPMDR_C1ENB_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  ACMPLP1 Window Function Mode Enable
-      C1VRF : COMPMDR_C1VRF_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C1WDE : COMPMDR_C1WDE_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  ACMPLP1 Reference Voltage Selection
-      C1MON : COMPMDR_C1MON_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C1VRF : COMPMDR_C1VRF_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  Read-only. ACMPLP1 Monitor Flag
+      C1MON : COMPMDR_C1MON_Field := R7FA4M1AB.ACMPLP.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -229,18 +229,18 @@ package R7FA4M1AB.ACMPLP is
 
    --  ACMPLP Filter Control Register
    type COMPFIR_Register is record
-      C0FCK : COMPFIR_C0FCK_Field := R7FA4M1AB.ACMPLP.Val_00;
       --  ACMPLP0 Filter Select
-      C0EPO : COMPFIR_C0EPO_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C0FCK : COMPFIR_C0FCK_Field := R7FA4M1AB.ACMPLP.Val_00;
       --  ACMPLP0 Edge Polarity Switching
-      C0EDG : COMPFIR_C0EDG_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C0EPO : COMPFIR_C0EPO_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  ACMPLP0 Edge Detection Selection
-      C1FCK : COMPFIR_C1FCK_Field := R7FA4M1AB.ACMPLP.Val_00;
+      C0EDG : COMPFIR_C0EDG_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  ACMPLP1 Filter Select
-      C1EPO : COMPFIR_C1EPO_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C1FCK : COMPFIR_C1FCK_Field := R7FA4M1AB.ACMPLP.Val_00;
       --  ACMPLP1 Edge Polarity Switching
-      C1EDG : COMPFIR_C1EDG_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C1EPO : COMPFIR_C1EPO_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  ACMPLP1 Edge Detection Selection
+      C1EDG : COMPFIR_C1EDG_Field := R7FA4M1AB.ACMPLP.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -315,20 +315,20 @@ package R7FA4M1AB.ACMPLP is
 
    --  ACMPLP Output Control Register
    type COMPOCR_Register is record
-      Reserved   : COMPOCR_Reserved_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      C0OE       : COMPOCR_C0OE_Field := R7FA4M1AB.ACMPLP.Val_0;
+      Reserved   : COMPOCR_Reserved_Field := 16#0#;
       --  ACMPLP0 VCOUT Pin Output Enable
-      C0OP       : COMPOCR_C0OP_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C0OE       : COMPOCR_C0OE_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  ACMPLP0 VCOUT Output Polarity Selection
-      Reserved_1 : COMPOCR_Reserved_Field_1 := 16#0#;
+      C0OP       : COMPOCR_C0OP_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      C1OE       : COMPOCR_C1OE_Field := R7FA4M1AB.ACMPLP.Val_0;
+      Reserved_1 : COMPOCR_Reserved_Field_1 := 16#0#;
       --  ACMPLP1 VCOUT Pin Output Enable
-      C1OP       : COMPOCR_C1OP_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C1OE       : COMPOCR_C1OE_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  ACMPLP1 VCOUT Output Polarity Selection
-      SPDMD      : COMPOCR_SPDMD_Field := R7FA4M1AB.ACMPLP.Val_0;
+      C1OP       : COMPOCR_C1OP_Field := R7FA4M1AB.ACMPLP.Val_0;
       --  ACMPLP0/ACMPLP1 Speed Selection
+      SPDMD      : COMPOCR_SPDMD_Field := R7FA4M1AB.ACMPLP.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -347,12 +347,13 @@ package R7FA4M1AB.ACMPLP is
    type COMPSEL0_CMPSEL20_Field is
      (--  No input
       Val_000,
-      --  CMPIN0 (P100)
-      Val_001,
-      --  CMPIN0 (P503)
-      Val_100,
       --  settings prohibited
-      others_k)
+      Val_001,
+      --  CMPIN0 (P100)
+      Val_100,
+      --  CMPIN0 (P503)
+      others_k
+     )
      with Size => 3;
    for COMPSEL0_CMPSEL20_Field use
      (Val_000 => 0,
@@ -366,12 +367,13 @@ package R7FA4M1AB.ACMPLP is
    type COMPSEL0_CMPSEL64_Field is
      (--  No input
       Val_000,
-      --  CMPIN1 (P102)
-      Val_001,
-      --  CMPIN1 (P501)
-      Val_100,
       --  settings prohibited
-      others_k)
+      Val_001,
+      --  CMPIN1 (P102)
+      Val_100,
+      --  CMPIN1 (P501)
+      others_k
+     )
      with Size => 3;
    for COMPSEL0_CMPSEL64_Field use
      (Val_000 => 0,
@@ -381,14 +383,14 @@ package R7FA4M1AB.ACMPLP is
 
    --  Comparator Input Select Register
    type COMPSEL0_Register is record
-      CMPSEL20   : COMPSEL0_CMPSEL20_Field := R7FA4M1AB.ACMPLP.Val_001;
       --  ACMPLP0 Input(IVCMP0) Selection
+      CMPSEL20   : COMPSEL0_CMPSEL20_Field := R7FA4M1AB.ACMPLP.Val_001;
+      --  This bit is read as 0. The write value should be 0.
       Reserved   : COMPSEL0_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      CMPSEL64   : COMPSEL0_CMPSEL64_Field := R7FA4M1AB.ACMPLP.Val_001;
       --  ACMPLP1 Input (IVCMP1) Selection
-      Reserved_1 : COMPSEL0_Reserved_Field := 16#0#;
+      CMPSEL64   : COMPSEL0_CMPSEL64_Field := R7FA4M1AB.ACMPLP.Val_001;
       --  This bit is read as 0. The write value should be 0.
+      Reserved_1 : COMPSEL0_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -404,14 +406,15 @@ package R7FA4M1AB.ACMPLP is
    type COMPSEL1_CRVS20_Field is
      (--  No input
       Val_000,
-      --  CMPREF0 (P101)
-      Val_001,
-      --  DAC8 (ch0) output
-      Val_010,
-      --  CMPREF0 (P502)
-      Val_100,
       --  settings prohibited.
-      others_k)
+      Val_001,
+      --  CMPREF0 (P101)
+      Val_010,
+      --  DAC8 (ch0) output
+      Val_100,
+      --  CMPREF0 (P502)
+      others_k
+     )
      with Size => 3;
    for COMPSEL1_CRVS20_Field use
      (Val_000 => 0,
@@ -426,14 +429,15 @@ package R7FA4M1AB.ACMPLP is
    type COMPSEL1_CRVS64_Field is
      (--  No input
       Val_000,
-      --  CMPREF1 (P103)
-      Val_001,
-      --  DAC8 (ch1) output
-      Val_010,
-      --  CMPREF1 (P500)
-      Val_100,
       --  settings prohibited.
-      others_k)
+      Val_001,
+      --  CMPREF1 (P103)
+      Val_010,
+      --  DAC8 (ch1) output
+      Val_100,
+      --  CMPREF1 (P500)
+      others_k
+     )
      with Size => 3;
    for COMPSEL1_CRVS64_Field use
      (Val_000 => 0,
@@ -455,14 +459,14 @@ package R7FA4M1AB.ACMPLP is
 
    --  Comparator Reference Voltage Select Register
    type COMPSEL1_Register is record
-      CRVS20   : COMPSEL1_CRVS20_Field := R7FA4M1AB.ACMPLP.Val_001;
       --  ACMPLP0 Reference Voltage(IVREF0) Selection*
-      Reserved : COMPSEL1_Reserved_Field := 16#0#;
+      CRVS20   : COMPSEL1_CRVS20_Field := R7FA4M1AB.ACMPLP.Val_001;
       --  This bit is read as 0. The write value should be 0.
-      CRVS64   : COMPSEL1_CRVS64_Field := R7FA4M1AB.ACMPLP.Val_001;
+      Reserved : COMPSEL1_Reserved_Field := 16#0#;
       --  ACMPLP1 Reference Voltage(IVREF1) Selection
-      C1VRF2   : COMPSEL1_C1VRF2_Field := R7FA4M1AB.ACMPLP.Val_1;
+      CRVS64   : COMPSEL1_CRVS64_Field := R7FA4M1AB.ACMPLP.Val_001;
       --  ACMPLP1 Reference Voltage Selection
+      C1VRF2   : COMPSEL1_C1VRF2_Field := R7FA4M1AB.ACMPLP.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -480,16 +484,16 @@ package R7FA4M1AB.ACMPLP is
 
    --  Low-Power Analog Comparator
    type ACMPLP_Peripheral is record
-      COMPMDR  : aliased COMPMDR_Register;
       --  ACMPLP Mode Setting Register
-      COMPFIR  : aliased COMPFIR_Register;
+      COMPMDR  : aliased COMPMDR_Register;
       --  ACMPLP Filter Control Register
-      COMPOCR  : aliased COMPOCR_Register;
+      COMPFIR  : aliased COMPFIR_Register;
       --  ACMPLP Output Control Register
-      COMPSEL0 : aliased COMPSEL0_Register;
+      COMPOCR  : aliased COMPOCR_Register;
       --  Comparator Input Select Register
-      COMPSEL1 : aliased COMPSEL1_Register;
+      COMPSEL0 : aliased COMPSEL0_Register;
       --  Comparator Reference Voltage Select Register
+      COMPSEL1 : aliased COMPSEL1_Register;
    end record
      with Volatile;
 

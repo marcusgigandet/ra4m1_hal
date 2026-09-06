@@ -35,10 +35,10 @@ package R7FA4M1AB.SRAM is
 
    --  SRAM Parity Error Operation After Detection Register
    type PARIOAD_Register is record
-      OAD      : PARIOAD_OAD_Field := R7FA4M1AB.SRAM.Val_0;
       --  Operation after Detection
-      Reserved : PARIOAD_Reserved_Field := 16#0#;
+      OAD      : PARIOAD_OAD_Field := R7FA4M1AB.SRAM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : PARIOAD_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -61,11 +61,12 @@ package R7FA4M1AB.SRAM is
 
    --  Write Key Code
    type SRAMPRCR_KW_Field is
-     (      --  Writing to the RAMPRCR bit is valid, when the KEY bits are written
---  1111000b.
+     (--  Writing to the RAMPRCR bit is invalid.
       Val_1111000,
---  Writing to the RAMPRCR bit is invalid.
-      others_k)
+      --  Writing to the RAMPRCR bit is valid, when the KEY bits are written
+--  1111000b.
+      others_k
+     )
      with Size => 7;
    for SRAMPRCR_KW_Field use
      (Val_1111000 => 120,
@@ -73,10 +74,10 @@ package R7FA4M1AB.SRAM is
 
    --  SRAM Protection Register
    type SRAMPRCR_Register is record
-      SRAMPRCR : SRAMPRCR_SRAMPRCR_Field := R7FA4M1AB.SRAM.Val_0;
       --  Register Write Control
-      KW       : SRAMPRCR_KW_Field := R7FA4M1AB.SRAM.others_k;
+      SRAMPRCR : SRAMPRCR_SRAMPRCR_Field := R7FA4M1AB.SRAM.Val_0;
       --  Write-only. Write Key Code
+      KW       : SRAMPRCR_KW_Field := R7FA4M1AB.SRAM.others_k;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -107,10 +108,10 @@ package R7FA4M1AB.SRAM is
 
    --  ECC Operating Mode Control Register
    type ECCMODE_Register is record
-      ECCMOD   : ECCMODE_ECCMOD_Field := R7FA4M1AB.SRAM.Val_00;
       --  ECC Operating Mode Select
-      Reserved : ECCMODE_Reserved_Field := 16#0#;
+      ECCMOD   : ECCMODE_ECCMOD_Field := R7FA4M1AB.SRAM.Val_00;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : ECCMODE_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -135,12 +136,12 @@ package R7FA4M1AB.SRAM is
 
    --  ECC 2-Bit Error Status Register
    type ECC2STS_Register is record
-      ECC2ERR  : ECC2STS_ECC2ERR_Field := R7FA4M1AB.SRAM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. ECC 2-Bit Error Status
-      Reserved : ECC2STS_Reserved_Field := 16#0#;
+      ECC2ERR  : ECC2STS_ECC2ERR_Field := R7FA4M1AB.SRAM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : ECC2STS_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -165,10 +166,10 @@ package R7FA4M1AB.SRAM is
 
    --  ECC 1-Bit Error Information Update Enable Register
    type ECC1STSEN_Register is record
-      E1STSEN  : ECC1STSEN_E1STSEN_Field := R7FA4M1AB.SRAM.Val_0;
       --  ECC 1-Bit Error Information Update Enable
-      Reserved : ECC1STSEN_Reserved_Field := 16#0#;
+      E1STSEN  : ECC1STSEN_E1STSEN_Field := R7FA4M1AB.SRAM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : ECC1STSEN_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -193,12 +194,12 @@ package R7FA4M1AB.SRAM is
 
    --  ECC 1-Bit Error Status Register
    type ECC1STS_Register is record
-      ECC1ERR  : ECC1STS_ECC1ERR_Field := R7FA4M1AB.SRAM.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. ECC 1-Bit Error Status
-      Reserved : ECC1STS_Reserved_Field := 16#0#;
+      ECC1ERR  : ECC1STS_ECC1ERR_Field := R7FA4M1AB.SRAM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : ECC1STS_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -221,11 +222,12 @@ package R7FA4M1AB.SRAM is
 
    --  Write Key Code
    type ECCPRCR_KW_Field is
-     (      --  Writing to the ECCRAMPRCR bit is valid, when the KEY bits are written
---  1111000b.
+     (--  Writing to the ECCRAMPRCR bit is invalid.
       Val_1111000,
---  Writing to the ECCRAMPRCR bit is invalid.
-      others_k)
+      --  Writing to the ECCRAMPRCR bit is valid, when the KEY bits are written
+--  1111000b.
+      others_k
+     )
      with Size => 7;
    for ECCPRCR_KW_Field use
      (Val_1111000 => 120,
@@ -233,10 +235,10 @@ package R7FA4M1AB.SRAM is
 
    --  ECC Protection Register
    type ECCPRCR_Register is record
-      ECCPRCR : ECCPRCR_ECCPRCR_Field := R7FA4M1AB.SRAM.Val_0;
       --  Register Write Control
-      KW      : ECCPRCR_KW_Field := R7FA4M1AB.SRAM.others_k;
+      ECCPRCR : ECCPRCR_ECCPRCR_Field := R7FA4M1AB.SRAM.Val_0;
       --  Write-only. Write Key Code
+      KW      : ECCPRCR_KW_Field := R7FA4M1AB.SRAM.others_k;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -259,10 +261,11 @@ package R7FA4M1AB.SRAM is
 
    --  Write Key Code
    type ECCPRCR2_KW2_Field is
-     (      --  These bits enable or disable writes to the ECCPRCR2 bit..
+     (--  Writing to the ECCRAMPRCR2 bit is invalid.
       Val_1111000,
---  Writing to the ECCRAMPRCR2 bit is invalid.
-      others_k)
+      --  These bits enable or disable writes to the ECCPRCR2 bit..
+      others_k
+     )
      with Size => 7;
    for ECCPRCR2_KW2_Field use
      (Val_1111000 => 120,
@@ -270,10 +273,10 @@ package R7FA4M1AB.SRAM is
 
    --  ECC Protection Register 2
    type ECCPRCR2_Register is record
-      ECCPRCR2 : ECCPRCR2_ECCPRCR2_Field := R7FA4M1AB.SRAM.Val_0;
       --  Register Write Control
-      KW2      : ECCPRCR2_KW2_Field := R7FA4M1AB.SRAM.others_k;
+      ECCPRCR2 : ECCPRCR2_ECCPRCR2_Field := R7FA4M1AB.SRAM.Val_0;
       --  Write-only. Write Key Code
+      KW2      : ECCPRCR2_KW2_Field := R7FA4M1AB.SRAM.others_k;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -298,10 +301,10 @@ package R7FA4M1AB.SRAM is
 
    --  ECC Test Control Register
    type ECCETST_Register is record
-      TSTBYP   : ECCETST_TSTBYP_Field := R7FA4M1AB.SRAM.Val_0;
       --  ECC Bypass Select
-      Reserved : ECCETST_Reserved_Field := 16#0#;
+      TSTBYP   : ECCETST_TSTBYP_Field := R7FA4M1AB.SRAM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : ECCETST_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -326,10 +329,10 @@ package R7FA4M1AB.SRAM is
 
    --  SRAM ECC Error Operation After Detection Register
    type ECCOAD_Register is record
-      OAD      : ECCOAD_OAD_Field := R7FA4M1AB.SRAM.Val_0;
       --  Operation after Detection
-      Reserved : ECCOAD_Reserved_Field := 16#0#;
+      OAD      : ECCOAD_OAD_Field := R7FA4M1AB.SRAM.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : ECCOAD_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -345,26 +348,26 @@ package R7FA4M1AB.SRAM is
 
    --  SRAM Control
    type SRAM_Peripheral is record
-      PARIOAD   : aliased PARIOAD_Register;
       --  SRAM Parity Error Operation After Detection Register
-      SRAMPRCR  : aliased SRAMPRCR_Register;
+      PARIOAD   : aliased PARIOAD_Register;
       --  SRAM Protection Register
-      ECCMODE   : aliased ECCMODE_Register;
+      SRAMPRCR  : aliased SRAMPRCR_Register;
       --  ECC Operating Mode Control Register
-      ECC2STS   : aliased ECC2STS_Register;
+      ECCMODE   : aliased ECCMODE_Register;
       --  ECC 2-Bit Error Status Register
-      ECC1STSEN : aliased ECC1STSEN_Register;
+      ECC2STS   : aliased ECC2STS_Register;
       --  ECC 1-Bit Error Information Update Enable Register
-      ECC1STS   : aliased ECC1STS_Register;
+      ECC1STSEN : aliased ECC1STSEN_Register;
       --  ECC 1-Bit Error Status Register
-      ECCPRCR   : aliased ECCPRCR_Register;
+      ECC1STS   : aliased ECC1STS_Register;
       --  ECC Protection Register
-      ECCPRCR2  : aliased ECCPRCR2_Register;
+      ECCPRCR   : aliased ECCPRCR_Register;
       --  ECC Protection Register 2
-      ECCETST   : aliased ECCETST_Register;
+      ECCPRCR2  : aliased ECCPRCR2_Register;
       --  ECC Test Control Register
-      ECCOAD    : aliased ECCOAD_Register;
+      ECCETST   : aliased ECCETST_Register;
       --  SRAM ECC Error Operation After Detection Register
+      ECCOAD    : aliased ECCOAD_Register;
    end record
      with Volatile;
 

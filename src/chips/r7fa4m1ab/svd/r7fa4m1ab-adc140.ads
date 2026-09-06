@@ -112,29 +112,29 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Control Register
    type ADCSR_Register is record
-      DBLANS     : ADCSR_DBLANS_Field := 16#0#;
       --  Double Trigger Channel Select These bits select one analog input
       --  channel for double triggered operation. The setting is only effective
       --  while double trigger mode is selected.
-      Reserved   : ADCSR_Reserved_Field := 16#0#;
+      DBLANS     : ADCSR_DBLANS_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      GBADIE     : ADCSR_GBADIE_Field := R7FA4M1AB.ADC140.Val_0;
+      Reserved   : ADCSR_Reserved_Field := 16#0#;
       --  Group B Scan End Interrupt Enable
-      DBLE       : ADCSR_DBLE_Field := R7FA4M1AB.ADC140.Val_0;
+      GBADIE     : ADCSR_GBADIE_Field := R7FA4M1AB.ADC140.Val_0;
       --  Double Trigger Mode Select
-      EXTRG      : ADCSR_EXTRG_Field := R7FA4M1AB.ADC140.Val_0;
+      DBLE       : ADCSR_DBLE_Field := R7FA4M1AB.ADC140.Val_0;
       --  Trigger Select
-      TRGE       : ADCSR_TRGE_Field := R7FA4M1AB.ADC140.Val_0;
+      EXTRG      : ADCSR_EXTRG_Field := R7FA4M1AB.ADC140.Val_0;
       --  Trigger Start Enable
-      ADHSC      : ADCSR_ADHSC_Field := R7FA4M1AB.ADC140.Val_0;
+      TRGE       : ADCSR_TRGE_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D Conversion Operation Mode Select
-      Reserved_1 : ADCSR_Reserved_Field_1 := 16#0#;
+      ADHSC      : ADCSR_ADHSC_Field := R7FA4M1AB.ADC140.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      ADCS       : ADCSR_ADCS_Field := R7FA4M1AB.ADC140.Val_00;
+      Reserved_1 : ADCSR_Reserved_Field_1 := 16#0#;
       --  Scan Mode Select
-      ADST       : ADCSR_ADST_Field := R7FA4M1AB.ADC140.Val_0;
+      ADCS       : ADCSR_ADCS_Field := R7FA4M1AB.ADC140.Val_00;
       --  *** This field is modified following a read operation ***. A/D
       --  Conversion Start
+      ADST       : ADCSR_ADST_Field := R7FA4M1AB.ADC140.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -321,38 +321,38 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Channel Select Register A0
    type ADANSA0_Register is record
-      ANSA00   : ADANSA0_ANSA00_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN000 Select
-      ANSA01   : ADANSA0_ANSA01_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA00   : ADANSA0_ANSA00_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN001 Select
-      ANSA02   : ADANSA0_ANSA02_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA01   : ADANSA0_ANSA01_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN002 Select
-      ANSA03   : ADANSA0_ANSA03_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA02   : ADANSA0_ANSA02_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN003 Select
-      ANSA04   : ADANSA0_ANSA04_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA03   : ADANSA0_ANSA03_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN004 Select
-      ANSA05   : ADANSA0_ANSA05_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA04   : ADANSA0_ANSA04_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN005 Select
-      ANSA06   : ADANSA0_ANSA06_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA05   : ADANSA0_ANSA05_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN006 Select
-      ANSA07   : ADANSA0_ANSA07_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA06   : ADANSA0_ANSA06_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN007 Select
-      ANSA08   : ADANSA0_ANSA08_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA07   : ADANSA0_ANSA07_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN008 Select
-      ANSA09   : ADANSA0_ANSA09_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA08   : ADANSA0_ANSA08_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN009 Select
-      ANSA010  : ADANSA0_ANSA010_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA09   : ADANSA0_ANSA09_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN010 Select
-      ANSA011  : ADANSA0_ANSA011_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA010  : ADANSA0_ANSA010_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN011 Select
-      ANSA012  : ADANSA0_ANSA012_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA011  : ADANSA0_ANSA011_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN012 Select
-      ANSA013  : ADANSA0_ANSA013_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA012  : ADANSA0_ANSA012_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN013 Select
-      ANSA014  : ADANSA0_ANSA014_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA013  : ADANSA0_ANSA013_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN014 Select
-      Reserved : ADANSA0_Reserved_Field := 16#0#;
+      ANSA014  : ADANSA0_ANSA014_Field := R7FA4M1AB.ADC140.Val_0;
       --  This bit is read as 0. The write value should be 0.
+      Reserved : ADANSA0_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -490,28 +490,28 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Channel Select Register A1
    type ADANSA1_Register is record
-      ANSA16   : ADANSA1_ANSA16_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN016 Select
-      ANSA17   : ADANSA1_ANSA17_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA16   : ADANSA1_ANSA16_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN017 Select
-      ANSA18   : ADANSA1_ANSA18_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA17   : ADANSA1_ANSA17_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN018 Select
-      ANSA19   : ADANSA1_ANSA19_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA18   : ADANSA1_ANSA18_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN019 Select
-      ANSA20   : ADANSA1_ANSA20_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA19   : ADANSA1_ANSA19_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN020 Select
-      ANSA21   : ADANSA1_ANSA21_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA20   : ADANSA1_ANSA20_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN021 Select
-      ANSA22   : ADANSA1_ANSA22_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA21   : ADANSA1_ANSA21_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN022 Select
-      ANSA23   : ADANSA1_ANSA23_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA22   : ADANSA1_ANSA22_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN023 Select
-      ANSA24   : ADANSA1_ANSA24_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA23   : ADANSA1_ANSA23_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN024 Select
-      ANSA25   : ADANSA1_ANSA25_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSA24   : ADANSA1_ANSA24_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN025 Select
-      Reserved : ADANSA1_Reserved_Field := 16#0#;
+      ANSA25   : ADANSA1_ANSA25_Field := R7FA4M1AB.ADC140.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : ADANSA1_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -699,38 +699,38 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D-Converted Value Addition/Average Channel Select Register 0
    type ADADS0_Register is record
-      ADS00    : ADADS0_ADS00_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN000 Select
-      ADS01    : ADADS0_ADS01_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS00    : ADADS0_ADS00_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN001 Select
-      ADS02    : ADADS0_ADS02_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS01    : ADADS0_ADS01_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN002 Select
-      ADS03    : ADADS0_ADS03_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS02    : ADADS0_ADS02_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN003 Select
-      ADS04    : ADADS0_ADS04_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS03    : ADADS0_ADS03_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN004 Select
-      ADS05    : ADADS0_ADS05_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS04    : ADADS0_ADS04_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN005 Select
-      ADS06    : ADADS0_ADS06_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS05    : ADADS0_ADS05_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN006 Select
-      ADS07    : ADADS0_ADS07_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS06    : ADADS0_ADS06_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN007 Select
-      ADS08    : ADADS0_ADS08_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS07    : ADADS0_ADS07_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN008 Select
-      ADS09    : ADADS0_ADS09_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS08    : ADADS0_ADS08_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN009 Select
-      ADS10    : ADADS0_ADS10_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS09    : ADADS0_ADS09_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN010 Select
-      ADS11    : ADADS0_ADS11_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS10    : ADADS0_ADS10_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN011 Select
-      ADS12    : ADADS0_ADS12_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS11    : ADADS0_ADS11_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN012 Select
-      ADS13    : ADADS0_ADS13_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS12    : ADADS0_ADS12_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN013 Select
-      ADS14    : ADADS0_ADS14_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS13    : ADADS0_ADS13_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN014 Select
-      Reserved : ADADS0_Reserved_Field := 16#0#;
+      ADS14    : ADADS0_ADS14_Field := R7FA4M1AB.ADC140.Val_0;
       --  This bit is read as 0. The write value should be 0.
+      Reserved : ADADS0_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -868,28 +868,28 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D-Converted Value Addition/Average Channel Select Register 1
    type ADADS1_Register is record
-      ADS16    : ADADS1_ADS16_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN016 Select
-      ADS17    : ADADS1_ADS17_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS16    : ADADS1_ADS16_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN017 Select
-      ADS18    : ADADS1_ADS18_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS17    : ADADS1_ADS17_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN018 Select
-      ADS19    : ADADS1_ADS19_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS18    : ADADS1_ADS18_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN019 Select
-      ADS20    : ADADS1_ADS20_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS19    : ADADS1_ADS19_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN020 Select
-      ADS21    : ADADS1_ADS21_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS20    : ADADS1_ADS20_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN021 Select
-      ADS22    : ADADS1_ADS22_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS21    : ADADS1_ADS21_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN022 Select
-      ADS23    : ADADS1_ADS23_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS22    : ADADS1_ADS22_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN023 Select
-      ADS24    : ADADS1_ADS24_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS23    : ADADS1_ADS23_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN024 Select
-      ADS25    : ADADS1_ADS25_Field := R7FA4M1AB.ADC140.Val_0;
+      ADS24    : ADADS1_ADS24_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D-Converted Value Addition/Average Channel AN025 Select
-      Reserved : ADADS1_Reserved_Field := 16#0#;
+      ADS25    : ADADS1_ADS25_Field := R7FA4M1AB.ADC140.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : ADADS1_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -915,17 +915,18 @@ package R7FA4M1AB.ADC140 is
    type ADADC_ADC_Field is
      (--  1-time conversion (no addition; same as normal conversion)
       Val_000,
-      --  2-time conversion (addition once)
+      --  Setting prohibited
       Val_001,
-      --  3-time conversion (addition twice)
+      --  2-time conversion (addition once)
       Val_010,
-      --  4-time conversion (addition three times)
+      --  3-time conversion (addition twice)
       Val_011,
+      --  4-time conversion (addition three times)
+      Val_101,
       --  16-time conversion (addition 15 times), can be set when selecting 12-bit
 --  accuracy.
-      Val_101,
-      --  Setting prohibited
-      others_k)
+      others_k
+     )
      with Size => 3;
    for ADADC_ADC_Field use
      (Val_000 => 0,
@@ -953,18 +954,18 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D-Converted Value Addition/Average Count Select Register
    type ADADC_Register is record
-      ADC      : ADADC_ADC_Field := R7FA4M1AB.ADC140.Val_000;
       --  Addition frequency selection bit. NOTE: AVEE bit is valid at the only
       --  setting of ADC[2:0] bits = 001b or 011b. When average mode is
       --  selected by setting the ADADC.AVEE bit to 1, do not set the addition
       --  count to three times (ADADC.ADC[2:0] = 010b)
-      Reserved : ADADC_Reserved_Field := 16#0#;
+      ADC      : ADADC_ADC_Field := R7FA4M1AB.ADC140.Val_000;
       --  These bits are read as 0000. The write value should be 0000.
-      AVEE     : ADADC_AVEE_Field := R7FA4M1AB.ADC140.Val_0;
+      Reserved : ADADC_Reserved_Field := 16#0#;
       --  Average mode enable bit. Note: The AVEE bit converts twice, and only
       --  when converting it four times, is effective. Please do not set
       --  (ADADC.AVEE=1) to conversion (ADADC.ADC 2:0=010b) three times when
       --  you select the average mode.
+      AVEE     : ADADC_AVEE_Field := R7FA4M1AB.ADC140.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -984,7 +985,8 @@ package R7FA4M1AB.ADC140 is
       --  Setting prohibited
       others_k,
       --  A/D conversion is performed with 14-bit accuracy.
-      Val_11)
+      Val_11
+     )
      with Size => 2;
    for ADCER_ADPRC_Field use
      (Val_00 => 0,
@@ -1005,11 +1007,11 @@ package R7FA4M1AB.ADC140 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  Reserved as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : ADCER_Reserved_Field_Array;
             --  Reserved as an array
+            Arr : ADCER_Reserved_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -1086,27 +1088,27 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Control Extended Register
    type ADCER_Register is record
-      Reserved   : ADCER_Reserved_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      ADPRC      : ADCER_ADPRC_Field := R7FA4M1AB.ADC140.Val_00;
+      Reserved   : ADCER_Reserved_Field := 16#0#;
       --  A/D Conversion Accuracy Specify
+      ADPRC      : ADCER_ADPRC_Field := R7FA4M1AB.ADC140.Val_00;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_1 : ADCER_Reserved_Field_1 :=
                     (As_Array => False, Val => 16#0#);
-      --  This bit is read as 0. The write value should be 0.
-      ACE        : ADCER_ACE_Field := R7FA4M1AB.ADC140.Val_0;
       --  A/D Data Register Automatic Clearing Enable
-      Reserved_2 : ADCER_Reserved_Field_2 := 16#0#;
+      ACE        : ADCER_ACE_Field := R7FA4M1AB.ADC140.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      DIAGVAL    : ADCER_DIAGVAL_Field := R7FA4M1AB.ADC140.Val_00;
+      Reserved_2 : ADCER_Reserved_Field_2 := 16#0#;
       --  Self-Diagnosis Conversion Voltage Select
-      DIAGLD     : ADCER_DIAGLD_Field := R7FA4M1AB.ADC140.Val_0;
+      DIAGVAL    : ADCER_DIAGVAL_Field := R7FA4M1AB.ADC140.Val_00;
       --  Self-Diagnosis Mode Select
-      DIAGM      : ADCER_DIAGM_Field := R7FA4M1AB.ADC140.Val_0;
+      DIAGLD     : ADCER_DIAGLD_Field := R7FA4M1AB.ADC140.Val_0;
       --  Self-Diagnosis Enable
-      Reserved_3 : ADCER_Reserved_Field_3 := 16#0#;
+      DIAGM      : ADCER_DIAGM_Field := R7FA4M1AB.ADC140.Val_0;
       --  These bits are read as 000. The write value should be 000.
-      ADRFMT     : ADCER_ADRFMT_Field := R7FA4M1AB.ADC140.Val_0;
+      Reserved_3 : ADCER_Reserved_Field_3 := 16#0#;
       --  A/D Data Register Format Select
+      ADRFMT     : ADCER_ADRFMT_Field := R7FA4M1AB.ADC140.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1130,17 +1132,17 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Conversion Start Trigger Select Register
    type ADSTRGR_Register is record
-      TRSB       : ADSTRGR_TRSB_Field := 16#0#;
       --  A/D Conversion Start Trigger Select for Group B Select the A/D
       --  conversion start trigger for group B in group scan mode.
-      Reserved   : ADSTRGR_Reserved_Field := 16#0#;
+      TRSB       : ADSTRGR_TRSB_Field := 16#0#;
       --  These bits are read as 00. The write value should be 00.
-      TRSA       : ADSTRGR_TRSA_Field := 16#0#;
+      Reserved   : ADSTRGR_Reserved_Field := 16#0#;
       --  A/D Conversion Start Trigger Select Select the A/D conversion start
       --  trigger in single scan mode and continuous mode. In group scan mode,
       --  the A/D conversion start trigger for group A is selected.
-      Reserved_1 : ADSTRGR_Reserved_Field := 16#0#;
+      TRSA       : ADSTRGR_TRSA_Field := 16#0#;
       --  These bits are read as 00. The write value should be 00.
+      Reserved_1 : ADSTRGR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1219,11 +1221,11 @@ package R7FA4M1AB.ADC140 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt3;
             --  Reserved as a value
+            Val : R7FA4M1AB.UInt3;
          when True =>
-            Arr : ADEXICR_Reserved_Field_Array;
             --  Reserved as an array
+            Arr : ADEXICR_Reserved_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 3;
@@ -1244,11 +1246,11 @@ package R7FA4M1AB.ADC140 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  Reserved as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : ADEXICR_Reserved_Field_Array_1;
             --  Reserved as an array
+            Arr : ADEXICR_Reserved_Field_Array_1;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -1260,26 +1262,26 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Conversion Extended Input Control Register
    type ADEXICR_Register is record
-      TSSAD          : ADEXICR_TSSAD_Field := R7FA4M1AB.ADC140.Val_0;
       --  Temperature Sensor Output A/D converted Value Addition/Average Mode
       --  Select
-      OCSAD          : ADEXICR_OCSAD_Field := R7FA4M1AB.ADC140.Val_0;
+      TSSAD          : ADEXICR_TSSAD_Field := R7FA4M1AB.ADC140.Val_0;
       --  Internal Reference Voltage A/D converted Value Addition/Average Mode
       --  Select
-      Reserved       : ADEXICR_Reserved_Field := 16#0#;
+      OCSAD          : ADEXICR_OCSAD_Field := R7FA4M1AB.ADC140.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
-      TSSA           : ADEXICR_TSSA_Field := R7FA4M1AB.ADC140.Val_0;
+      Reserved       : ADEXICR_Reserved_Field := 16#0#;
       --  Temperature Sensor Output A/D Conversion Select
-      OCSA           : ADEXICR_OCSA_Field := R7FA4M1AB.ADC140.Val_0;
+      TSSA           : ADEXICR_TSSA_Field := R7FA4M1AB.ADC140.Val_0;
       --  Internal Reference Voltage A/D Conversion Select
+      OCSA           : ADEXICR_OCSA_Field := R7FA4M1AB.ADC140.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_1     : ADEXICR_Reserved_Field_1 :=
                         (As_Array => False, Val => 16#0#);
-      --  This bit is read as 0. The write value should be 0.
-      Reserved_13_13 : R7FA4M1AB.Bit := 16#0#;
       --  unspecified
+      Reserved_13_13 : R7FA4M1AB.Bit := 16#0#;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_2     : ADEXICR_Reserved_Field_2 :=
                         (As_Array => False, Val => 16#0#);
-      --  This bit is read as 0. The write value should be 0.
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1464,38 +1466,38 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Channel Select Register B0
    type ADANSB0_Register is record
-      ANSB00   : ADANSB0_ANSB00_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN000 Select
-      ANSB01   : ADANSB0_ANSB01_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB00   : ADANSB0_ANSB00_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN001 Select
-      ANSB02   : ADANSB0_ANSB02_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB01   : ADANSB0_ANSB01_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN002 Select
-      ANSB03   : ADANSB0_ANSB03_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB02   : ADANSB0_ANSB02_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN003 Select
-      ANSB04   : ADANSB0_ANSB04_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB03   : ADANSB0_ANSB03_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN004 Select
-      ANSB05   : ADANSB0_ANSB05_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB04   : ADANSB0_ANSB04_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN005 Select
-      ANSB06   : ADANSB0_ANSB06_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB05   : ADANSB0_ANSB05_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN006 Select
-      ANSB07   : ADANSB0_ANSB07_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB06   : ADANSB0_ANSB06_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN007 Select
-      ANSB08   : ADANSB0_ANSB08_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB07   : ADANSB0_ANSB07_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN008 Select
-      ANSB09   : ADANSB0_ANSB09_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB08   : ADANSB0_ANSB08_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN009 Select
-      ANSB10   : ADANSB0_ANSB10_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB09   : ADANSB0_ANSB09_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN010 Select
-      ANSB11   : ADANSB0_ANSB11_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB10   : ADANSB0_ANSB10_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN011 Select
-      ANSB12   : ADANSB0_ANSB12_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB11   : ADANSB0_ANSB11_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN012 Select
-      ANSB13   : ADANSB0_ANSB13_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB12   : ADANSB0_ANSB12_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN013 Select
-      ANSB14   : ADANSB0_ANSB14_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB13   : ADANSB0_ANSB13_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN014 Select
-      Reserved : ADANSB0_Reserved_Field := 16#0#;
+      ANSB14   : ADANSB0_ANSB14_Field := R7FA4M1AB.ADC140.Val_0;
       --  This bit is read as 0. The write value should be 0.
+      Reserved : ADANSB0_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1633,28 +1635,28 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Channel Select Register B1
    type ADANSB1_Register is record
-      ANSB16   : ADANSB1_ANSB16_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN016 Select
-      ANSB17   : ADANSB1_ANSB17_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB16   : ADANSB1_ANSB16_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN017 Select
-      ANSB18   : ADANSB1_ANSB18_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB17   : ADANSB1_ANSB17_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN018 Select
-      ANSB19   : ADANSB1_ANSB19_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB18   : ADANSB1_ANSB18_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN019 Select
-      ANSB20   : ADANSB1_ANSB20_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB19   : ADANSB1_ANSB19_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN020 Select
-      ANSB21   : ADANSB1_ANSB21_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB20   : ADANSB1_ANSB20_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN021 Select
-      ANSB22   : ADANSB1_ANSB22_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB21   : ADANSB1_ANSB21_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN022 Select
-      ANSB23   : ADANSB1_ANSB23_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB22   : ADANSB1_ANSB22_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN023 Select
-      ANSB24   : ADANSB1_ANSB24_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB23   : ADANSB1_ANSB23_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN024 Select
-      ANSB25   : ADANSB1_ANSB25_Field := R7FA4M1AB.ADC140.Val_0;
+      ANSB24   : ADANSB1_ANSB24_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN025 Select
-      Reserved : ADANSB1_Reserved_Field := 16#0#;
+      ANSB25   : ADANSB1_ANSB25_Field := R7FA4M1AB.ADC140.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : ADANSB1_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1696,11 +1698,11 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Self-Diagnosis Data Register
    type ADRD_Register is record
-      AD     : ADRD_AD_Field;
       --  Read-only. A/D-converted value (right-justified) The format for data
       --  determine ADCER.ADRFMT and ADCER.ADPRC.
-      DIAGST : ADRD_DIAGST_Field;
+      AD     : ADRD_AD_Field;
       --  Read-only. Self-Diagnosis Status
+      DIAGST : ADRD_DIAGST_Field;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1724,10 +1726,11 @@ package R7FA4M1AB.ADC140 is
    type ADDISCR_ADNDIS_Field is
      (--  Disconnection detection is disabled
       Val_0000,
-      --  Setting prohibited
-      Val_0001,
       --  ( 1 / ADCLK ) x ADNDIS
-      others_k)
+      Val_0001,
+      --  Setting prohibited
+      others_k
+     )
      with Size => 4;
    for ADDISCR_ADNDIS_Field use
      (Val_0000 => 0,
@@ -1749,12 +1752,12 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Disconnection Detection Control Register
    type ADDISCR_Register is record
-      ADNDIS   : ADDISCR_ADNDIS_Field := R7FA4M1AB.ADC140.Val_0000;
       --  The charging time
-      PCHG     : ADDISCR_PCHG_Field := R7FA4M1AB.ADC140.Val_0;
+      ADNDIS   : ADDISCR_ADNDIS_Field := R7FA4M1AB.ADC140.Val_0000;
       --  Selection of Precharge or Discharge
-      Reserved : ADDISCR_Reserved_Field := 16#0#;
+      PCHG     : ADDISCR_PCHG_Field := R7FA4M1AB.ADC140.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved : ADDISCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1812,25 +1815,25 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Group Scan Priority Control Register
    type ADGSPCR_Register is record
-      PGS        : ADGSPCR_PGS_Field := R7FA4M1AB.ADC140.Val_0;
       --  Group A priority control setting bit. Note: When the PGS bit is to be
       --  set to 1, the ADCSR.ADCS[1:0] bits must be set to 01b (group scan
       --  mode). If the bits are set to any other values, proper operation is
       --  not guaranteed.
-      GBRSCN     : ADGSPCR_GBRSCN_Field := R7FA4M1AB.ADC140.Val_0;
+      PGS        : ADGSPCR_PGS_Field := R7FA4M1AB.ADC140.Val_0;
       --  Group B Restart Setting (Enabled only when PGS = 1. Reserved when PGS
       --  = 0.)
+      GBRSCN     : ADGSPCR_GBRSCN_Field := R7FA4M1AB.ADC140.Val_0;
+      --  These bits are read as 000000. The write value should be 000000.
       Reserved   : ADGSPCR_Reserved_Field := 16#0#;
-      --  These bits are read as 000000. The write value should be 000000.
-      Reserved_1 : ADGSPCR_Reserved_Field_1 := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      Reserved_2 : ADGSPCR_Reserved_Field := 16#0#;
+      Reserved_1 : ADGSPCR_Reserved_Field_1 := 16#0#;
       --  These bits are read as 000000. The write value should be 000000.
-      GBRP       : ADGSPCR_GBRP_Field := R7FA4M1AB.ADC140.Val_0;
+      Reserved_2 : ADGSPCR_Reserved_Field := 16#0#;
       --  Group B Single Scan Continuous Start (Enabled only when PGS = 1.
       --  Reserved when PGS = 0.) Note: When the GBRP bit has been set to 1,
       --  single scan is performed continuously for group B regardless of the
       --  setting of the GBRSCN bit.
+      GBRP       : ADGSPCR_GBRP_Field := R7FA4M1AB.ADC140.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1877,16 +1880,16 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D High-Potential/Low-Potential Reference Voltage Control Register
    type ADHVREFCNT_Register is record
-      HVSEL        : ADHVREFCNT_HVSEL_Field := R7FA4M1AB.ADC140.Val_00;
       --  High-Potential Reference Voltage Select
+      HVSEL        : ADHVREFCNT_HVSEL_Field := R7FA4M1AB.ADC140.Val_00;
+      --  These bits are read as 00. The write value should be 00.
       Reserved     : ADHVREFCNT_Reserved_Field := 16#0#;
-      --  These bits are read as 00. The write value should be 00.
-      Reserved_4_4 : R7FA4M1AB.Bit := 16#0#;
       --  unspecified
-      Reserved_1   : ADHVREFCNT_Reserved_Field := 16#0#;
+      Reserved_4_4 : R7FA4M1AB.Bit := 16#0#;
       --  These bits are read as 00. The write value should be 00.
-      ADSLP        : ADHVREFCNT_ADSLP_Field := R7FA4M1AB.ADC140.Val_0;
+      Reserved_1   : ADHVREFCNT_Reserved_Field := 16#0#;
       --  Sleep
+      ADSLP        : ADHVREFCNT_ADSLP_Field := R7FA4M1AB.ADC140.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1940,18 +1943,18 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Compare Function Window A/B Status Monitor Register
    type ADWINMON_Register is record
-      MONCOMB    : ADWINMON_MONCOMB_Field;
       --  Read-only. Combination result monitor This bit indicates the
       --  combination result. This bit is valid when both window A operation
       --  and window B operation are enabled.
-      Reserved   : ADWINMON_Reserved_Field;
+      MONCOMB    : ADWINMON_MONCOMB_Field;
       --  Read-only. These bits are read as 000.
-      MONCMPA    : ADWINMON_MONCMPA_Field;
+      Reserved   : ADWINMON_Reserved_Field;
       --  Read-only. Comparison Result Monitor A
-      MONCMPB    : ADWINMON_MONCMPB_Field;
+      MONCMPA    : ADWINMON_MONCMPA_Field;
       --  Read-only. Comparison Result Monitor B
-      Reserved_1 : ADWINMON_Reserved_Field_1;
+      MONCMPB    : ADWINMON_MONCMPB_Field;
       --  Read-only. These bits are read as 00.
+      Reserved_1 : ADWINMON_Reserved_Field_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -2059,26 +2062,26 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Compare Function Control Register
    type ADCMPCR_Register is record
-      CMPAB      : ADCMPCR_CMPAB_Field := R7FA4M1AB.ADC140.Val_00;
       --  Window A/B Composite Conditions Setting NOTE: These bits are valid
       --  when both window A and window B are enabled (CMPAE = 1 and CMPBE =
       --  1).
-      Reserved   : ADCMPCR_Reserved_Field := 16#0#;
+      CMPAB      : ADCMPCR_CMPAB_Field := R7FA4M1AB.ADC140.Val_00;
       --  These bits are read as 0000000. The write value should be 0000000.
-      CMPBE      : ADCMPCR_CMPBE_Field := R7FA4M1AB.ADC140.Val_0;
+      Reserved   : ADCMPCR_Reserved_Field := 16#0#;
       --  Compare Window B Operation Enable
+      CMPBE      : ADCMPCR_CMPBE_Field := R7FA4M1AB.ADC140.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_1 : ADCMPCR_Reserved_Field_1 := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      CMPAE      : ADCMPCR_CMPAE_Field := R7FA4M1AB.ADC140.Val_0;
       --  Compare Window A Operation Enable
-      Reserved_2 : ADCMPCR_Reserved_Field_1 := 16#0#;
+      CMPAE      : ADCMPCR_CMPAE_Field := R7FA4M1AB.ADC140.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      CMPBIE     : ADCMPCR_CMPBIE_Field := R7FA4M1AB.ADC140.Val_0;
+      Reserved_2 : ADCMPCR_Reserved_Field_1 := 16#0#;
       --  Compare B Interrupt Enable
-      WCMPE      : ADCMPCR_WCMPE_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPBIE     : ADCMPCR_CMPBIE_Field := R7FA4M1AB.ADC140.Val_0;
       --  Window Function Setting
-      CMPAIE     : ADCMPCR_CMPAIE_Field := R7FA4M1AB.ADC140.Val_0;
+      WCMPE      : ADCMPCR_WCMPE_Field := R7FA4M1AB.ADC140.Val_0;
       --  Compare A Interrupt Enable
+      CMPAIE     : ADCMPCR_CMPAIE_Field := R7FA4M1AB.ADC140.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2125,12 +2128,12 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Compare Function Window A Extended Input Select Register
    type ADCMPANSER_Register is record
-      CMPTSA   : ADCMPANSER_CMPTSA_Field := R7FA4M1AB.ADC140.Val_0;
       --  Temperature sensor output Compare selection bit.
-      CMPOCA   : ADCMPANSER_CMPOCA_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPTSA   : ADCMPANSER_CMPTSA_Field := R7FA4M1AB.ADC140.Val_0;
       --  Internal reference voltage Compare selection bit.
-      Reserved : ADCMPANSER_Reserved_Field := 16#0#;
+      CMPOCA   : ADCMPANSER_CMPOCA_Field := R7FA4M1AB.ADC140.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : ADCMPANSER_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -2174,14 +2177,14 @@ package R7FA4M1AB.ADC140 is
    --  A/D Compare Function Window A Extended Input Comparison Condition
    --  Setting Register
    type ADCMPLER_Register is record
-      CMPLTSA  : ADCMPLER_CMPLTSA_Field := R7FA4M1AB.ADC140.Val_0;
       --  Compare Window A Temperature Sensor Output Comparison Condition
       --  Select
-      CMPLOCA  : ADCMPLER_CMPLOCA_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPLTSA  : ADCMPLER_CMPLTSA_Field := R7FA4M1AB.ADC140.Val_0;
       --  Compare Window A Internal Reference Voltage Comparison Condition
       --  Select
-      Reserved : ADCMPLER_Reserved_Field := 16#0#;
+      CMPLOCA  : ADCMPLER_CMPLOCA_Field := R7FA4M1AB.ADC140.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : ADCMPLER_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -2361,38 +2364,38 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Compare Function Window A Channel Select Register 0
    type ADCMPANSR0_Register is record
-      CMPCHA00 : ADCMPANSR0_CMPCHA00_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN000 Select
-      CMPCHA01 : ADCMPANSR0_CMPCHA01_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA00 : ADCMPANSR0_CMPCHA00_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN001 Select
-      CMPCHA02 : ADCMPANSR0_CMPCHA02_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA01 : ADCMPANSR0_CMPCHA01_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN002 Select
-      CMPCHA03 : ADCMPANSR0_CMPCHA03_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA02 : ADCMPANSR0_CMPCHA02_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN003 Select
-      CMPCHA04 : ADCMPANSR0_CMPCHA04_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA03 : ADCMPANSR0_CMPCHA03_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN004 Select
-      CMPCHA05 : ADCMPANSR0_CMPCHA05_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA04 : ADCMPANSR0_CMPCHA04_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN005 Select
-      CMPCHA06 : ADCMPANSR0_CMPCHA06_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA05 : ADCMPANSR0_CMPCHA05_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN006 Select
-      CMPCHA07 : ADCMPANSR0_CMPCHA07_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA06 : ADCMPANSR0_CMPCHA06_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN007 Select
-      CMPCHA08 : ADCMPANSR0_CMPCHA08_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA07 : ADCMPANSR0_CMPCHA07_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN008 Select
-      CMPCHA09 : ADCMPANSR0_CMPCHA09_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA08 : ADCMPANSR0_CMPCHA08_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN009 Select
-      CMPCHA10 : ADCMPANSR0_CMPCHA10_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA09 : ADCMPANSR0_CMPCHA09_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN010 Select
-      CMPCHA11 : ADCMPANSR0_CMPCHA11_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA10 : ADCMPANSR0_CMPCHA10_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN011 Select
-      CMPCHA12 : ADCMPANSR0_CMPCHA12_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA11 : ADCMPANSR0_CMPCHA11_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN012 Select
-      CMPCHA13 : ADCMPANSR0_CMPCHA13_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA12 : ADCMPANSR0_CMPCHA12_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN013 Select
-      CMPCHA14 : ADCMPANSR0_CMPCHA14_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA13 : ADCMPANSR0_CMPCHA13_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN014 Select
-      Reserved : ADCMPANSR0_Reserved_Field := 16#0#;
+      CMPCHA14 : ADCMPANSR0_CMPCHA14_Field := R7FA4M1AB.ADC140.Val_0;
       --  This bit is read as 0. The write value should be 0.
+      Reserved : ADCMPANSR0_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2530,28 +2533,28 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Compare Function Window A Channel Select Register 1
    type ADCMPANSR1_Register is record
-      CMPCHA16 : ADCMPANSR1_CMPCHA16_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN016 Select
-      CMPCHA17 : ADCMPANSR1_CMPCHA17_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA16 : ADCMPANSR1_CMPCHA16_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN017 Select
-      CMPCHA18 : ADCMPANSR1_CMPCHA18_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA17 : ADCMPANSR1_CMPCHA17_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN018 Select
-      CMPCHA19 : ADCMPANSR1_CMPCHA19_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA18 : ADCMPANSR1_CMPCHA18_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN019 Select
-      CMPCHA20 : ADCMPANSR1_CMPCHA20_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA19 : ADCMPANSR1_CMPCHA19_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN020 Select
-      CMPCHA21 : ADCMPANSR1_CMPCHA21_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA20 : ADCMPANSR1_CMPCHA20_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN021 Select
-      CMPCHA22 : ADCMPANSR1_CMPCHA22_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA21 : ADCMPANSR1_CMPCHA21_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN022 Select
-      CMPCHA23 : ADCMPANSR1_CMPCHA23_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA22 : ADCMPANSR1_CMPCHA22_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN023 Select
-      CMPCHA24 : ADCMPANSR1_CMPCHA24_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA23 : ADCMPANSR1_CMPCHA23_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN024 Select
-      CMPCHA25 : ADCMPANSR1_CMPCHA25_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPCHA24 : ADCMPANSR1_CMPCHA24_Field := R7FA4M1AB.ADC140.Val_0;
       --  AN025 Select
-      Reserved : ADCMPANSR1_Reserved_Field := 16#0#;
+      CMPCHA25 : ADCMPANSR1_CMPCHA25_Field := R7FA4M1AB.ADC140.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : ADCMPANSR1_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2595,11 +2598,11 @@ package R7FA4M1AB.ADC140 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt15;
             --  CMPLCHA as a value
+            Val : R7FA4M1AB.UInt15;
          when True =>
-            Arr : ADCMPLR0_CMPLCHA_Field_Array;
             --  CMPLCHA as an array
+            Arr : ADCMPLR0_CMPLCHA_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 15;
@@ -2613,10 +2616,10 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Compare Function Window A Comparison Condition Setting Register 0
    type ADCMPLR0_Register is record
-      CMPLCHA  : ADCMPLR0_CMPLCHA_Field := (As_Array => False, Val => 16#0#);
       --  Comparison condition of AN000
-      Reserved : ADCMPLR0_Reserved_Field := 16#0#;
+      CMPLCHA  : ADCMPLR0_CMPLCHA_Field := (As_Array => False, Val => 16#0#);
       --  This bit is read as 0. The write value should be 0.
+      Reserved : ADCMPLR0_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2651,11 +2654,11 @@ package R7FA4M1AB.ADC140 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt10;
             --  CMPLCHA as a value
+            Val : R7FA4M1AB.UInt10;
          when True =>
-            Arr : ADCMPLR1_CMPLCHA_Field_Array;
             --  CMPLCHA as an array
+            Arr : ADCMPLR1_CMPLCHA_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 10;
@@ -2669,10 +2672,10 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Compare Function Window A Comparison Condition Setting Register 1
    type ADCMPLR1_Register is record
-      CMPLCHA  : ADCMPLR1_CMPLCHA_Field := (As_Array => False, Val => 16#0#);
       --  Comparison condition of AN016
-      Reserved : ADCMPLR1_Reserved_Field := 16#0#;
+      CMPLCHA  : ADCMPLR1_CMPLCHA_Field := (As_Array => False, Val => 16#0#);
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : ADCMPLR1_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2704,11 +2707,11 @@ package R7FA4M1AB.ADC140 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt15;
             --  CMPSTCHA as a value
+            Val : R7FA4M1AB.UInt15;
          when True =>
-            Arr : ADCMPSR0_CMPSTCHA_Field_Array;
             --  CMPSTCHA as an array
+            Arr : ADCMPSR0_CMPSTCHA_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 15;
@@ -2722,12 +2725,12 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Compare Function Window A Channel Status Register 0
    type ADCMPSR0_Register is record
-      CMPSTCHA : ADCMPSR0_CMPSTCHA_Field := (As_Array => False, Val => 16#0#);
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Compare window A flag of AN000
-      Reserved : ADCMPSR0_Reserved_Field := 16#0#;
+      CMPSTCHA : ADCMPSR0_CMPSTCHA_Field := (As_Array => False, Val => 16#0#);
       --  This bit is read as 0. The write value should be 0.
+      Reserved : ADCMPSR0_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2759,11 +2762,11 @@ package R7FA4M1AB.ADC140 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt10;
             --  CMPSTCHA as a value
+            Val : R7FA4M1AB.UInt10;
          when True =>
-            Arr : ADCMPSR1_CMPSTCHA_Field_Array;
             --  CMPSTCHA as an array
+            Arr : ADCMPSR1_CMPSTCHA_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 10;
@@ -2777,12 +2780,12 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Compare Function Window A Channel Status Register 1
    type ADCMPSR1_Register is record
-      CMPSTCHA : ADCMPSR1_CMPSTCHA_Field := (As_Array => False, Val => 16#0#);
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Compare window A flag of AN016
-      Reserved : ADCMPSR1_Reserved_Field := 16#0#;
+      CMPSTCHA : ADCMPSR1_CMPSTCHA_Field := (As_Array => False, Val => 16#0#);
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : ADCMPSR1_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -2826,7 +2829,6 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Compare Function Window A Extended Input Channel Status Register
    type ADCMPSER_Register is record
-      CMPSTTSA : ADCMPSER_CMPSTTSA_Field := R7FA4M1AB.ADC140.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Compare Window A Temperature Sensor Output Compare
@@ -2834,7 +2836,7 @@ package R7FA4M1AB.ADC140 is
       --  bit indicates the temperature sensor output comparison result. When
       --  window A operation is disabled (ADCMPCR.CMPAE = 0b), comparison
       --  conditions for CMPSTTSA are not met any time.
-      CMPSTOCA : ADCMPSER_CMPSTOCA_Field := R7FA4M1AB.ADC140.Val_0;
+      CMPSTTSA : ADCMPSER_CMPSTTSA_Field := R7FA4M1AB.ADC140.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Compare Window A Internal Reference Voltage Compare
@@ -2842,8 +2844,9 @@ package R7FA4M1AB.ADC140 is
       --  bit indicates the temperature sensor output comparison result. When
       --  window A operation is disabled (ADCMPCR.CMPAE = 0b), comparison
       --  conditions for CMPSTTSA are not met any time.
-      Reserved : ADCMPSER_Reserved_Field := 16#0#;
+      CMPSTOCA : ADCMPSER_CMPSTOCA_Field := R7FA4M1AB.ADC140.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : ADCMPSER_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -2859,68 +2862,69 @@ package R7FA4M1AB.ADC140 is
    type ADCMPBNSR_CMPCHB_Field is
      (--  AN000
       Val_0x00,
-      --  AN001
-      Val_0x01,
-      --  AN002
-      Val_0x02,
-      --  AN003
-      Val_0x03,
-      --  AN004
-      Val_0x04,
-      --  AN005
-      Val_0x05,
-      --  AN006
-      Val_0x06,
-      --  AN007
-      Val_0x07,
-      --  AN008
-      Val_0x08,
-      --  AN009
-      Val_0x09,
-      --  AN010
-      Val_0x0A,
-      --  AN011
-      Val_0x0B,
-      --  AN012
-      Val_0x0C,
-      --  AN013
-      Val_0x0D,
-      --  AN014
-      Val_0x0E,
-      --  AN015
-      Val_0x0F,
-      --  AN016
-      Val_0x10,
-      --  AN017
-      Val_0x11,
-      --  AN018
-      Val_0x12,
-      --  AN019
-      Val_0x13,
-      --  AN020
-      Val_0x14,
-      --  AN021
-      Val_0x15,
-      --  AN022
-      Val_0x16,
-      --  AN023
-      Val_0x17,
-      --  AN024
-      Val_0x18,
-      --  AN025
-      Val_0x19,
-      --  AN026
-      Val_0x1A,
-      --  AN027
-      Val_0x1B,
-      --  Temperature sensor
-      Val_0x20,
-      --  Internal reference voltage
-      Val_0x21,
       --  Setting prohibited
+      Val_0x01,
+      --  AN001
+      Val_0x02,
+      --  AN002
+      Val_0x03,
+      --  AN003
+      Val_0x04,
+      --  AN004
+      Val_0x05,
+      --  AN005
+      Val_0x06,
+      --  AN006
+      Val_0x07,
+      --  AN007
+      Val_0x08,
+      --  AN008
+      Val_0x09,
+      --  AN009
+      Val_0x0A,
+      --  AN010
+      Val_0x0B,
+      --  AN011
+      Val_0x0C,
+      --  AN012
+      Val_0x0D,
+      --  AN013
+      Val_0x0E,
+      --  AN014
+      Val_0x0F,
+      --  AN015
+      Val_0x10,
+      --  AN016
+      Val_0x11,
+      --  AN017
+      Val_0x12,
+      --  AN018
+      Val_0x13,
+      --  AN019
+      Val_0x14,
+      --  AN020
+      Val_0x15,
+      --  AN021
+      Val_0x16,
+      --  AN022
+      Val_0x17,
+      --  AN023
+      Val_0x18,
+      --  AN024
+      Val_0x19,
+      --  AN025
+      Val_0x1A,
+      --  AN026
+      Val_0x1B,
+      --  AN027
+      Val_0x20,
+      --  Temperature sensor
+      Val_0x21,
+      --  Internal reference voltage
       others_k,
       --  No channel is selected
-      Val_0x3F)
+      Val_0x3F
+     )
      with Size => 6;
    for ADCMPBNSR_CMPCHB_Field use
      (Val_0x00 => 0,
@@ -2973,13 +2977,13 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Compare Function Window B Channel Selection Register
    type ADCMPBNSR_Register is record
-      CMPCHB   : ADCMPBNSR_CMPCHB_Field := R7FA4M1AB.ADC140.Val_0x00;
       --  Compare window B channel selection bit. The channel that compares it
       --  on the condition of compare window B is selected.
-      Reserved : ADCMPBNSR_Reserved_Field := 16#0#;
+      CMPCHB   : ADCMPBNSR_CMPCHB_Field := R7FA4M1AB.ADC140.Val_0x00;
       --  This bit is read as 0. The write value should be 0.
-      CMPLB    : ADCMPBNSR_CMPLB_Field := R7FA4M1AB.ADC140.Val_0;
+      Reserved : ADCMPBNSR_Reserved_Field := 16#0#;
       --  Compare window B Compare condition setting bit.
+      CMPLB    : ADCMPBNSR_CMPLB_Field := R7FA4M1AB.ADC140.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -3007,15 +3011,15 @@ package R7FA4M1AB.ADC140 is
 
    --  A/D Compare Function Window B Status Register
    type ADCMPBSR_Register is record
-      CMPSTB   : ADCMPBSR_CMPSTB_Field := R7FA4M1AB.ADC140.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Compare window B flag. It is a status flag that shows
       --  the comparative result of CH (AN000-AN027, temperature sensor, and
       --  internal reference voltage) made the object of window B relation
       --  condition.
-      Reserved : ADCMPBSR_Reserved_Field := 16#0#;
+      CMPSTB   : ADCMPBSR_CMPSTB_Field := R7FA4M1AB.ADC140.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : ADCMPBSR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -3036,93 +3040,93 @@ package R7FA4M1AB.ADC140 is
 
    --  14bit A/D Converter
    type ADC140_Peripheral is record
-      ADCSR      : aliased ADCSR_Register;
       --  A/D Control Register
-      ADANSA0    : aliased ADANSA0_Register;
+      ADCSR      : aliased ADCSR_Register;
       --  A/D Channel Select Register A0
-      ADANSA1    : aliased ADANSA1_Register;
+      ADANSA0    : aliased ADANSA0_Register;
       --  A/D Channel Select Register A1
-      ADADS0     : aliased ADADS0_Register;
+      ADANSA1    : aliased ADANSA1_Register;
       --  A/D-Converted Value Addition/Average Channel Select Register 0
-      ADADS1     : aliased ADADS1_Register;
+      ADADS0     : aliased ADADS0_Register;
       --  A/D-Converted Value Addition/Average Channel Select Register 1
-      ADADC      : aliased ADADC_Register;
+      ADADS1     : aliased ADADS1_Register;
       --  A/D-Converted Value Addition/Average Count Select Register
-      ADCER      : aliased ADCER_Register;
+      ADADC      : aliased ADADC_Register;
       --  A/D Control Extended Register
-      ADSTRGR    : aliased ADSTRGR_Register;
+      ADCER      : aliased ADCER_Register;
       --  A/D Conversion Start Trigger Select Register
-      ADEXICR    : aliased ADEXICR_Register;
+      ADSTRGR    : aliased ADSTRGR_Register;
       --  A/D Conversion Extended Input Control Register
-      ADANSB0    : aliased ADANSB0_Register;
+      ADEXICR    : aliased ADEXICR_Register;
       --  A/D Channel Select Register B0
-      ADANSB1    : aliased ADANSB1_Register;
+      ADANSB0    : aliased ADANSB0_Register;
       --  A/D Channel Select Register B1
-      ADDBLDR    : aliased R7FA4M1AB.UInt16;
+      ADANSB1    : aliased ADANSB1_Register;
       --  A/D Data Duplication Register
-      ADTSDR     : aliased R7FA4M1AB.UInt16;
+      ADDBLDR    : aliased R7FA4M1AB.UInt16;
       --  A/D Temperature Sensor Data Register
-      ADOCDR     : aliased R7FA4M1AB.UInt16;
+      ADTSDR     : aliased R7FA4M1AB.UInt16;
       --  A/D Internal Reference Voltage Data Register
-      ADRD       : aliased ADRD_Register;
+      ADOCDR     : aliased R7FA4M1AB.UInt16;
       --  A/D Self-Diagnosis Data Register
+      ADRD       : aliased ADRD_Register;
+      --  A/D Data Register %s
       ADDR       : aliased ADDR_Registers;
       --  A/D Data Register %s
       ADDR_1     : aliased ADDR_Registers_1;
-      --  A/D Data Register %s
-      ADDISCR    : aliased ADDISCR_Register;
       --  A/D Disconnection Detection Control Register
-      ADGSPCR    : aliased ADGSPCR_Register;
+      ADDISCR    : aliased ADDISCR_Register;
       --  A/D Group Scan Priority Control Register
-      ADDBLDRA   : aliased R7FA4M1AB.UInt16;
+      ADGSPCR    : aliased ADGSPCR_Register;
       --  A/D Data Duplexing Register A
-      ADDBLDRB   : aliased R7FA4M1AB.UInt16;
+      ADDBLDRA   : aliased R7FA4M1AB.UInt16;
       --  A/D Data Duplexing Register B
-      ADHVREFCNT : aliased ADHVREFCNT_Register;
+      ADDBLDRB   : aliased R7FA4M1AB.UInt16;
       --  A/D High-Potential/Low-Potential Reference Voltage Control Register
-      ADWINMON   : aliased ADWINMON_Register;
+      ADHVREFCNT : aliased ADHVREFCNT_Register;
       --  A/D Compare Function Window A/B Status Monitor Register
-      ADCMPCR    : aliased ADCMPCR_Register;
+      ADWINMON   : aliased ADWINMON_Register;
       --  A/D Compare Function Control Register
-      ADCMPANSER : aliased ADCMPANSER_Register;
+      ADCMPCR    : aliased ADCMPCR_Register;
       --  A/D Compare Function Window A Extended Input Select Register
-      ADCMPLER   : aliased ADCMPLER_Register;
+      ADCMPANSER : aliased ADCMPANSER_Register;
       --  A/D Compare Function Window A Extended Input Comparison Condition
       --  Setting Register
-      ADCMPANSR0 : aliased ADCMPANSR0_Register;
+      ADCMPLER   : aliased ADCMPLER_Register;
       --  A/D Compare Function Window A Channel Select Register 0
-      ADCMPANSR1 : aliased ADCMPANSR1_Register;
+      ADCMPANSR0 : aliased ADCMPANSR0_Register;
       --  A/D Compare Function Window A Channel Select Register 1
-      ADCMPLR0   : aliased ADCMPLR0_Register;
+      ADCMPANSR1 : aliased ADCMPANSR1_Register;
       --  A/D Compare Function Window A Comparison Condition Setting Register 0
-      ADCMPLR1   : aliased ADCMPLR1_Register;
+      ADCMPLR0   : aliased ADCMPLR0_Register;
       --  A/D Compare Function Window A Comparison Condition Setting Register 1
-      ADCMPDR0   : aliased R7FA4M1AB.UInt16;
+      ADCMPLR1   : aliased ADCMPLR1_Register;
       --  A/D Compare Function Window A Lower-Side Level Setting Register
-      ADCMPDR1   : aliased R7FA4M1AB.UInt16;
+      ADCMPDR0   : aliased R7FA4M1AB.UInt16;
       --  A/D Compare Function Window A Upper-Side Level Setting Register
-      ADCMPSR0   : aliased ADCMPSR0_Register;
+      ADCMPDR1   : aliased R7FA4M1AB.UInt16;
       --  A/D Compare Function Window A Channel Status Register 0
-      ADCMPSR1   : aliased ADCMPSR1_Register;
+      ADCMPSR0   : aliased ADCMPSR0_Register;
       --  A/D Compare Function Window A Channel Status Register 1
-      ADCMPSER   : aliased ADCMPSER_Register;
+      ADCMPSR1   : aliased ADCMPSR1_Register;
       --  A/D Compare Function Window A Extended Input Channel Status Register
-      ADCMPBNSR  : aliased ADCMPBNSR_Register;
+      ADCMPSER   : aliased ADCMPSER_Register;
       --  A/D Compare Function Window B Channel Selection Register
-      ADWINLLB   : aliased R7FA4M1AB.UInt16;
+      ADCMPBNSR  : aliased ADCMPBNSR_Register;
       --  A/D Compare Function Window B Lower-Side Level Setting Register
-      ADWINULB   : aliased R7FA4M1AB.UInt16;
+      ADWINLLB   : aliased R7FA4M1AB.UInt16;
       --  A/D Compare Function Window B Upper-Side Level Setting Register
-      ADCMPBSR   : aliased ADCMPBSR_Register;
+      ADWINULB   : aliased R7FA4M1AB.UInt16;
       --  A/D Compare Function Window B Status Register
-      ADSSTRL    : aliased R7FA4M1AB.Byte;
+      ADCMPBSR   : aliased ADCMPBSR_Register;
       --  A/D Sampling State Register L
-      ADSSTRT    : aliased R7FA4M1AB.Byte;
+      ADSSTRL    : aliased R7FA4M1AB.Byte;
       --  A/D Sampling State Register T
-      ADSSTRO    : aliased R7FA4M1AB.Byte;
+      ADSSTRT    : aliased R7FA4M1AB.Byte;
       --  A/D Sampling State Register O
-      ADSSTR     : aliased ADSSTR_Registers;
+      ADSSTRO    : aliased R7FA4M1AB.Byte;
       --  A/D Sampling State Register %s
+      ADSSTR     : aliased ADSSTR_Registers;
    end record
      with Volatile;
 

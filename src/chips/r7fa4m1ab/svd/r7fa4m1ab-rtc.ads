@@ -30,22 +30,22 @@ package R7FA4M1AB.RTC is
 
    --  64-Hz Counter
    type R64CNT_Register is record
-      F64HZ        : R64CNT_F64HZ_Field;
       --  Read-only. 64Hz
-      F32HZ        : R64CNT_F32HZ_Field;
+      F64HZ        : R64CNT_F64HZ_Field;
       --  Read-only. 32Hz
-      F16HZ        : R64CNT_F16HZ_Field;
+      F32HZ        : R64CNT_F32HZ_Field;
       --  Read-only. 16Hz
-      F8HZ         : R64CNT_F8HZ_Field;
+      F16HZ        : R64CNT_F16HZ_Field;
       --  Read-only. 8Hz
-      F4HZ         : R64CNT_F4HZ_Field;
+      F8HZ         : R64CNT_F8HZ_Field;
       --  Read-only. 4Hz
-      F2HZ         : R64CNT_F2HZ_Field;
+      F4HZ         : R64CNT_F4HZ_Field;
       --  Read-only. 2Hz
-      F1HZ         : R64CNT_F1HZ_Field;
+      F2HZ         : R64CNT_F2HZ_Field;
       --  Read-only. 1Hz
-      Reserved_7_7 : R7FA4M1AB.Bit;
+      F1HZ         : R64CNT_F1HZ_Field;
       --  unspecified
+      Reserved_7_7 : R7FA4M1AB.Bit;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -66,13 +66,13 @@ package R7FA4M1AB.RTC is
 
    --  Second Counter
    type RSECCNT_Register is record
-      SEC1         : RSECCNT_SEC1_Field := 16#0#;
       --  1-Second Count Counts from 0 to 9 every second. When a carry is
       --  generated, 1 is added to the tens place.
-      SEC10        : RSECCNT_SEC10_Field := 16#0#;
+      SEC1         : RSECCNT_SEC1_Field := 16#0#;
       --  10-Second Count Counts from 0 to 5 for 60-second counting.
-      Reserved_7_7 : R7FA4M1AB.Bit := 16#0#;
+      SEC10        : RSECCNT_SEC10_Field := 16#0#;
       --  unspecified
+      Reserved_7_7 : R7FA4M1AB.Bit := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -88,13 +88,13 @@ package R7FA4M1AB.RTC is
 
    --  Minute Counter
    type RMINCNT_Register is record
-      MIN1         : RMINCNT_MIN1_Field := 16#0#;
       --  1-Minute Count Counts from 0 to 9 every minute. When a carry is
       --  generated, 1 is added to the tens place.
-      MIN10        : RMINCNT_MIN10_Field := 16#0#;
+      MIN1         : RMINCNT_MIN1_Field := 16#0#;
       --  10-Minute Count Counts from 0 to 5 for 60-minute counting.
-      Reserved_7_7 : R7FA4M1AB.Bit := 16#0#;
+      MIN10        : RMINCNT_MIN10_Field := 16#0#;
       --  unspecified
+      Reserved_7_7 : R7FA4M1AB.Bit := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -121,15 +121,15 @@ package R7FA4M1AB.RTC is
 
    --  Hour Counter
    type RHRCNT_Register is record
-      HR1          : RHRCNT_HR1_Field := 16#0#;
       --  1-Hour Count Counts from 0 to 9 once per hour. When a carry is
       --  generated, 1 is added to the tens place.
-      HR10         : RHRCNT_HR10_Field := 16#0#;
+      HR1          : RHRCNT_HR1_Field := 16#0#;
       --  10-Hour Count Counts from 0 to 2 once per carry from the ones place.
-      PM           : RHRCNT_PM_Field := R7FA4M1AB.RTC.Val_0;
+      HR10         : RHRCNT_HR10_Field := 16#0#;
       --  Time Counter Setting for a.m./p.m.
-      Reserved_7_7 : R7FA4M1AB.Bit := 16#0#;
+      PM           : RHRCNT_PM_Field := R7FA4M1AB.RTC.Val_0;
       --  unspecified
+      Reserved_7_7 : R7FA4M1AB.Bit := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -172,10 +172,10 @@ package R7FA4M1AB.RTC is
 
    --  Day-of-Week Counter
    type RWKCNT_Register is record
-      DAYW         : RWKCNT_DAYW_Field := R7FA4M1AB.RTC.Val_000;
       --  Day-of-Week Counting
-      Reserved_3_7 : R7FA4M1AB.UInt5 := 16#0#;
+      DAYW         : RWKCNT_DAYW_Field := R7FA4M1AB.RTC.Val_000;
       --  unspecified
+      Reserved_3_7 : R7FA4M1AB.UInt5 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -190,13 +190,13 @@ package R7FA4M1AB.RTC is
 
    --  Day Counter
    type RDAYCNT_Register is record
-      DATE1        : RDAYCNT_DATE1_Field := 16#0#;
       --  1-Day Count Counts from 0 to 9 once per day. When a carry is
       --  generated, 1 is added to the tens place.
-      DATE10       : RDAYCNT_DATE10_Field := 16#0#;
+      DATE1        : RDAYCNT_DATE1_Field := 16#0#;
       --  10-Day Count Counts from 0 to 3 once per carry from the ones place.
-      Reserved_6_7 : R7FA4M1AB.UInt2 := 16#0#;
+      DATE10       : RDAYCNT_DATE10_Field := 16#0#;
       --  unspecified
+      Reserved_6_7 : R7FA4M1AB.UInt2 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -213,13 +213,13 @@ package R7FA4M1AB.RTC is
 
    --  Month Counter
    type RMONCNT_Register is record
-      MON1     : RMONCNT_MON1_Field := 16#0#;
       --  1-Month Count Counts from 0 to 9 once per month. When a carry is
       --  generated, 1 is added to the tens place.
-      MON10    : RMONCNT_MON10_Field := 16#0#;
+      MON1     : RMONCNT_MON1_Field := 16#0#;
       --  10-Month Count Counts from 0 to 1 once per carry from the ones place.
-      Reserved : RMONCNT_Reserved_Field := 16#0#;
+      MON10    : RMONCNT_MON10_Field := 16#0#;
       --  These bits are read as 000. The write value should be 000.
+      Reserved : RMONCNT_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -243,11 +243,11 @@ package R7FA4M1AB.RTC is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.Byte;
             --  YR as a value
+            Val : R7FA4M1AB.Byte;
          when True =>
-            Arr : RYRCNT_YR_Field_Array;
             --  YR as an array
+            Arr : RYRCNT_YR_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 8;
@@ -261,11 +261,11 @@ package R7FA4M1AB.RTC is
 
    --  Year Counter
    type RYRCNT_Register is record
-      YR       : RYRCNT_YR_Field := (As_Array => False, Val => 16#0#);
       --  1-Year Count Counts from 0 to 9 once per year. When a carry is
       --  generated, 1 is added to the tens place.
-      Reserved : RYRCNT_Reserved_Field := 16#0#;
+      YR       : RYRCNT_YR_Field := (As_Array => False, Val => 16#0#);
       --  These bits are read as 00000000. The write value should be 00000000.
+      Reserved : RYRCNT_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -291,12 +291,12 @@ package R7FA4M1AB.RTC is
 
    --  Second Alarm Register
    type RSECAR_Register is record
-      SEC1  : RSECAR_SEC1_Field := 16#0#;
       --  1-Second Value for the ones place of seconds
-      SEC10 : RSECAR_SEC10_Field := 16#0#;
+      SEC1  : RSECAR_SEC1_Field := 16#0#;
       --  10-Seconds Value for the tens place of seconds
-      ENB   : RSECAR_ENB_Field := R7FA4M1AB.RTC.Val_0;
+      SEC10 : RSECAR_SEC10_Field := 16#0#;
       --  Compare enable
+      ENB   : RSECAR_ENB_Field := R7FA4M1AB.RTC.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -323,12 +323,12 @@ package R7FA4M1AB.RTC is
 
    --  Minute Alarm Register
    type RMINAR_Register is record
-      MIN1  : RMINAR_MIN1_Field := 16#0#;
       --  1-Minute Count Value for the ones place of minutes
-      MIN10 : RMINAR_MIN10_Field := 16#0#;
+      MIN1  : RMINAR_MIN1_Field := 16#0#;
       --  10-Minute Count Value for the tens place of minutes
-      ENB   : RMINAR_ENB_Field := R7FA4M1AB.RTC.Val_0;
+      MIN10 : RMINAR_MIN10_Field := 16#0#;
       --  Compare enable
+      ENB   : RMINAR_ENB_Field := R7FA4M1AB.RTC.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -366,14 +366,14 @@ package R7FA4M1AB.RTC is
 
    --  Hour Alarm Register
    type RHRAR_Register is record
-      HR1  : RHRAR_HR1_Field := 16#0#;
       --  1-Hour Count Value for the ones place of hours
-      HR10 : RHRAR_HR10_Field := 16#0#;
+      HR1  : RHRAR_HR1_Field := 16#0#;
       --  10-Hour Count Value for the tens place of hours
-      PM   : RHRAR_PM_Field := R7FA4M1AB.RTC.Val_0;
+      HR10 : RHRAR_HR10_Field := 16#0#;
       --  Time Counter Setting for a.m./p.m.
-      ENB  : RHRAR_ENB_Field := R7FA4M1AB.RTC.Val_0;
+      PM   : RHRAR_PM_Field := R7FA4M1AB.RTC.Val_0;
       --  Compare enable
+      ENB  : RHRAR_ENB_Field := R7FA4M1AB.RTC.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -429,12 +429,12 @@ package R7FA4M1AB.RTC is
 
    --  Day-of-Week Alarm Register
    type RWKAR_Register is record
-      DAYW     : RWKAR_DAYW_Field := R7FA4M1AB.RTC.Val_000;
       --  Day-of-Week Counting
-      Reserved : RWKAR_Reserved_Field := 16#0#;
+      DAYW     : RWKAR_DAYW_Field := R7FA4M1AB.RTC.Val_000;
       --  These bits are read as 0000. The write value should be 0000.
-      ENB      : RWKAR_ENB_Field := R7FA4M1AB.RTC.Val_0;
+      Reserved : RWKAR_Reserved_Field := 16#0#;
       --  Compare enable
+      ENB      : RWKAR_ENB_Field := R7FA4M1AB.RTC.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -462,14 +462,14 @@ package R7FA4M1AB.RTC is
 
    --  Date Alarm Register
    type RDAYAR_Register is record
-      DATE1    : RDAYAR_DATE1_Field := 16#0#;
       --  1 Day Value for the ones place of days
-      DATE10   : RDAYAR_DATE10_Field := 16#0#;
+      DATE1    : RDAYAR_DATE1_Field := 16#0#;
       --  10 Days Value for the tens place of days
-      Reserved : RDAYAR_Reserved_Field := 16#0#;
+      DATE10   : RDAYAR_DATE10_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      ENB      : RDAYAR_ENB_Field := R7FA4M1AB.RTC.Val_0;
+      Reserved : RDAYAR_Reserved_Field := 16#0#;
       --  Compare enable
+      ENB      : RDAYAR_ENB_Field := R7FA4M1AB.RTC.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -498,14 +498,14 @@ package R7FA4M1AB.RTC is
 
    --  Month Alarm Register
    type RMONAR_Register is record
-      MON1     : RMONAR_MON1_Field := 16#0#;
       --  1 Month Value for the ones place of months
-      MON10    : RMONAR_MON10_Field := 16#0#;
+      MON1     : RMONAR_MON1_Field := 16#0#;
       --  10 Months Value for the tens place of months
-      Reserved : RMONAR_Reserved_Field := 16#0#;
+      MON10    : RMONAR_MON10_Field := 16#0#;
       --  These bits are read as 00. The write value should be 00.
-      ENB      : RMONAR_ENB_Field := R7FA4M1AB.RTC.Val_0;
+      Reserved : RMONAR_Reserved_Field := 16#0#;
       --  Compare enable
+      ENB      : RMONAR_ENB_Field := R7FA4M1AB.RTC.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -530,11 +530,11 @@ package R7FA4M1AB.RTC is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.Byte;
             --  YR as a value
+            Val : R7FA4M1AB.Byte;
          when True =>
-            Arr : RYRAR_YR_Field_Array;
             --  YR as an array
+            Arr : RYRAR_YR_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 8;
@@ -548,10 +548,10 @@ package R7FA4M1AB.RTC is
 
    --  Year Alarm Register
    type RYRAR_Register is record
-      YR       : RYRAR_YR_Field := (As_Array => False, Val => 16#0#);
       --  1 Year Value for the ones place of years
-      Reserved : RYRAR_Reserved_Field := 16#0#;
+      YR       : RYRAR_YR_Field := (As_Array => False, Val => 16#0#);
       --  These bits are read as 00000000. The write value should be 00000000.
+      Reserved : RYRAR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -566,11 +566,11 @@ package R7FA4M1AB.RTC is
 
    --  Binary Counter 2 Alarm Enable Register
    type BCNT2AER_Register is record
-      ENB      : BCNT2AER_ENB_Field := 16#0#;
       --  The BCNT2AER register is a readable/writable register for setting the
       --  alarm enable corresponding to 32-bit binary counter b23 to b16.
-      Reserved : BCNT2AER_Reserved_Field := 16#0#;
+      ENB      : BCNT2AER_ENB_Field := 16#0#;
       --  These bits are read as 00000000. The write value should be 00000000.
+      Reserved : BCNT2AER_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -595,10 +595,10 @@ package R7FA4M1AB.RTC is
 
    --  Year Alarm Enable Register
    type RYRAREN_Register is record
-      Reserved : RYRAREN_Reserved_Field := 16#0#;
       --  These bits are read as 0000000. The write value should be 0000000.
-      ENB      : RYRAREN_ENB_Field := R7FA4M1AB.RTC.Val_0;
+      Reserved : RYRAREN_Reserved_Field := 16#0#;
       --  Compare enable
+      ENB      : RYRAREN_ENB_Field := R7FA4M1AB.RTC.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -676,7 +676,8 @@ package R7FA4M1AB.RTC is
       --  A periodic interrupt is generated every 1 second.
       Val_1110,
       --  A periodic interrupt is generated every 2 seconds.
-      Val_1111)
+      Val_1111
+     )
      with Size => 4;
    for RCR1_PES_Field use
      (others_k => 5,
@@ -693,16 +694,16 @@ package R7FA4M1AB.RTC is
 
    --  RTC Control Register 1
    type RCR1_Register is record
-      AIE   : RCR1_AIE_Field := R7FA4M1AB.RTC.Val_0;
       --  Alarm Interrupt Enable
-      CIE   : RCR1_CIE_Field := R7FA4M1AB.RTC.Val_0;
+      AIE   : RCR1_AIE_Field := R7FA4M1AB.RTC.Val_0;
       --  Carry Interrupt Enable
-      PIE   : RCR1_PIE_Field := R7FA4M1AB.RTC.Val_0;
+      CIE   : RCR1_CIE_Field := R7FA4M1AB.RTC.Val_0;
       --  Periodic Interrupt Enable
-      RTCOS : RCR1_RTCOS_Field := R7FA4M1AB.RTC.Val_0;
+      PIE   : RCR1_PIE_Field := R7FA4M1AB.RTC.Val_0;
       --  RTCOUT Output Select
-      PES   : RCR1_PES_Field := R7FA4M1AB.RTC.others_k;
+      RTCOS : RCR1_RTCOS_Field := R7FA4M1AB.RTC.Val_0;
       --  Periodic Interrupt Select
+      PES   : RCR1_PES_Field := R7FA4M1AB.RTC.others_k;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -813,24 +814,24 @@ package R7FA4M1AB.RTC is
 
    --  RTC Control Register 2
    type RCR2_Register is record
-      START : RCR2_START_Field := R7FA4M1AB.RTC.Val_0;
       --  Start
-      RESET : RCR2_RESET_Field := R7FA4M1AB.RTC.Val_0;
+      START : RCR2_START_Field := R7FA4M1AB.RTC.Val_0;
       --  RTC Software Reset
-      ADJ30 : RCR2_ADJ30_Field := R7FA4M1AB.RTC.Val_0;
+      RESET : RCR2_RESET_Field := R7FA4M1AB.RTC.Val_0;
       --  30-Second Adjustment
-      RTCOE : RCR2_RTCOE_Field := R7FA4M1AB.RTC.Val_0;
+      ADJ30 : RCR2_ADJ30_Field := R7FA4M1AB.RTC.Val_0;
       --  RTCOUT Output Enable
-      AADJE : RCR2_AADJE_Field := R7FA4M1AB.RTC.Val_0;
+      RTCOE : RCR2_RTCOE_Field := R7FA4M1AB.RTC.Val_0;
       --  Automatic Adjustment Enable (When the LOCO clock is selected, the
       --  setting of this bit is disabled.)
-      AADJP : RCR2_AADJP_Field := R7FA4M1AB.RTC.Val_0;
+      AADJE : RCR2_AADJE_Field := R7FA4M1AB.RTC.Val_0;
       --  Automatic Adjustment Period Select (When the LOCO clock is selected,
       --  the setting of this bit is disabled.)
-      HR24  : RCR2_HR24_Field := R7FA4M1AB.RTC.Val_0;
+      AADJP : RCR2_AADJP_Field := R7FA4M1AB.RTC.Val_0;
       --  Hours Mode
-      CNTMD : RCR2_CNTMD_Field := R7FA4M1AB.RTC.Val_0;
+      HR24  : RCR2_HR24_Field := R7FA4M1AB.RTC.Val_0;
       --  Count Mode Select
+      CNTMD : RCR2_CNTMD_Field := R7FA4M1AB.RTC.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -861,10 +862,10 @@ package R7FA4M1AB.RTC is
 
    --  RTC Control Register 4
    type RCR4_Register is record
-      RCKSEL   : RCR4_RCKSEL_Field := R7FA4M1AB.RTC.Val_0;
       --  Count Source Select
-      Reserved : RCR4_Reserved_Field := 16#0#;
+      RCKSEL   : RCR4_RCKSEL_Field := R7FA4M1AB.RTC.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : RCR4_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -879,13 +880,13 @@ package R7FA4M1AB.RTC is
 
    --  Frequency Register H
    type RFRH_Register is record
-      RFC16    : RFRH_RFC16_Field := 16#0#;
       --  Frequency Comparison Value (b16) To generate the operating clock from
       --  the LOCOclock, this bit sets the comparison value of the 128-Hz clock
       --  cycle.
-      Reserved : RFRH_Reserved_Field := 16#0#;
+      RFC16    : RFRH_RFC16_Field := 16#0#;
       --  These bits are read as 000000000000000. The write value should be
       --  000000000000000.
+      Reserved : RFRH_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -916,11 +917,11 @@ package R7FA4M1AB.RTC is
 
    --  Time Error Adjustment Register
    type RADJ_Register is record
-      ADJ   : RADJ_ADJ_Field := 16#0#;
       --  Adjustment Value These bits specify the adjustment value from the
       --  prescaler.
-      PMADJ : RADJ_PMADJ_Field := R7FA4M1AB.RTC.Val_00;
+      ADJ   : RADJ_ADJ_Field := 16#0#;
       --  Plus-Minus
+      PMADJ : RADJ_PMADJ_Field := R7FA4M1AB.RTC.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -991,11 +992,11 @@ package R7FA4M1AB.RTC is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  Reserved as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : RTCCR_Reserved_Field_Array;
             --  Reserved as an array
+            Arr : RTCCR_Reserved_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -1007,19 +1008,19 @@ package R7FA4M1AB.RTC is
 
    --  Time Capture Control Register %s
    type RTCCR_Register is record
-      TCCT       : RTCCR0_TCCT_Field := R7FA4M1AB.RTC.Val_00;
       --  Time Capture Control
-      TCST       : RTCCR0_TCST_Field := R7FA4M1AB.RTC.Val_0;
+      TCCT       : RTCCR0_TCCT_Field := R7FA4M1AB.RTC.Val_00;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Time Capture Status
-      Reserved   : RTCCR_Reserved_Field := 16#0#;
+      TCST       : RTCCR0_TCST_Field := R7FA4M1AB.RTC.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      TCNF       : RTCCR0_TCNF_Field := R7FA4M1AB.RTC.Val_00;
+      Reserved   : RTCCR_Reserved_Field := 16#0#;
       --  Time Capture Noise Filter Control
+      TCNF       : RTCCR0_TCNF_Field := R7FA4M1AB.RTC.Val_00;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_1 : RTCCR_Reserved_Field_1 :=
                     (As_Array => False, Val => 16#0#);
-      --  This bit is read as 0. The write value should be 0.
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1038,14 +1039,14 @@ package R7FA4M1AB.RTC is
 
    --  Second Capture Register %s
    type RSECCP_Register is record
-      SEC1     : RSECCP_SEC1_Field;
       --  Read-only. 1-Second Capture Capture value for the ones place of
       --  seconds
-      SEC10    : RSECCP_SEC10_Field;
+      SEC1     : RSECCP_SEC1_Field;
       --  Read-only. 10-Second Capture Capture value for the tens place of
       --  seconds
-      Reserved : RSECCP_Reserved_Field;
+      SEC10    : RSECCP_SEC10_Field;
       --  Read-only. This bit is read as 0.
+      Reserved : RSECCP_Reserved_Field;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1062,14 +1063,14 @@ package R7FA4M1AB.RTC is
 
    --  Minute Capture Register %s
    type RMINCP_Register is record
-      MIN1     : RMINCP_MIN1_Field;
       --  Read-only. 1-Minute Capture Capture value for the ones place of
       --  minutes
-      MIN10    : RMINCP_MIN10_Field;
+      MIN1     : RMINCP_MIN1_Field;
       --  Read-only. 10-Minute Capture Capture value for the tens place of
       --  minutes
-      Reserved : RMINCP_Reserved_Field;
+      MIN10    : RMINCP_MIN10_Field;
       --  Read-only. This bit is read as 0.
+      Reserved : RMINCP_Reserved_Field;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1098,16 +1099,16 @@ package R7FA4M1AB.RTC is
 
    --  Hour Capture Register %s
    type RHRCP_Register is record
-      HR1      : RHRCP_HR1_Field;
       --  Read-only. 1-Minute Capture Capture value for the ones place of
       --  minutes
-      HR10     : RHRCP_HR10_Field;
+      HR1      : RHRCP_HR1_Field;
       --  Read-only. 10-Minute Capture Capture value for the tens place of
       --  minutes
-      PM       : RHRCP0_PM_Field;
+      HR10     : RHRCP_HR10_Field;
       --  Read-only. A.m./p.m. select for time counter setting.
-      Reserved : RHRCP_Reserved_Field;
+      PM       : RHRCP0_PM_Field;
       --  Read-only. This bit is read as 0.
+      Reserved : RHRCP_Reserved_Field;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1125,12 +1126,12 @@ package R7FA4M1AB.RTC is
 
    --  Date Capture Register %s
    type RDAYCP_Register is record
-      DATE1    : RDAYCP_DATE1_Field;
       --  Read-only. 1-Day Capture Capture value for the ones place of minutes
-      DATE10   : RDAYCP_DATE10_Field;
+      DATE1    : RDAYCP_DATE1_Field;
       --  Read-only. 10-Day Capture Capture value for the tens place of minutes
-      Reserved : RDAYCP_Reserved_Field;
+      DATE10   : RDAYCP_DATE10_Field;
       --  Read-only. These bits are read as 00.
+      Reserved : RDAYCP_Reserved_Field;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1146,13 +1147,13 @@ package R7FA4M1AB.RTC is
 
    --  Month Capture Register %s
    type RMONCP_Register is record
-      MON1         : RMONCP_MON1_Field;
       --  Read-only. 1-Month Capture Capture value for the ones place of months
-      MON10        : RMONCP_MON10_Field;
+      MON1         : RMONCP_MON1_Field;
       --  Read-only. 10-Month Capture Capture value for the tens place of
       --  months
-      Reserved_5_7 : R7FA4M1AB.UInt3;
+      MON10        : RMONCP_MON10_Field;
       --  unspecified
+      Reserved_5_7 : R7FA4M1AB.UInt3;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1240,196 +1241,132 @@ package R7FA4M1AB.RTC is
      case Discriminent is
         when View_R64CNT =>
            R64CNT : aliased R64CNT_Register;
-           --  64-Hz Counter
         when View_RDAYCNT =>
            RDAYCNT : aliased RDAYCNT_Register;
-           --  Day Counter
         when View_RMONCNT =>
            RMONCNT : aliased RMONCNT_Register;
-           --  Month Counter
         when View_RYRCNT =>
            RYRCNT : aliased RYRCNT_Register;
-           --  Year Counter
         when View_RCR1 =>
            RCR1 : aliased RCR1_Register;
-           --  RTC Control Register 1
         when View_RCR2 =>
            RCR2 : aliased RCR2_Register;
-           --  RTC Control Register 2
         when View_RCR4 =>
            RCR4 : aliased RCR4_Register;
-           --  RTC Control Register 4
         when View_RFRH =>
            RFRH : aliased RFRH_Register;
-           --  Frequency Register H
         when View_RFRL =>
            RFRL : aliased R7FA4M1AB.UInt16;
-           --  Frequency Register L
         when View_RADJ =>
            RADJ : aliased RADJ_Register;
-           --  Time Error Adjustment Register
         when View_RTCCR0 =>
            RTCCR0 : aliased RTCCR_Register;
-           --  Time Capture Control Register %s
         when View_RTCCR1 =>
            RTCCR1 : aliased RTCCR_Register;
-           --  Time Capture Control Register %s
         when View_RTCCR2 =>
            RTCCR2 : aliased RTCCR_Register;
-           --  Time Capture Control Register %s
         when View_RMONCP0 =>
            RMONCP0 : aliased RMONCP_Register;
-           --  Month Capture Register %s
         when View_RMONCP1 =>
            RMONCP1 : aliased RMONCP_Register;
-           --  Month Capture Register %s
         when View_RMONCP2 =>
            RMONCP2 : aliased RMONCP_Register;
-           --  Month Capture Register %s
         when View_RSECCNT =>
            RSECCNT : aliased RSECCNT_Register;
-           --  Second Counter
         when View_RMINCNT =>
            RMINCNT : aliased RMINCNT_Register;
-           --  Minute Counter
         when View_RHRCNT =>
            RHRCNT : aliased RHRCNT_Register;
-           --  Hour Counter
         when View_RWKCNT =>
            RWKCNT : aliased RWKCNT_Register;
-           --  Day-of-Week Counter
         when View_RSECAR =>
            RSECAR : aliased RSECAR_Register;
-           --  Second Alarm Register
         when View_RMINAR =>
            RMINAR : aliased RMINAR_Register;
-           --  Minute Alarm Register
         when View_RHRAR =>
            RHRAR : aliased RHRAR_Register;
-           --  Hour Alarm Register
         when View_RWKAR =>
            RWKAR : aliased RWKAR_Register;
-           --  Day-of-Week Alarm Register
         when View_RDAYAR =>
            RDAYAR : aliased RDAYAR_Register;
-           --  Date Alarm Register
         when View_RMONAR =>
            RMONAR : aliased RMONAR_Register;
-           --  Month Alarm Register
         when View_RYRAR =>
            RYRAR : aliased RYRAR_Register;
-           --  Year Alarm Register
         when View_RYRAREN =>
            RYRAREN : aliased RYRAREN_Register;
-           --  Year Alarm Enable Register
         when View_RSECCP0 =>
            RSECCP0 : aliased RSECCP_Register;
-           --  Second Capture Register %s
         when View_RMINCP0 =>
            RMINCP0 : aliased RMINCP_Register;
-           --  Minute Capture Register %s
         when View_RHRCP0 =>
            RHRCP0 : aliased RHRCP_Register;
-           --  Hour Capture Register %s
         when View_RDAYCP0 =>
            RDAYCP0 : aliased RDAYCP_Register;
-           --  Date Capture Register %s
         when View_RSECCP1 =>
            RSECCP1 : aliased RSECCP_Register;
-           --  Second Capture Register %s
         when View_RMINCP1 =>
            RMINCP1 : aliased RMINCP_Register;
-           --  Minute Capture Register %s
         when View_RHRCP1 =>
            RHRCP1 : aliased RHRCP_Register;
-           --  Hour Capture Register %s
         when View_RDAYCP1 =>
            RDAYCP1 : aliased RDAYCP_Register;
-           --  Date Capture Register %s
         when View_RSECCP2 =>
            RSECCP2 : aliased RSECCP_Register;
-           --  Second Capture Register %s
         when View_RMINCP2 =>
            RMINCP2 : aliased RMINCP_Register;
-           --  Minute Capture Register %s
         when View_RHRCP2 =>
            RHRCP2 : aliased RHRCP_Register;
-           --  Hour Capture Register %s
         when View_RDAYCP2 =>
            RDAYCP2 : aliased RDAYCP_Register;
-           --  Date Capture Register %s
         when View_BCNT0 =>
            BCNT0 : aliased R7FA4M1AB.Byte;
-           --  Binary Counter 0
         when View_BCNT1 =>
            BCNT1 : aliased R7FA4M1AB.Byte;
-           --  Binary Counter 1
         when View_BCNT2 =>
            BCNT2 : aliased R7FA4M1AB.Byte;
-           --  Binary Counter 2
         when View_BCNT3 =>
            BCNT3 : aliased R7FA4M1AB.Byte;
-           --  Binary Counter 3
         when View_BCNT0AR =>
            BCNT0AR : aliased R7FA4M1AB.Byte;
-           --  Binary Counter 0 Alarm Register
         when View_BCNT1AR =>
            BCNT1AR : aliased R7FA4M1AB.Byte;
-           --  Binary Counter 1 Alarm Register
         when View_BCNT2AR =>
            BCNT2AR : aliased R7FA4M1AB.Byte;
-           --  Binary Counter 2 Alarm Register
         when View_BCNT3AR =>
            BCNT3AR : aliased R7FA4M1AB.Byte;
-           --  Binary Counter 3 Alarm Register
         when View_BCNT0AER =>
            BCNT0AER : aliased R7FA4M1AB.Byte;
-           --  Binary Counter 0 Alarm Enable Register
         when View_BCNT1AER =>
            BCNT1AER : aliased R7FA4M1AB.Byte;
-           --  Binary Counter 1 Alarm Enable Register
         when View_BCNT2AER =>
            BCNT2AER : aliased BCNT2AER_Register;
-           --  Binary Counter 2 Alarm Enable Register
         when View_BCNT3AER =>
            BCNT3AER : aliased R7FA4M1AB.Byte;
-           --  Binary Counter 3 Alarm Enable Register
         when View_BCNT0CP0 =>
            BCNT0CP0 : aliased R7FA4M1AB.Byte;
-           --  BCNT0 Capture Register %s
         when View_BCNT1CP0 =>
            BCNT1CP0 : aliased R7FA4M1AB.Byte;
-           --  BCNT1 Capture Register %s
         when View_BCNT2CP0 =>
            BCNT2CP0 : aliased R7FA4M1AB.Byte;
-           --  BCNT2 Capture Register %s
         when View_BCNT3CP0 =>
            BCNT3CP0 : aliased R7FA4M1AB.Byte;
-           --  BCNT3 Capture Register %s
         when View_BCNT0CP1 =>
            BCNT0CP1 : aliased R7FA4M1AB.Byte;
-           --  BCNT0 Capture Register %s
         when View_BCNT1CP1 =>
            BCNT1CP1 : aliased R7FA4M1AB.Byte;
-           --  BCNT1 Capture Register %s
         when View_BCNT2CP1 =>
            BCNT2CP1 : aliased R7FA4M1AB.Byte;
-           --  BCNT2 Capture Register %s
         when View_BCNT3CP1 =>
            BCNT3CP1 : aliased R7FA4M1AB.Byte;
-           --  BCNT3 Capture Register %s
         when View_BCNT0CP2 =>
            BCNT0CP2 : aliased R7FA4M1AB.Byte;
-           --  BCNT0 Capture Register %s
         when View_BCNT1CP2 =>
            BCNT1CP2 : aliased R7FA4M1AB.Byte;
-           --  BCNT1 Capture Register %s
         when View_BCNT2CP2 =>
            BCNT2CP2 : aliased R7FA4M1AB.Byte;
-           --  BCNT2 Capture Register %s
         when View_BCNT3CP2 =>
            BCNT3CP2 : aliased R7FA4M1AB.Byte;
-           --  BCNT3 Capture Register %s
      end case;
    end record
      with Unchecked_Union, Volatile;

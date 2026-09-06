@@ -24,19 +24,20 @@ package R7FA4M1AB.CRC is
    type CRCCR0_GPS_Field is
      (--  No calculation is executed.
       Val_000,
-      --  8-bit CRC-8 (X8 + X2 + X + 1)
+      --  No calculation is executed.
       Val_001,
-      --  16-bit CRC-16 (X16 + X15 + X2 + 1)
+      --  8-bit CRC-8 (X8 + X2 + X + 1)
       Val_010,
-      --  16-bit CRC-CCITT (X16 + X12 + X5 + 1)
+      --  16-bit CRC-16 (X16 + X15 + X2 + 1)
       Val_011,
-      --  32-bit CRC-32 (X32+X26+X23+X22+X16+X12+X11+X10+X8+X7+X5+X4+X2+X+1)
+      --  16-bit CRC-CCITT (X16 + X12 + X5 + 1)
       Val_100,
+      --  32-bit CRC-32 (X32+X26+X23+X22+X16+X12+X11+X10+X8+X7+X5+X4+X2+X+1)
+      Val_101,
       --  32-bit CRC-32C (X32+X28+X27+X26+
 --  X25+X23+X22+X20+X19+X18+X14+X13+X11+X10+X9+X8+X6+1)
-      Val_101,
-      --  No calculation is executed.
-      others_k)
+      others_k
+     )
      with Size => 3;
    for CRCCR0_GPS_Field use
      (Val_000 => 0,
@@ -73,14 +74,14 @@ package R7FA4M1AB.CRC is
 
    --  CRC Control Register0
    type CRCCR0_Register is record
-      GPS      : CRCCR0_GPS_Field := R7FA4M1AB.CRC.Val_000;
       --  CRC Generating Polynomial Switching
-      Reserved : CRCCR0_Reserved_Field := 16#0#;
+      GPS      : CRCCR0_GPS_Field := R7FA4M1AB.CRC.Val_000;
       --  These bits are read as 000. The write value should be 000.
-      LMS      : CRCCR0_LMS_Field := R7FA4M1AB.CRC.Val_0;
+      Reserved : CRCCR0_Reserved_Field := 16#0#;
       --  CRC Calculation Switching
-      DORCLR   : CRCCR0_DORCLR_Field := R7FA4M1AB.CRC.Val_0;
+      LMS      : CRCCR0_LMS_Field := R7FA4M1AB.CRC.Val_0;
       --  Write-only. CRCDOR Register Clear
+      DORCLR   : CRCCR0_DORCLR_Field := R7FA4M1AB.CRC.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -118,12 +119,12 @@ package R7FA4M1AB.CRC is
 
    --  CRC Control Register1
    type CRCCR1_Register is record
-      Reserved : CRCCR1_Reserved_Field := 16#0#;
       --  These bits are read as 000000. The write value should be 000000.
-      CRCSWR   : CRCCR1_CRCSWR_Field := R7FA4M1AB.CRC.Val_0;
+      Reserved : CRCCR1_Reserved_Field := 16#0#;
       --  Snoop-on-write/read switch bit
-      CRCSEN   : CRCCR1_CRCSEN_Field := R7FA4M1AB.CRC.Val_0;
+      CRCSWR   : CRCCR1_CRCSWR_Field := R7FA4M1AB.CRC.Val_0;
       --  Snoop enable bit
+      CRCSEN   : CRCCR1_CRCSEN_Field := R7FA4M1AB.CRC.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -136,32 +137,33 @@ package R7FA4M1AB.CRC is
 
    --  snoop address bit Set the I/O register address to snoop
    type CRCSAR_CRCSA_Field is
-     (      --  SCI0.TDR
+     (--  Settings other than above are prohibited.
       Val_0x0003,
-      --  SCI0.RDR
+      --  SCI0.TDR
       Val_0x0005,
-      --  SCI1.TDR
+      --  SCI0.RDR
       Val_0x0023,
-      --  SCI1.RDR
+      --  SCI1.TDR
       Val_0x0025,
-      --  SCI2.TDR
+      --  SCI1.RDR
       Val_0x0043,
-      --  SCI2.RDR
+      --  SCI2.TDR
       Val_0x0045,
-      --  SCI3.TDR
+      --  SCI2.RDR
       Val_0x0063,
-      --  SCI3.RDR
+      --  SCI3.TDR
       Val_0x0065,
-      --  SCI4.TDR
+      --  SCI3.RDR
       Val_0x0083,
-      --  SCI4.RDR
+      --  SCI4.TDR
       Val_0x0085,
-      --  SCI9.TDR
+      --  SCI4.RDR
       Val_0x0123,
-      --  SCI9.RDR
+      --  SCI9.TDR
       Val_0x0125,
---  Settings other than above are prohibited.
-      others_k)
+      --  SCI9.RDR
+      others_k
+     )
      with Size => 14;
    for CRCSAR_CRCSA_Field use
      (Val_0x0003 => 3,
@@ -182,10 +184,10 @@ package R7FA4M1AB.CRC is
 
    --  Snoop Address Register
    type CRCSAR_Register is record
-      CRCSA    : CRCSAR_CRCSA_Field := R7FA4M1AB.CRC.others_k;
       --  snoop address bit Set the I/O register address to snoop
-      Reserved : CRCSAR_Reserved_Field := 16#0#;
+      CRCSA    : CRCSAR_CRCSA_Field := R7FA4M1AB.CRC.others_k;
       --  These bits are read as 00. The write value should be 00.
+      Reserved : CRCSAR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -216,28 +218,20 @@ package R7FA4M1AB.CRC is
      case Discriminent is
         when View_CRCCR0 =>
            CRCCR0 : aliased CRCCR0_Register;
-           --  CRC Control Register0
         when View_CRCCR1 =>
            CRCCR1 : aliased CRCCR1_Register;
-           --  CRC Control Register1
         when View_CRCSAR =>
            CRCSAR : aliased CRCSAR_Register;
-           --  Snoop Address Register
         when View_CRCDIR =>
            CRCDIR : aliased R7FA4M1AB.UInt32;
-           --  CRC Data Input Register
         when View_CRCDOR =>
            CRCDOR : aliased R7FA4M1AB.UInt32;
-           --  CRC Data Output Register
         when View_CRCDIR_BY =>
            CRCDIR_BY : aliased R7FA4M1AB.Byte;
-           --  CRC Data Input Register (byte access)
         when View_CRCDOR_BY =>
            CRCDOR_BY : aliased R7FA4M1AB.Byte;
-           --  CRC Data Output Register(byte access)
         when View_CRCDOR_HA =>
            CRCDOR_HA : aliased R7FA4M1AB.UInt16;
-           --  CRC Data Output Register (halfword access)
      end case;
    end record
      with Unchecked_Union, Volatile;

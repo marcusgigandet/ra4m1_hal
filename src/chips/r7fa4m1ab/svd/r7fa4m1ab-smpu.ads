@@ -47,11 +47,12 @@ package R7FA4M1AB.SMPU is
    --  Key Code This bit is used to enable or disable rewriting of the PROTECT
    --  and OAD bit.
    type SMPUCTL_KEY_Field is
-     (      --  Writing to the PROTECT and OAD bit is valid, when the KEY bits are written
---  0xA5.
+     (--  Writing to the PROTECT and OAD bit is invalid.
       Val_0xA5,
---  Writing to the PROTECT and OAD bit is invalid.
-      others_k)
+      --  Writing to the PROTECT and OAD bit is valid, when the KEY bits are written
+--  0xA5.
+      others_k
+     )
      with Size => 8;
    for SMPUCTL_KEY_Field use
      (Val_0xA5 => 165,
@@ -59,15 +60,15 @@ package R7FA4M1AB.SMPU is
 
    --  Slave MPU Control Register
    type SMPUCTL_Register is record
-      OAD      : SMPUCTL_OAD_Field := R7FA4M1AB.SMPU.Val_0;
       --  Master Group enable
-      PROTECT  : SMPUCTL_PROTECT_Field := R7FA4M1AB.SMPU.Val_0;
+      OAD      : SMPUCTL_OAD_Field := R7FA4M1AB.SMPU.Val_0;
       --  Protection of register
-      Reserved : SMPUCTL_Reserved_Field := 16#0#;
+      PROTECT  : SMPUCTL_PROTECT_Field := R7FA4M1AB.SMPU.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
-      KEY      : SMPUCTL_KEY_Field := R7FA4M1AB.SMPU.others_k;
+      Reserved : SMPUCTL_Reserved_Field := 16#0#;
       --  Key Code This bit is used to enable or disable rewriting of the
       --  PROTECT and OAD bit.
+      KEY      : SMPUCTL_KEY_Field := R7FA4M1AB.SMPU.others_k;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -107,15 +108,15 @@ package R7FA4M1AB.SMPU is
 
    --  Access Control Register for MBIU
    type SMPUMBIU_Register is record
-      Reserved   : SMPUMBIU_Reserved_Field := 16#0#;
       --  These bits are read as 00. The write value should be 00.
-      RPGRPA     : SMPUMBIU_RPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
+      Reserved   : SMPUMBIU_Reserved_Field := 16#0#;
       --  Master Group A Read protection
-      WPGRPA     : SMPUMBIU_WPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
+      RPGRPA     : SMPUMBIU_RPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
       --  Master Group A Write protection
-      Reserved_1 : SMPUMBIU_Reserved_Field_1 := 16#0#;
+      WPGRPA     : SMPUMBIU_WPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
       --  These bits are read as 000000000000. The write value should be
       --  000000000000.
+      Reserved_1 : SMPUMBIU_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -175,17 +176,17 @@ package R7FA4M1AB.SMPU is
 
    --  Access Control Register for FBIU
    type SMPUFBIU_Register is record
-      RPCPU    : SMPUFBIU_RPCPU_Field := R7FA4M1AB.SMPU.Val_0;
       --  CPU Read protection
-      WPCPU    : SMPUFBIU_WPCPU_Field := R7FA4M1AB.SMPU.Val_0;
+      RPCPU    : SMPUFBIU_RPCPU_Field := R7FA4M1AB.SMPU.Val_0;
       --  CPU Write protection
-      RPGRPA   : SMPUFBIU_RPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
+      WPCPU    : SMPUFBIU_WPCPU_Field := R7FA4M1AB.SMPU.Val_0;
       --  Master Group A Read protection
-      WPGRPA   : SMPUFBIU_WPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
+      RPGRPA   : SMPUFBIU_RPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
       --  Master Group A Write protection
-      Reserved : SMPUFBIU_Reserved_Field := 16#0#;
+      WPGRPA   : SMPUFBIU_WPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
       --  These bits are read as 000000000000. The write value should be
       --  000000000000.
+      Reserved : SMPUFBIU_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -246,17 +247,17 @@ package R7FA4M1AB.SMPU is
 
    --  Access Control Register for SRAM0
    type SMPUSRAM0_Register is record
-      RPCPU    : SMPUSRAM0_RPCPU_Field := R7FA4M1AB.SMPU.Val_0;
       --  CPU Read protection
-      WPCPU    : SMPUSRAM0_WPCPU_Field := R7FA4M1AB.SMPU.Val_0;
+      RPCPU    : SMPUSRAM0_RPCPU_Field := R7FA4M1AB.SMPU.Val_0;
       --  CPU Write protection
-      RPGRPA   : SMPUSRAM0_RPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
+      WPCPU    : SMPUSRAM0_WPCPU_Field := R7FA4M1AB.SMPU.Val_0;
       --  Master Group A Read protection
-      WPGRPA   : SMPUSRAM0_WPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
+      RPGRPA   : SMPUSRAM0_RPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
       --  Master Group A Write protection
-      Reserved : SMPUSRAM0_Reserved_Field := 16#0#;
+      WPGRPA   : SMPUSRAM0_WPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
       --  These bits are read as 000000000000. The write value should be
       --  000000000000.
+      Reserved : SMPUSRAM0_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -317,17 +318,17 @@ package R7FA4M1AB.SMPU is
 
    --  Access Control Register for P%sBIU
    type SMPUPBIU_Register is record
-      RPCPU    : SMPUPBIU0_RPCPU_Field := R7FA4M1AB.SMPU.Val_0;
       --  CPU Read protection
-      WPCPU    : SMPUPBIU0_WPCPU_Field := R7FA4M1AB.SMPU.Val_0;
+      RPCPU    : SMPUPBIU0_RPCPU_Field := R7FA4M1AB.SMPU.Val_0;
       --  CPU Write protection
-      RPGRPA   : SMPUPBIU0_RPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
+      WPCPU    : SMPUPBIU0_WPCPU_Field := R7FA4M1AB.SMPU.Val_0;
       --  Master Group A Read protection
-      WPGRPA   : SMPUPBIU0_WPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
+      RPGRPA   : SMPUPBIU0_RPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
       --  Master Group A Write protection
-      Reserved : SMPUPBIU_Reserved_Field := 16#0#;
+      WPGRPA   : SMPUPBIU0_WPGRPA_Field := R7FA4M1AB.SMPU.Val_0;
       --  These bits are read as 000000000000. The write value should be
       --  000000000000.
+      Reserved : SMPUPBIU_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -346,20 +347,20 @@ package R7FA4M1AB.SMPU is
 
    --  Bus Slave MPU
    type SMPU_Peripheral is record
-      SMPUCTL   : aliased SMPUCTL_Register;
       --  Slave MPU Control Register
-      SMPUMBIU  : aliased SMPUMBIU_Register;
+      SMPUCTL   : aliased SMPUCTL_Register;
       --  Access Control Register for MBIU
-      SMPUFBIU  : aliased SMPUFBIU_Register;
+      SMPUMBIU  : aliased SMPUMBIU_Register;
       --  Access Control Register for FBIU
-      SMPUSRAM0 : aliased SMPUSRAM0_Register;
+      SMPUFBIU  : aliased SMPUFBIU_Register;
       --  Access Control Register for SRAM0
+      SMPUSRAM0 : aliased SMPUSRAM0_Register;
+      --  Access Control Register for P%sBIU
       SMPUPBIU0 : aliased SMPUPBIU_Register;
       --  Access Control Register for P%sBIU
       SMPUPBIU1 : aliased SMPUPBIU_Register;
       --  Access Control Register for P%sBIU
       SMPUPBIU2 : aliased SMPUPBIU_Register;
-      --  Access Control Register for P%sBIU
    end record
      with Volatile;
 

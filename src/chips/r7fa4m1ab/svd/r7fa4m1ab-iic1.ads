@@ -118,26 +118,26 @@ package R7FA4M1AB.IIC1 is
 
    --  I2C Bus Control Register 1
    type ICCR1_Register is record
-      SDAI   : ICCR1_SDAI_Field := R7FA4M1AB.IIC1.Val_1;
       --  Read-only. SDA Line Monitor
-      SCLI   : ICCR1_SCLI_Field := R7FA4M1AB.IIC1.Val_1;
+      SDAI   : ICCR1_SDAI_Field := R7FA4M1AB.IIC1.Val_1;
       --  Read-only. SCL Line Monitor
-      SDAO   : ICCR1_SDAO_Field := R7FA4M1AB.IIC1.Val_1;
+      SCLI   : ICCR1_SCLI_Field := R7FA4M1AB.IIC1.Val_1;
       --  SDA Output Control/Monitor
-      SCLO   : ICCR1_SCLO_Field := R7FA4M1AB.IIC1.Val_1;
+      SDAO   : ICCR1_SDAO_Field := R7FA4M1AB.IIC1.Val_1;
       --  SCL Output Control/Monitor
-      SOWP   : ICCR1_SOWP_Field := R7FA4M1AB.IIC1.Val_1;
+      SCLO   : ICCR1_SCLO_Field := R7FA4M1AB.IIC1.Val_1;
       --  SCLO/SDAO Write Protect
-      CLO    : ICCR1_CLO_Field := R7FA4M1AB.IIC1.Val_0;
+      SOWP   : ICCR1_SOWP_Field := R7FA4M1AB.IIC1.Val_1;
       --  Extra SCL Clock Cycle Output
-      IICRST : ICCR1_IICRST_Field := R7FA4M1AB.IIC1.Val_0;
+      CLO    : ICCR1_CLO_Field := R7FA4M1AB.IIC1.Val_0;
       --  I2C Bus Interface Internal Reset Note:If an internal reset is
       --  initiated using the IICRST bit for a bus hang-up occurred during
       --  communication with the master device in slave mode, the states may
       --  become different between the slave device and the master device (due
       --  to the difference in the bit counter information).
-      ICE    : ICCR1_ICE_Field := R7FA4M1AB.IIC1.Val_0;
+      IICRST : ICCR1_IICRST_Field := R7FA4M1AB.IIC1.Val_0;
       --  I2C Bus Interface Enable
+      ICE    : ICCR1_ICE_Field := R7FA4M1AB.IIC1.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -227,27 +227,27 @@ package R7FA4M1AB.IIC1 is
 
    --  I2C Bus Control Register 2
    type ICCR2_Register is record
-      Reserved   : ICCR2_Reserved_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      ST         : ICCR2_ST_Field := R7FA4M1AB.IIC1.Val_0;
+      Reserved   : ICCR2_Reserved_Field := 16#0#;
       --  Start Condition Issuance Request Set the ST bit to 1 (start condition
       --  issuance request) when the BBSY flag is set to 0 (bus free state).
-      RS         : ICCR2_RS_Field := R7FA4M1AB.IIC1.Val_0;
+      ST         : ICCR2_ST_Field := R7FA4M1AB.IIC1.Val_0;
       --  Restart Condition Issuance Request Note: Do not set the RS bit to 1
       --  while issuing a stop condition.
-      SP         : ICCR2_SP_Field := R7FA4M1AB.IIC1.Val_0;
+      RS         : ICCR2_RS_Field := R7FA4M1AB.IIC1.Val_0;
       --  Stop Condition Issuance Request Note: Writing to the SP bit is not
       --  possible while the setting of the BBSY flag is 0 (bus free state).
       --  Note: Do not set the SP bit to 1 while a restart condition is being
       --  issued.
-      Reserved_1 : ICCR2_Reserved_Field := 16#0#;
+      SP         : ICCR2_SP_Field := R7FA4M1AB.IIC1.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      TRS        : ICCR2_TRS_Field := R7FA4M1AB.IIC1.Val_0;
+      Reserved_1 : ICCR2_Reserved_Field := 16#0#;
       --  Transmit/Receive Mode
-      MST        : ICCR2_MST_Field := R7FA4M1AB.IIC1.Val_0;
+      TRS        : ICCR2_TRS_Field := R7FA4M1AB.IIC1.Val_0;
       --  Master/Slave Mode
-      BBSY       : ICCR2_BBSY_Field := R7FA4M1AB.IIC1.Val_0;
+      MST        : ICCR2_MST_Field := R7FA4M1AB.IIC1.Val_0;
       --  Read-only. Bus Busy Detection Flag
+      BBSY       : ICCR2_BBSY_Field := R7FA4M1AB.IIC1.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -345,14 +345,14 @@ package R7FA4M1AB.IIC1 is
 
    --  I2C Bus Mode Register 1
    type ICMR1_Register is record
-      BC   : ICMR1_BC_Field := R7FA4M1AB.IIC1.Val_000;
       --  Bit Counter
-      BCWP : ICMR1_BCWP_Field := R7FA4M1AB.IIC1.Val_1;
+      BC   : ICMR1_BC_Field := R7FA4M1AB.IIC1.Val_000;
       --  Write-only. BC Write Protect (This bit is read as 1.)
-      CKS  : ICMR1_CKS_Field := R7FA4M1AB.IIC1.Val_000;
+      BCWP : ICMR1_BCWP_Field := R7FA4M1AB.IIC1.Val_1;
       --  Internal Reference Clock (fIIC) Selection ( fIIC = PCLKB / 2^CKS )
-      MTWP : ICMR1_MTWP_Field := R7FA4M1AB.IIC1.Val_0;
+      CKS  : ICMR1_CKS_Field := R7FA4M1AB.IIC1.Val_000;
       --  MST/TRS Write Protect
+      MTWP : ICMR1_MTWP_Field := R7FA4M1AB.IIC1.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -443,18 +443,18 @@ package R7FA4M1AB.IIC1 is
 
    --  I2C Bus Mode Register 2
    type ICMR2_Register is record
-      TMOS     : ICMR2_TMOS_Field := R7FA4M1AB.IIC1.Val_0;
       --  Timeout Detection Time Select
-      TMOL     : ICMR2_TMOL_Field := R7FA4M1AB.IIC1.Val_1;
+      TMOS     : ICMR2_TMOS_Field := R7FA4M1AB.IIC1.Val_0;
       --  Timeout L Count Control
-      TMOH     : ICMR2_TMOH_Field := R7FA4M1AB.IIC1.Val_1;
+      TMOL     : ICMR2_TMOL_Field := R7FA4M1AB.IIC1.Val_1;
       --  Timeout H Count Control
-      Reserved : ICMR2_Reserved_Field := 16#0#;
+      TMOH     : ICMR2_TMOH_Field := R7FA4M1AB.IIC1.Val_1;
       --  This bit is read as 0. The write value should be 0.
-      SDDL     : ICMR2_SDDL_Field := R7FA4M1AB.IIC1.Val_000;
+      Reserved : ICMR2_Reserved_Field := 16#0#;
       --  SDA Output Delay Counter
-      DLCS     : ICMR2_DLCS_Field := R7FA4M1AB.IIC1.Val_0;
+      SDDL     : ICMR2_SDDL_Field := R7FA4M1AB.IIC1.Val_000;
       --  SDA Output Delay Clock Source Select
+      DLCS     : ICMR2_DLCS_Field := R7FA4M1AB.IIC1.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -558,21 +558,21 @@ package R7FA4M1AB.IIC1 is
 
    --  I2C Bus Mode Register 3
    type ICMR3_Register is record
-      NF    : ICMR3_NF_Field := R7FA4M1AB.IIC1.Val_00;
       --  Noise Filter Stage Selection
-      ACKBR : ICMR3_ACKBR_Field := R7FA4M1AB.IIC1.Val_0;
+      NF    : ICMR3_NF_Field := R7FA4M1AB.IIC1.Val_00;
       --  Read-only. Receive Acknowledge
-      ACKBT : ICMR3_ACKBT_Field := R7FA4M1AB.IIC1.Val_0;
+      ACKBR : ICMR3_ACKBR_Field := R7FA4M1AB.IIC1.Val_0;
       --  Transmit Acknowledge
-      ACKWP : ICMR3_ACKWP_Field := R7FA4M1AB.IIC1.Val_0;
+      ACKBT : ICMR3_ACKBT_Field := R7FA4M1AB.IIC1.Val_0;
       --  ACKBT Write Protect
-      RDRFS : ICMR3_RDRFS_Field := R7FA4M1AB.IIC1.Val_0;
+      ACKWP : ICMR3_ACKWP_Field := R7FA4M1AB.IIC1.Val_0;
       --  RDRF Flag Set Timing Selection
-      WAIT  : ICMR3_WAIT_Field := R7FA4M1AB.IIC1.Val_0;
+      RDRFS : ICMR3_RDRFS_Field := R7FA4M1AB.IIC1.Val_0;
       --  WAIT Note: When the value of the WAIT bit is to be read, be sure to
       --  read the ICDRR beforehand.
-      SMBS  : ICMR3_SMBS_Field := R7FA4M1AB.IIC1.Val_0;
+      WAIT  : ICMR3_WAIT_Field := R7FA4M1AB.IIC1.Val_0;
       --  SMBus/I2C Bus Selection
+      SMBS  : ICMR3_SMBS_Field := R7FA4M1AB.IIC1.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -670,22 +670,22 @@ package R7FA4M1AB.IIC1 is
 
    --  I2C Bus Function Enable Register
    type ICFER_Register is record
-      TMOE     : ICFER_TMOE_Field := R7FA4M1AB.IIC1.Val_0;
       --  Timeout Function Enable
-      MALE     : ICFER_MALE_Field := R7FA4M1AB.IIC1.Val_1;
+      TMOE     : ICFER_TMOE_Field := R7FA4M1AB.IIC1.Val_0;
       --  Master Arbitration-Lost Detection Enable
-      NALE     : ICFER_NALE_Field := R7FA4M1AB.IIC1.Val_0;
+      MALE     : ICFER_MALE_Field := R7FA4M1AB.IIC1.Val_1;
       --  NACK Transmission Arbitration-Lost Detection Enable
-      SALE     : ICFER_SALE_Field := R7FA4M1AB.IIC1.Val_0;
+      NALE     : ICFER_NALE_Field := R7FA4M1AB.IIC1.Val_0;
       --  Slave Arbitration-Lost Detection Enable
-      NACKE    : ICFER_NACKE_Field := R7FA4M1AB.IIC1.Val_1;
+      SALE     : ICFER_SALE_Field := R7FA4M1AB.IIC1.Val_0;
       --  NACK Reception Transfer Suspension Enable
-      NFE      : ICFER_NFE_Field := R7FA4M1AB.IIC1.Val_1;
+      NACKE    : ICFER_NACKE_Field := R7FA4M1AB.IIC1.Val_1;
       --  Digital Noise Filter Circuit Enable
-      SCLE     : ICFER_SCLE_Field := R7FA4M1AB.IIC1.Val_1;
+      NFE      : ICFER_NFE_Field := R7FA4M1AB.IIC1.Val_1;
       --  SCL Synchronous Circuit Enable
-      Reserved : ICFER_Reserved_Field := 16#0#;
+      SCLE     : ICFER_SCLE_Field := R7FA4M1AB.IIC1.Val_1;
       --  This bit is read as 0. The write value should be 0.
+      Reserved : ICFER_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -771,22 +771,22 @@ package R7FA4M1AB.IIC1 is
 
    --  I2C Bus Status Enable Register
    type ICSER_Register is record
-      SAR0E      : ICSER_SAR0E_Field := R7FA4M1AB.IIC1.Val_1;
       --  Slave Address Register 0 Enable
-      SAR1E      : ICSER_SAR1E_Field := R7FA4M1AB.IIC1.Val_0;
+      SAR0E      : ICSER_SAR0E_Field := R7FA4M1AB.IIC1.Val_1;
       --  Slave Address Register 1 Enable
-      SAR2E      : ICSER_SAR2E_Field := R7FA4M1AB.IIC1.Val_0;
+      SAR1E      : ICSER_SAR1E_Field := R7FA4M1AB.IIC1.Val_0;
       --  Slave Address Register 2 Enable
-      GCAE       : ICSER_GCAE_Field := R7FA4M1AB.IIC1.Val_1;
+      SAR2E      : ICSER_SAR2E_Field := R7FA4M1AB.IIC1.Val_0;
       --  General Call Address Enable
+      GCAE       : ICSER_GCAE_Field := R7FA4M1AB.IIC1.Val_1;
+      --  This bit is read as 0. The write value should be 0.
       Reserved   : ICSER_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      DIDE       : ICSER_DIDE_Field := R7FA4M1AB.IIC1.Val_0;
       --  Device-ID Address Detection Enable
-      Reserved_1 : ICSER_Reserved_Field := 16#0#;
+      DIDE       : ICSER_DIDE_Field := R7FA4M1AB.IIC1.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      HOAE       : ICSER_HOAE_Field := R7FA4M1AB.IIC1.Val_0;
+      Reserved_1 : ICSER_Reserved_Field := 16#0#;
       --  Host Address Enable
+      HOAE       : ICSER_HOAE_Field := R7FA4M1AB.IIC1.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -892,22 +892,22 @@ package R7FA4M1AB.IIC1 is
 
    --  I2C Bus Interrupt Enable Register
    type ICIER_Register is record
-      TMOIE : ICIER_TMOIE_Field := R7FA4M1AB.IIC1.Val_0;
       --  Timeout Interrupt Request Enable
-      ALIE  : ICIER_ALIE_Field := R7FA4M1AB.IIC1.Val_0;
+      TMOIE : ICIER_TMOIE_Field := R7FA4M1AB.IIC1.Val_0;
       --  Arbitration-Lost Interrupt Request Enable
-      STIE  : ICIER_STIE_Field := R7FA4M1AB.IIC1.Val_0;
+      ALIE  : ICIER_ALIE_Field := R7FA4M1AB.IIC1.Val_0;
       --  Start Condition Detection Interrupt Request Enable
-      SPIE  : ICIER_SPIE_Field := R7FA4M1AB.IIC1.Val_0;
+      STIE  : ICIER_STIE_Field := R7FA4M1AB.IIC1.Val_0;
       --  Stop Condition Detection Interrupt Request Enable
-      NAKIE : ICIER_NAKIE_Field := R7FA4M1AB.IIC1.Val_0;
+      SPIE  : ICIER_SPIE_Field := R7FA4M1AB.IIC1.Val_0;
       --  NACK Reception Interrupt Request Enable
-      RIE   : ICIER_RIE_Field := R7FA4M1AB.IIC1.Val_0;
+      NAKIE : ICIER_NAKIE_Field := R7FA4M1AB.IIC1.Val_0;
       --  Receive Data Full Interrupt Request Enable
-      TEIE  : ICIER_TEIE_Field := R7FA4M1AB.IIC1.Val_0;
+      RIE   : ICIER_RIE_Field := R7FA4M1AB.IIC1.Val_0;
       --  Transmit End Interrupt Request Enable
-      TIE   : ICIER_TIE_Field := R7FA4M1AB.IIC1.Val_0;
+      TEIE  : ICIER_TEIE_Field := R7FA4M1AB.IIC1.Val_0;
       --  Transmit Data Empty Interrupt Request Enable
+      TIE   : ICIER_TIE_Field := R7FA4M1AB.IIC1.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -993,30 +993,30 @@ package R7FA4M1AB.IIC1 is
 
    --  I2C Bus Status Register 1
    type ICSR1_Register is record
-      AAS0       : ICSR1_AAS0_Field := R7FA4M1AB.IIC1.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Slave Address 0 Detection Flag
-      AAS1       : ICSR1_AAS1_Field := R7FA4M1AB.IIC1.Val_0;
+      AAS0       : ICSR1_AAS0_Field := R7FA4M1AB.IIC1.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Slave Address 1 Detection Flag
-      AAS2       : ICSR1_AAS2_Field := R7FA4M1AB.IIC1.Val_0;
+      AAS1       : ICSR1_AAS1_Field := R7FA4M1AB.IIC1.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Slave Address 2 Detection Flag
-      GCA        : ICSR1_GCA_Field := R7FA4M1AB.IIC1.Val_0;
+      AAS2       : ICSR1_AAS2_Field := R7FA4M1AB.IIC1.Val_0;
       --  General Call Address Detection Flag
+      GCA        : ICSR1_GCA_Field := R7FA4M1AB.IIC1.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved   : ICSR1_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      DID        : ICSR1_DID_Field := R7FA4M1AB.IIC1.Val_0;
       --  Device-ID Address Detection Flag
-      Reserved_1 : ICSR1_Reserved_Field := 16#0#;
+      DID        : ICSR1_DID_Field := R7FA4M1AB.IIC1.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      HOA        : ICSR1_HOA_Field := R7FA4M1AB.IIC1.Val_0;
+      Reserved_1 : ICSR1_Reserved_Field := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Host Address Detection Flag
+      HOA        : ICSR1_HOA_Field := R7FA4M1AB.IIC1.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1122,36 +1122,36 @@ package R7FA4M1AB.IIC1 is
 
    --  I2C Bus Status Register 2
    type ICSR2_Register is record
-      TMOF  : ICSR2_TMOF_Field := R7FA4M1AB.IIC1.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Timeout Detection Flag
-      AL    : ICSR2_AL_Field := R7FA4M1AB.IIC1.Val_0;
+      TMOF  : ICSR2_TMOF_Field := R7FA4M1AB.IIC1.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Arbitration-Lost Flag
-      START : ICSR2_START_Field := R7FA4M1AB.IIC1.Val_0;
+      AL    : ICSR2_AL_Field := R7FA4M1AB.IIC1.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Start Condition Detection Flag
-      STOP  : ICSR2_STOP_Field := R7FA4M1AB.IIC1.Val_0;
+      START : ICSR2_START_Field := R7FA4M1AB.IIC1.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Stop Condition Detection Flag
-      NACKF : ICSR2_NACKF_Field := R7FA4M1AB.IIC1.Val_0;
+      STOP  : ICSR2_STOP_Field := R7FA4M1AB.IIC1.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. NACK Detection Flag
-      RDRF  : ICSR2_RDRF_Field := R7FA4M1AB.IIC1.Val_0;
+      NACKF : ICSR2_NACKF_Field := R7FA4M1AB.IIC1.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Receive Data Full Flag
-      TEND  : ICSR2_TEND_Field := R7FA4M1AB.IIC1.Val_0;
+      RDRF  : ICSR2_RDRF_Field := R7FA4M1AB.IIC1.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Transmit End Flag
-      TDRE  : ICSR2_TDRE_Field := R7FA4M1AB.IIC1.Val_0;
+      TEND  : ICSR2_TEND_Field := R7FA4M1AB.IIC1.Val_0;
       --  Read-only. Transmit Data Empty Flag
+      TDRE  : ICSR2_TDRE_Field := R7FA4M1AB.IIC1.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1191,11 +1191,11 @@ package R7FA4M1AB.IIC1 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  SVA as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : SARU_SVA_Field_Array;
             --  SVA as an array
+            Arr : SARU_SVA_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -1209,12 +1209,12 @@ package R7FA4M1AB.IIC1 is
 
    --  Slave Address Register U%s
    type SARU_Register is record
-      FS       : SARU0_FS_Field := R7FA4M1AB.IIC1.Val_0;
       --  7-Bit/10-Bit Address Format Selection
-      SVA      : SARU_SVA_Field := (As_Array => False, Val => 16#0#);
+      FS       : SARU0_FS_Field := R7FA4M1AB.IIC1.Val_0;
       --  10-Bit Address(bit8)
-      Reserved : SARU_Reserved_Field := 16#0#;
+      SVA      : SARU_SVA_Field := (As_Array => False, Val => 16#0#);
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : SARU_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1230,10 +1230,10 @@ package R7FA4M1AB.IIC1 is
 
    --  I2C Bus Bit Rate Low-Level Register
    type ICBRL_Register is record
-      BRL      : ICBRL_BRL_Field := 16#1F#;
       --  Bit Rate Low-Level Period (Low-level period of SCL clock)
-      Reserved : ICBRL_Reserved_Field := 16#7#;
+      BRL      : ICBRL_BRL_Field := 16#1F#;
       --  These bits are read as 111. The write value should be 111.
+      Reserved : ICBRL_Reserved_Field := 16#7#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1248,10 +1248,10 @@ package R7FA4M1AB.IIC1 is
 
    --  I2C Bus Bit Rate High-Level Register
    type ICBRH_Register is record
-      BRH      : ICBRH_BRH_Field := 16#1F#;
       --  Bit Rate High-Level Period (High-level period of SCL clock)
-      Reserved : ICBRH_Reserved_Field := 16#7#;
+      BRH      : ICBRH_BRH_Field := 16#1F#;
       --  These bits are read as 111. The write value should be 111.
+      Reserved : ICBRH_Reserved_Field := 16#7#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -1267,46 +1267,46 @@ package R7FA4M1AB.IIC1 is
 
    --  Inter-Integrated Circuit 1
    type IIC1_Peripheral is record
-      ICCR1 : aliased ICCR1_Register;
       --  I2C Bus Control Register 1
-      ICCR2 : aliased ICCR2_Register;
+      ICCR1 : aliased ICCR1_Register;
       --  I2C Bus Control Register 2
-      ICMR1 : aliased ICMR1_Register;
+      ICCR2 : aliased ICCR2_Register;
       --  I2C Bus Mode Register 1
-      ICMR2 : aliased ICMR2_Register;
+      ICMR1 : aliased ICMR1_Register;
       --  I2C Bus Mode Register 2
-      ICMR3 : aliased ICMR3_Register;
+      ICMR2 : aliased ICMR2_Register;
       --  I2C Bus Mode Register 3
-      ICFER : aliased ICFER_Register;
+      ICMR3 : aliased ICMR3_Register;
       --  I2C Bus Function Enable Register
-      ICSER : aliased ICSER_Register;
+      ICFER : aliased ICFER_Register;
       --  I2C Bus Status Enable Register
-      ICIER : aliased ICIER_Register;
+      ICSER : aliased ICSER_Register;
       --  I2C Bus Interrupt Enable Register
-      ICSR1 : aliased ICSR1_Register;
+      ICIER : aliased ICIER_Register;
       --  I2C Bus Status Register 1
-      ICSR2 : aliased ICSR2_Register;
+      ICSR1 : aliased ICSR1_Register;
       --  I2C Bus Status Register 2
+      ICSR2 : aliased ICSR2_Register;
+      --  Slave Address Register L%s
       SARL0 : aliased R7FA4M1AB.Byte;
-      --  Slave Address Register L%s
+      --  Slave Address Register U%s
       SARU0 : aliased SARU_Register;
-      --  Slave Address Register U%s
+      --  Slave Address Register L%s
       SARL1 : aliased R7FA4M1AB.Byte;
-      --  Slave Address Register L%s
+      --  Slave Address Register U%s
       SARU1 : aliased SARU_Register;
-      --  Slave Address Register U%s
-      SARL2 : aliased R7FA4M1AB.Byte;
       --  Slave Address Register L%s
-      SARU2 : aliased SARU_Register;
+      SARL2 : aliased R7FA4M1AB.Byte;
       --  Slave Address Register U%s
-      ICBRL : aliased ICBRL_Register;
+      SARU2 : aliased SARU_Register;
       --  I2C Bus Bit Rate Low-Level Register
-      ICBRH : aliased ICBRH_Register;
+      ICBRL : aliased ICBRL_Register;
       --  I2C Bus Bit Rate High-Level Register
-      ICDRT : aliased R7FA4M1AB.Byte;
+      ICBRH : aliased ICBRH_Register;
       --  I2C Bus Transmit Data Register
-      ICDRR : aliased R7FA4M1AB.Byte;
+      ICDRT : aliased R7FA4M1AB.Byte;
       --  I2C Bus Receive Data Register
+      ICDRR : aliased R7FA4M1AB.Byte;
    end record
      with Volatile;
 

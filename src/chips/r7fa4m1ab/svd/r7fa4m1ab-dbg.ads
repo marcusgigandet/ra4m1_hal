@@ -48,14 +48,14 @@ package R7FA4M1AB.DBG is
 
    --  Debug Status Register
    type DBGSTR_Register is record
-      Reserved     : DBGSTR_Reserved_Field;
       --  Read-only. These bits are read as 0000000000000000000000000000.
-      CDBGPWRUPREQ : DBGSTR_CDBGPWRUPREQ_Field;
+      Reserved     : DBGSTR_Reserved_Field;
       --  Read-only. Debug power-up request
-      CDBGPWRUPACK : DBGSTR_CDBGPWRUPACK_Field;
+      CDBGPWRUPREQ : DBGSTR_CDBGPWRUPREQ_Field;
       --  Read-only. Debug power-up acknowledge
-      Reserved_1   : DBGSTR_Reserved_Field_1;
+      CDBGPWRUPACK : DBGSTR_CDBGPWRUPACK_Field;
       --  Read-only. These bits are read as 00.
+      Reserved_1   : DBGSTR_Reserved_Field_1;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -119,25 +119,25 @@ package R7FA4M1AB.DBG is
 
    --  Debug Stop Control Register
    type DBGSTOPCR_Register is record
-      DBGSTOP_IWDT  : DBGSTOPCR_DBGSTOP_IWDT_Field := R7FA4M1AB.DBG.Val_1;
       --  Mask bit for IWDT reset/interrupt
-      DBGSTOP_WDT   : DBGSTOPCR_DBGSTOP_WDT_Field := R7FA4M1AB.DBG.Val_1;
+      DBGSTOP_IWDT  : DBGSTOPCR_DBGSTOP_IWDT_Field := R7FA4M1AB.DBG.Val_1;
       --  Mask bit for WDT reset/interrupt
-      Reserved      : DBGSTOPCR_Reserved_Field := 16#0#;
+      DBGSTOP_WDT   : DBGSTOPCR_DBGSTOP_WDT_Field := R7FA4M1AB.DBG.Val_1;
       --  These bits are read as 00000000000000. The write value should be
       --  00000000000000.
-      DBGSTOP_LVD   : DBGSTOPCR_DBGSTOP_LVD_Field := 16#0#;
+      Reserved      : DBGSTOPCR_Reserved_Field := 16#0#;
       --  b18: Mask bit for LVD2 reset/interrupt (0:enable / 1:Mask) b17: Mask
       --  bit for LVD1 reset/interrupt (0:enable / 1:Mask) b16: Mask bit for
       --  LVD0 reset (0:enable / 1:Mask)
-      Reserved_1    : DBGSTOPCR_Reserved_Field_1 := 16#0#;
+      DBGSTOP_LVD   : DBGSTOPCR_DBGSTOP_LVD_Field := 16#0#;
       --  These bits are read as 00000. The write value should be 00000.
-      DBGSTOP_RPER  : DBGSTOPCR_DBGSTOP_RPER_Field := R7FA4M1AB.DBG.Val_0;
+      Reserved_1    : DBGSTOPCR_Reserved_Field_1 := 16#0#;
       --  Mask bit for RAM parity error reset/interrupt
-      DBGSTOP_RECCR : DBGSTOPCR_DBGSTOP_RECCR_Field := R7FA4M1AB.DBG.Val_0;
+      DBGSTOP_RPER  : DBGSTOPCR_DBGSTOP_RPER_Field := R7FA4M1AB.DBG.Val_0;
       --  Mask bit for RAM ECC error reset/interrupt
-      Reserved_2    : DBGSTOPCR_Reserved_Field_2 := 16#0#;
+      DBGSTOP_RECCR : DBGSTOPCR_DBGSTOP_RECCR_Field := R7FA4M1AB.DBG.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved_2    : DBGSTOPCR_Reserved_Field_2 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -168,11 +168,11 @@ package R7FA4M1AB.DBG is
 
    --  Trace Control Register
    type TRACECTR_Register is record
-      Reserved  : TRACECTR_Reserved_Field := 16#0#;
       --  These bits are read as 0000000000000000000000000000000. The write
       --  value should be 0000000000000000000000000000000.
-      ENETBFULL : TRACECTR_ENETBFULL_Field := R7FA4M1AB.DBG.Val_0;
+      Reserved  : TRACECTR_Reserved_Field := 16#0#;
       --  Enable bit for halt request by ETB full
+      ENETBFULL : TRACECTR_ENETBFULL_Field := R7FA4M1AB.DBG.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -188,12 +188,12 @@ package R7FA4M1AB.DBG is
 
    --  Debug Function
    type DBG_Peripheral is record
-      DBGSTR    : aliased DBGSTR_Register;
       --  Debug Status Register
-      DBGSTOPCR : aliased DBGSTOPCR_Register;
+      DBGSTR    : aliased DBGSTR_Register;
       --  Debug Stop Control Register
-      TRACECTR  : aliased TRACECTR_Register;
+      DBGSTOPCR : aliased DBGSTOPCR_Register;
       --  Trace Control Register
+      TRACECTR  : aliased TRACECTR_Register;
    end record
      with Volatile;
 

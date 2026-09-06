@@ -46,16 +46,16 @@ package R7FA4M1AB.IWDT is
 
    --  IWDT Status Register
    type IWDTSR_Register is record
-      CNTVAL : IWDTSR_CNTVAL_Field := 16#0#;
       --  Read-only. Counter Value Value counted by the counter
-      UNDFF  : IWDTSR_UNDFF_Field := R7FA4M1AB.IWDT.Val_0;
+      CNTVAL : IWDTSR_CNTVAL_Field := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Underflow Flag
-      REFEF  : IWDTSR_REFEF_Field := R7FA4M1AB.IWDT.Val_0;
+      UNDFF  : IWDTSR_UNDFF_Field := R7FA4M1AB.IWDT.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Refresh Error Flag
+      REFEF  : IWDTSR_REFEF_Field := R7FA4M1AB.IWDT.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -72,10 +72,10 @@ package R7FA4M1AB.IWDT is
 
    --  Independent Watchdog Timer
    type IWDT_Peripheral is record
-      IWDTRR : aliased R7FA4M1AB.Byte;
       --  IWDT Refresh Register
-      IWDTSR : aliased IWDTSR_Register;
+      IWDTRR : aliased R7FA4M1AB.Byte;
       --  IWDT Status Register
+      IWDTSR : aliased IWDTSR_Register;
    end record
      with Volatile;
 

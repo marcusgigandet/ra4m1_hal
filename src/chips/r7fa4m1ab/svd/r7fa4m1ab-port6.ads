@@ -23,15 +23,17 @@ package R7FA4M1AB.PORT6 is
    --  Pmn Direction
    subtype PCNTR1_PDR_Field is R7FA4M1AB.UInt16;
 
+
    --  Pmn Output Data
    subtype PCNTR1_PODR_Field is R7FA4M1AB.UInt16;
 
+
    --  Port Control Register 1
    type PCNTR1_Register is record
-      PDR  : PCNTR1_PDR_Field := 16#0#;
       --  Pmn Direction
-      PODR : PCNTR1_PODR_Field := 16#0#;
+      PDR  : PCNTR1_PDR_Field := 16#0#;
       --  Pmn Output Data
+      PODR : PCNTR1_PODR_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -44,14 +46,15 @@ package R7FA4M1AB.PORT6 is
    --  Pmn Input Data
    subtype PCNTR2_PIDR_Field is R7FA4M1AB.UInt16;
 
+
    subtype PCNTR2_Reserved_Field is R7FA4M1AB.UInt16;
 
    --  Port Control Register 2
    type PCNTR2_Register is record
-      PIDR     : PCNTR2_PIDR_Field;
       --  Read-only. Pmn Input Data
-      Reserved : PCNTR2_Reserved_Field;
+      PIDR     : PCNTR2_PIDR_Field;
       --  Read-only. These bits are read as 0000000000000000.
+      Reserved : PCNTR2_Reserved_Field;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -64,15 +67,17 @@ package R7FA4M1AB.PORT6 is
    --  Pmn Output Set
    subtype PCNTR3_POSR_Field is R7FA4M1AB.UInt16;
 
+
    --  Pmn Output Reset
    subtype PCNTR3_PORR_Field is R7FA4M1AB.UInt16;
 
+
    --  Port Control Register 3
    type PCNTR3_Register is record
-      POSR : PCNTR3_POSR_Field := 16#0#;
       --  Write-only. Pmn Output Set
-      PORR : PCNTR3_PORR_Field := 16#0#;
+      POSR : PCNTR3_POSR_Field := 16#0#;
       --  Write-only. Pmn Output Reset
+      PORR : PCNTR3_PORR_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -103,28 +108,20 @@ package R7FA4M1AB.PORT6 is
      case Discriminent is
         when View_PDR =>
            PDR : aliased R7FA4M1AB.UInt16;
-           --  Data direction register
         when View_PCNTR2 =>
            PCNTR2 : aliased PCNTR2_Register;
-           --  Port Control Register 2
         when View_PIDR =>
            PIDR : aliased R7FA4M1AB.UInt16;
-           --  Input data register
         when View_POSR =>
            POSR : aliased R7FA4M1AB.UInt16;
-           --  Output set register
         when View_PCNTR1 =>
            PCNTR1 : aliased PCNTR1_Register;
-           --  Port Control Register 1
         when View_PODR =>
            PODR : aliased R7FA4M1AB.UInt16;
-           --  Output data register
         when View_PCNTR3 =>
            PCNTR3 : aliased PCNTR3_Register;
-           --  Port Control Register 3
         when View_PORR =>
            PORR : aliased R7FA4M1AB.UInt16;
-           --  Output reset register
      end case;
    end record
      with Unchecked_Union, Volatile;

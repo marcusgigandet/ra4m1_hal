@@ -35,10 +35,10 @@ package R7FA4M1AB.ELC is
 
    --  Event Link Controller Register
    type ELCR_Register is record
-      Reserved : ELCR_Reserved_Field := 16#0#;
       --  These bits are read as 0000000. The write value should be 0000000.
-      ELCON    : ELCR_ELCON_Field := R7FA4M1AB.ELC.Val_0;
+      Reserved : ELCR_Reserved_Field := 16#0#;
       --  All Event Link Enable
+      ELCON    : ELCR_ELCON_Field := R7FA4M1AB.ELC.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -85,14 +85,14 @@ package R7FA4M1AB.ELC is
 
    --  Event Link Software Event Generation Register %s
    type ELSEGR_Register is record
-      SEG      : ELSEGR0_SEG_Field := R7FA4M1AB.ELC.Val_0;
       --  Write-only. Software Event Generation
-      Reserved : ELSEGR_Reserved_Field := 16#0#;
+      SEG      : ELSEGR0_SEG_Field := R7FA4M1AB.ELC.Val_0;
       --  These bits are read as 00000. The write value should be 00000.
-      WE       : ELSEGR0_WE_Field := R7FA4M1AB.ELC.Val_0;
+      Reserved : ELSEGR_Reserved_Field := 16#0#;
       --  SEG Bit Write Enable
-      WI       : ELSEGR0_WI_Field := R7FA4M1AB.ELC.Val_1;
+      WE       : ELSEGR0_WE_Field := R7FA4M1AB.ELC.Val_0;
       --  Write-only. ELSEGR Register Write Disable
+      WI       : ELSEGR0_WI_Field := R7FA4M1AB.ELC.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -109,7 +109,8 @@ package R7FA4M1AB.ELC is
      (--  Event output to the corresponding peripheral module is disabled.
       Val_0x00,
       --  Set the number for the event signal to be linked.
-      others_k)
+      others_k
+     )
      with Size => 8;
    for ELSR0_ELS_Field use
      (Val_0x00 => 0,
@@ -119,10 +120,10 @@ package R7FA4M1AB.ELC is
 
    --  Event Link Setting Register %s
    type ELSR_Register is record
-      ELS      : ELSR0_ELS_Field := R7FA4M1AB.ELC.Val_0x00;
       --  Event Link Select
-      Reserved : ELSR_Reserved_Field := 16#0#;
+      ELS      : ELSR0_ELS_Field := R7FA4M1AB.ELC.Val_0x00;
       --  These bits are read as 00000000. The write value should be 00000000.
+      Reserved : ELSR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -138,12 +139,13 @@ package R7FA4M1AB.ELC is
 
    --  Event Link Controller
    type ELC_Peripheral is record
-      ELCR    : aliased ELCR_Register;
       --  Event Link Controller Register
+      ELCR    : aliased ELCR_Register;
+      --  Event Link Software Event Generation Register %s
       ELSEGR0 : aliased ELSEGR_Register;
       --  Event Link Software Event Generation Register %s
       ELSEGR1 : aliased ELSEGR_Register;
-      --  Event Link Software Event Generation Register %s
+      --  Event Link Setting Register %s
       ELSR0   : aliased ELSR_Register;
       --  Event Link Setting Register %s
       ELSR1   : aliased ELSR_Register;
@@ -163,9 +165,9 @@ package R7FA4M1AB.ELC is
       ELSR8   : aliased ELSR_Register;
       --  Event Link Setting Register %s
       ELSR9   : aliased ELSR_Register;
-      --  Event Link Setting Register %s
-      ELSR12  : aliased ELSR_Register;
       --  Event Link Setting Register 12
+      ELSR12  : aliased ELSR_Register;
+      --  Event Link Setting Register %s
       ELSR0_1 : aliased ELSR_Register;
       --  Event Link Setting Register %s
       ELSR1_1 : aliased ELSR_Register;
@@ -175,7 +177,6 @@ package R7FA4M1AB.ELC is
       ELSR3_1 : aliased ELSR_Register;
       --  Event Link Setting Register %s
       ELSR4_1 : aliased ELSR_Register;
-      --  Event Link Setting Register %s
    end record
      with Volatile;
 

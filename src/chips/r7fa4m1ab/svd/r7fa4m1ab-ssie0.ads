@@ -59,32 +59,33 @@ package R7FA4M1AB.SSIE0 is
    type SSICR_CKDV_Field is
      (--  AUDIO_MCK
       Val_0000,
-      --  AUDIO_MCK/2
-      Val_0001,
-      --  AUDIO_MCK/4
-      Val_0010,
-      --  AUDIO_MCK/8
-      Val_0011,
-      --  AUDIO_MCK/16
-      Val_0100,
-      --  AUDIO_MCK/32
-      Val_0101,
-      --  AUDIO_MCK/64
-      Val_0110,
-      --  AUDIO_MCK/128
-      Val_0111,
-      --  AUDIO_MCK/6
-      Val_1000,
-      --  AUDIO_MCK/12
-      Val_1001,
-      --  AUDIO_MCK/24
-      Val_1010,
-      --  AUDIO_MCK/48
-      Val_1011,
-      --  AUDIO_MCK/96
-      Val_1100,
       --  Setting prohibited
-      others_k)
+      Val_0001,
+      --  AUDIO_MCK/2
+      Val_0010,
+      --  AUDIO_MCK/4
+      Val_0011,
+      --  AUDIO_MCK/8
+      Val_0100,
+      --  AUDIO_MCK/16
+      Val_0101,
+      --  AUDIO_MCK/32
+      Val_0110,
+      --  AUDIO_MCK/64
+      Val_0111,
+      --  AUDIO_MCK/128
+      Val_1000,
+      --  AUDIO_MCK/6
+      Val_1001,
+      --  AUDIO_MCK/12
+      Val_1010,
+      --  AUDIO_MCK/24
+      Val_1011,
+      --  AUDIO_MCK/48
+      Val_1100,
+      --  AUDIO_MCK/96
+      others_k
+     )
      with Size => 4;
    for SSICR_CKDV_Field use
      (Val_0000 => 0,
@@ -218,20 +219,21 @@ package R7FA4M1AB.SSIE0 is
    type SSICR_DWL_Field is
      (--  8 bits
       Val_000,
-      --  16 bits
-      Val_001,
-      --  18 bits
-      Val_010,
-      --  20 bits
-      Val_011,
-      --  22 bits
-      Val_100,
-      --  24 bits
-      Val_101,
-      --  32 bits
-      Val_110,
       --  Settings other than above are prohibited.
-      others_k)
+      Val_001,
+      --  16 bits
+      Val_010,
+      --  18 bits
+      Val_011,
+      --  20 bits
+      Val_100,
+      --  22 bits
+      Val_101,
+      --  24 bits
+      Val_110,
+      --  32 bits
+      others_k
+     )
      with Size => 3;
    for SSICR_DWL_Field use
      (Val_000 => 0,
@@ -313,53 +315,53 @@ package R7FA4M1AB.SSIE0 is
 
    --  Control Register
    type SSICR_Register is record
-      REN        : SSICR_REN_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Receive Enable
-      TEN        : SSICR_TEN_Field := R7FA4M1AB.SSIE0.Val_0;
+      REN        : SSICR_REN_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Transmit Enable
-      Reserved   : SSICR_Reserved_Field := 16#0#;
+      TEN        : SSICR_TEN_Field := R7FA4M1AB.SSIE0.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      MUEN       : SSICR_MUEN_Field := R7FA4M1AB.SSIE0.Val_0;
+      Reserved   : SSICR_Reserved_Field := 16#0#;
       --  Mute Enable
-      CKDV       : SSICR_CKDV_Field := R7FA4M1AB.SSIE0.Val_0000;
+      MUEN       : SSICR_MUEN_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Selects Bit Clock Division Ratio
-      DEL        : SSICR_DEL_Field := R7FA4M1AB.SSIE0.Val_0;
+      CKDV       : SSICR_CKDV_Field := R7FA4M1AB.SSIE0.Val_0000;
       --  Selects Serial Data Delay
-      PDTA       : SSICR_PDTA_Field := R7FA4M1AB.SSIE0.Val_0;
+      DEL        : SSICR_DEL_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Selects Placement Data Alignment
-      SDTA       : SSICR_SDTA_Field := R7FA4M1AB.SSIE0.Val_0;
+      PDTA       : SSICR_PDTA_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Selects Serial Data Alignment
-      SPDP       : SSICR_SPDP_Field := R7FA4M1AB.SSIE0.Val_0;
+      SDTA       : SSICR_SDTA_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Selects Serial Padding Polarity
-      LRCKP      : SSICR_LRCKP_Field := R7FA4M1AB.SSIE0.Val_0;
+      SPDP       : SSICR_SPDP_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Selects the Initial Value and Polarity of LR Clock/Frame
       --  Synchronization Signal
-      BCKP       : SSICR_BCKP_Field := R7FA4M1AB.SSIE0.Val_0;
+      LRCKP      : SSICR_LRCKP_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Selects Bit Clock Polarity
-      MST        : SSICR_MST_Field := R7FA4M1AB.SSIE0.Val_0;
+      BCKP       : SSICR_BCKP_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Master Enable
+      MST        : SSICR_MST_Field := R7FA4M1AB.SSIE0.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_1 : SSICR_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      SWL        : SSICR_SWL_Field := R7FA4M1AB.SSIE0.Val_000;
       --  Selects System Word Length
-      DWL        : SSICR_DWL_Field := R7FA4M1AB.SSIE0.Val_000;
+      SWL        : SSICR_SWL_Field := R7FA4M1AB.SSIE0.Val_000;
       --  Selects Data Word Length
-      Reserved_2 : SSICR_Reserved_Field_1 := 16#0#;
+      DWL        : SSICR_DWL_Field := R7FA4M1AB.SSIE0.Val_000;
       --  These bits are read as 000. The write value should be 000.
-      IIEN       : SSICR_IIEN_Field := R7FA4M1AB.SSIE0.Val_0;
+      Reserved_2 : SSICR_Reserved_Field_1 := 16#0#;
       --  Idle Mode Interrupt Output Enable
-      ROIEN      : SSICR_ROIEN_Field := R7FA4M1AB.SSIE0.Val_0;
+      IIEN       : SSICR_IIEN_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Receive Overflow Interrupt Output Enable
-      RUIEN      : SSICR_RUIEN_Field := R7FA4M1AB.SSIE0.Val_0;
+      ROIEN      : SSICR_ROIEN_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Receive Underflow Interrupt Output Enable
-      TOIEN      : SSICR_TOIEN_Field := R7FA4M1AB.SSIE0.Val_0;
+      RUIEN      : SSICR_RUIEN_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Transmit Overflow Interrupt Output Enable
-      TUIEN      : SSICR_TUIEN_Field := R7FA4M1AB.SSIE0.Val_0;
+      TOIEN      : SSICR_TOIEN_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Transmit Underflow Interrupt Output Enable
-      CKS        : SSICR_CKS_Field := R7FA4M1AB.SSIE0.Val_0;
+      TUIEN      : SSICR_TUIEN_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Selects an Audio Clock for Master-mode Communication
-      Reserved_3 : SSICR_Reserved_Field := 16#0#;
+      CKS        : SSICR_CKS_Field := R7FA4M1AB.SSIE0.Val_0;
       --  This bit is read as 0. The write value should be 0.
+      Reserved_3 : SSICR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -451,21 +453,21 @@ package R7FA4M1AB.SSIE0 is
 
    --  Status Register
    type SSISR_Register is record
-      Reserved   : SSISR_Reserved_Field := 16#0#;
       --  These bits are read as 0000000000000000000000000. The write value
       --  should be 0000000000000000000000000.
-      IIRQ       : SSISR_IIRQ_Field := R7FA4M1AB.SSIE0.Val_1;
+      Reserved   : SSISR_Reserved_Field := 16#0#;
       --  Read-only. Idle Mode Status Flag
-      ROIRQ      : SSISR_ROIRQ_Field := R7FA4M1AB.SSIE0.Val_0;
+      IIRQ       : SSISR_IIRQ_Field := R7FA4M1AB.SSIE0.Val_1;
       --  Receive Overflow Error Status Flag
-      RUIRQ      : SSISR_RUIRQ_Field := R7FA4M1AB.SSIE0.Val_0;
+      ROIRQ      : SSISR_ROIRQ_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Receive Underflow Error Status Flag
-      TOIRQ      : SSISR_TOIRQ_Field := R7FA4M1AB.SSIE0.Val_0;
+      RUIRQ      : SSISR_RUIRQ_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Transmit Overflow Error Status Flag
-      TUIRQ      : SSISR_TUIRQ_Field := R7FA4M1AB.SSIE0.Val_0;
+      TOIRQ      : SSISR_TOIRQ_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Transmit Underflow Error Status flag
-      Reserved_1 : SSISR_Reserved_Field_1 := 16#0#;
+      TUIRQ      : SSISR_TUIRQ_Field := R7FA4M1AB.SSIE0.Val_0;
       --  These bits are read as 00. The write value should be 00.
+      Reserved_1 : SSISR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -565,27 +567,27 @@ package R7FA4M1AB.SSIE0 is
 
    --  FIFO Control Register
    type SSIFCR_Register is record
-      RFRST      : SSIFCR_RFRST_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Receive FIFO Data Register Reset
-      TFRST      : SSIFCR_TFRST_Field := R7FA4M1AB.SSIE0.Val_0;
+      RFRST      : SSIFCR_RFRST_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Transmit FIFO Data Register Reset
-      RIE        : SSIFCR_RIE_Field := R7FA4M1AB.SSIE0.Val_0;
+      TFRST      : SSIFCR_TFRST_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Receive Data Full Interrupt Output Enable
-      TIE        : SSIFCR_TIE_Field := R7FA4M1AB.SSIE0.Val_0;
+      RIE        : SSIFCR_RIE_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Transmit Data Empty Interrupt Output Enable
-      Reserved   : SSIFCR_Reserved_Field := 16#0#;
+      TIE        : SSIFCR_TIE_Field := R7FA4M1AB.SSIE0.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      BSW        : SSIFCR_BSW_Field := R7FA4M1AB.SSIE0.Val_0;
+      Reserved   : SSIFCR_Reserved_Field := 16#0#;
       --  Byte Swap Enable
-      Reserved_1 : SSIFCR_Reserved_Field_1 := 16#0#;
+      BSW        : SSIFCR_BSW_Field := R7FA4M1AB.SSIE0.Val_0;
       --  These bits are read as 0000. The write value should be 0000.
-      SSIRST     : SSIFCR_SSIRST_Field := R7FA4M1AB.SSIE0.Val_0;
+      Reserved_1 : SSIFCR_Reserved_Field_1 := 16#0#;
       --  Software Reset
-      Reserved_2 : SSIFCR_Reserved_Field_2 := 16#0#;
+      SSIRST     : SSIFCR_SSIRST_Field := R7FA4M1AB.SSIE0.Val_0;
       --  These bits are read as 00000000000000. The write value should be
       --  00000000000000.
-      AUCKE      : SSIFCR_AUCKE_Field := R7FA4M1AB.SSIE0.Val_0;
+      Reserved_2 : SSIFCR_Reserved_Field_2 := 16#0#;
       --  AUDIO_MCK Enable in Mastermode Communication
+      AUCKE      : SSIFCR_AUCKE_Field := R7FA4M1AB.SSIE0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -636,28 +638,28 @@ package R7FA4M1AB.SSIE0 is
 
    --  FIFO Status Register
    type SSIFSR_Register is record
-      RDF            : SSIFSR_RDF_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Receive Data Full Flag
-      Reserved       : SSIFSR_Reserved_Field := 16#0#;
+      RDF            : SSIFSR_RDF_Field := R7FA4M1AB.SSIE0.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      RDC            : SSIFSR_RDC_Field := 16#0#;
+      Reserved       : SSIFSR_Reserved_Field := 16#0#;
       --  Read-only. Number of Receive FIFO Data Indication Flag Number of
       --  receive FIFO data indication flag.
-      Reserved_12_15 : R7FA4M1AB.UInt4 := 16#0#;
+      RDC            : SSIFSR_RDC_Field := 16#0#;
       --  unspecified
-      TDE            : SSIFSR_TDE_Field := R7FA4M1AB.SSIE0.Val_1;
+      Reserved_12_15 : R7FA4M1AB.UInt4 := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Transmit Data Empty Flag
-      Reserved_1     : SSIFSR_Reserved_Field := 16#0#;
+      TDE            : SSIFSR_TDE_Field := R7FA4M1AB.SSIE0.Val_1;
       --  These bits are read as 0000000. The write value should be 0000000.
-      TDC            : SSIFSR_TDC_Field := 16#0#;
+      Reserved_1     : SSIFSR_Reserved_Field := 16#0#;
       --  Read-only. Number of Transmit FIFO Data Indication Flag Number of
       --  transmit FIFO data indication flag.
-      Reserved_2     : SSIFSR_Reserved_Field_1 := 16#0#;
+      TDC            : SSIFSR_TDC_Field := 16#0#;
       --  These bits are read as 0000. The write value should be 0000.
+      Reserved_2     : SSIFSR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -718,17 +720,17 @@ package R7FA4M1AB.SSIE0 is
 
    --  TDM Mode Register
    type SSITDMR_Register is record
-      OMOD       : SSITDMR_OMOD_Field := R7FA4M1AB.SSIE0.Val_00;
       --  Audio Format Select
-      Reserved   : SSITDMR_Reserved_Field := 16#0#;
+      OMOD       : SSITDMR_OMOD_Field := R7FA4M1AB.SSIE0.Val_00;
       --  These bits are read as 000000. The write value should be 000000.
-      LRCONT     : SSITDMR_LRCONT_Field := R7FA4M1AB.SSIE0.Val_0;
+      Reserved   : SSITDMR_Reserved_Field := 16#0#;
       --  Whether to Enable LRCK/FS Continuation
-      BCKASTP    : SSITDMR_BCKASTP_Field := R7FA4M1AB.SSIE0.Val_0;
+      LRCONT     : SSITDMR_LRCONT_Field := R7FA4M1AB.SSIE0.Val_0;
       --  Whether to Enable Stopping BCK Output When SSIE is in Idle Status
-      Reserved_1 : SSITDMR_Reserved_Field_1 := 16#0#;
+      BCKASTP    : SSITDMR_BCKASTP_Field := R7FA4M1AB.SSIE0.Val_0;
       --  These bits are read as 0000000000000000000000. The write value should
       --  be 0000000000000000000000.
+      Reserved_1 : SSITDMR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -781,17 +783,17 @@ package R7FA4M1AB.SSIE0 is
 
    --  Status Control Register
    type SSISCR_Register is record
-      RDFS       : SSISCR_RDFS_Field := R7FA4M1AB.SSIE0.Val_000;
       --  RDF Setting Condition Select
+      RDFS       : SSISCR_RDFS_Field := R7FA4M1AB.SSIE0.Val_000;
+      --  These bits are read as 00000. The write value should be 00000.
       Reserved   : SSISCR_Reserved_Field := 16#0#;
-      --  These bits are read as 00000. The write value should be 00000.
-      TDES       : SSISCR_TDES_Field := R7FA4M1AB.SSIE0.Val_000;
       --  TDE Setting Condition Select
-      Reserved_1 : SSISCR_Reserved_Field := 16#0#;
+      TDES       : SSISCR_TDES_Field := R7FA4M1AB.SSIE0.Val_000;
       --  These bits are read as 00000. The write value should be 00000.
-      Reserved_2 : SSISCR_Reserved_Field_1 := 16#0#;
+      Reserved_1 : SSISCR_Reserved_Field := 16#0#;
       --  These bits are read as 0000000000000000. The write value should be
       --  0000000000000000.
+      Reserved_2 : SSISCR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -810,22 +812,22 @@ package R7FA4M1AB.SSIE0 is
 
    --  Serial Sound Interface Ver.2.0
    type SSIE0_Peripheral is record
-      SSICR   : aliased SSICR_Register;
       --  Control Register
-      SSISR   : aliased SSISR_Register;
+      SSICR   : aliased SSICR_Register;
       --  Status Register
-      SSIFCR  : aliased SSIFCR_Register;
+      SSISR   : aliased SSISR_Register;
       --  FIFO Control Register
-      SSIFSR  : aliased SSIFSR_Register;
+      SSIFCR  : aliased SSIFCR_Register;
       --  FIFO Status Register
-      SSIFTDR : aliased R7FA4M1AB.UInt32;
+      SSIFSR  : aliased SSIFSR_Register;
       --  Transmit FIFO Data Register
-      SSIFRDR : aliased R7FA4M1AB.UInt32;
+      SSIFTDR : aliased R7FA4M1AB.UInt32;
       --  Receive FIFO Data Register
-      SSITDMR : aliased SSITDMR_Register;
+      SSIFRDR : aliased R7FA4M1AB.UInt32;
       --  TDM Mode Register
-      SSISCR  : aliased SSISCR_Register;
+      SSITDMR : aliased SSITDMR_Register;
       --  Status Control Register
+      SSISCR  : aliased SSISCR_Register;
    end record
      with Volatile;
 

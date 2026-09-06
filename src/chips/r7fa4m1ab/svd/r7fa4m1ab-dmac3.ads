@@ -26,12 +26,12 @@ package R7FA4M1AB.DMAC3 is
 
    --  DMA Transfer Count Register
    type DMCRA_Register is record
-      DMCRAL   : DMCRA_DMCRAL_Field := 16#0#;
       --  Lower bits of transfer count
-      DMCRAH   : DMCRA_DMCRAH_Field := 16#0#;
+      DMCRAL   : DMCRA_DMCRAL_Field := 16#0#;
       --  Upper bits of transfer count
-      Reserved : DMCRA_Reserved_Field := 16#0#;
+      DMCRAH   : DMCRA_DMCRAH_Field := 16#0#;
       --  These bits are read as 000000. The write value should be 000000.
+      Reserved : DMCRA_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -116,18 +116,18 @@ package R7FA4M1AB.DMAC3 is
 
    --  DMA Transfer Mode Register
    type DMTMD_Register is record
-      DCTG       : DMTMD_DCTG_Field := R7FA4M1AB.DMAC3.Val_00;
       --  Transfer Request Source Select
-      Reserved   : DMTMD_Reserved_Field := 16#0#;
+      DCTG       : DMTMD_DCTG_Field := R7FA4M1AB.DMAC3.Val_00;
       --  These bits are read as 000000. The write value should be 000000.
-      SZ         : DMTMD_SZ_Field := R7FA4M1AB.DMAC3.Val_00;
+      Reserved   : DMTMD_Reserved_Field := 16#0#;
       --  Transfer Data Size Select
-      Reserved_1 : DMTMD_Reserved_Field_1 := 16#0#;
+      SZ         : DMTMD_SZ_Field := R7FA4M1AB.DMAC3.Val_00;
       --  These bits are read as 00. The write value should be 00.
-      DTS        : DMTMD_DTS_Field := R7FA4M1AB.DMAC3.Val_00;
+      Reserved_1 : DMTMD_Reserved_Field_1 := 16#0#;
       --  Repeat Area Select
-      MD         : DMTMD_MD_Field := R7FA4M1AB.DMAC3.Val_00;
+      DTS        : DMTMD_DTS_Field := R7FA4M1AB.DMAC3.Val_00;
       --  Transfer Mode Select
+      MD         : DMTMD_MD_Field := R7FA4M1AB.DMAC3.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -200,18 +200,18 @@ package R7FA4M1AB.DMAC3 is
 
    --  DMA Interrupt Setting Register
    type DMINT_Register is record
-      DARIE    : DMINT_DARIE_Field := R7FA4M1AB.DMAC3.Val_0;
       --  Destination Address Extended Repeat Area Overflow Interrupt Enable
-      SARIE    : DMINT_SARIE_Field := R7FA4M1AB.DMAC3.Val_0;
+      DARIE    : DMINT_DARIE_Field := R7FA4M1AB.DMAC3.Val_0;
       --  Source Address Extended Repeat Area Overflow Interrupt Enable
-      RPTIE    : DMINT_RPTIE_Field := R7FA4M1AB.DMAC3.Val_0;
+      SARIE    : DMINT_SARIE_Field := R7FA4M1AB.DMAC3.Val_0;
       --  Repeat Size End Interrupt Enable
-      ESIE     : DMINT_ESIE_Field := R7FA4M1AB.DMAC3.Val_0;
+      RPTIE    : DMINT_RPTIE_Field := R7FA4M1AB.DMAC3.Val_0;
       --  Transfer Escape End Interrupt Enable
-      DTIE     : DMINT_DTIE_Field := R7FA4M1AB.DMAC3.Val_0;
+      ESIE     : DMINT_ESIE_Field := R7FA4M1AB.DMAC3.Val_0;
       --  Transfer End Interrupt Enable
-      Reserved : DMINT_Reserved_Field := 16#0#;
+      DTIE     : DMINT_DTIE_Field := R7FA4M1AB.DMAC3.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved : DMINT_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -266,20 +266,20 @@ package R7FA4M1AB.DMAC3 is
 
    --  DMA Address Mode Register
    type DMAMD_Register is record
-      DARA       : DMAMD_DARA_Field := 16#0#;
       --  Destination Address Extended Repeat Area Specifies the extended
       --  repeat area on the destination address. For details on the settings.
-      Reserved   : DMAMD_Reserved_Field := 16#0#;
+      DARA       : DMAMD_DARA_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      DM         : DMAMD_DM_Field := R7FA4M1AB.DMAC3.Val_00;
+      Reserved   : DMAMD_Reserved_Field := 16#0#;
       --  Destination Address Update Mode
-      SARA       : DMAMD_SARA_Field := 16#0#;
+      DM         : DMAMD_DM_Field := R7FA4M1AB.DMAC3.Val_00;
       --  Source Address Extended Repeat Area Specifies the extended repeat
       --  area on the source address. For details on the settings.
-      Reserved_1 : DMAMD_Reserved_Field := 16#0#;
+      SARA       : DMAMD_SARA_Field := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      SM         : DMAMD_SM_Field := R7FA4M1AB.DMAC3.Val_00;
+      Reserved_1 : DMAMD_Reserved_Field := 16#0#;
       --  Source Address Update Mode
+      SM         : DMAMD_SM_Field := R7FA4M1AB.DMAC3.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -308,11 +308,11 @@ package R7FA4M1AB.DMAC3 is
 
    --  DMA Transfer Enable Register
    type DMCNT_Register is record
-      DTE      : DMCNT_DTE_Field := R7FA4M1AB.DMAC3.Val_0;
       --  *** This field is modified following a read operation ***. DMA
       --  Transfer Enable
-      Reserved : DMCNT_Reserved_Field := 16#0#;
+      DTE      : DMCNT_DTE_Field := R7FA4M1AB.DMAC3.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : DMCNT_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -348,15 +348,15 @@ package R7FA4M1AB.DMAC3 is
 
    --  DMA Software Start Register
    type DMREQ_Register is record
-      SWREQ      : DMREQ_SWREQ_Field := R7FA4M1AB.DMAC3.Val_0;
       --  *** This field is modified following a read operation ***. DMA
       --  Software Start
+      SWREQ      : DMREQ_SWREQ_Field := R7FA4M1AB.DMAC3.Val_0;
+      --  These bits are read as 000. The write value should be 000.
       Reserved   : DMREQ_Reserved_Field := 16#0#;
-      --  These bits are read as 000. The write value should be 000.
-      CLRS       : DMREQ_CLRS_Field := R7FA4M1AB.DMAC3.Val_0;
       --  DMA Software Start Bit Auto Clear Select
-      Reserved_1 : DMREQ_Reserved_Field := 16#0#;
+      CLRS       : DMREQ_CLRS_Field := R7FA4M1AB.DMAC3.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_1 : DMREQ_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -407,20 +407,20 @@ package R7FA4M1AB.DMAC3 is
 
    --  DMA Status Register
    type DMSTS_Register is record
-      ESIF       : DMSTS_ESIF_Field := R7FA4M1AB.DMAC3.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Transfer Escape End Interrupt Flag
-      Reserved   : DMSTS_Reserved_Field := 16#0#;
+      ESIF       : DMSTS_ESIF_Field := R7FA4M1AB.DMAC3.Val_0;
       --  These bits are read as 000. The write value should be 000.
-      DTIF       : DMSTS_DTIF_Field := R7FA4M1AB.DMAC3.Val_0;
+      Reserved   : DMSTS_Reserved_Field := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Transfer End Interrupt Flag
-      Reserved_1 : DMSTS_Reserved_Field_1 := 16#0#;
+      DTIF       : DMSTS_DTIF_Field := R7FA4M1AB.DMAC3.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      ACT        : DMSTS_ACT_Field := R7FA4M1AB.DMAC3.Val_0;
+      Reserved_1 : DMSTS_Reserved_Field_1 := 16#0#;
       --  Read-only. DMA Active Flag
+      ACT        : DMSTS_ACT_Field := R7FA4M1AB.DMAC3.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -439,28 +439,28 @@ package R7FA4M1AB.DMAC3 is
 
    --  Direct memory access controller 3
    type DMAC3_Peripheral is record
-      DMSAR : aliased R7FA4M1AB.UInt32;
       --  DMA Source Address Register
-      DMDAR : aliased R7FA4M1AB.UInt32;
+      DMSAR : aliased R7FA4M1AB.UInt32;
       --  DMA Destination Address Register
-      DMCRA : aliased DMCRA_Register;
+      DMDAR : aliased R7FA4M1AB.UInt32;
       --  DMA Transfer Count Register
-      DMCRB : aliased R7FA4M1AB.UInt16;
+      DMCRA : aliased DMCRA_Register;
       --  DMA Block Transfer Count Register
-      DMTMD : aliased DMTMD_Register;
+      DMCRB : aliased R7FA4M1AB.UInt16;
       --  DMA Transfer Mode Register
-      DMINT : aliased DMINT_Register;
+      DMTMD : aliased DMTMD_Register;
       --  DMA Interrupt Setting Register
-      DMAMD : aliased DMAMD_Register;
+      DMINT : aliased DMINT_Register;
       --  DMA Address Mode Register
-      DMOFR : aliased R7FA4M1AB.UInt32;
+      DMAMD : aliased DMAMD_Register;
       --  DMA Offset Register
-      DMCNT : aliased DMCNT_Register;
+      DMOFR : aliased R7FA4M1AB.UInt32;
       --  DMA Transfer Enable Register
-      DMREQ : aliased DMREQ_Register;
+      DMCNT : aliased DMCNT_Register;
       --  DMA Software Start Register
-      DMSTS : aliased DMSTS_Register;
+      DMREQ : aliased DMREQ_Register;
       --  DMA Status Register
+      DMSTS : aliased DMSTS_Register;
    end record
      with Volatile;
 

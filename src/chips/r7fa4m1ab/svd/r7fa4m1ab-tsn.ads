@@ -26,10 +26,10 @@ package R7FA4M1AB.TSN is
 
    --  Temperature Sensor
    type TSN_Peripheral is record
-      TSCDRL : aliased R7FA4M1AB.Byte;
       --  Temperature Sensor Calibration Data Register L
-      TSCDRH : aliased R7FA4M1AB.Byte;
+      TSCDRL : aliased R7FA4M1AB.Byte;
       --  Temperature Sensor Calibration Data Register H
+      TSCDRH : aliased R7FA4M1AB.Byte;
    end record
      with Volatile;
 

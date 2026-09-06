@@ -41,11 +41,11 @@ package R7FA4M1AB.OPAMP is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt4;
             --  AMPPC as a value
+            Val : R7FA4M1AB.UInt4;
          when True =>
-            Arr : AMPMC_AMPPC_Field_Array;
             --  AMPPC as an array
+            Arr : AMPMC_AMPPC_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 4;
@@ -70,12 +70,12 @@ package R7FA4M1AB.OPAMP is
 
    --  Operational amplifier mode control register
    type AMPMC_Register is record
-      AMPPC    : AMPMC_AMPPC_Field := (As_Array => False, Val => 16#0#);
       --  Operational amplifier precharge control status
-      Reserved : AMPMC_Reserved_Field := 16#0#;
+      AMPPC    : AMPMC_AMPPC_Field := (As_Array => False, Val => 16#0#);
       --  These bits are read as 000. The write value should be 000.
-      AMPSP    : AMPMC_AMPSP_Field := R7FA4M1AB.OPAMP.Val_0;
+      Reserved : AMPMC_Reserved_Field := 16#0#;
       --  Operation mode selection
+      AMPSP    : AMPMC_AMPSP_Field := R7FA4M1AB.OPAMP.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -184,6 +184,7 @@ package R7FA4M1AB.OPAMP is
 
    --  Operational amplifier trigger mode control register
    type AMPTRM_Register is record
+      --  Operational amplifier function activation/stop trigger control
       AMPTRM00 : AMPTRM_AMPTRM00_Field := R7FA4M1AB.OPAMP.Val_0;
       --  Operational amplifier function activation/stop trigger control
       AMPTRM01 : AMPTRM_AMPTRM01_Field := R7FA4M1AB.OPAMP.Val_0;
@@ -199,7 +200,6 @@ package R7FA4M1AB.OPAMP is
       AMPTRM30 : AMPTRM_AMPTRM30_Field := R7FA4M1AB.OPAMP.Val_0;
       --  Operational amplifier function activation/stop trigger control
       AMPTRM31 : AMPTRM_AMPTRM31_Field := R7FA4M1AB.OPAMP.Val_0;
-      --  Operational amplifier function activation/stop trigger control
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -244,11 +244,11 @@ package R7FA4M1AB.OPAMP is
 
    --  Operational Amplifier Activation Trigger Select Register
    type AMPTRS_Register is record
-      AMPTRS       : AMPTRS_AMPTRS_Field := R7FA4M1AB.OPAMP.Val_00;
       --  ELC trigger selection Do not change the value of the AMPTRS register
       --  after setting the AMPTRM register.
-      Reserved_2_7 : R7FA4M1AB.UInt6 := 16#0#;
+      AMPTRS       : AMPTRS_AMPTRS_Field := R7FA4M1AB.OPAMP.Val_00;
       --  unspecified
+      Reserved_2_7 : R7FA4M1AB.UInt6 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -296,11 +296,11 @@ package R7FA4M1AB.OPAMP is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt3;
             --  AMPE as a value
+            Val : R7FA4M1AB.UInt3;
          when True =>
-            Arr : AMPC_AMPE_Field_Array;
             --  AMPE as an array
+            Arr : AMPC_AMPE_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 3;
@@ -325,14 +325,14 @@ package R7FA4M1AB.OPAMP is
 
    --  Operational amplifier control register
    type AMPC_Register is record
-      AMPE0    : AMPC_AMPE0_Field := R7FA4M1AB.OPAMP.Val_0;
       --  Operation control of operational amplifier(UNIT0)
-      AMPE     : AMPC_AMPE_Field := (As_Array => False, Val => 16#0#);
+      AMPE0    : AMPC_AMPE0_Field := R7FA4M1AB.OPAMP.Val_0;
       --  Operation control of operational amplifier(UNIT1)
-      Reserved : AMPC_Reserved_Field := 16#0#;
+      AMPE     : AMPC_AMPE_Field := (As_Array => False, Val => 16#0#);
       --  These bits are read as 000. The write value should be 000.
-      IREFE    : AMPC_IREFE_Field := R7FA4M1AB.OPAMP.Val_0;
+      Reserved : AMPC_Reserved_Field := 16#0#;
       --  Operation control of operational amplifier reference current circuit
+      IREFE    : AMPC_IREFE_Field := R7FA4M1AB.OPAMP.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -392,16 +392,16 @@ package R7FA4M1AB.OPAMP is
 
    --  Operational amplifier monitor register
    type AMPMON_Register is record
-      AMPMON0  : AMPMON_AMPMON0_Field;
       --  Read-only. Operational amplifier status(UNIT0)
-      AMPMON1  : AMPMON_AMPMON1_Field;
+      AMPMON0  : AMPMON_AMPMON0_Field;
       --  Read-only. Operational amplifier status(UNIT1)
-      AMPMON2  : AMPMON_AMPMON2_Field;
+      AMPMON1  : AMPMON_AMPMON1_Field;
       --  Read-only. Operational amplifier status(UNIT2)
-      AMPMON3  : AMPMON_AMPMON3_Field;
+      AMPMON2  : AMPMON_AMPMON2_Field;
       --  Read-only. Operational amplifier status(UNIT3)
-      Reserved : AMPMON_Reserved_Field;
+      AMPMON3  : AMPMON_AMPMON3_Field;
       --  Read-only. These bits are read as 0000.
+      Reserved : AMPMON_Reserved_Field;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -420,16 +420,16 @@ package R7FA4M1AB.OPAMP is
 
    --  OperationalAmplifier
    type OPAMP_Peripheral is record
-      AMPMC  : aliased AMPMC_Register;
       --  Operational amplifier mode control register
-      AMPTRM : aliased AMPTRM_Register;
+      AMPMC  : aliased AMPMC_Register;
       --  Operational amplifier trigger mode control register
-      AMPTRS : aliased AMPTRS_Register;
+      AMPTRM : aliased AMPTRM_Register;
       --  Operational Amplifier Activation Trigger Select Register
-      AMPC   : aliased AMPC_Register;
+      AMPTRS : aliased AMPTRS_Register;
       --  Operational amplifier control register
-      AMPMON : aliased AMPMON_Register;
+      AMPC   : aliased AMPC_Register;
       --  Operational amplifier monitor register
+      AMPMON : aliased AMPMON_Register;
    end record
      with Volatile;
 

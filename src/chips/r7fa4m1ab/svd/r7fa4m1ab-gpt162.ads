@@ -35,10 +35,11 @@ package R7FA4M1AB.GPT162 is
 
    --  GTWP Key Code
    type GTWP_PRKEY_Field is
-     (      --  Written to these bits, the WP bits write is permitted.
+     (--  The WP bits write is not permitted.
       Val_0xA5,
---  The WP bits write is not permitted.
-      others_k)
+      --  Written to these bits, the WP bits write is permitted.
+      others_k
+     )
      with Size => 8;
    for GTWP_PRKEY_Field use
      (Val_0xA5 => 165,
@@ -48,15 +49,15 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Write-Protection Register
    type GTWP_Register is record
-      WP         : GTWP_WP_Field := R7FA4M1AB.GPT162.Val_0;
       --  Register Write Disable
-      Reserved   : GTWP_Reserved_Field := 16#0#;
+      WP         : GTWP_WP_Field := R7FA4M1AB.GPT162.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      PRKEY      : GTWP_PRKEY_Field := R7FA4M1AB.GPT162.others_k;
+      Reserved   : GTWP_Reserved_Field := 16#0#;
       --  Write-only. GTWP Key Code
-      Reserved_1 : GTWP_Reserved_Field_1 := 16#0#;
+      PRKEY      : GTWP_PRKEY_Field := R7FA4M1AB.GPT162.others_k;
       --  These bits are read as 0000000000000000. The write value should be
       --  0000000000000000.
+      Reserved_1 : GTWP_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -168,33 +169,33 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Software Start Register
    type GTSTR_Register is record
-      CSTRT0   : GTSTR_CSTRT0_Field := R7FA4M1AB.GPT162.Val_0;
       --  Channel 0 GTCNT Count Start Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter stop. 1 means counter running.
-      CSTRT1   : GTSTR_CSTRT1_Field := R7FA4M1AB.GPT162.Val_0;
+      CSTRT0   : GTSTR_CSTRT0_Field := R7FA4M1AB.GPT162.Val_0;
       --  Channel 1 GTCNT Count Start Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter stop. 1 means counter running.
-      CSTRT2   : GTSTR_CSTRT2_Field := R7FA4M1AB.GPT162.Val_0;
+      CSTRT1   : GTSTR_CSTRT1_Field := R7FA4M1AB.GPT162.Val_0;
       --  Channel 2 GTCNT Count Start Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter stop. 1 means counter running.
-      CSTRT3   : GTSTR_CSTRT3_Field := R7FA4M1AB.GPT162.Val_0;
+      CSTRT2   : GTSTR_CSTRT2_Field := R7FA4M1AB.GPT162.Val_0;
       --  Channel 3 GTCNT Count Start Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter stop. 1 means counter running.
-      CSTRT4   : GTSTR_CSTRT4_Field := R7FA4M1AB.GPT162.Val_0;
+      CSTRT3   : GTSTR_CSTRT3_Field := R7FA4M1AB.GPT162.Val_0;
       --  Channel 4 GTCNT Count Start Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter stop. 1 means counter running.
-      CSTRT5   : GTSTR_CSTRT5_Field := R7FA4M1AB.GPT162.Val_0;
+      CSTRT4   : GTSTR_CSTRT4_Field := R7FA4M1AB.GPT162.Val_0;
       --  Channel 5 GTCNT Count Start Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter stop. 1 means counter running.
-      CSTRT6   : GTSTR_CSTRT6_Field := R7FA4M1AB.GPT162.Val_0;
+      CSTRT5   : GTSTR_CSTRT5_Field := R7FA4M1AB.GPT162.Val_0;
       --  Channel 6 GTCNT Count Start Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter stop. 1 means counter running.
-      CSTRT7   : GTSTR_CSTRT7_Field := R7FA4M1AB.GPT162.Val_0;
+      CSTRT6   : GTSTR_CSTRT6_Field := R7FA4M1AB.GPT162.Val_0;
       --  Channel 7 GTCNT Count Start Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter stop. 1 means counter running.
-      Reserved : GTSTR_Reserved_Field := 16#0#;
+      CSTRT7   : GTSTR_CSTRT7_Field := R7FA4M1AB.GPT162.Val_0;
       --  These bits are read as 000000000000000000000000. The write value
       --  should be 000000000000000000000000.
+      Reserved : GTSTR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -311,41 +312,41 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Software Stop Register
    type GTSTP_Register is record
-      CSTOP0   : GTSTP_CSTOP0_Field := R7FA4M1AB.GPT162.Val_1;
       --  Channel 0 GTCNT Count Stop Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter runnning. 1 means counter
       --  stop.
-      CSTOP1   : GTSTP_CSTOP1_Field := R7FA4M1AB.GPT162.Val_1;
+      CSTOP0   : GTSTP_CSTOP0_Field := R7FA4M1AB.GPT162.Val_1;
       --  Channel 1 GTCNT Count Stop Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter runnning. 1 means counter
       --  stop.
-      CSTOP2   : GTSTP_CSTOP2_Field := R7FA4M1AB.GPT162.Val_1;
+      CSTOP1   : GTSTP_CSTOP1_Field := R7FA4M1AB.GPT162.Val_1;
       --  Channel 2 GTCNT Count Stop Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter runnning. 1 means counter
       --  stop.
-      CSTOP3   : GTSTP_CSTOP3_Field := R7FA4M1AB.GPT162.Val_1;
+      CSTOP2   : GTSTP_CSTOP2_Field := R7FA4M1AB.GPT162.Val_1;
       --  Channel 3 GTCNT Count Stop Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter runnning. 1 means counter
       --  stop.
-      CSTOP4   : GTSTP_CSTOP4_Field := R7FA4M1AB.GPT162.Val_1;
+      CSTOP3   : GTSTP_CSTOP3_Field := R7FA4M1AB.GPT162.Val_1;
       --  Channel 4 GTCNT Count Stop Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter runnning. 1 means counter
       --  stop.
-      CSTOP5   : GTSTP_CSTOP5_Field := R7FA4M1AB.GPT162.Val_1;
+      CSTOP4   : GTSTP_CSTOP4_Field := R7FA4M1AB.GPT162.Val_1;
       --  Channel 5 GTCNT Count Stop Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter runnning. 1 means counter
       --  stop.
-      CSTOP6   : GTSTP_CSTOP6_Field := R7FA4M1AB.GPT162.Val_1;
+      CSTOP5   : GTSTP_CSTOP5_Field := R7FA4M1AB.GPT162.Val_1;
       --  Channel 6 GTCNT Count Stop Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter runnning. 1 means counter
       --  stop.
-      CSTOP7   : GTSTP_CSTOP7_Field := R7FA4M1AB.GPT162.Val_1;
+      CSTOP6   : GTSTP_CSTOP6_Field := R7FA4M1AB.GPT162.Val_1;
       --  Channel 7 GTCNT Count Stop Read data shows each channel's counter
       --  status (GTCR.CST bit). 0 means counter runnning. 1 means counter
       --  stop.
-      Reserved : GTSTP_Reserved_Field := 16#FFFFFF#;
+      CSTOP7   : GTSTP_CSTOP7_Field := R7FA4M1AB.GPT162.Val_1;
       --  These bits are read as 111111111111111111111111. The write value
       --  should be 111111111111111111111111.
+      Reserved : GTSTP_Reserved_Field := 16#FFFFFF#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -454,24 +455,24 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Software Clear Register
    type GTCLR_Register is record
-      CCLR0    : GTCLR_CCLR0_Field := R7FA4M1AB.GPT162.Val_0;
       --  Write-only. Channel 0 GTCNT Count Clear
-      CCLR1    : GTCLR_CCLR1_Field := R7FA4M1AB.GPT162.Val_0;
+      CCLR0    : GTCLR_CCLR0_Field := R7FA4M1AB.GPT162.Val_0;
       --  Write-only. Channel 1 GTCNT Count Clear
-      CCLR2    : GTCLR_CCLR2_Field := R7FA4M1AB.GPT162.Val_0;
+      CCLR1    : GTCLR_CCLR1_Field := R7FA4M1AB.GPT162.Val_0;
       --  Write-only. Channel 2 GTCNT Count Clear
-      CCLR3    : GTCLR_CCLR3_Field := R7FA4M1AB.GPT162.Val_0;
+      CCLR2    : GTCLR_CCLR2_Field := R7FA4M1AB.GPT162.Val_0;
       --  Write-only. Channel 3 GTCNT Count Clear
-      CCLR4    : GTCLR_CCLR4_Field := R7FA4M1AB.GPT162.Val_0;
+      CCLR3    : GTCLR_CCLR3_Field := R7FA4M1AB.GPT162.Val_0;
       --  Write-only. Channel 4 GTCNT Count Clear
-      CCLR5    : GTCLR_CCLR5_Field := R7FA4M1AB.GPT162.Val_0;
+      CCLR4    : GTCLR_CCLR4_Field := R7FA4M1AB.GPT162.Val_0;
       --  Write-only. Channel 5 GTCNT Count Clear
-      CCLR6    : GTCLR_CCLR6_Field := R7FA4M1AB.GPT162.Val_0;
+      CCLR5    : GTCLR_CCLR5_Field := R7FA4M1AB.GPT162.Val_0;
       --  Write-only. Channel 6 GTCNT Count Clear
-      CCLR7    : GTCLR_CCLR7_Field := R7FA4M1AB.GPT162.Val_0;
+      CCLR6    : GTCLR_CCLR6_Field := R7FA4M1AB.GPT162.Val_0;
       --  Write-only. Channel 7 GTCNT Count Clear
-      Reserved : GTCLR_Reserved_Field := 16#0#;
+      CCLR7    : GTCLR_CCLR7_Field := R7FA4M1AB.GPT162.Val_0;
       --  Write-only. The write value should be 000000000000000000000000.
+      Reserved : GTCLR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -749,60 +750,60 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Start Source Select Register
    type GTSSR_Register is record
-      SSGTRGAR   : GTSSR_SSGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Rising Input Source Counter Start Enable
-      SSGTRGAF   : GTSSR_SSGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
+      SSGTRGAR   : GTSSR_SSGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Falling Input Source Counter Start Enable
-      SSGTRGBR   : GTSSR_SSGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
+      SSGTRGAF   : GTSSR_SSGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Rising Input Source Counter Start Enable
-      SSGTRGBF   : GTSSR_SSGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
+      SSGTRGBR   : GTSSR_SSGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Falling Input Source Counter Start Enable
-      Reserved   : GTSSR_Reserved_Field := 16#0#;
+      SSGTRGBF   : GTSSR_SSGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
       --  These bits are read as 0000. The write value should be 0000.
-      SSCARBL    : GTSSR_SSCARBL_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved   : GTSSR_Reserved_Field := 16#0#;
       --  GTIOCA Pin Rising Input during GTIOCB Value Low Source Counter Start
       --  Enable
-      SSCARBH    : GTSSR_SSCARBH_Field := R7FA4M1AB.GPT162.Val_0;
+      SSCARBL    : GTSSR_SSCARBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Rising Input during GTIOCB Value High Source Counter Start
       --  Enable
-      SSCAFBL    : GTSSR_SSCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
+      SSCARBH    : GTSSR_SSCARBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value Low Source Counter Start
       --  Enable
-      SSCAFBH    : GTSSR_SSCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
+      SSCAFBL    : GTSSR_SSCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value High Source Counter
       --  Start Enable
-      SSCBRAL    : GTSSR_SSCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
+      SSCAFBH    : GTSSR_SSCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value Low Source Counter Start
       --  Enable
-      SSCBRAH    : GTSSR_SSCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
+      SSCBRAL    : GTSSR_SSCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value High Source Counter Start
       --  Enable
-      SSCBFAL    : GTSSR_SSCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
+      SSCBRAH    : GTSSR_SSCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value Low Source Counter Start
       --  Enable
-      SSCBFAH    : GTSSR_SSCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
+      SSCBFAL    : GTSSR_SSCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value High Source Counter
       --  Start Enable
-      SSELCA     : GTSSR_SSELCA_Field := R7FA4M1AB.GPT162.Val_0;
+      SSCBFAH    : GTSSR_SSCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTA Event Source Counter Start Enable
-      SSELCB     : GTSSR_SSELCB_Field := R7FA4M1AB.GPT162.Val_0;
+      SSELCA     : GTSSR_SSELCA_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTB Event Source Counter Start Enable
-      SSELCC     : GTSSR_SSELCC_Field := R7FA4M1AB.GPT162.Val_0;
+      SSELCB     : GTSSR_SSELCB_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTC Event Source Counter Start Enable
-      SSELCD     : GTSSR_SSELCD_Field := R7FA4M1AB.GPT162.Val_0;
+      SSELCC     : GTSSR_SSELCC_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTD Event Source Counter Start Enable
-      SSELCE     : GTSSR_SSELCE_Field := R7FA4M1AB.GPT162.Val_0;
+      SSELCD     : GTSSR_SSELCD_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTE Event Source Counter Start Enable
-      SSELCF     : GTSSR_SSELCF_Field := R7FA4M1AB.GPT162.Val_0;
+      SSELCE     : GTSSR_SSELCE_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTF Event Source Counter Start Enable
-      SSELCG     : GTSSR_SSELCG_Field := R7FA4M1AB.GPT162.Val_0;
+      SSELCF     : GTSSR_SSELCF_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTG Event Source Counter Start Enable
-      SSELCH     : GTSSR_SSELCH_Field := R7FA4M1AB.GPT162.Val_0;
+      SSELCG     : GTSSR_SSELCG_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTH Event Source Counter Start Enable
-      Reserved_1 : GTSSR_Reserved_Field_1 := 16#0#;
+      SSELCH     : GTSSR_SSELCH_Field := R7FA4M1AB.GPT162.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      CSTRT      : GTSSR_CSTRT_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved_1 : GTSSR_Reserved_Field_1 := 16#0#;
       --  Software Source Counter Start Enable
+      CSTRT      : GTSSR_CSTRT_Field := R7FA4M1AB.GPT162.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -1094,60 +1095,60 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Stop Source Select Register
    type GTPSR_Register is record
-      PSGTRGAR   : GTPSR_PSGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Rising Input Source Counter Stop Enable
-      PSGTRGAF   : GTPSR_PSGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
+      PSGTRGAR   : GTPSR_PSGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Falling Input Source Counter Stop Enable
-      PSGTRGBR   : GTPSR_PSGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
+      PSGTRGAF   : GTPSR_PSGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Rising Input Source Counter Stop Enable
-      PSGTRGBF   : GTPSR_PSGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
+      PSGTRGBR   : GTPSR_PSGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Falling Input Source Counter Stop Enable
-      Reserved   : GTPSR_Reserved_Field := 16#0#;
+      PSGTRGBF   : GTPSR_PSGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
       --  These bits are read as 0000. The write value should be 0000.
-      PSCARBL    : GTPSR_PSCARBL_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved   : GTPSR_Reserved_Field := 16#0#;
       --  GTIOCA Pin Rising Input during GTIOCB Value Low Source Counter Stop
       --  Enable
-      PSCARBH    : GTPSR_PSCARBH_Field := R7FA4M1AB.GPT162.Val_0;
+      PSCARBL    : GTPSR_PSCARBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Rising Input during GTIOCB Value High Source Counter Stop
       --  Enable
-      PSCAFBL    : GTPSR_PSCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
+      PSCARBH    : GTPSR_PSCARBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value Low Source Counter Stop
       --  Enable
-      PSCAFBH    : GTPSR_PSCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
+      PSCAFBL    : GTPSR_PSCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value High Source Counter Stop
       --  Enable
-      PSCBRAL    : GTPSR_PSCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
+      PSCAFBH    : GTPSR_PSCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value Low Source Counter Stop
       --  Enable
-      PSCBRAH    : GTPSR_PSCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
+      PSCBRAL    : GTPSR_PSCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value High Source Counter Stop
       --  Enable
-      PSCBFAL    : GTPSR_PSCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
+      PSCBRAH    : GTPSR_PSCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value Low Source Counter Stop
       --  Enable
-      PSCBFAH    : GTPSR_PSCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
+      PSCBFAL    : GTPSR_PSCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value High Source Counter Stop
       --  Enable
-      PSELCA     : GTPSR_PSELCA_Field := R7FA4M1AB.GPT162.Val_0;
+      PSCBFAH    : GTPSR_PSCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTA Event Source Counter Stop Enable
-      PSELCB     : GTPSR_PSELCB_Field := R7FA4M1AB.GPT162.Val_0;
+      PSELCA     : GTPSR_PSELCA_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTB Event Source Counter Stop Enable
-      PSELCC     : GTPSR_PSELCC_Field := R7FA4M1AB.GPT162.Val_0;
+      PSELCB     : GTPSR_PSELCB_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTC Event Source Counter Stop Enable
-      PSELCD     : GTPSR_PSELCD_Field := R7FA4M1AB.GPT162.Val_0;
+      PSELCC     : GTPSR_PSELCC_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTD Event Source Counter Stop Enable
-      PSELCE     : GTPSR_PSELCE_Field := R7FA4M1AB.GPT162.Val_0;
+      PSELCD     : GTPSR_PSELCD_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTE Event Source Counter Stop Enable
-      PSELCF     : GTPSR_PSELCF_Field := R7FA4M1AB.GPT162.Val_0;
+      PSELCE     : GTPSR_PSELCE_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTF Event Source Counter Stop Enable
-      PSELCG     : GTPSR_PSELCG_Field := R7FA4M1AB.GPT162.Val_0;
+      PSELCF     : GTPSR_PSELCF_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTG Event Source Counter Stop Enable
-      PSELCH     : GTPSR_PSELCH_Field := R7FA4M1AB.GPT162.Val_0;
+      PSELCG     : GTPSR_PSELCG_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTH Event Source Counter Stop Enable
-      Reserved_1 : GTPSR_Reserved_Field_1 := 16#0#;
+      PSELCH     : GTPSR_PSELCH_Field := R7FA4M1AB.GPT162.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      CSTOP      : GTPSR_CSTOP_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved_1 : GTPSR_Reserved_Field_1 := 16#0#;
       --  Software Source Counter Stop Enable
+      CSTOP      : GTPSR_CSTOP_Field := R7FA4M1AB.GPT162.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -1439,60 +1440,60 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Clear Source Select Register
    type GTCSR_Register is record
-      CSGTRGAR   : GTCSR_CSGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Rising Input Source Counter Clear Enable
-      CSGTRGAF   : GTCSR_CSGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
+      CSGTRGAR   : GTCSR_CSGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Falling Input Source Counter Clear Enable
-      CSGTRGBR   : GTCSR_CSGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
+      CSGTRGAF   : GTCSR_CSGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Rising Input Source Counter Clear Enable
-      CSGTRGBF   : GTCSR_CSGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
+      CSGTRGBR   : GTCSR_CSGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Falling Input Source Counter Clear Enable
-      Reserved   : GTCSR_Reserved_Field := 16#0#;
+      CSGTRGBF   : GTCSR_CSGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
       --  These bits are read as 0000. The write value should be 0000.
-      CSCARBL    : GTCSR_CSCARBL_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved   : GTCSR_Reserved_Field := 16#0#;
       --  GTIOCA Pin Rising Input during GTIOCB Value Low Source Counter Clear
       --  Enable
-      CSCARBH    : GTCSR_CSCARBH_Field := R7FA4M1AB.GPT162.Val_0;
+      CSCARBL    : GTCSR_CSCARBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Rising Input during GTIOCB Value High Source Counter Clear
       --  Enable
-      CSCAFBL    : GTCSR_CSCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
+      CSCARBH    : GTCSR_CSCARBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value Low Source Counter Clear
       --  Enable
-      CSCAFBH    : GTCSR_CSCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
+      CSCAFBL    : GTCSR_CSCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value High Source Counter
       --  Clear Enable
-      CSCBRAL    : GTCSR_CSCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
+      CSCAFBH    : GTCSR_CSCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value Low Source Counter Clear
       --  Enable
-      CSCBRAH    : GTCSR_CSCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
+      CSCBRAL    : GTCSR_CSCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value High Source Counter Clear
       --  Enable
-      CSCBFAL    : GTCSR_CSCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
+      CSCBRAH    : GTCSR_CSCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value Low Source Counter Clear
       --  Enable
-      CSCBFAH    : GTCSR_CSCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
+      CSCBFAL    : GTCSR_CSCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value High Source Counter
       --  Clear Enable
-      CSELCA     : GTCSR_CSELCA_Field := R7FA4M1AB.GPT162.Val_0;
+      CSCBFAH    : GTCSR_CSCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTA Event Source Counter Clear Enable
-      CSELCB     : GTCSR_CSELCB_Field := R7FA4M1AB.GPT162.Val_0;
+      CSELCA     : GTCSR_CSELCA_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTB Event Source Counter Clear Enable
-      CSELCC     : GTCSR_CSELCC_Field := R7FA4M1AB.GPT162.Val_0;
+      CSELCB     : GTCSR_CSELCB_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTC Event Source Counter Clear Enable
-      CSELCD     : GTCSR_CSELCD_Field := R7FA4M1AB.GPT162.Val_0;
+      CSELCC     : GTCSR_CSELCC_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTD Event Source Counter Clear Enable
-      CSELCE     : GTCSR_CSELCE_Field := R7FA4M1AB.GPT162.Val_0;
+      CSELCD     : GTCSR_CSELCD_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTE Event Source Counter Clear Enable
-      CSELCF     : GTCSR_CSELCF_Field := R7FA4M1AB.GPT162.Val_0;
+      CSELCE     : GTCSR_CSELCE_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTF Event Source Counter Clear Enable
-      CSELCG     : GTCSR_CSELCG_Field := R7FA4M1AB.GPT162.Val_0;
+      CSELCF     : GTCSR_CSELCF_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTG Event Source Counter Clear Enable
-      CSELCH     : GTCSR_CSELCH_Field := R7FA4M1AB.GPT162.Val_0;
+      CSELCG     : GTCSR_CSELCG_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTH Event Source Counter Clear Enable
-      Reserved_1 : GTCSR_Reserved_Field_1 := 16#0#;
+      CSELCH     : GTCSR_CSELCH_Field := R7FA4M1AB.GPT162.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      CCLR       : GTCSR_CCLR_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved_1 : GTCSR_Reserved_Field_1 := 16#0#;
       --  Software Source Counter Clear Enable
+      CCLR       : GTCSR_CCLR_Field := R7FA4M1AB.GPT162.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -1769,58 +1770,58 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Up Count Source Select Register
    type GTUPSR_Register is record
-      USGTRGAR       : GTUPSR_USGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Rising Input Source Counter Count Up Enable
-      USGTRGAF       : GTUPSR_USGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
+      USGTRGAR       : GTUPSR_USGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Falling Input Source Counter Count Up Enable
-      USGTRGBR       : GTUPSR_USGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
+      USGTRGAF       : GTUPSR_USGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Rising Input Source Counter Count Up Enable
-      USGTRGBF       : GTUPSR_USGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
+      USGTRGBR       : GTUPSR_USGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Falling Input Source Counter Count Up Enable
-      Reserved_4_7   : R7FA4M1AB.UInt4 := 16#0#;
+      USGTRGBF       : GTUPSR_USGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
-      USCARBL        : GTUPSR_USCARBL_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved_4_7   : R7FA4M1AB.UInt4 := 16#0#;
       --  GTIOCA Pin Rising Input during GTIOCB Value Low Source Counter Count
       --  Up Enable
-      USCARBH        : GTUPSR_USCARBH_Field := R7FA4M1AB.GPT162.Val_0;
+      USCARBL        : GTUPSR_USCARBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Rising Input during GTIOCB Value High Source Counter Count
       --  Up Enable
-      USCAFBL        : GTUPSR_USCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
+      USCARBH        : GTUPSR_USCARBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value Low Source Counter Count
       --  Up Enable
-      USCAFBH        : GTUPSR_USCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
+      USCAFBL        : GTUPSR_USCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value High Source Counter
       --  Count Up Enable
-      USCBRAL        : GTUPSR_USCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
+      USCAFBH        : GTUPSR_USCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value Low Source Counter Count
       --  Up Enable
-      USCBRAH        : GTUPSR_USCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
+      USCBRAL        : GTUPSR_USCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value High Source Counter Count
       --  Up Enable
-      USCBFAL        : GTUPSR_USCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
+      USCBRAH        : GTUPSR_USCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value Low Source Counter Count
       --  Up Enable
-      USCBFAH        : GTUPSR_USCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
+      USCBFAL        : GTUPSR_USCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value High Source Counter
       --  Count Up Enable
-      USELCA         : GTUPSR_USELCA_Field := R7FA4M1AB.GPT162.Val_0;
+      USCBFAH        : GTUPSR_USCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTA Event Source Counter Count Up Enable
-      USELCB         : GTUPSR_USELCB_Field := R7FA4M1AB.GPT162.Val_0;
+      USELCA         : GTUPSR_USELCA_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTB Event Source Counter Count Up Enable
-      USELCC         : GTUPSR_USELCC_Field := R7FA4M1AB.GPT162.Val_0;
+      USELCB         : GTUPSR_USELCB_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTC Event Source Counter Count Up Enable
-      USELCD         : GTUPSR_USELCD_Field := R7FA4M1AB.GPT162.Val_0;
+      USELCC         : GTUPSR_USELCC_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTD Event Source Counter Count Up Enable
-      USELCE         : GTUPSR_USELCE_Field := R7FA4M1AB.GPT162.Val_0;
+      USELCD         : GTUPSR_USELCD_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTE Event Source Counter Count Up Enable
-      USELCF         : GTUPSR_USELCF_Field := R7FA4M1AB.GPT162.Val_0;
+      USELCE         : GTUPSR_USELCE_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTF Event Source Counter Count Up Enable
-      USELCG         : GTUPSR_USELCG_Field := R7FA4M1AB.GPT162.Val_0;
+      USELCF         : GTUPSR_USELCF_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTG Event Source Counter Count Up Enable
-      USELCH         : GTUPSR_USELCH_Field := R7FA4M1AB.GPT162.Val_0;
+      USELCG         : GTUPSR_USELCG_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTH Event Source Counter Count Up Enable
-      Reserved_24_31 : R7FA4M1AB.Byte := 16#0#;
+      USELCH         : GTUPSR_USELCH_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
+      Reserved_24_31 : R7FA4M1AB.Byte := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -2096,58 +2097,58 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Down Count Source Select Register
    type GTDNSR_Register is record
-      DSGTRGAR       : GTDNSR_DSGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Rising Input Source Counter Count Down Enable
-      DSGTRGAF       : GTDNSR_DSGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
+      DSGTRGAR       : GTDNSR_DSGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Falling Input Source Counter Count Down Enable
-      DSGTRGBR       : GTDNSR_DSGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
+      DSGTRGAF       : GTDNSR_DSGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Rising Input Source Counter Count Down Enable
-      DSGTRGBF       : GTDNSR_DSGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
+      DSGTRGBR       : GTDNSR_DSGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Falling Input Source Counter Count Down Enable
-      Reserved_4_7   : R7FA4M1AB.UInt4 := 16#0#;
+      DSGTRGBF       : GTDNSR_DSGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
-      DSCARBL        : GTDNSR_DSCARBL_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved_4_7   : R7FA4M1AB.UInt4 := 16#0#;
       --  GTIOCA Pin Rising Input during GTIOCB Value Low Source Counter Count
       --  Down Enable
-      DSCARBH        : GTDNSR_DSCARBH_Field := R7FA4M1AB.GPT162.Val_0;
+      DSCARBL        : GTDNSR_DSCARBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Rising Input during GTIOCB Value High Source Counter Count
       --  Down Enable
-      DSCAFBL        : GTDNSR_DSCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
+      DSCARBH        : GTDNSR_DSCARBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value Low Source Counter Count
       --  Down Enable
-      DSCAFBH        : GTDNSR_DSCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
+      DSCAFBL        : GTDNSR_DSCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value High Source Counter
       --  Count Down Enable
-      DSCBRAL        : GTDNSR_DSCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
+      DSCAFBH        : GTDNSR_DSCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value Low Source Counter Count
       --  Down Enable
-      DSCBRAH        : GTDNSR_DSCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
+      DSCBRAL        : GTDNSR_DSCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value High Source Counter Count
       --  Down Enable
-      DSCBFAL        : GTDNSR_DSCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
+      DSCBRAH        : GTDNSR_DSCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value Low Source Counter Count
       --  Down Enable
-      DSCBFAH        : GTDNSR_DSCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
+      DSCBFAL        : GTDNSR_DSCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value High Source Counter
       --  Count Down Enable
-      DSELCA         : GTDNSR_DSELCA_Field := R7FA4M1AB.GPT162.Val_0;
+      DSCBFAH        : GTDNSR_DSCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTA Event Source Counter Count Down Enable
-      DSELCB         : GTDNSR_DSELCB_Field := R7FA4M1AB.GPT162.Val_0;
+      DSELCA         : GTDNSR_DSELCA_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTB Event Source Counter Count Down Enable
-      DSELCC         : GTDNSR_DSELCC_Field := R7FA4M1AB.GPT162.Val_0;
+      DSELCB         : GTDNSR_DSELCB_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTC Event Source Counter Count Down Enable
-      DSELCD         : GTDNSR_DSELCD_Field := R7FA4M1AB.GPT162.Val_0;
+      DSELCC         : GTDNSR_DSELCC_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTD Event Source Counter Count Down Enable
-      DSELCE         : GTDNSR_DSELCE_Field := R7FA4M1AB.GPT162.Val_0;
+      DSELCD         : GTDNSR_DSELCD_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTE Event Source Counter Count Down Enable
-      DSELCF         : GTDNSR_DSELCF_Field := R7FA4M1AB.GPT162.Val_0;
+      DSELCE         : GTDNSR_DSELCE_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTF Event Source Counter Count Down Enable
-      DSELCG         : GTDNSR_DSELCG_Field := R7FA4M1AB.GPT162.Val_0;
+      DSELCF         : GTDNSR_DSELCF_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTG Event Source Counter Count Down Enable
-      DSELCH         : GTDNSR_DSELCH_Field := R7FA4M1AB.GPT162.Val_0;
+      DSELCG         : GTDNSR_DSELCG_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTH Event Source Counter Count Down Enable
-      Reserved_24_31 : R7FA4M1AB.Byte := 16#0#;
+      DSELCH         : GTDNSR_DSELCH_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
+      Reserved_24_31 : R7FA4M1AB.Byte := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -2423,58 +2424,58 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Input Capture Source Select Register A
    type GTICASR_Register is record
-      ASGTRGAR       : GTICASR_ASGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Rising Input Source GTCCRA Input Capture Enable
-      ASGTRGAF       : GTICASR_ASGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
+      ASGTRGAR       : GTICASR_ASGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Falling Input Source GTCCRA Input Capture Enable
-      ASGTRGBR       : GTICASR_ASGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
+      ASGTRGAF       : GTICASR_ASGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Rising Input Source GTCCRA Input Capture Enable
-      ASGTRGBF       : GTICASR_ASGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
+      ASGTRGBR       : GTICASR_ASGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Falling Input Source GTCCRA Input Capture Enable
-      Reserved_4_7   : R7FA4M1AB.UInt4 := 16#0#;
+      ASGTRGBF       : GTICASR_ASGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
-      ASCARBL        : GTICASR_ASCARBL_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved_4_7   : R7FA4M1AB.UInt4 := 16#0#;
       --  GTIOCA Pin Rising Input during GTIOCB Value Low Source GTCCRA Input
       --  Capture Enable
-      ASCARBH        : GTICASR_ASCARBH_Field := R7FA4M1AB.GPT162.Val_0;
+      ASCARBL        : GTICASR_ASCARBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Rising Input during GTIOCB Value High Source GTCCRA Input
       --  Capture Enable
-      ASCAFBL        : GTICASR_ASCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
+      ASCARBH        : GTICASR_ASCARBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value Low Source GTCCRA Input
       --  Capture Enable
-      ASCAFBH        : GTICASR_ASCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
+      ASCAFBL        : GTICASR_ASCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value High Source GTCCRA Input
       --  Capture Enable
-      ASCBRAL        : GTICASR_ASCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
+      ASCAFBH        : GTICASR_ASCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value Low Source GTCCRA Input
       --  Capture Enable
-      ASCBRAH        : GTICASR_ASCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
+      ASCBRAL        : GTICASR_ASCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value High Source GTCCRA Input
       --  Capture Enable
-      ASCBFAL        : GTICASR_ASCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
+      ASCBRAH        : GTICASR_ASCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value Low Source GTCCRA Input
       --  Capture Enable
-      ASCBFAH        : GTICASR_ASCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
+      ASCBFAL        : GTICASR_ASCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value High Source GTCCRA Input
       --  Capture Enable
-      ASELCA         : GTICASR_ASELCA_Field := R7FA4M1AB.GPT162.Val_0;
+      ASCBFAH        : GTICASR_ASCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTA Event Source GTCCRA Input Capture Enable
-      ASELCB         : GTICASR_ASELCB_Field := R7FA4M1AB.GPT162.Val_0;
+      ASELCA         : GTICASR_ASELCA_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTB Event Source GTCCRA Input Capture Enable
-      ASELCC         : GTICASR_ASELCC_Field := R7FA4M1AB.GPT162.Val_0;
+      ASELCB         : GTICASR_ASELCB_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTC Event Source GTCCRA Input Capture Enable
-      ASELCD         : GTICASR_ASELCD_Field := R7FA4M1AB.GPT162.Val_0;
+      ASELCC         : GTICASR_ASELCC_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTD Event Source GTCCRA Input Capture Enable
-      ASELCE         : GTICASR_ASELCE_Field := R7FA4M1AB.GPT162.Val_0;
+      ASELCD         : GTICASR_ASELCD_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTE Event Source GTCCRA Input Capture Enable
-      ASELCF         : GTICASR_ASELCF_Field := R7FA4M1AB.GPT162.Val_0;
+      ASELCE         : GTICASR_ASELCE_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTF Event Source GTCCRA Input Capture Enable
-      ASELCG         : GTICASR_ASELCG_Field := R7FA4M1AB.GPT162.Val_0;
+      ASELCF         : GTICASR_ASELCF_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTG Event Source GTCCRA Input Capture Enable
-      ASELCH         : GTICASR_ASELCH_Field := R7FA4M1AB.GPT162.Val_0;
+      ASELCG         : GTICASR_ASELCG_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTH Event Source GTCCRA Input Capture Enable
-      Reserved_24_31 : R7FA4M1AB.Byte := 16#0#;
+      ASELCH         : GTICASR_ASELCH_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
+      Reserved_24_31 : R7FA4M1AB.Byte := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -2750,58 +2751,58 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Input Capture Source Select Register B
    type GTICBSR_Register is record
-      BSGTRGAR       : GTICBSR_BSGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Rising Input Source GTCCRB Input Capture Enable
-      BSGTRGAF       : GTICBSR_BSGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
+      BSGTRGAR       : GTICBSR_BSGTRGAR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGA Pin Falling Input Source GTCCRB Input Capture Enable
-      BSGTRGBR       : GTICBSR_BSGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
+      BSGTRGAF       : GTICBSR_BSGTRGAF_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Rising Input Source GTCCRB Input Capture Enable
-      BSGTRGBF       : GTICBSR_BSGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
+      BSGTRGBR       : GTICBSR_BSGTRGBR_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTETRGB Pin Falling Input Source GTCCRB Input Capture Enable
-      Reserved_4_7   : R7FA4M1AB.UInt4 := 16#0#;
+      BSGTRGBF       : GTICBSR_BSGTRGBF_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
-      BSCARBL        : GTICBSR_BSCARBL_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved_4_7   : R7FA4M1AB.UInt4 := 16#0#;
       --  GTIOCA Pin Rising Input during GTIOCB Value Low Source GTCCRB Input
       --  Capture Enable
-      BSCARBH        : GTICBSR_BSCARBH_Field := R7FA4M1AB.GPT162.Val_0;
+      BSCARBL        : GTICBSR_BSCARBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Rising Input during GTIOCB Value High Source GTCCRB Input
       --  Capture Enable
-      BSCAFBL        : GTICBSR_BSCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
+      BSCARBH        : GTICBSR_BSCARBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value Low Source GTCCRB Input
       --  Capture Enable
-      BSCAFBH        : GTICBSR_BSCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
+      BSCAFBL        : GTICBSR_BSCAFBL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Falling Input during GTIOCB Value High Source GTCCRB Input
       --  Capture Enable
-      BSCBRAL        : GTICBSR_BSCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
+      BSCAFBH        : GTICBSR_BSCAFBH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value Low Source GTCCRB Input
       --  Capture Enable
-      BSCBRAH        : GTICBSR_BSCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
+      BSCBRAL        : GTICBSR_BSCBRAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Rising Input during GTIOCA Value High Source GTCCRB Input
       --  Capture Enable
-      BSCBFAL        : GTICBSR_BSCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
+      BSCBRAH        : GTICBSR_BSCBRAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value Low Source GTCCRB Input
       --  Capture Enable
-      BSCBFAH        : GTICBSR_BSCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
+      BSCBFAL        : GTICBSR_BSCBFAL_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Falling Input during GTIOCA Value High Source GTCCRB Input
       --  Capture Enable
-      BSELCA         : GTICBSR_BSELCA_Field := R7FA4M1AB.GPT162.Val_0;
+      BSCBFAH        : GTICBSR_BSCBFAH_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTA Event Source GTCCRB Input Capture Enable
-      BSELCB         : GTICBSR_BSELCB_Field := R7FA4M1AB.GPT162.Val_0;
+      BSELCA         : GTICBSR_BSELCA_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTB Event Source GTCCRB Input Capture Enable
-      BSELCC         : GTICBSR_BSELCC_Field := R7FA4M1AB.GPT162.Val_0;
+      BSELCB         : GTICBSR_BSELCB_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTC Event Source GTCCRB Input Capture Enable
-      BSELCD         : GTICBSR_BSELCD_Field := R7FA4M1AB.GPT162.Val_0;
+      BSELCC         : GTICBSR_BSELCC_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTD Event Source GTCCRB Input Capture Enable
-      BSELCE         : GTICBSR_BSELCE_Field := R7FA4M1AB.GPT162.Val_0;
+      BSELCD         : GTICBSR_BSELCD_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTE Event Source GTCCRB Input Capture Enable
-      BSELCF         : GTICBSR_BSELCF_Field := R7FA4M1AB.GPT162.Val_0;
+      BSELCE         : GTICBSR_BSELCE_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTF Event Source GTCCRB Input Capture Enable
-      BSELCG         : GTICBSR_BSELCG_Field := R7FA4M1AB.GPT162.Val_0;
+      BSELCF         : GTICBSR_BSELCF_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTG Event Source GTCCRB Input Capture Enable
-      BSELCH         : GTICBSR_BSELCH_Field := R7FA4M1AB.GPT162.Val_0;
+      BSELCG         : GTICBSR_BSELCG_Field := R7FA4M1AB.GPT162.Val_0;
       --  ELC_GPTH Event Source GTCCRB Input Capture Enable
-      Reserved_24_31 : R7FA4M1AB.Byte := 16#0#;
+      BSELCH         : GTICBSR_BSELCH_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
+      Reserved_24_31 : R7FA4M1AB.Byte := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -2882,18 +2883,19 @@ package R7FA4M1AB.GPT162 is
    type GTCR_TPCS_Field is
      (--  PCLK/1
       Val_000,
-      --  PCLK/4
-      Val_001,
-      --  PCLK/16
-      Val_010,
-      --  PCLK/64
-      Val_011,
-      --  PCLK/256
-      Val_100,
-      --  PCLK/1024
-      Val_101,
       --  Setting prohibied
-      others_k)
+      Val_001,
+      --  PCLK/4
+      Val_010,
+      --  PCLK/16
+      Val_011,
+      --  PCLK/64
+      Val_100,
+      --  PCLK/256
+      Val_101,
+      --  PCLK/1024
+      others_k
+     )
      with Size => 3;
    for GTCR_TPCS_Field use
      (Val_000 => 0,
@@ -2906,19 +2908,19 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Control Register
    type GTCR_Register is record
-      CST            : GTCR_CST_Field := R7FA4M1AB.GPT162.Val_0;
       --  Count Start
-      Reserved       : GTCR_Reserved_Field := 16#0#;
+      CST            : GTCR_CST_Field := R7FA4M1AB.GPT162.Val_0;
       --  These bits are read as 000000000000000. The write value should be
       --  000000000000000.
-      MD             : GTCR_MD_Field := R7FA4M1AB.GPT162.Val_000;
+      Reserved       : GTCR_Reserved_Field := 16#0#;
       --  Mode Select
-      Reserved_1     : GTCR_Reserved_Field_1 := 16#0#;
+      MD             : GTCR_MD_Field := R7FA4M1AB.GPT162.Val_000;
       --  These bits are read as 00000. The write value should be 00000.
-      TPCS           : GTCR_TPCS_Field := R7FA4M1AB.GPT162.Val_000;
+      Reserved_1     : GTCR_Reserved_Field_1 := 16#0#;
       --  Timer Prescaler Select
-      Reserved_27_31 : R7FA4M1AB.UInt5 := 16#0#;
+      TPCS           : GTCR_TPCS_Field := R7FA4M1AB.GPT162.Val_000;
       --  unspecified
+      Reserved_27_31 : R7FA4M1AB.UInt5 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -3042,30 +3044,30 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Count Direction and Duty Setting Register
    type GTUDDTYC_Register is record
-      UD             : GTUDDTYC_UD_Field := R7FA4M1AB.GPT162.Val_1;
       --  Count Direction Setting
-      UDF            : GTUDDTYC_UDF_Field := R7FA4M1AB.GPT162.Val_0;
+      UD             : GTUDDTYC_UD_Field := R7FA4M1AB.GPT162.Val_1;
       --  Forcible Count Direction Setting
-      Reserved_2_15  : R7FA4M1AB.UInt14 := 16#0#;
+      UDF            : GTUDDTYC_UDF_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
-      OADTY          : GTUDDTYC_OADTY_Field := R7FA4M1AB.GPT162.Val_00;
+      Reserved_2_15  : R7FA4M1AB.UInt14 := 16#0#;
       --  GTIOCA Output Duty Setting
-      OADTYF         : GTUDDTYC_OADTYF_Field := R7FA4M1AB.GPT162.Val_0;
+      OADTY          : GTUDDTYC_OADTY_Field := R7FA4M1AB.GPT162.Val_00;
       --  Forcible GTIOCA Output Duty Setting
-      OADTYR         : GTUDDTYC_OADTYR_Field := R7FA4M1AB.GPT162.Val_0;
+      OADTYF         : GTUDDTYC_OADTYF_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Output Value Selecting after Releasing 0 percent/100 percent
       --  Duty Setting
-      Reserved       : GTUDDTYC_Reserved_Field := 16#0#;
+      OADTYR         : GTUDDTYC_OADTYR_Field := R7FA4M1AB.GPT162.Val_0;
       --  These bits are read as 0000. The write value should be 0000.
-      OBDTY          : GTUDDTYC_OBDTY_Field := R7FA4M1AB.GPT162.Val_00;
+      Reserved       : GTUDDTYC_Reserved_Field := 16#0#;
       --  GTIOCB Output Duty Setting
-      OBDTYF         : GTUDDTYC_OBDTYF_Field := R7FA4M1AB.GPT162.Val_0;
+      OBDTY          : GTUDDTYC_OBDTY_Field := R7FA4M1AB.GPT162.Val_00;
       --  Forcible GTIOCB Output Duty Setting
-      OBDTYR         : GTUDDTYC_OBDTYR_Field := R7FA4M1AB.GPT162.Val_0;
+      OBDTYF         : GTUDDTYC_OBDTYF_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Output Value Selecting after Releasing 0 percent/100 percent
       --  Duty Setting
-      Reserved_28_31 : R7FA4M1AB.UInt4 := 16#0#;
+      OBDTYR         : GTUDDTYC_OBDTYR_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
+      Reserved_28_31 : R7FA4M1AB.UInt4 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -3514,42 +3516,42 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer I/O Control Register
    type GTIOR_Register is record
-      GTIOA      : GTIOR_GTIOA_Field := R7FA4M1AB.GPT162.Val_00000;
       --  GTIOCA Pin Function Select
+      GTIOA      : GTIOR_GTIOA_Field := R7FA4M1AB.GPT162.Val_00000;
+      --  This bit is read as 0. The write value should be 0.
       Reserved   : GTIOR_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      OADFLT     : GTIOR_OADFLT_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Output Value Setting at the Count Stop
-      OAHLD      : GTIOR_OAHLD_Field := R7FA4M1AB.GPT162.Val_0;
+      OADFLT     : GTIOR_OADFLT_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Output Setting at the Start/Stop Count
-      OAE        : GTIOR_OAE_Field := R7FA4M1AB.GPT162.Val_0;
+      OAHLD      : GTIOR_OAHLD_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Output Enable
-      OADF       : GTIOR_OADF_Field := R7FA4M1AB.GPT162.Val_00;
+      OAE        : GTIOR_OAE_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCA Pin Disable Value Setting
+      OADF       : GTIOR_OADF_Field := R7FA4M1AB.GPT162.Val_00;
+      --  These bits are read as 00. The write value should be 00.
       Reserved_1 : GTIOR_Reserved_Field_1 := 16#0#;
-      --  These bits are read as 00. The write value should be 00.
-      NFAEN      : GTIOR_NFAEN_Field := R7FA4M1AB.GPT162.Val_0;
       --  Noise Filter A Enable
-      NFCSA      : GTIOR_NFCSA_Field := R7FA4M1AB.GPT162.Val_00;
+      NFAEN      : GTIOR_NFAEN_Field := R7FA4M1AB.GPT162.Val_0;
       --  Noise Filter A Sampling Clock Select
-      GTIOB      : GTIOR_GTIOB_Field := R7FA4M1AB.GPT162.Val_00000;
+      NFCSA      : GTIOR_NFCSA_Field := R7FA4M1AB.GPT162.Val_00;
       --  GTIOCB Pin Function Select
-      Reserved_2 : GTIOR_Reserved_Field := 16#0#;
+      GTIOB      : GTIOR_GTIOB_Field := R7FA4M1AB.GPT162.Val_00000;
       --  This bit is read as 0. The write value should be 0.
-      OBDFLT     : GTIOR_OBDFLT_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved_2 : GTIOR_Reserved_Field := 16#0#;
       --  GTIOCB Pin Output Value Setting at the Count Stop
-      OBHLD      : GTIOR_OBHLD_Field := R7FA4M1AB.GPT162.Val_0;
+      OBDFLT     : GTIOR_OBDFLT_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Output Setting at the Start/Stop Count
-      OBE        : GTIOR_OBE_Field := R7FA4M1AB.GPT162.Val_0;
+      OBHLD      : GTIOR_OBHLD_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Output Enable
-      OBDF       : GTIOR_OBDF_Field := R7FA4M1AB.GPT162.Val_00;
+      OBE        : GTIOR_OBE_Field := R7FA4M1AB.GPT162.Val_0;
       --  GTIOCB Pin Disable Value Setting
-      Reserved_3 : GTIOR_Reserved_Field_1 := 16#0#;
+      OBDF       : GTIOR_OBDF_Field := R7FA4M1AB.GPT162.Val_00;
       --  These bits are read as 00. The write value should be 00.
-      NFBEN      : GTIOR_NFBEN_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved_3 : GTIOR_Reserved_Field_1 := 16#0#;
       --  Noise Filter B Enable
-      NFCSB      : GTIOR_NFCSB_Field := R7FA4M1AB.GPT162.Val_00;
+      NFBEN      : GTIOR_NFBEN_Field := R7FA4M1AB.GPT162.Val_0;
       --  Noise Filter B Sampling Clock Select
+      NFCSB      : GTIOR_NFCSB_Field := R7FA4M1AB.GPT162.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -3581,10 +3583,11 @@ package R7FA4M1AB.GPT162 is
    type GTINTAD_GRP_Field is
      (--  Group A output disable request
       Val_00,
-      --  Group B output disable request
-      Val_01,
       --  Setting prohibited
-      others_k)
+      Val_01,
+      --  Group B output disable request
+      others_k
+     )
      with Size => 2;
    for GTINTAD_GRP_Field use
      (Val_00 => 0,
@@ -3617,19 +3620,19 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Interrupt Output Setting Register
    type GTINTAD_Register is record
-      Reserved       : GTINTAD_Reserved_Field := 16#0#;
       --  These bits are read as 000000000000000000000000. The write value
       --  should be 000000000000000000000000.
-      GRP            : GTINTAD_GRP_Field := R7FA4M1AB.GPT162.Val_00;
+      Reserved       : GTINTAD_Reserved_Field := 16#0#;
       --  Output Disable Source Select
-      Reserved_1     : GTINTAD_Reserved_Field_1 := 16#0#;
+      GRP            : GTINTAD_GRP_Field := R7FA4M1AB.GPT162.Val_00;
       --  These bits are read as 000. The write value should be 000.
-      GRPABH         : GTINTAD_GRPABH_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved_1     : GTINTAD_Reserved_Field_1 := 16#0#;
       --  Same Time Output Level High Disable Request Enable
-      GRPABL         : GTINTAD_GRPABL_Field := R7FA4M1AB.GPT162.Val_0;
+      GRPABH         : GTINTAD_GRPABH_Field := R7FA4M1AB.GPT162.Val_0;
       --  Same Time Output Level Low Disable Request Enable
-      Reserved_31_31 : R7FA4M1AB.Bit := 16#0#;
+      GRPABL         : GTINTAD_GRPABL_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
+      Reserved_31_31 : R7FA4M1AB.Bit := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -3783,38 +3786,38 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Status Register
    type GTST_Register is record
-      TCFA           : GTST_TCFA_Field := R7FA4M1AB.GPT162.Val_0;
       --  Input Capture/Compare Match Flag A
-      TCFB           : GTST_TCFB_Field := R7FA4M1AB.GPT162.Val_0;
+      TCFA           : GTST_TCFA_Field := R7FA4M1AB.GPT162.Val_0;
       --  Input Capture/Compare Match Flag B
-      TCFC           : GTST_TCFC_Field := R7FA4M1AB.GPT162.Val_0;
+      TCFB           : GTST_TCFB_Field := R7FA4M1AB.GPT162.Val_0;
       --  Input Compare Match Flag C
-      TCFD           : GTST_TCFD_Field := R7FA4M1AB.GPT162.Val_0;
+      TCFC           : GTST_TCFC_Field := R7FA4M1AB.GPT162.Val_0;
       --  Input Compare Match Flag D
-      TCFE           : GTST_TCFE_Field := R7FA4M1AB.GPT162.Val_0;
+      TCFD           : GTST_TCFD_Field := R7FA4M1AB.GPT162.Val_0;
       --  Input Compare Match Flag E
-      TCFF           : GTST_TCFF_Field := R7FA4M1AB.GPT162.Val_0;
+      TCFE           : GTST_TCFE_Field := R7FA4M1AB.GPT162.Val_0;
       --  Input Compare Match Flag F
-      TCFPO          : GTST_TCFPO_Field := R7FA4M1AB.GPT162.Val_0;
+      TCFF           : GTST_TCFF_Field := R7FA4M1AB.GPT162.Val_0;
       --  Overflow Flag
-      TCFPU          : GTST_TCFPU_Field := R7FA4M1AB.GPT162.Val_0;
+      TCFPO          : GTST_TCFPO_Field := R7FA4M1AB.GPT162.Val_0;
       --  Underflow Flag
-      Reserved       : GTST_Reserved_Field := 16#0#;
+      TCFPU          : GTST_TCFPU_Field := R7FA4M1AB.GPT162.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
-      TUCF           : GTST_TUCF_Field := R7FA4M1AB.GPT162.Val_1;
+      Reserved       : GTST_Reserved_Field := 16#0#;
       --  Read-only. Count Direction Flag
-      Reserved_1     : GTST_Reserved_Field_1 := 16#0#;
+      TUCF           : GTST_TUCF_Field := R7FA4M1AB.GPT162.Val_1;
       --  These bits are read as 00000000. The write value should be 00000000.
-      ODF            : GTST_ODF_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved_1     : GTST_Reserved_Field_1 := 16#0#;
       --  Read-only. Output Disable Flag
-      Reserved_2     : GTST_Reserved_Field_2 := 16#0#;
+      ODF            : GTST_ODF_Field := R7FA4M1AB.GPT162.Val_0;
       --  These bits are read as 0000. The write value should be 0000.
-      OABHF          : GTST_OABHF_Field := R7FA4M1AB.GPT162.Val_0;
+      Reserved_2     : GTST_Reserved_Field_2 := 16#0#;
       --  Read-only. Same Time Output Level High Disable Request Enable
-      OABLF          : GTST_OABLF_Field := R7FA4M1AB.GPT162.Val_0;
+      OABHF          : GTST_OABHF_Field := R7FA4M1AB.GPT162.Val_0;
       --  Read-only. Same Time Output Level Low Disable Request Enable
-      Reserved_31_31 : R7FA4M1AB.Bit := 16#0#;
+      OABLF          : GTST_OABLF_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
+      Reserved_31_31 : R7FA4M1AB.Bit := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -3888,10 +3891,11 @@ package R7FA4M1AB.GPT162 is
    type GTBER_PR_Field is
      (--  Buffer operation is not performed
       Val_00,
-      --  Single buffer operation (GTPBR --> GTPR)
-      Val_01,
       --  Setting prohibited
-      others_k)
+      Val_01,
+      --  Single buffer operation (GTPBR --> GTPR)
+      others_k
+     )
      with Size => 2;
    for GTBER_PR_Field use
      (Val_00 => 0,
@@ -3912,22 +3916,22 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Buffer Enable Register
    type GTBER_Register is record
-      BD             : GTBER_BD_Field := R7FA4M1AB.GPT162.Val_0;
       --  BD[1]: GTPR Buffer Operation Disable BD[0]: GTCCR Buffer Operation
       --  Disable
-      Reserved_2_15  : R7FA4M1AB.UInt14 := 16#0#;
+      BD             : GTBER_BD_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
-      CCRA           : GTBER_CCRA_Field := R7FA4M1AB.GPT162.Val_00;
+      Reserved_2_15  : R7FA4M1AB.UInt14 := 16#0#;
       --  GTCCRA Buffer Operation
-      CCRB           : GTBER_CCRB_Field := R7FA4M1AB.GPT162.Val_00;
+      CCRA           : GTBER_CCRA_Field := R7FA4M1AB.GPT162.Val_00;
       --  GTCCRB Buffer Operation
-      PR             : GTBER_PR_Field := R7FA4M1AB.GPT162.Val_00;
+      CCRB           : GTBER_CCRB_Field := R7FA4M1AB.GPT162.Val_00;
       --  GTPR Buffer Operation
-      CCRSWT         : GTBER_CCRSWT_Field := R7FA4M1AB.GPT162.Val_0;
+      PR             : GTBER_PR_Field := R7FA4M1AB.GPT162.Val_00;
       --  Write-only. GTCCRA and GTCCRB Forcible Buffer Operation This bit is
       --  read as 0.
-      Reserved_23_31 : R7FA4M1AB.UInt9 := 16#0#;
+      CCRSWT         : GTBER_CCRSWT_Field := R7FA4M1AB.GPT162.Val_0;
       --  unspecified
+      Reserved_23_31 : R7FA4M1AB.UInt9 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -3969,11 +3973,11 @@ package R7FA4M1AB.GPT162 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt2;
             --  Reserved as a value
+            Val : R7FA4M1AB.UInt2;
          when True =>
-            Arr : GTDTCR_Reserved_Field_Array;
             --  Reserved as an array
+            Arr : GTDTCR_Reserved_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 2;
@@ -3989,20 +3993,20 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer Dead Time Control Register
    type GTDTCR_Register is record
-      TDE        : GTDTCR_TDE_Field := R7FA4M1AB.GPT162.Val_0;
       --  Negative-Phase Waveform Setting
-      Reserved   : GTDTCR_Reserved_Field := 16#0#;
+      TDE        : GTDTCR_TDE_Field := R7FA4M1AB.GPT162.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved   : GTDTCR_Reserved_Field := 16#0#;
+      --  This bit is read as 0. The write value should be 0.
       Reserved_1 : GTDTCR_Reserved_Field_1 :=
                     (As_Array => False, Val => 16#0#);
-      --  This bit is read as 0. The write value should be 0.
-      Reserved_2 : GTDTCR_Reserved_Field_2 := 16#0#;
       --  These bits are read as 00. The write value should be 00.
-      Reserved_3 : GTDTCR_Reserved_Field_3 := 16#0#;
+      Reserved_2 : GTDTCR_Reserved_Field_2 := 16#0#;
       --  This bit is read as 0. The write value should be 0.
-      Reserved_4 : GTDTCR_Reserved_Field_4 := 16#0#;
+      Reserved_3 : GTDTCR_Reserved_Field_3 := 16#0#;
       --  These bits are read as 00000000000000000000000. The write value
       --  should be 00000000000000000000000.
+      Reserved_4 : GTDTCR_Reserved_Field_4 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -4022,62 +4026,62 @@ package R7FA4M1AB.GPT162 is
 
    --  General PWM Timer 2 (16-bit)
    type GPT162_Peripheral is record
-      GTWP     : aliased GTWP_Register;
       --  General PWM Timer Write-Protection Register
-      GTSTR    : aliased GTSTR_Register;
+      GTWP     : aliased GTWP_Register;
       --  General PWM Timer Software Start Register
-      GTSTP    : aliased GTSTP_Register;
+      GTSTR    : aliased GTSTR_Register;
       --  General PWM Timer Software Stop Register
-      GTCLR    : aliased GTCLR_Register;
+      GTSTP    : aliased GTSTP_Register;
       --  General PWM Timer Software Clear Register
-      GTSSR    : aliased GTSSR_Register;
+      GTCLR    : aliased GTCLR_Register;
       --  General PWM Timer Start Source Select Register
-      GTPSR    : aliased GTPSR_Register;
+      GTSSR    : aliased GTSSR_Register;
       --  General PWM Timer Stop Source Select Register
-      GTCSR    : aliased GTCSR_Register;
+      GTPSR    : aliased GTPSR_Register;
       --  General PWM Timer Clear Source Select Register
-      GTUPSR   : aliased GTUPSR_Register;
+      GTCSR    : aliased GTCSR_Register;
       --  General PWM Timer Up Count Source Select Register
-      GTDNSR   : aliased GTDNSR_Register;
+      GTUPSR   : aliased GTUPSR_Register;
       --  General PWM Timer Down Count Source Select Register
-      GTICASR  : aliased GTICASR_Register;
+      GTDNSR   : aliased GTDNSR_Register;
       --  General PWM Timer Input Capture Source Select Register A
-      GTICBSR  : aliased GTICBSR_Register;
+      GTICASR  : aliased GTICASR_Register;
       --  General PWM Timer Input Capture Source Select Register B
-      GTCR     : aliased GTCR_Register;
+      GTICBSR  : aliased GTICBSR_Register;
       --  General PWM Timer Control Register
-      GTUDDTYC : aliased GTUDDTYC_Register;
+      GTCR     : aliased GTCR_Register;
       --  General PWM Timer Count Direction and Duty Setting Register
-      GTIOR    : aliased GTIOR_Register;
+      GTUDDTYC : aliased GTUDDTYC_Register;
       --  General PWM Timer I/O Control Register
-      GTINTAD  : aliased GTINTAD_Register;
+      GTIOR    : aliased GTIOR_Register;
       --  General PWM Timer Interrupt Output Setting Register
-      GTST     : aliased GTST_Register;
+      GTINTAD  : aliased GTINTAD_Register;
       --  General PWM Timer Status Register
-      GTBER    : aliased GTBER_Register;
+      GTST     : aliased GTST_Register;
       --  General PWM Timer Buffer Enable Register
-      GTCNT    : aliased R7FA4M1AB.UInt32;
+      GTBER    : aliased GTBER_Register;
       --  General PWM Timer Counter
-      GTCCRA   : aliased R7FA4M1AB.UInt32;
+      GTCNT    : aliased R7FA4M1AB.UInt32;
       --  General PWM Timer Compare Capture Register A
-      GTCCRB   : aliased R7FA4M1AB.UInt32;
+      GTCCRA   : aliased R7FA4M1AB.UInt32;
       --  General PWM Timer Compare Capture Register B
-      GTCCRC   : aliased R7FA4M1AB.UInt32;
+      GTCCRB   : aliased R7FA4M1AB.UInt32;
       --  General PWM Timer Compare Capture Register C
-      GTCCRE   : aliased R7FA4M1AB.UInt32;
+      GTCCRC   : aliased R7FA4M1AB.UInt32;
       --  General PWM Timer Compare Capture Register E
-      GTCCRD   : aliased R7FA4M1AB.UInt32;
+      GTCCRE   : aliased R7FA4M1AB.UInt32;
       --  General PWM Timer Compare Capture Register D
-      GTCCRF   : aliased R7FA4M1AB.UInt32;
+      GTCCRD   : aliased R7FA4M1AB.UInt32;
       --  General PWM Timer Compare Capture Register F
-      GTPR     : aliased R7FA4M1AB.UInt32;
+      GTCCRF   : aliased R7FA4M1AB.UInt32;
       --  General PWM Timer Cycle Setting Register
-      GTPBR    : aliased R7FA4M1AB.UInt32;
+      GTPR     : aliased R7FA4M1AB.UInt32;
       --  General PWM Timer Cycle Setting Buffer Register
-      GTDTCR   : aliased GTDTCR_Register;
+      GTPBR    : aliased R7FA4M1AB.UInt32;
       --  General PWM Timer Dead Time Control Register
-      GTDVU    : aliased R7FA4M1AB.UInt32;
+      GTDTCR   : aliased GTDTCR_Register;
       --  General PWM Timer Dead Time Value Register U
+      GTDVU    : aliased R7FA4M1AB.UInt32;
    end record
      with Volatile;
 

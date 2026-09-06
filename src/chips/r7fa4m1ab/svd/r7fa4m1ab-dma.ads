@@ -35,10 +35,10 @@ package R7FA4M1AB.DMA is
 
    --  DMAC Module Activation Register
    type DMAST_Register is record
-      DMST     : DMAST_DMST_Field := R7FA4M1AB.DMA.Val_0;
       --  DMAC Operation Enable
-      Reserved : DMAST_Reserved_Field := 16#0#;
+      DMST     : DMAST_DMST_Field := R7FA4M1AB.DMA.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : DMAST_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -54,8 +54,8 @@ package R7FA4M1AB.DMA is
 
    --  DMAC Module Activation
    type DMA_Peripheral is record
-      DMAST : aliased DMAST_Register;
       --  DMAC Module Activation Register
+      DMAST : aliased DMAST_Register;
    end record
      with Volatile;
 

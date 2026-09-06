@@ -35,10 +35,10 @@ package R7FA4M1AB.CAC is
 
    --  CAC Control Register 0
    type CACR0_Register is record
-      CFME     : CACR0_CFME_Field := R7FA4M1AB.CAC.Val_0;
       --  Clock Frequency Measurement Enable.
-      Reserved : CACR0_Reserved_Field := 16#0#;
+      CFME     : CACR0_CFME_Field := R7FA4M1AB.CAC.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved : CACR0_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -124,14 +124,14 @@ package R7FA4M1AB.CAC is
 
    --  CAC Control Register 1
    type CACR1_Register is record
-      CACREFE : CACR1_CACREFE_Field := R7FA4M1AB.CAC.Val_0;
       --  CACREF Pin Input Enable
-      FMCS    : CACR1_FMCS_Field := R7FA4M1AB.CAC.Val_000;
+      CACREFE : CACR1_CACREFE_Field := R7FA4M1AB.CAC.Val_0;
       --  Measurement Target Clock Select
-      TCSS    : CACR1_TCSS_Field := R7FA4M1AB.CAC.Val_00;
+      FMCS    : CACR1_FMCS_Field := R7FA4M1AB.CAC.Val_000;
       --  Measurement Target Clock Frequency Division Ratio Select
-      EDGES   : CACR1_EDGES_Field := R7FA4M1AB.CAC.Val_00;
+      TCSS    : CACR1_TCSS_Field := R7FA4M1AB.CAC.Val_00;
       --  Valid Edge Select
+      EDGES   : CACR1_EDGES_Field := R7FA4M1AB.CAC.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -221,14 +221,14 @@ package R7FA4M1AB.CAC is
 
    --  CAC Control Register 2
    type CACR2_Register is record
-      RPS  : CACR2_RPS_Field := R7FA4M1AB.CAC.Val_0;
       --  Reference Signal Select
-      RSCS : CACR2_RSCS_Field := R7FA4M1AB.CAC.Val_000;
+      RPS  : CACR2_RPS_Field := R7FA4M1AB.CAC.Val_0;
       --  Measurement Reference Clock Select
-      RCDS : CACR2_RCDS_Field := R7FA4M1AB.CAC.Val_00;
+      RSCS : CACR2_RSCS_Field := R7FA4M1AB.CAC.Val_000;
       --  Measurement Reference Clock Frequency Division Ratio Select
-      DFS  : CACR2_DFS_Field := R7FA4M1AB.CAC.Val_00;
+      RCDS : CACR2_RCDS_Field := R7FA4M1AB.CAC.Val_00;
       --  Digital Filter Selection
+      DFS  : CACR2_DFS_Field := R7FA4M1AB.CAC.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -310,22 +310,22 @@ package R7FA4M1AB.CAC is
 
    --  CAC Interrupt Control Register
    type CAICR_Register is record
-      FERRIE     : CAICR_FERRIE_Field := R7FA4M1AB.CAC.Val_0;
       --  Frequency Error Interrupt Request Enable
-      MENDIE     : CAICR_MENDIE_Field := R7FA4M1AB.CAC.Val_0;
+      FERRIE     : CAICR_FERRIE_Field := R7FA4M1AB.CAC.Val_0;
       --  Measurement End Interrupt Request Enable
-      OVFIE      : CAICR_OVFIE_Field := R7FA4M1AB.CAC.Val_0;
+      MENDIE     : CAICR_MENDIE_Field := R7FA4M1AB.CAC.Val_0;
       --  Overflow Interrupt Request Enable
+      OVFIE      : CAICR_OVFIE_Field := R7FA4M1AB.CAC.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved   : CAICR_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      FERRFCL    : CAICR_FERRFCL_Field := R7FA4M1AB.CAC.Val_0;
       --  Write-only. FERRF Clear
-      MENDFCL    : CAICR_MENDFCL_Field := R7FA4M1AB.CAC.Val_0;
+      FERRFCL    : CAICR_FERRFCL_Field := R7FA4M1AB.CAC.Val_0;
       --  Write-only. MENDF Clear
-      OVFFCL     : CAICR_OVFFCL_Field := R7FA4M1AB.CAC.Val_0;
+      MENDFCL    : CAICR_MENDFCL_Field := R7FA4M1AB.CAC.Val_0;
       --  Write-only. OVFF Clear
-      Reserved_1 : CAICR_Reserved_Field := 16#0#;
+      OVFFCL     : CAICR_OVFFCL_Field := R7FA4M1AB.CAC.Val_0;
       --  This bit is read as 0. The write value should be 0.
+      Reserved_1 : CAICR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -377,14 +377,14 @@ package R7FA4M1AB.CAC is
 
    --  CAC Status Register
    type CASTR_Register is record
-      FERRF        : CASTR_FERRF_Field;
       --  Read-only. Frequency Error Flag
-      MENDF        : CASTR_MENDF_Field;
+      FERRF        : CASTR_FERRF_Field;
       --  Read-only. Measurement End Flag
-      OVFF         : CASTR_OVFF_Field;
+      MENDF        : CASTR_MENDF_Field;
       --  Read-only. Counter Overflow Flag
-      Reserved_3_7 : R7FA4M1AB.UInt5;
+      OVFF         : CASTR_OVFF_Field;
       --  unspecified
+      Reserved_3_7 : R7FA4M1AB.UInt5;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -402,22 +402,22 @@ package R7FA4M1AB.CAC is
 
    --  Clock Frequency Accuracy Measurement Circuit
    type CAC_Peripheral is record
-      CACR0   : aliased CACR0_Register;
       --  CAC Control Register 0
-      CACR1   : aliased CACR1_Register;
+      CACR0   : aliased CACR0_Register;
       --  CAC Control Register 1
-      CACR2   : aliased CACR2_Register;
+      CACR1   : aliased CACR1_Register;
       --  CAC Control Register 2
-      CAICR   : aliased CAICR_Register;
+      CACR2   : aliased CACR2_Register;
       --  CAC Interrupt Control Register
-      CASTR   : aliased CASTR_Register;
+      CAICR   : aliased CAICR_Register;
       --  CAC Status Register
-      CAULVR  : aliased R7FA4M1AB.UInt16;
+      CASTR   : aliased CASTR_Register;
       --  CAC Upper-Limit Value Setting Register
-      CALLVR  : aliased R7FA4M1AB.UInt16;
+      CAULVR  : aliased R7FA4M1AB.UInt16;
       --  CAC Lower-Limit Value Setting Register
-      CACNTBR : aliased R7FA4M1AB.UInt16;
+      CALLVR  : aliased R7FA4M1AB.UInt16;
       --  CAC Counter Buffer Register
+      CACNTBR : aliased R7FA4M1AB.UInt16;
    end record
      with Volatile;
 

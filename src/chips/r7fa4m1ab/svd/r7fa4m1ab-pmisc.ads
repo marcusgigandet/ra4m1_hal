@@ -46,12 +46,12 @@ package R7FA4M1AB.PMISC is
 
    --  Write-Protect Register
    type PWPR_Register is record
-      Reserved : PWPR_Reserved_Field := 16#0#;
       --  These bits are read as 000000. The write value should be 000000.
-      PFSWE    : PWPR_PFSWE_Field := R7FA4M1AB.PMISC.Val_0;
+      Reserved : PWPR_Reserved_Field := 16#0#;
       --  PFS Register Write Enable
-      B0WI     : PWPR_B0WI_Field := R7FA4M1AB.PMISC.Val_1;
+      PFSWE    : PWPR_PFSWE_Field := R7FA4M1AB.PMISC.Val_0;
       --  PFSWE Bit Write Disable
+      B0WI     : PWPR_B0WI_Field := R7FA4M1AB.PMISC.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -68,8 +68,8 @@ package R7FA4M1AB.PMISC is
 
    --  Miscellaneous Port Control Register
    type PMISC_Peripheral is record
-      PWPR : aliased PWPR_Register;
       --  Write-Protect Register
+      PWPR : aliased PWPR_Register;
    end record
      with Volatile;
 

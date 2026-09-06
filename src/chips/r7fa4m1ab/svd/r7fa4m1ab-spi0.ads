@@ -110,22 +110,22 @@ package R7FA4M1AB.SPI0 is
 
    --  SPI Control Register
    type SPCR_Register is record
-      SPMS   : SPCR_SPMS_Field := R7FA4M1AB.SPI0.Val_0;
       --  SPI Mode Select
-      TXMD   : SPCR_TXMD_Field := R7FA4M1AB.SPI0.Val_0;
+      SPMS   : SPCR_SPMS_Field := R7FA4M1AB.SPI0.Val_0;
       --  Communications Operating Mode Select
-      MODFEN : SPCR_MODFEN_Field := R7FA4M1AB.SPI0.Val_0;
+      TXMD   : SPCR_TXMD_Field := R7FA4M1AB.SPI0.Val_0;
       --  Mode Fault Error Detection Enable
-      MSTR   : SPCR_MSTR_Field := R7FA4M1AB.SPI0.Val_0;
+      MODFEN : SPCR_MODFEN_Field := R7FA4M1AB.SPI0.Val_0;
       --  SPI Master/Slave Mode Select
-      SPEIE  : SPCR_SPEIE_Field := R7FA4M1AB.SPI0.Val_0;
+      MSTR   : SPCR_MSTR_Field := R7FA4M1AB.SPI0.Val_0;
       --  SPI Error Interrupt Enable
-      SPTIE  : SPCR_SPTIE_Field := R7FA4M1AB.SPI0.Val_0;
+      SPEIE  : SPCR_SPEIE_Field := R7FA4M1AB.SPI0.Val_0;
       --  Transmit Buffer Empty Interrupt Enable
-      SPE    : SPCR_SPE_Field := R7FA4M1AB.SPI0.Val_0;
+      SPTIE  : SPCR_SPTIE_Field := R7FA4M1AB.SPI0.Val_0;
       --  SPI Function Enable
-      SPRIE  : SPCR_SPRIE_Field := R7FA4M1AB.SPI0.Val_0;
+      SPE    : SPCR_SPE_Field := R7FA4M1AB.SPI0.Val_0;
       --  SPI Receive Buffer Full Interrupt Enable
+      SPRIE  : SPCR_SPRIE_Field := R7FA4M1AB.SPI0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -189,16 +189,16 @@ package R7FA4M1AB.SPI0 is
 
    --  SPI Slave Select Polarity Register
    type SSLP_Register is record
-      SSL0P    : SSLP_SSL0P_Field := R7FA4M1AB.SPI0.Val_0;
       --  SSL0 Signal Polarity Setting
-      SSL1P    : SSLP_SSL1P_Field := R7FA4M1AB.SPI0.Val_0;
+      SSL0P    : SSLP_SSL0P_Field := R7FA4M1AB.SPI0.Val_0;
       --  SSL1 Signal Polarity Setting
-      SSL2P    : SSLP_SSL2P_Field := R7FA4M1AB.SPI0.Val_0;
+      SSL1P    : SSLP_SSL1P_Field := R7FA4M1AB.SPI0.Val_0;
       --  SSL2 Signal Polarity Setting
-      SSL3P    : SSLP_SSL3P_Field := R7FA4M1AB.SPI0.Val_0;
+      SSL2P    : SSLP_SSL2P_Field := R7FA4M1AB.SPI0.Val_0;
       --  SSL3 Signal Polarity Setting
-      Reserved : SSLP_Reserved_Field := 16#0#;
+      SSL3P    : SSLP_SSL3P_Field := R7FA4M1AB.SPI0.Val_0;
       --  These bits are read as 0000. The write value should be 0000.
+      Reserved : SSLP_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -259,18 +259,18 @@ package R7FA4M1AB.SPI0 is
 
    --  SPI Pin Control Register
    type SPPCR_Register is record
-      SPLP       : SPPCR_SPLP_Field := R7FA4M1AB.SPI0.Val_0;
       --  RSPI Loopback
-      SPLP2      : SPPCR_SPLP2_Field := R7FA4M1AB.SPI0.Val_0;
+      SPLP       : SPPCR_SPLP_Field := R7FA4M1AB.SPI0.Val_0;
       --  RSPI Loopback 2
+      SPLP2      : SPPCR_SPLP2_Field := R7FA4M1AB.SPI0.Val_0;
+      --  These bits are read as 00. The write value should be 00.
       Reserved   : SPPCR_Reserved_Field := 16#0#;
-      --  These bits are read as 00. The write value should be 00.
-      MOIFV      : SPPCR_MOIFV_Field := R7FA4M1AB.SPI0.Val_0;
       --  MOSI Idle Fixed Value
-      MOIFE      : SPPCR_MOIFE_Field := R7FA4M1AB.SPI0.Val_0;
+      MOIFV      : SPPCR_MOIFV_Field := R7FA4M1AB.SPI0.Val_0;
       --  MOSI Idle Value Fixing Enable
-      Reserved_1 : SPPCR_Reserved_Field := 16#0#;
+      MOIFE      : SPPCR_MOIFE_Field := R7FA4M1AB.SPI0.Val_0;
       --  These bits are read as 00. The write value should be 00.
+      Reserved_1 : SPPCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -365,35 +365,35 @@ package R7FA4M1AB.SPI0 is
 
    --  SPI Status Register
    type SPSR_Register is record
-      OVRF     : SPSR_OVRF_Field := R7FA4M1AB.SPI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Overrun Error Flag
-      IDLNF    : SPSR_IDLNF_Field := R7FA4M1AB.SPI0.Val_0;
+      OVRF     : SPSR_OVRF_Field := R7FA4M1AB.SPI0.Val_0;
       --  Read-only. SPI Idle Flag
-      MODF     : SPSR_MODF_Field := R7FA4M1AB.SPI0.Val_0;
+      IDLNF    : SPSR_IDLNF_Field := R7FA4M1AB.SPI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Mode Fault Error Flag
-      PERF     : SPSR_PERF_Field := R7FA4M1AB.SPI0.Val_0;
+      MODF     : SPSR_MODF_Field := R7FA4M1AB.SPI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Parity Error Flag
-      UDRF     : SPSR_UDRF_Field := R7FA4M1AB.SPI0.Val_0;
+      PERF     : SPSR_PERF_Field := R7FA4M1AB.SPI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Underrun Error Flag (When MODF is 0, This bit is
       --  invalid.)
-      SPTEF    : SPSR_SPTEF_Field := R7FA4M1AB.SPI0.Val_1;
+      UDRF     : SPSR_UDRF_Field := R7FA4M1AB.SPI0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. SPI Transmit Buffer Empty Flag
-      Reserved : SPSR_Reserved_Field := 16#0#;
+      SPTEF    : SPSR_SPTEF_Field := R7FA4M1AB.SPI0.Val_1;
       --  This bit is read as 0. The write value should be 0.
-      SPRF     : SPSR_SPRF_Field := R7FA4M1AB.SPI0.Val_0;
+      Reserved : SPSR_Reserved_Field := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. SPI Receive Buffer Full Flag
+      SPRF     : SPSR_SPRF_Field := R7FA4M1AB.SPI0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -423,11 +423,11 @@ package R7FA4M1AB.SPI0 is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.UInt4;
             --  Reserved as a value
+            Val : R7FA4M1AB.UInt4;
          when True =>
-            Arr : SPDCR_Reserved_Field_Array;
             --  Reserved as an array
+            Arr : SPDCR_Reserved_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 4;
@@ -464,14 +464,14 @@ package R7FA4M1AB.SPI0 is
 
    --  SPI Data Control Register
    type SPDCR_Register is record
+      --  These bits are read as 00. The write value should be 00.
       Reserved   : SPDCR_Reserved_Field := (As_Array => False, Val => 16#0#);
-      --  These bits are read as 00. The write value should be 00.
-      SPRDTD     : SPDCR_SPRDTD_Field := R7FA4M1AB.SPI0.Val_0;
       --  RSPI Receive/Transmit Data Selection
-      SPLW       : SPDCR_SPLW_Field := R7FA4M1AB.SPI0.Val_0;
+      SPRDTD     : SPDCR_SPRDTD_Field := R7FA4M1AB.SPI0.Val_0;
       --  SPI Word Access/Halfword Access Specification
-      Reserved_1 : SPDCR_Reserved_Field_1 := 16#0#;
+      SPLW       : SPDCR_SPLW_Field := R7FA4M1AB.SPI0.Val_0;
       --  These bits are read as 00. The write value should be 00.
+      Reserved_1 : SPDCR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -516,10 +516,10 @@ package R7FA4M1AB.SPI0 is
 
    --  SPI Clock Delay Register
    type SPCKD_Register is record
-      SCKDL    : SPCKD_SCKDL_Field := R7FA4M1AB.SPI0.Val_000;
       --  RSPCK Delay Setting
-      Reserved : SPCKD_Reserved_Field := 16#0#;
+      SCKDL    : SPCKD_SCKDL_Field := R7FA4M1AB.SPI0.Val_000;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : SPCKD_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -562,10 +562,10 @@ package R7FA4M1AB.SPI0 is
 
    --  SPI Slave Select Negation Delay Register
    type SSLND_Register is record
-      SLNDL    : SSLND_SLNDL_Field := R7FA4M1AB.SPI0.Val_000;
       --  SSL Negation Delay Setting
-      Reserved : SSLND_Reserved_Field := 16#0#;
+      SLNDL    : SSLND_SLNDL_Field := R7FA4M1AB.SPI0.Val_000;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : SSLND_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -608,10 +608,10 @@ package R7FA4M1AB.SPI0 is
 
    --  SPI Next-Access Delay Register
    type SPND_Register is record
-      SPNDL    : SPND_SPNDL_Field := R7FA4M1AB.SPI0.Val_000;
       --  SPI Next-Access Delay Setting
-      Reserved : SPND_Reserved_Field := 16#0#;
+      SPNDL    : SPND_SPNDL_Field := R7FA4M1AB.SPI0.Val_000;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved : SPND_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -683,18 +683,18 @@ package R7FA4M1AB.SPI0 is
 
    --  SPI Control Register 2
    type SPCR2_Register is record
-      SPPE     : SPCR2_SPPE_Field := R7FA4M1AB.SPI0.Val_0;
       --  Parity Enable
-      SPOE     : SPCR2_SPOE_Field := R7FA4M1AB.SPI0.Val_0;
+      SPPE     : SPCR2_SPPE_Field := R7FA4M1AB.SPI0.Val_0;
       --  Parity Mode
-      SPIIE    : SPCR2_SPIIE_Field := R7FA4M1AB.SPI0.Val_0;
+      SPOE     : SPCR2_SPOE_Field := R7FA4M1AB.SPI0.Val_0;
       --  SPI Idle Interrupt Enable
-      PTE      : SPCR2_PTE_Field := R7FA4M1AB.SPI0.Val_0;
+      SPIIE    : SPCR2_SPIIE_Field := R7FA4M1AB.SPI0.Val_0;
       --  Parity Self-Testing
-      SCKASE   : SPCR2_SCKASE_Field := R7FA4M1AB.SPI0.Val_0;
+      PTE      : SPCR2_PTE_Field := R7FA4M1AB.SPI0.Val_0;
       --  RSPCK Auto-Stop Function Enable
-      Reserved : SPCR2_Reserved_Field := 16#0#;
+      SCKASE   : SPCR2_SCKASE_Field := R7FA4M1AB.SPI0.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved : SPCR2_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -751,14 +751,15 @@ package R7FA4M1AB.SPI0 is
    type SPCMD0_SSLA_Field is
      (--  SSL0
       Val_000,
-      --  SSL1
-      Val_001,
-      --  SSL2
-      Val_010,
-      --  SSL3
-      Val_011,
       --  Setting prohibited
-      others_k)
+      Val_001,
+      --  SSL1
+      Val_010,
+      --  SSL2
+      Val_011,
+      --  SSL3
+      others_k
+     )
      with Size => 3;
    for SPCMD0_SSLA_Field use
      (Val_000 => 0,
@@ -773,13 +774,13 @@ package R7FA4M1AB.SPI0 is
    type SPCMD0_SPB_Field is
      (--  20 bits
       Val_0000,
-      --  24 bits
+      --  8bits
       Val_0001,
-      --  32 bits
+      --  24 bits
       Val_0010,
       --  32 bits
       Val_0011,
-      --  8bits
+      --  32 bits
       others_k,
       --  Reset value for the field
       SPCMD0_SPB_Field_Reset,
@@ -798,7 +799,8 @@ package R7FA4M1AB.SPI0 is
       --  15 bits
       Val_1110,
       --  16 bits
-      Val_1111)
+      Val_1111
+     )
      with Size => 4;
    for SPCMD0_SPB_Field use
      (Val_0000 => 0,
@@ -865,26 +867,26 @@ package R7FA4M1AB.SPI0 is
 
    --  SPI Command Register 0
    type SPCMD0_Register is record
-      CPHA     : SPCMD0_CPHA_Field := R7FA4M1AB.SPI0.Val_1;
       --  RSPCK Phase Setting
-      CPOL     : SPCMD0_CPOL_Field := R7FA4M1AB.SPI0.Val_0;
+      CPHA     : SPCMD0_CPHA_Field := R7FA4M1AB.SPI0.Val_1;
       --  RSPCK Polarity Setting
-      BRDV     : SPCMD0_BRDV_Field := R7FA4M1AB.SPI0.Val_11;
+      CPOL     : SPCMD0_CPOL_Field := R7FA4M1AB.SPI0.Val_0;
       --  Bit Rate Division Setting
-      SSLA     : SPCMD0_SSLA_Field := R7FA4M1AB.SPI0.Val_000;
+      BRDV     : SPCMD0_BRDV_Field := R7FA4M1AB.SPI0.Val_11;
       --  SSL Signal Assertion Setting
-      Reserved : SPCMD0_Reserved_Field := 16#0#;
+      SSLA     : SPCMD0_SSLA_Field := R7FA4M1AB.SPI0.Val_000;
       --  This bit is read as 0. The write value should be 0.
-      SPB      : SPCMD0_SPB_Field := SPCMD0_SPB_Field_Reset;
+      Reserved : SPCMD0_Reserved_Field := 16#0#;
       --  RSPI Data Length Setting
-      LSBF     : SPCMD0_LSBF_Field := R7FA4M1AB.SPI0.Val_0;
+      SPB      : SPCMD0_SPB_Field := SPCMD0_SPB_Field_Reset;
       --  RSPI LSB First
-      SPNDEN   : SPCMD0_SPNDEN_Field := R7FA4M1AB.SPI0.Val_0;
+      LSBF     : SPCMD0_LSBF_Field := R7FA4M1AB.SPI0.Val_0;
       --  RSPI Next-Access Delay Enable
-      SLNDEN   : SPCMD0_SLNDEN_Field := R7FA4M1AB.SPI0.Val_0;
+      SPNDEN   : SPCMD0_SPNDEN_Field := R7FA4M1AB.SPI0.Val_0;
       --  SSL Negation Delay Setting Enable
-      SCKDEN   : SPCMD0_SCKDEN_Field := R7FA4M1AB.SPI0.Val_0;
+      SLNDEN   : SPCMD0_SLNDEN_Field := R7FA4M1AB.SPI0.Val_0;
       --  RSPCK Delay Setting Enable
+      SCKDEN   : SPCMD0_SCKDEN_Field := R7FA4M1AB.SPI0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -928,43 +930,30 @@ package R7FA4M1AB.SPI0 is
      case Discriminent is
         when View_SPCR =>
            SPCR : aliased SPCR_Register;
-           --  SPI Control Register
         when View_SSLP =>
            SSLP : aliased SSLP_Register;
-           --  SPI Slave Select Polarity Register
         when View_SPPCR =>
            SPPCR : aliased SPPCR_Register;
-           --  SPI Pin Control Register
         when View_SPSR =>
            SPSR : aliased SPSR_Register;
-           --  SPI Status Register
         when View_SPBR =>
            SPBR : aliased R7FA4M1AB.Byte;
-           --  SPI Bit Rate Register
         when View_SPDCR =>
            SPDCR : aliased SPDCR_Register;
-           --  SPI Data Control Register
         when View_SPCKD =>
            SPCKD : aliased SPCKD_Register;
-           --  SPI Clock Delay Register
         when View_SSLND =>
            SSLND : aliased SSLND_Register;
-           --  SPI Slave Select Negation Delay Register
         when View_SPND =>
            SPND : aliased SPND_Register;
-           --  SPI Next-Access Delay Register
         when View_SPCR2 =>
            SPCR2 : aliased SPCR2_Register;
-           --  SPI Control Register 2
         when View_SPCMD0 =>
            SPCMD0 : aliased SPCMD0_Register;
-           --  SPI Command Register 0
         when View_SPDR =>
            SPDR : aliased R7FA4M1AB.UInt32;
-           --  SPI Data Register
         when View_SPDR_HA =>
            SPDR_HA : aliased R7FA4M1AB.UInt16;
-           --  SPI Data Register ( halfword access )
      end case;
    end record
      with Unchecked_Union, Volatile;

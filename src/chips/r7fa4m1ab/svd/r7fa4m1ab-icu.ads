@@ -71,16 +71,16 @@ package R7FA4M1AB.ICU is
 
    --  IRQ Control Register %s
    type IRQCR_Register is record
-      IRQMD      : IRQCR_IRQMD_Field := R7FA4M1AB.ICU.Val_00;
       --  IRQ Detection Sense Select
-      Reserved   : IRQCR_Reserved_Field := 16#0#;
+      IRQMD      : IRQCR_IRQMD_Field := R7FA4M1AB.ICU.Val_00;
       --  These bits are read as 00. The write value should be 00.
-      FCLKSEL    : IRQCR_FCLKSEL_Field := R7FA4M1AB.ICU.Val_00;
+      Reserved   : IRQCR_Reserved_Field := 16#0#;
       --  IRQ Digital Filter Sampling Clock Select
-      Reserved_1 : IRQCR_Reserved_Field_1 := 16#0#;
+      FCLKSEL    : IRQCR_FCLKSEL_Field := R7FA4M1AB.ICU.Val_00;
       --  This bit is read as 0. The write value should be 0.
-      FLTEN      : IRQCR_FLTEN_Field := R7FA4M1AB.ICU.Val_0;
+      Reserved_1 : IRQCR_Reserved_Field_1 := 16#0#;
       --  IRQ Digital Filter Enable
+      FLTEN      : IRQCR_FLTEN_Field := R7FA4M1AB.ICU.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -144,16 +144,16 @@ package R7FA4M1AB.ICU is
 
    --  NMI Pin Interrupt Control Register
    type NMICR_Register is record
-      NMIMD      : NMICR_NMIMD_Field := R7FA4M1AB.ICU.Val_0;
       --  NMI Detection Set
-      Reserved   : NMICR_Reserved_Field := 16#0#;
+      NMIMD      : NMICR_NMIMD_Field := R7FA4M1AB.ICU.Val_0;
       --  These bits are read as 000. The write value should be 000.
-      NFCLKSEL   : NMICR_NFCLKSEL_Field := R7FA4M1AB.ICU.Val_00;
+      Reserved   : NMICR_Reserved_Field := 16#0#;
       --  NMI Digital Filter Sampling Clock Select
-      Reserved_1 : NMICR_Reserved_Field_1 := 16#0#;
+      NFCLKSEL   : NMICR_NFCLKSEL_Field := R7FA4M1AB.ICU.Val_00;
       --  This bit is read as 0. The write value should be 0.
-      NFLTEN     : NMICR_NFLTEN_Field := R7FA4M1AB.ICU.Val_0;
+      Reserved_1 : NMICR_Reserved_Field_1 := 16#0#;
       --  NMI Digital Filter Enable
+      NFLTEN     : NMICR_NFLTEN_Field := R7FA4M1AB.ICU.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -304,34 +304,34 @@ package R7FA4M1AB.ICU is
 
    --  Non-Maskable Interrupt Enable Register
    type NMIER_Register is record
-      IWDTEN     : NMIER_IWDTEN_Field := R7FA4M1AB.ICU.Val_0;
       --  IWDT Underflow/Refresh Error Interrupt Enable
-      WDTEN      : NMIER_WDTEN_Field := R7FA4M1AB.ICU.Val_0;
+      IWDTEN     : NMIER_IWDTEN_Field := R7FA4M1AB.ICU.Val_0;
       --  WDT Underflow/Refresh Error Interrupt Enable
-      LVD1EN     : NMIER_LVD1EN_Field := R7FA4M1AB.ICU.Val_0;
+      WDTEN      : NMIER_WDTEN_Field := R7FA4M1AB.ICU.Val_0;
       --  Voltage-Monitoring 1 Interrupt Enable
-      LVD2EN     : NMIER_LVD2EN_Field := R7FA4M1AB.ICU.Val_0;
+      LVD1EN     : NMIER_LVD1EN_Field := R7FA4M1AB.ICU.Val_0;
       --  Voltage-Monitoring 2 Interrupt Enable
-      VBATTEN    : NMIER_VBATTEN_Field := R7FA4M1AB.ICU.Val_0;
+      LVD2EN     : NMIER_LVD2EN_Field := R7FA4M1AB.ICU.Val_0;
       --  VBATT monitor Interrupt Enable
-      Reserved   : NMIER_Reserved_Field := 16#0#;
+      VBATTEN    : NMIER_VBATTEN_Field := R7FA4M1AB.ICU.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      OSTEN      : NMIER_OSTEN_Field := R7FA4M1AB.ICU.Val_0;
+      Reserved   : NMIER_Reserved_Field := 16#0#;
       --  Oscillation Stop Detection Interrupt Enable
-      NMIEN      : NMIER_NMIEN_Field := R7FA4M1AB.ICU.Val_0;
+      OSTEN      : NMIER_OSTEN_Field := R7FA4M1AB.ICU.Val_0;
       --  NMI Pin Interrupt Enable
-      RPEEN      : NMIER_RPEEN_Field := R7FA4M1AB.ICU.Val_0;
+      NMIEN      : NMIER_NMIEN_Field := R7FA4M1AB.ICU.Val_0;
       --  RAM Parity Error Interrupt Enable
-      RECCEN     : NMIER_RECCEN_Field := R7FA4M1AB.ICU.Val_0;
+      RPEEN      : NMIER_RPEEN_Field := R7FA4M1AB.ICU.Val_0;
       --  RAM ECC Error Interrupt Enable
-      BUSSEN     : NMIER_BUSSEN_Field := R7FA4M1AB.ICU.Val_0;
+      RECCEN     : NMIER_RECCEN_Field := R7FA4M1AB.ICU.Val_0;
       --  MPU Bus Slave Error Interrupt Enable
-      BUSMEN     : NMIER_BUSMEN_Field := R7FA4M1AB.ICU.Val_0;
+      BUSSEN     : NMIER_BUSSEN_Field := R7FA4M1AB.ICU.Val_0;
       --  MPU Bus Master Error Interrupt Enable
-      SPEEN      : NMIER_SPEEN_Field := R7FA4M1AB.ICU.Val_0;
+      BUSMEN     : NMIER_BUSMEN_Field := R7FA4M1AB.ICU.Val_0;
       --  CPU Stack pointer monitor Interrupt Enable
-      Reserved_1 : NMIER_Reserved_Field_1 := 16#0#;
+      SPEEN      : NMIER_SPEEN_Field := R7FA4M1AB.ICU.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_1 : NMIER_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -491,34 +491,34 @@ package R7FA4M1AB.ICU is
 
    --  Non-Maskable Interrupt Status Clear Register
    type NMICLR_Register is record
-      IWDTCLR    : NMICLR_IWDTCLR_Field := R7FA4M1AB.ICU.Val_0;
       --  Write-only. IWDT Clear
-      WDTCLR     : NMICLR_WDTCLR_Field := R7FA4M1AB.ICU.Val_0;
+      IWDTCLR    : NMICLR_IWDTCLR_Field := R7FA4M1AB.ICU.Val_0;
       --  Write-only. WDT Clear
-      LVD1CLR    : NMICLR_LVD1CLR_Field := R7FA4M1AB.ICU.Val_0;
+      WDTCLR     : NMICLR_WDTCLR_Field := R7FA4M1AB.ICU.Val_0;
       --  Write-only. LVD1 Clear
-      LVD2CLR    : NMICLR_LVD2CLR_Field := R7FA4M1AB.ICU.Val_0;
+      LVD1CLR    : NMICLR_LVD1CLR_Field := R7FA4M1AB.ICU.Val_0;
       --  Write-only. LVD2 Clear
-      VBATTCLR   : NMICLR_VBATTCLR_Field := R7FA4M1AB.ICU.Val_0;
+      LVD2CLR    : NMICLR_LVD2CLR_Field := R7FA4M1AB.ICU.Val_0;
       --  Write-only. VBATT Clear
-      Reserved   : NMICLR_Reserved_Field := 16#0#;
+      VBATTCLR   : NMICLR_VBATTCLR_Field := R7FA4M1AB.ICU.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      OSTCLR     : NMICLR_OSTCLR_Field := R7FA4M1AB.ICU.Val_0;
+      Reserved   : NMICLR_Reserved_Field := 16#0#;
       --  Write-only. OST Clear
-      NMICLR     : NMICLR_NMICLR_Field := R7FA4M1AB.ICU.Val_0;
+      OSTCLR     : NMICLR_OSTCLR_Field := R7FA4M1AB.ICU.Val_0;
       --  Write-only. NMI Clear
-      RPECLR     : NMICLR_RPECLR_Field := R7FA4M1AB.ICU.Val_0;
+      NMICLR     : NMICLR_NMICLR_Field := R7FA4M1AB.ICU.Val_0;
       --  Write-only. SRAM Parity Error Clear
-      RECCCLR    : NMICLR_RECCCLR_Field := R7FA4M1AB.ICU.Val_0;
+      RPECLR     : NMICLR_RPECLR_Field := R7FA4M1AB.ICU.Val_0;
       --  Write-only. SRAM ECC Error Clear
-      BUSSCLR    : NMICLR_BUSSCLR_Field := R7FA4M1AB.ICU.Val_0;
+      RECCCLR    : NMICLR_RECCCLR_Field := R7FA4M1AB.ICU.Val_0;
       --  Write-only. Bus Slave Error Clear
-      BUSMCLR    : NMICLR_BUSMCLR_Field := R7FA4M1AB.ICU.Val_0;
+      BUSSCLR    : NMICLR_BUSSCLR_Field := R7FA4M1AB.ICU.Val_0;
       --  Write-only. Bus Master Error Clear
-      SPECLR     : NMICLR_SPECLR_Field := R7FA4M1AB.ICU.Val_0;
+      BUSMCLR    : NMICLR_BUSMCLR_Field := R7FA4M1AB.ICU.Val_0;
       --  Write-only. CPU Stack Pointer Monitor Interrupt Clear
-      Reserved_1 : NMICLR_Reserved_Field_1 := 16#0#;
+      SPECLR     : NMICLR_SPECLR_Field := R7FA4M1AB.ICU.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_1 : NMICLR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -678,34 +678,34 @@ package R7FA4M1AB.ICU is
 
    --  Non-Maskable Interrupt Status Register
    type NMISR_Register is record
-      IWDTST     : NMISR_IWDTST_Field;
       --  Read-only. IWDT Underflow/Refresh Error Status Flag
-      WDTST      : NMISR_WDTST_Field;
+      IWDTST     : NMISR_IWDTST_Field;
       --  Read-only. WDT Underflow/Refresh Error Status Flag
-      LVD1ST     : NMISR_LVD1ST_Field;
+      WDTST      : NMISR_WDTST_Field;
       --  Read-only. Voltage-Monitoring 1 Interrupt Status Flag
-      LVD2ST     : NMISR_LVD2ST_Field;
+      LVD1ST     : NMISR_LVD1ST_Field;
       --  Read-only. Voltage-Monitoring 2 Interrupt Status Flag
-      VBATTST    : NMISR_VBATTST_Field;
+      LVD2ST     : NMISR_LVD2ST_Field;
       --  Read-only. VBATT monitor Interrupt Status Flag
-      Reserved   : NMISR_Reserved_Field;
+      VBATTST    : NMISR_VBATTST_Field;
       --  Read-only. This bit is read as 0.
-      OSTST      : NMISR_OSTST_Field;
+      Reserved   : NMISR_Reserved_Field;
       --  Read-only. Oscillation Stop Detection Interrupt Status Flag
-      NMIST      : NMISR_NMIST_Field;
+      OSTST      : NMISR_OSTST_Field;
       --  Read-only. NMI Status Flag
-      RPEST      : NMISR_RPEST_Field;
+      NMIST      : NMISR_NMIST_Field;
       --  Read-only. RAM Parity Error Interrupt Status Flag
-      RECCST     : NMISR_RECCST_Field;
+      RPEST      : NMISR_RPEST_Field;
       --  Read-only. RAM ECC Error Interrupt Status Flag
-      BUSSST     : NMISR_BUSSST_Field;
+      RECCST     : NMISR_RECCST_Field;
       --  Read-only. MPU Bus Slave Error Interrupt Status Flag
-      BUSMST     : NMISR_BUSMST_Field;
+      BUSSST     : NMISR_BUSSST_Field;
       --  Read-only. MPU Bus Master Error Interrupt Status Flag
-      SPEST      : NMISR_SPEST_Field;
+      BUSMST     : NMISR_BUSMST_Field;
       --  Read-only. CPU Stack pointer monitor Interrupt Status Flag
-      Reserved_1 : NMISR_Reserved_Field_1;
+      SPEST      : NMISR_SPEST_Field;
       --  Read-only. These bits are read as 000.
+      Reserved_1 : NMISR_Reserved_Field_1;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1041,68 +1041,68 @@ package R7FA4M1AB.ICU is
 
    --  Wake Up Interrupt Enable Register
    type WUPEN_Register is record
-      IRQWUPEN0    : WUPEN_IRQWUPEN0_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ0 interrupt S/W standby returns enable
-      IRQWUPEN1    : WUPEN_IRQWUPEN1_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN0    : WUPEN_IRQWUPEN0_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ1 interrupt S/W standby returns enable
-      IRQWUPEN2    : WUPEN_IRQWUPEN2_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN1    : WUPEN_IRQWUPEN1_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ2 interrupt S/W standby returns enable
-      IRQWUPEN3    : WUPEN_IRQWUPEN3_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN2    : WUPEN_IRQWUPEN2_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ3 interrupt S/W standby returns enable
-      IRQWUPEN4    : WUPEN_IRQWUPEN4_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN3    : WUPEN_IRQWUPEN3_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ4 interrupt S/W standby returns enable
-      IRQWUPEN5    : WUPEN_IRQWUPEN5_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN4    : WUPEN_IRQWUPEN4_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ5 interrupt S/W standby returns enable
-      IRQWUPEN6    : WUPEN_IRQWUPEN6_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN5    : WUPEN_IRQWUPEN5_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ6 interrupt S/W standby returns enable
-      IRQWUPEN7    : WUPEN_IRQWUPEN7_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN6    : WUPEN_IRQWUPEN6_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ7 interrupt S/W standby returns enable
-      IRQWUPEN8    : WUPEN_IRQWUPEN8_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN7    : WUPEN_IRQWUPEN7_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ8 interrupt S/W standby returns enable
-      IRQWUPEN9    : WUPEN_IRQWUPEN9_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN8    : WUPEN_IRQWUPEN8_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ9 interrupt S/W standby returns enable
-      IRQWUPEN10   : WUPEN_IRQWUPEN10_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN9    : WUPEN_IRQWUPEN9_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ10 interrupt S/W standby returns enable
-      IRQWUPEN11   : WUPEN_IRQWUPEN11_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN10   : WUPEN_IRQWUPEN10_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ11 interrupt S/W standby returns enable
-      IRQWUPEN12   : WUPEN_IRQWUPEN12_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN11   : WUPEN_IRQWUPEN11_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ12 interrupt S/W standby returns enable
+      IRQWUPEN12   : WUPEN_IRQWUPEN12_Field := R7FA4M1AB.ICU.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved     : WUPEN_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      IRQWUPEN14   : WUPEN_IRQWUPEN14_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ14 interrupt S/W standby returns enable
-      IRQWUPEN15   : WUPEN_IRQWUPEN15_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN14   : WUPEN_IRQWUPEN14_Field := R7FA4M1AB.ICU.Val_0;
       --  IRQ15 interrupt S/W standby returns enable
-      IWDTWUPEN    : WUPEN_IWDTWUPEN_Field := R7FA4M1AB.ICU.Val_0;
+      IRQWUPEN15   : WUPEN_IRQWUPEN15_Field := R7FA4M1AB.ICU.Val_0;
       --  IWDT interrupt S/W standby returns enable
-      KEYWUPEN     : WUPEN_KEYWUPEN_Field := R7FA4M1AB.ICU.Val_0;
+      IWDTWUPEN    : WUPEN_IWDTWUPEN_Field := R7FA4M1AB.ICU.Val_0;
       --  Key interrupt S/W standby returns enable
-      LVD1WUPEN    : WUPEN_LVD1WUPEN_Field := R7FA4M1AB.ICU.Val_0;
+      KEYWUPEN     : WUPEN_KEYWUPEN_Field := R7FA4M1AB.ICU.Val_0;
       --  LVD1 interrupt S/W standby returns enable
-      LVD2WUPEN    : WUPEN_LVD2WUPEN_Field := R7FA4M1AB.ICU.Val_0;
+      LVD1WUPEN    : WUPEN_LVD1WUPEN_Field := R7FA4M1AB.ICU.Val_0;
       --  LVD2 interrupt S/W standby returns enable
-      VBATTWUPEN   : WUPEN_VBATTWUPEN_Field := R7FA4M1AB.ICU.Val_0;
+      LVD2WUPEN    : WUPEN_LVD2WUPEN_Field := R7FA4M1AB.ICU.Val_0;
       --  VBATT monitor interrupt S/W standby returns enable
-      Reserved_1   : WUPEN_Reserved_Field_1 := 16#0#;
+      VBATTWUPEN   : WUPEN_VBATTWUPEN_Field := R7FA4M1AB.ICU.Val_0;
       --  These bits are read as 00. The write value should be 00.
-      ACMPLP0WUPEN : WUPEN_ACMPLP0WUPEN_Field := R7FA4M1AB.ICU.Val_0;
+      Reserved_1   : WUPEN_Reserved_Field_1 := 16#0#;
       --  ACMPLP0 interrupt S/W standby returns enable
-      RTCALMWUPEN  : WUPEN_RTCALMWUPEN_Field := R7FA4M1AB.ICU.Val_0;
+      ACMPLP0WUPEN : WUPEN_ACMPLP0WUPEN_Field := R7FA4M1AB.ICU.Val_0;
       --  RTC alarm interrupt S/W standby returns enable
-      RTCPRDWUPEN  : WUPEN_RTCPRDWUPEN_Field := R7FA4M1AB.ICU.Val_0;
+      RTCALMWUPEN  : WUPEN_RTCALMWUPEN_Field := R7FA4M1AB.ICU.Val_0;
       --  RCT period interrupt S/W standby returns enable
-      Reserved_2   : WUPEN_Reserved_Field := 16#0#;
+      RTCPRDWUPEN  : WUPEN_RTCPRDWUPEN_Field := R7FA4M1AB.ICU.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      USBFSWUPEN   : WUPEN_USBFSWUPEN_Field := R7FA4M1AB.ICU.Val_0;
+      Reserved_2   : WUPEN_Reserved_Field := 16#0#;
       --  USBFS interrupt S/W standby returns enable
-      AGT1UDWUPEN  : WUPEN_AGT1UDWUPEN_Field := R7FA4M1AB.ICU.Val_0;
+      USBFSWUPEN   : WUPEN_USBFSWUPEN_Field := R7FA4M1AB.ICU.Val_0;
       --  AGT1 underflow interrupt S/W standby returns enable
-      AGT1CAWUPEN  : WUPEN_AGT1CAWUPEN_Field := R7FA4M1AB.ICU.Val_0;
+      AGT1UDWUPEN  : WUPEN_AGT1UDWUPEN_Field := R7FA4M1AB.ICU.Val_0;
       --  AGT1 compare match A interrupt S/W standby returns enable
-      AGT1CBWUPEN  : WUPEN_AGT1CBWUPEN_Field := R7FA4M1AB.ICU.Val_0;
+      AGT1CAWUPEN  : WUPEN_AGT1CAWUPEN_Field := R7FA4M1AB.ICU.Val_0;
       --  AGT1 compare match B interrupt S/W standby returns enable
-      IIC0WUPEN    : WUPEN_IIC0WUPEN_Field := R7FA4M1AB.ICU.Val_0;
+      AGT1CBWUPEN  : WUPEN_AGT1CBWUPEN_Field := R7FA4M1AB.ICU.Val_0;
       --  IIC0 address match interrupt S/W standby returns enable
+      IIC0WUPEN    : WUPEN_IIC0WUPEN_Field := R7FA4M1AB.ICU.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -1146,7 +1146,8 @@ package R7FA4M1AB.ICU is
      (--  Disable event output to the associated low-power mode module
       Val_0x00,
       --  Event signal number to be linked
-      others_k)
+      others_k
+     )
      with Size => 8;
    for SELSR0_SELS_Field use
      (Val_0x00 => 0,
@@ -1156,10 +1157,10 @@ package R7FA4M1AB.ICU is
 
    --  SYS Event Link Setting Register
    type SELSR0_Register is record
-      SELS     : SELSR0_SELS_Field := R7FA4M1AB.ICU.Val_0x00;
       --  SYS Event Link Select
-      Reserved : SELSR0_Reserved_Field := 16#0#;
+      SELS     : SELSR0_SELS_Field := R7FA4M1AB.ICU.Val_0x00;
       --  These bits are read as 00000000. The write value should be 00000000.
+      Reserved : SELSR0_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1174,7 +1175,8 @@ package R7FA4M1AB.ICU is
      (--  Nothing is selected.
       Val_0x000,
       --  See Event Table
-      others_k)
+      others_k
+     )
      with Size => 8;
    for DELSR0_DELS_Field use
      (Val_0x000 => 0,
@@ -1184,10 +1186,10 @@ package R7FA4M1AB.ICU is
 
    --  DMAC Event Link Setting Register %s
    type DELSR_Register is record
-      DELS     : DELSR0_DELS_Field := R7FA4M1AB.ICU.Val_0x000;
       --  Event selection to DMAC Start request
-      Reserved : DELSR_Reserved_Field := 16#0#;
+      DELS     : DELSR0_DELS_Field := R7FA4M1AB.ICU.Val_0x000;
       --  These bits are read as 00000000. The write value should be 00000000.
+      Reserved : DELSR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -1203,7 +1205,8 @@ package R7FA4M1AB.ICU is
      (--  Nothing is selected
       Val_0x000,
       --  See Event Table
-      others_k)
+      others_k
+     )
      with Size => 8;
    for IELSR_IELS_Field use
      (Val_0x000 => 0,
@@ -1237,19 +1240,19 @@ package R7FA4M1AB.ICU is
 
    --  ICU Event Link Setting Register %s
    type IELSR_Register is record
-      IELS       : IELSR_IELS_Field := R7FA4M1AB.ICU.Val_0x000;
       --  ICU Event selection to NVIC Set the number for the event signal to be
       --  linked .
-      Reserved   : IELSR_Reserved_Field := 16#0#;
+      IELS       : IELSR_IELS_Field := R7FA4M1AB.ICU.Val_0x000;
       --  These bits are read as 00000000. The write value should be 00000000.
-      IR         : IELSR_IR_Field := R7FA4M1AB.ICU.Val_0;
+      Reserved   : IELSR_Reserved_Field := 16#0#;
       --  Interrupt Status Flag
+      IR         : IELSR_IR_Field := R7FA4M1AB.ICU.Val_0;
+      --  These bits are read as 0000000. The write value should be 0000000.
       Reserved_1 : IELSR_Reserved_Field_1 := 16#0#;
-      --  These bits are read as 0000000. The write value should be 0000000.
-      DTCE       : IELSR_DTCE_Field := R7FA4M1AB.ICU.Val_0;
       --  DTC Activation Enable
-      Reserved_2 : IELSR_Reserved_Field_1 := 16#0#;
+      DTCE       : IELSR_DTCE_Field := R7FA4M1AB.ICU.Val_0;
       --  These bits are read as 0000000. The write value should be 0000000.
+      Reserved_2 : IELSR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -1272,22 +1275,23 @@ package R7FA4M1AB.ICU is
 
    --  Interrupt Controller
    type ICU_Peripheral is record
+      --  IRQ Control Register %s
       IRQCR   : aliased IRQCR_Registers;
       --  IRQ Control Register %s
       IRQCR_1 : aliased IRQCR_Registers_1;
-      --  IRQ Control Register %s
-      NMICR   : aliased NMICR_Register;
       --  NMI Pin Interrupt Control Register
-      NMIER   : aliased NMIER_Register;
+      NMICR   : aliased NMICR_Register;
       --  Non-Maskable Interrupt Enable Register
-      NMICLR  : aliased NMICLR_Register;
+      NMIER   : aliased NMIER_Register;
       --  Non-Maskable Interrupt Status Clear Register
-      NMISR   : aliased NMISR_Register;
+      NMICLR  : aliased NMICLR_Register;
       --  Non-Maskable Interrupt Status Register
-      WUPEN   : aliased WUPEN_Register;
+      NMISR   : aliased NMISR_Register;
       --  Wake Up Interrupt Enable Register
-      SELSR0  : aliased SELSR0_Register;
+      WUPEN   : aliased WUPEN_Register;
       --  SYS Event Link Setting Register
+      SELSR0  : aliased SELSR0_Register;
+      --  DMAC Event Link Setting Register %s
       DELSR0  : aliased DELSR_Register;
       --  DMAC Event Link Setting Register %s
       DELSR1  : aliased DELSR_Register;
@@ -1295,9 +1299,8 @@ package R7FA4M1AB.ICU is
       DELSR2  : aliased DELSR_Register;
       --  DMAC Event Link Setting Register %s
       DELSR3  : aliased DELSR_Register;
-      --  DMAC Event Link Setting Register %s
-      IELSR   : aliased IELSR_Registers;
       --  ICU Event Link Setting Register %s
+      IELSR   : aliased IELSR_Registers;
    end record
      with Volatile;
 

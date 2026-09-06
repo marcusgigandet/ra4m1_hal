@@ -41,20 +41,21 @@ package R7FA4M1AB.WDT is
 
    --  Clock Division Ratio Selection
    type WDTCR_CKS_Field is
-     (      --  PCLK/4
+     (--  setting prohibited
       Val_0001,
-      --  PCLK/64
+      --  PCLK/4
       Val_0100,
-      --  PCLK/512
+      --  PCLK/64
       Val_0110,
-      --  PCLK/2048
+      --  PCLK/512
       Val_0111,
-      --  PCLK/8192
+      --  PCLK/2048
       Val_1000,
---  setting prohibited
+      --  PCLK/8192
       others_k,
       --  PCLK/128
-      Val_1111)
+      Val_1111
+     )
      with Size => 4;
    for WDTCR_CKS_Field use
      (Val_0001 => 1,
@@ -101,20 +102,20 @@ package R7FA4M1AB.WDT is
 
    --  WDT Control Register
    type WDTCR_Register is record
-      TOPS       : WDTCR_TOPS_Field := R7FA4M1AB.WDT.Val_11;
       --  Timeout Period Selection
+      TOPS       : WDTCR_TOPS_Field := R7FA4M1AB.WDT.Val_11;
+      --  These bits are read as 00. The write value should be 00.
       Reserved   : WDTCR_Reserved_Field := 16#0#;
-      --  These bits are read as 00. The write value should be 00.
-      CKS        : WDTCR_CKS_Field := R7FA4M1AB.WDT.Val_1111;
       --  Clock Division Ratio Selection
-      RPES       : WDTCR_RPES_Field := R7FA4M1AB.WDT.Val_11;
+      CKS        : WDTCR_CKS_Field := R7FA4M1AB.WDT.Val_1111;
       --  Window End Position Selection
+      RPES       : WDTCR_RPES_Field := R7FA4M1AB.WDT.Val_11;
+      --  These bits are read as 00. The write value should be 00.
       Reserved_1 : WDTCR_Reserved_Field := 16#0#;
-      --  These bits are read as 00. The write value should be 00.
-      RPSS       : WDTCR_RPSS_Field := R7FA4M1AB.WDT.Val_11;
       --  Window Start Position Selection
-      Reserved_2 : WDTCR_Reserved_Field := 16#0#;
+      RPSS       : WDTCR_RPSS_Field := R7FA4M1AB.WDT.Val_11;
       --  These bits are read as 00. The write value should be 00.
+      Reserved_2 : WDTCR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -155,16 +156,16 @@ package R7FA4M1AB.WDT is
 
    --  WDT Status Register
    type WDTSR_Register is record
-      CNTVAL : WDTSR_CNTVAL_Field := 16#0#;
       --  Read-only. Down-Counter Value Value counted by the down-counter
-      UNDFF  : WDTSR_UNDFF_Field := R7FA4M1AB.WDT.Val_0;
+      CNTVAL : WDTSR_CNTVAL_Field := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Underflow Flag
-      REFEF  : WDTSR_REFEF_Field := R7FA4M1AB.WDT.Val_0;
+      UNDFF  : WDTSR_UNDFF_Field := R7FA4M1AB.WDT.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Refresh Error Flag
+      REFEF  : WDTSR_REFEF_Field := R7FA4M1AB.WDT.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 16,
           Bit_Order => System.Low_Order_First;
@@ -188,10 +189,10 @@ package R7FA4M1AB.WDT is
 
    --  WDT Reset Control Register
    type WDTRCR_Register is record
-      Reserved_0_6 : R7FA4M1AB.UInt7 := 16#0#;
       --  unspecified
-      RSTIRQS      : WDTRCR_RSTIRQS_Field := R7FA4M1AB.WDT.Val_1;
+      Reserved_0_6 : R7FA4M1AB.UInt7 := 16#0#;
       --  Reset Interrupt Request Selection
+      RSTIRQS      : WDTRCR_RSTIRQS_Field := R7FA4M1AB.WDT.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -216,10 +217,10 @@ package R7FA4M1AB.WDT is
 
    --  WDT Count Stop Control Register
    type WDTCSTPR_Register is record
-      Reserved : WDTCSTPR_Reserved_Field := 16#0#;
       --  These bits are read as 0000000. The write value should be 0000000.
-      SLCSTP   : WDTCSTPR_SLCSTP_Field := R7FA4M1AB.WDT.Val_1;
+      Reserved : WDTCSTPR_Reserved_Field := 16#0#;
       --  Sleep-Mode Count Stop Control
+      SLCSTP   : WDTCSTPR_SLCSTP_Field := R7FA4M1AB.WDT.Val_1;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -235,16 +236,16 @@ package R7FA4M1AB.WDT is
 
    --  Watchdog Timer
    type WDT_Peripheral is record
-      WDTRR    : aliased R7FA4M1AB.Byte;
       --  WDT Refresh Register
-      WDTCR    : aliased WDTCR_Register;
+      WDTRR    : aliased R7FA4M1AB.Byte;
       --  WDT Control Register
-      WDTSR    : aliased WDTSR_Register;
+      WDTCR    : aliased WDTCR_Register;
       --  WDT Status Register
-      WDTRCR   : aliased WDTRCR_Register;
+      WDTSR    : aliased WDTSR_Register;
       --  WDT Reset Control Register
-      WDTCSTPR : aliased WDTCSTPR_Register;
+      WDTRCR   : aliased WDTRCR_Register;
       --  WDT Count Stop Control Register
+      WDTCSTPR : aliased WDTCSTPR_Register;
    end record
      with Volatile;
 

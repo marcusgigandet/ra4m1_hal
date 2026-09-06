@@ -101,30 +101,30 @@ package R7FA4M1AB.AGT0 is
 
    --  AGT Control Register
    type AGTCR_Register is record
-      TSTART   : AGTCR_TSTART_Field := R7FA4M1AB.AGT0.Val_0;
       --  AGT count start
-      TCSTF    : AGTCR_TCSTF_Field := R7FA4M1AB.AGT0.Val_0;
+      TSTART   : AGTCR_TSTART_Field := R7FA4M1AB.AGT0.Val_0;
       --  Read-only. AGT count status flag
-      TSTOP    : AGTCR_TSTOP_Field := R7FA4M1AB.AGT0.Val_0;
+      TCSTF    : AGTCR_TCSTF_Field := R7FA4M1AB.AGT0.Val_0;
       --  Write-only. AGT count forced stop
-      Reserved : AGTCR_Reserved_Field := 16#0#;
+      TSTOP    : AGTCR_TSTOP_Field := R7FA4M1AB.AGT0.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      TEDGF    : AGTCR_TEDGF_Field := R7FA4M1AB.AGT0.Val_0;
+      Reserved : AGTCR_Reserved_Field := 16#0#;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Active edge judgment flag
-      TUNDF    : AGTCR_TUNDF_Field := R7FA4M1AB.AGT0.Val_0;
+      TEDGF    : AGTCR_TEDGF_Field := R7FA4M1AB.AGT0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Underflow flag
-      TCMAF    : AGTCR_TCMAF_Field := R7FA4M1AB.AGT0.Val_0;
+      TUNDF    : AGTCR_TUNDF_Field := R7FA4M1AB.AGT0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Compare match A flag
-      TCMBF    : AGTCR_TCMBF_Field := R7FA4M1AB.AGT0.Val_0;
+      TCMAF    : AGTCR_TCMAF_Field := R7FA4M1AB.AGT0.Val_0;
       --  Write data bit of zero shall clear (set to zero) the corresponding
       --  bit in the field. *** This field is modified following a read
       --  operation ***. Compare match B flag
+      TCMBF    : AGTCR_TCMBF_Field := R7FA4M1AB.AGT0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -144,16 +144,17 @@ package R7FA4M1AB.AGT0 is
    type AGTMR1_TMOD_Field is
      (--  Timer mode
       Val_000,
-      --  Pulse output mode
-      Val_001,
-      --  Event counter mode
-      Val_010,
-      --  Pulse width measurement mode
-      Val_011,
-      --  Pulse period measurement mode.
-      Val_100,
       --  settings are prohibited
-      others_k)
+      Val_001,
+      --  Pulse output mode
+      Val_010,
+      --  Event counter mode
+      Val_011,
+      --  Pulse width measurement mode
+      Val_100,
+      --  Pulse period measurement mode.
+      others_k
+     )
      with Size => 3;
    for AGTMR1_TMOD_Field use
      (Val_000 => 0,
@@ -178,18 +179,19 @@ package R7FA4M1AB.AGT0 is
    type AGTMR1_TCK_Field is
      (--  PCLKB
       Val_000,
-      --  PCLKB/8
-      Val_001,
-      --  PCLKB/2
-      Val_011,
-      --  Divided clock AGTLCLK specified by CKS[2:0] bits in the AGTMR2 register
-      Val_100,
-      --  Underflow event signal from AGT0*6
-      Val_101,
-      --  Divided clock AGTSCLK specified by CKS[2:0] bits in the AGTMR2 register.
-      Val_110,
       --  settings are prohibited.
-      others_k)
+      Val_001,
+      --  PCLKB/8
+      Val_011,
+      --  PCLKB/2
+      Val_100,
+      --  Divided clock AGTLCLK specified by CKS[2:0] bits in the AGTMR2 register
+      Val_101,
+      --  Underflow event signal from AGT0*6
+      Val_110,
+      --  Divided clock AGTSCLK specified by CKS[2:0] bits in the AGTMR2 register.
+      others_k
+     )
      with Size => 3;
    for AGTMR1_TCK_Field use
      (Val_000 => 0,
@@ -204,14 +206,14 @@ package R7FA4M1AB.AGT0 is
 
    --  AGT Mode Register 1
    type AGTMR1_Register is record
-      TMOD     : AGTMR1_TMOD_Field := R7FA4M1AB.AGT0.Val_000;
       --  Operating mode
-      TEDGPL   : AGTMR1_TEDGPL_Field := R7FA4M1AB.AGT0.Val_0;
+      TMOD     : AGTMR1_TMOD_Field := R7FA4M1AB.AGT0.Val_000;
       --  Edge polarity
-      TCK      : AGTMR1_TCK_Field := R7FA4M1AB.AGT0.Val_000;
+      TEDGPL   : AGTMR1_TEDGPL_Field := R7FA4M1AB.AGT0.Val_0;
       --  Count source
-      Reserved : AGTMR1_Reserved_Field := 16#0#;
+      TCK      : AGTMR1_TCK_Field := R7FA4M1AB.AGT0.Val_000;
       --  This bit is read as 0. The write value should be 0.
+      Reserved : AGTMR1_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -267,12 +269,12 @@ package R7FA4M1AB.AGT0 is
 
    --  AGT Mode Register 2
    type AGTMR2_Register is record
-      CKS      : AGTMR2_CKS_Field := R7FA4M1AB.AGT0.Val_000;
       --  AGTLCLK/AGTSCLK count source clock frequency division ratio
-      Reserved : AGTMR2_Reserved_Field := 16#0#;
+      CKS      : AGTMR2_CKS_Field := R7FA4M1AB.AGT0.Val_000;
       --  These bits are read as 0000. The write value should be 0000.
-      LPM      : AGTMR2_LPM_Field := R7FA4M1AB.AGT0.Val_0;
+      Reserved : AGTMR2_Reserved_Field := 16#0#;
       --  Low Power Mode
+      LPM      : AGTMR2_LPM_Field := R7FA4M1AB.AGT0.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -318,10 +320,11 @@ package R7FA4M1AB.AGT0 is
    type AGTIOC_TIOGT_Field is
      (--  Event is always counted
       Val_00,
-      --  Event is counted during polarity period specified for AGTEEn.
-      Val_01,
       --  settings are prohibited.
-      others_k)
+      Val_01,
+      --  Event is counted during polarity period specified for AGTEEn.
+      others_k
+     )
      with Size => 2;
    for AGTIOC_TIOGT_Field use
      (Val_00 => 0,
@@ -330,18 +333,18 @@ package R7FA4M1AB.AGT0 is
 
    --  AGT I/O Control Register
    type AGTIOC_Register is record
-      TEDGSEL    : AGTIOC_TEDGSEL_Field := 16#0#;
       --  I/O polarity switch Function varies depending on the operating mode.
+      TEDGSEL    : AGTIOC_TEDGSEL_Field := 16#0#;
+      --  This bit is read as 0. The write value should be 0.
       Reserved   : AGTIOC_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      TOE        : AGTIOC_TOE_Field := R7FA4M1AB.AGT0.Val_0;
       --  AGTOn output enable
-      Reserved_1 : AGTIOC_Reserved_Field := 16#0#;
+      TOE        : AGTIOC_TOE_Field := R7FA4M1AB.AGT0.Val_0;
       --  This bit is read as 0. The write value should be 0.
-      TIPF       : AGTIOC_TIPF_Field := R7FA4M1AB.AGT0.Val_00;
+      Reserved_1 : AGTIOC_Reserved_Field := 16#0#;
       --  Input filter
-      TIOGT      : AGTIOC_TIOGT_Field := R7FA4M1AB.AGT0.Val_00;
+      TIPF       : AGTIOC_TIPF_Field := R7FA4M1AB.AGT0.Val_00;
       --  Count control
+      TIOGT      : AGTIOC_TIOGT_Field := R7FA4M1AB.AGT0.Val_00;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -372,12 +375,12 @@ package R7FA4M1AB.AGT0 is
 
    --  AGT Event Pin Select Register
    type AGTISR_Register is record
-      Reserved   : AGTISR_Reserved_Field := 16#0#;
       --  These bits are read as 00. The write value should be 00.
-      EEPS       : AGTISR_EEPS_Field := R7FA4M1AB.AGT0.Val_0;
+      Reserved   : AGTISR_Reserved_Field := 16#0#;
       --  AGTEE polarty selection
-      Reserved_1 : AGTISR_Reserved_Field_1 := 16#0#;
+      EEPS       : AGTISR_EEPS_Field := R7FA4M1AB.AGT0.Val_0;
       --  These bits are read as 00000. The write value should be 00000.
+      Reserved_1 : AGTISR_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -458,22 +461,22 @@ package R7FA4M1AB.AGT0 is
 
    --  AGT Compare Match Function Select Register
    type AGTCMSR_Register is record
-      TCMEA      : AGTCMSR_TCMEA_Field := R7FA4M1AB.AGT0.Val_0;
       --  Compare match A register enable
-      TOEA       : AGTCMSR_TOEA_Field := R7FA4M1AB.AGT0.Val_0;
+      TCMEA      : AGTCMSR_TCMEA_Field := R7FA4M1AB.AGT0.Val_0;
       --  AGTOA output enable
-      TOPOLA     : AGTCMSR_TOPOLA_Field := R7FA4M1AB.AGT0.Val_0;
+      TOEA       : AGTCMSR_TOEA_Field := R7FA4M1AB.AGT0.Val_0;
       --  AGTOA polarity select
+      TOPOLA     : AGTCMSR_TOPOLA_Field := R7FA4M1AB.AGT0.Val_0;
+      --  This bit is read as 0. The write value should be 0.
       Reserved   : AGTCMSR_Reserved_Field := 16#0#;
-      --  This bit is read as 0. The write value should be 0.
-      TCMEB      : AGTCMSR_TCMEB_Field := R7FA4M1AB.AGT0.Val_0;
       --  Compare match B register enable
-      TOEB       : AGTCMSR_TOEB_Field := R7FA4M1AB.AGT0.Val_0;
+      TCMEB      : AGTCMSR_TCMEB_Field := R7FA4M1AB.AGT0.Val_0;
       --  AGTOB output enable
-      TOPOLB     : AGTCMSR_TOPOLB_Field := R7FA4M1AB.AGT0.Val_0;
+      TOEB       : AGTCMSR_TOEB_Field := R7FA4M1AB.AGT0.Val_0;
       --  AGTOB polarity select
-      Reserved_1 : AGTCMSR_Reserved_Field := 16#0#;
+      TOPOLB     : AGTCMSR_TOPOLB_Field := R7FA4M1AB.AGT0.Val_0;
       --  This bit is read as 0. The write value should be 0.
+      Reserved_1 : AGTCMSR_Reserved_Field := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -525,14 +528,14 @@ package R7FA4M1AB.AGT0 is
 
    --  AGT Pin Select Register
    type AGTIOSEL_Register is record
-      SEL        : AGTIOSEL_SEL_Field := R7FA4M1AB.AGT0.Val_00;
       --  AGTIO pin select
-      Reserved   : AGTIOSEL_Reserved_Field := 16#0#;
+      SEL        : AGTIOSEL_SEL_Field := R7FA4M1AB.AGT0.Val_00;
       --  These bits are read as 00. The write value should be 00.
-      TIES       : AGTIOSEL_TIES_Field := R7FA4M1AB.AGT0.Val_0;
+      Reserved   : AGTIOSEL_Reserved_Field := 16#0#;
       --  AGTIO input enable
-      Reserved_1 : AGTIOSEL_Reserved_Field_1 := 16#0#;
+      TIES       : AGTIOSEL_TIES_Field := R7FA4M1AB.AGT0.Val_0;
       --  These bits are read as 000. The write value should be 000.
+      Reserved_1 : AGTIOSEL_Reserved_Field_1 := 16#0#;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -550,26 +553,26 @@ package R7FA4M1AB.AGT0 is
 
    --  Asynchronous General purpose Timer 0
    type AGT0_Peripheral is record
-      AGT      : aliased R7FA4M1AB.UInt16;
       --  AGT Counter Register
-      AGTCMA   : aliased R7FA4M1AB.UInt16;
+      AGT      : aliased R7FA4M1AB.UInt16;
       --  AGT Compare Match A Register
-      AGTCMB   : aliased R7FA4M1AB.UInt16;
+      AGTCMA   : aliased R7FA4M1AB.UInt16;
       --  AGT Compare Match B Register
-      AGTCR    : aliased AGTCR_Register;
+      AGTCMB   : aliased R7FA4M1AB.UInt16;
       --  AGT Control Register
-      AGTMR1   : aliased AGTMR1_Register;
+      AGTCR    : aliased AGTCR_Register;
       --  AGT Mode Register 1
-      AGTMR2   : aliased AGTMR2_Register;
+      AGTMR1   : aliased AGTMR1_Register;
       --  AGT Mode Register 2
-      AGTIOC   : aliased AGTIOC_Register;
+      AGTMR2   : aliased AGTMR2_Register;
       --  AGT I/O Control Register
-      AGTISR   : aliased AGTISR_Register;
+      AGTIOC   : aliased AGTIOC_Register;
       --  AGT Event Pin Select Register
-      AGTCMSR  : aliased AGTCMSR_Register;
+      AGTISR   : aliased AGTISR_Register;
       --  AGT Compare Match Function Select Register
-      AGTIOSEL : aliased AGTIOSEL_Register;
+      AGTCMSR  : aliased AGTCMSR_Register;
       --  AGT Pin Select Register
+      AGTIOSEL : aliased AGTIOSEL_Register;
    end record
      with Volatile;
 

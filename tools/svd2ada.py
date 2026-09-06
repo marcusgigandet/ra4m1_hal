@@ -15,7 +15,7 @@ from typing import Final
 
 ROOT_DIR: Final = Path(__file__).resolve().parent.parent
 SVD_FILE: Final = ROOT_DIR / "svd" / "R7FA4M1AB.svd"
-OUTPUT_DIR: Final = ROOT_DIR / "src" / "generated" / "r7fa4m1ab"
+OUTPUT_DIR: Final = ROOT_DIR / "src" / "chips" / "r7fa4m1ab" / "svd"
 SVD2ADA_EXECUTABLE: Final = ROOT_DIR / "vendor" / "svd2ada" / "bin" / "svd2ada"
 
 
@@ -23,6 +23,7 @@ _ENUM_RE: Final = re.compile(
     r"(?P<indent>^[ ]*)type (?P<name>\w+) is\n"
     r"[ ]*\((?P<declarations>.*?)\)\n"
     r"[ ]*with Size => (?P<size>\d+);\n"
+    r"(?P<interstitial>.*?)"
     r"[ ]*for (?P=name) use\n"
     r"[ ]*\((?P<representations>.*?)\);",
     re.MULTILINE | re.DOTALL,
@@ -31,7 +32,7 @@ _ENUM_RE: Final = re.compile(
 _PERIPHERAL_UNION_RE: Final = re.compile(
     r"(?P<indent>^[ ]*)type (?P<disc>\w+_Disc) is\n"
     r"[ ]*\(.*?\);\n\n"
-    r"(?P<prefix>(?:[ ]*--[^\n]*\n)*)"
+    r"(?P<prefix>.*?)"
     r"(?P=indent)type (?P<peripheral>\w+_Peripheral)\n"
     r"[ ]*\(Discriminent : (?P=disc) := \w+\)\n"
     r"[ ]*is record\n"
@@ -61,28 +62,19 @@ _PORT_ARRAY_FIELDS: Final = {
 }
 
 
-def _enumeration_groups(declarations: str) -> dict[str, list[str]]:
-    """
-    Return each enum literal together with its preceding documentation.
-    """
-    groups: dict[str, list[str]] = {}
-    pending: list[str] = []
+_ENUM_LITERAL_RE: Final = re.compile(r"^[ ]*(?P<name>\w+),?[ ]*$")
+_PERIPHERAL_FIELD_RE: Final = re.compile(
+    r"^[ ]*(?P<name>\w+)[ ]*:[ ]*aliased[ ]+(?P<type>[^;]+);[ ]*$",
+    re.MULTILINE,
+)
 
-    for line in declarations.splitlines():
-        if line.lstrip().startswith("--") or not line.strip():
-            pending.append(line)
-            continue
 
-        match = re.fullmatch(r"(?P<space>[ ]*)(?P<name>\w+),?", line)
-        if match is None:
-            raise ValueError(f"unexpected enumeration declaration: {line!r}")
-
-        groups[match.group("name")] = [*pending, line]
-        pending.clear()
-
-    if pending:
-        raise ValueError("dangling enumeration documentation")
-    return groups
+def _enumeration_literals(declarations: str) -> list[str]:
+    return [
+        match.group("name")
+        for line in declarations.splitlines()
+        if (match := _ENUM_LITERAL_RE.fullmatch(line)) is not None
+    ]
 
 
 def _fix_wildcard_enumerations(text: str) -> tuple[str, int]:
@@ -114,33 +106,44 @@ def _fix_wildcard_enumerations(text: str) -> tuple[str, int]:
             raise ValueError(f"no representation is available for {match.group('name')}.others_k")
 
         representations["others_k"] = max(unused)
-        groups = _enumeration_groups(match.group("declarations"))
-        if groups.keys() != representations.keys():
+        literals = _enumeration_literals(match.group("declarations"))
+        if set(literals) != representations.keys():
             raise ValueError(f"could not parse enumeration {match.group('name')}")
 
         ordered = sorted(representations, key=representations.get)
         declaration_lines: list[str] = []
-        for index, name in enumerate(ordered):
-            lines = groups[name]
-            literal = re.sub(r",\Z", "", lines[-1])
-            if index < len(ordered) - 1:
-                literal += ","
-            declaration_lines.extend([*lines[:-1], literal])
+        literal_index = 0
+        for line in match.group("declarations").splitlines():
+            literal = _ENUM_LITERAL_RE.fullmatch(line)
+            if literal is None:
+                declaration_lines.append(line)
+                continue
+            name = ordered[literal_index]
+            declaration = re.match(r"^[ ]*", line).group(0) + name
+            if literal_index < len(ordered) - 1:
+                declaration += ","
+            declaration_lines.append(declaration)
+            literal_index += 1
 
         association_lines = [
             f"{match.group('indent')}   {name} => {representations[name]}"
             + ("," if index < len(ordered) - 1 else "")
             for index, name in enumerate(ordered)
         ]
+        declaration_text = "\n".join(declaration_lines)
+        association_text = "\n".join(
+            [association_lines[0].lstrip(), *association_lines[1:]]
+        )
         replacements += 1
         indent = match.group("indent")
         return (
             f"{indent}type {match.group('name')} is\n"
-            f"{indent}  ({'\n'.join(declaration_lines)})\n"
+            f"{indent}  ({declaration_text}\n"
+            f"{indent}  )\n"
             f"{indent}  with Size => {size};\n"
+            f"{match.group('interstitial')}"
             f"{indent}for {match.group('name')} use\n"
-            f"{indent}  ({association_lines[0].lstrip()}\n"
-            f"{'\n'.join(association_lines[1:])});"
+            f"{indent}  ({association_text});"
         )
 
     return _ENUM_RE.sub(replace, text), replacements
@@ -162,7 +165,7 @@ def _fix_port_array_fields(text: str) -> tuple[str, int]:
         replacements += 1
         return (
             f"{match.group('indent')}subtype {match.group('name')} is "
-            "R7FA4M1AB.UInt16;"
+            f"R7FA4M1AB.UInt16;\n{match.group('interstitial')}"
         )
 
     text = _ENUM_RE.sub(replace, text)
@@ -175,26 +178,11 @@ def _fix_port_array_fields(text: str) -> tuple[str, int]:
     return text, replacements
 
 
-def _peripheral_components(body: str) -> list[tuple[list[str], str, str]]:
-    """
-    Extract comments, names, and types from a peripheral record body.
-    """
-    components: list[tuple[list[str], str, str]] = []
-    pending: list[str] = []
-
-    for line in body.splitlines():
-        if line.lstrip().startswith("--"):
-            pending.append(line.strip())
-            continue
-
-        match = re.fullmatch(r"[ ]*(\w+)[ ]*:[ ]*aliased[ ]+([^;]+);", line)
-        if match is not None:
-            components.append((pending.copy(), match.group(1), match.group(2)))
-            pending.clear()
-        elif line.strip():
-            pending.clear()
-
-    return components
+def _peripheral_components(body: str) -> list[tuple[str, str]]:
+    return [
+        (match.group("name"), match.group("type"))
+        for match in _PERIPHERAL_FIELD_RE.finditer(body)
+    ]
 
 
 def _fix_peripheral_unions(text: str) -> tuple[str, int]:
@@ -215,13 +203,12 @@ def _fix_peripheral_unions(text: str) -> tuple[str, int]:
 
         indent = match.group("indent")
         disc = match.group("disc")
-        views = [f"View_{name}" for _, name, _ in components]
+        views = [f"View_{name}" for name, _ in components]
         disc_lines = (",\n" + indent + "   ").join(views)
 
         body_lines = [f"{indent}  case Discriminent is"]
-        for comments, name, component_type in components:
+        for name, component_type in components:
             body_lines.append(f"{indent}     when View_{name} =>")
-            body_lines.extend(f"{indent}        {comment}" for comment in comments)
             body_lines.append(
                 f"{indent}        {name} : aliased {component_type};"
             )
@@ -256,12 +243,11 @@ def _fix_pfs_peripheral(text: str) -> tuple[str, int]:
             raise ValueError("no components found in PFS_Peripheral")
 
         indent = match.group("indent")
-        views = [f"View_{name}" for _, name, _ in components]
+        views = [f"View_{name}" for name, _ in components]
         disc_lines = (",\n" + indent + "   ").join(views)
         body_lines = [f"{indent}  case Discriminent is"]
-        for comments, name, component_type in components:
+        for name, component_type in components:
             body_lines.append(f"{indent}     when View_{name} =>")
-            body_lines.extend(f"{indent}        {comment}" for comment in comments)
             body_lines.append(f"{indent}        {name} : aliased {component_type};")
         body_lines.append(f"{indent}  end case;")
 
@@ -316,6 +302,10 @@ def _fix_r7fa4m1ab_gen() -> None:
 
 
 def main() -> int:
+    # svd2ada creates the output directory itself, but not missing parents.
+    # Make the parent first so this script works from a clean checkout.
+    OUTPUT_DIR.parent.mkdir(parents=True, exist_ok=True)
+
     try:
         subprocess.run(
             [

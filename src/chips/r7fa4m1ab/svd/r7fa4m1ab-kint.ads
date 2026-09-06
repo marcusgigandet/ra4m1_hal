@@ -46,12 +46,12 @@ package R7FA4M1AB.KINT is
 
    --  KEY Return Control Register
    type KRCTL_Register is record
-      KREG     : KRCTL_KREG_Field := R7FA4M1AB.KINT.Val_0;
       --  Detection Edge Selection (KRF0 to KRF7)
-      Reserved : KRCTL_Reserved_Field := 16#0#;
+      KREG     : KRCTL_KREG_Field := R7FA4M1AB.KINT.Val_0;
       --  These bits are read as 000000. The write value should be 000000.
-      KRMD     : KRCTL_KRMD_Field := R7FA4M1AB.KINT.Val_0;
+      Reserved : KRCTL_Reserved_Field := 16#0#;
       --  Usage of Key Interrupt Flags(KR0 to KR7)
+      KRMD     : KRCTL_KRMD_Field := R7FA4M1AB.KINT.Val_0;
    end record
      with Volatile_Full_Access, Object_Size => 8,
           Bit_Order => System.Low_Order_First;
@@ -83,11 +83,11 @@ package R7FA4M1AB.KINT is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.Byte;
             --  KRF as a value
+            Val : R7FA4M1AB.Byte;
          when True =>
-            Arr : KRF_Field_Array;
             --  KRF as an array
+            Arr : KRF_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 8, Volatile_Full_Access, Object_Size => 8,
@@ -119,11 +119,11 @@ package R7FA4M1AB.KINT is
    is record
       case As_Array is
          when False =>
-            Val : R7FA4M1AB.Byte;
             --  KRM as a value
+            Val : R7FA4M1AB.Byte;
          when True =>
-            Arr : KRM_Field_Array;
             --  KRM as an array
+            Arr : KRM_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 8, Volatile_Full_Access, Object_Size => 8,
@@ -140,12 +140,12 @@ package R7FA4M1AB.KINT is
 
    --  Key Interrupt Function
    type KINT_Peripheral is record
-      KRCTL : aliased KRCTL_Register;
       --  KEY Return Control Register
-      KRF   : aliased KRF_Register;
+      KRCTL : aliased KRCTL_Register;
       --  KEY Return Flag Register
-      KRM   : aliased KRM_Register;
+      KRF   : aliased KRF_Register;
       --  KEY Return Mode Register
+      KRM   : aliased KRM_Register;
    end record
      with Volatile;
 
