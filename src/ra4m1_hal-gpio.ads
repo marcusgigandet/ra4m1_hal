@@ -35,33 +35,33 @@ package RA4M1_HAL.GPIO is
    procedure Set_Pull_Resistor
      (This : in out GPIO_Point; Pull : GPIO_Pull_Resistor);
 
-   overriding
-   function Set (This : GPIO_Point) return Boolean;
-   -- Reads This GPIO pin state.
+   --  Reads This GPIO pin state.
    --
-   -- @param This The GPIO pin to read.
+   --  @param This The GPIO pin to read.
    --
    --  Return True if This GPIO pin is currently high.
-
    overriding
-   procedure Set (This : in out GPIO_Point);
+   function Set (This : GPIO_Point) return Boolean;
+
    --  Drive This GPIO pin high.
    --
    --  @param This The GPIO pin to drive high.
-
    overriding
-   procedure Clear (This : in out GPIO_Point);
+   procedure Set (This : in out GPIO_Point);
+
    --  Drive This GPIO pin low.
    --
    --  @param This The GPIO pin to drive low.
-
    overriding
-   procedure Toggle (This : in out GPIO_Point);
+   procedure Clear (This : in out GPIO_Point);
+
    --  Toggle the state of This GPIO pin.
    --
    --  If the pin is high, drive it low. If the pin is low, drive it high.
    --
    --  @param This The GPIO pin to toggle.
+   overriding
+   procedure Toggle (This : in out GPIO_Point);
 
 private
 

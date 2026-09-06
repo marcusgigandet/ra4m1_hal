@@ -3,7 +3,7 @@
 """
 This file corrects errors in the generated Ada code from the R7FA4M1AB.svd.
 
-Note: This file was AI-generated and only updates the generated files, not the R7FA4M1AB.svd.
+Note: This file was mostly AI-generated and only updates the generated files, not the R7FA4M1AB.svd.
 """
 
 
@@ -16,6 +16,7 @@ from typing import Final
 ROOT_DIR: Final = Path(__file__).resolve().parent.parent
 SVD_FILE: Final = ROOT_DIR / "svd" / "R7FA4M1AB.svd"
 OUTPUT_DIR: Final = ROOT_DIR / "src" / "generated" / "r7fa4m1ab"
+SVD2ADA_EXECUTABLE: Final = ROOT_DIR / "vendor" / "svd2ada" / "bin" / "svd2ada"
 
 
 _ENUM_RE: Final = re.compile(
@@ -318,7 +319,7 @@ def main() -> int:
     try:
         subprocess.run(
             [
-                "svd2ada",
+                str(SVD2ADA_EXECUTABLE),
                 "-o",
                 str(OUTPUT_DIR),
                 str(SVD_FILE),
@@ -328,7 +329,7 @@ def main() -> int:
     except subprocess.CalledProcessError as error:
         return error.returncode
     except FileNotFoundError:
-        print("error: svd2ada was not found", file=sys.stderr)
+        print(f"error: svd2ada was not found at {SVD2ADA_EXECUTABLE}", file=sys.stderr)
         return 1
 
     _fix_r7fa4m1ab_gen()
