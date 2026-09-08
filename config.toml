@@ -3,7 +3,7 @@ fix = true
 default_year = "2026"
 author = "Marcus Gigandet"
 license = "lgpl"
-exclude = ["^vendor/"]
+exclude = ["^obj/", "^config/", "^vendor/"]
 
 [licenses.lgpl]
 text = """
@@ -15,5 +15,5 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 [languages.ada]
 extensions = [".ads", ".adb", ".gpr"]
 block_start = "--"
-line_prefix = "-- "
+line_prefix = "--  "
 block_end = "--"

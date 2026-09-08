@@ -1,3 +1,6 @@
 [submodule "vendor/toolbox"]
 	path = vendor/toolbox
 	url = git@github.com:marcusgigandet/toolbox.git
+[submodule "vendor/svd2ada"]
+	path = vendor/svd2ada
+	url = git@github.com:AdaCore/svd2ada.git
