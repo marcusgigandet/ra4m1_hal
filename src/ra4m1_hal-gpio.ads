@@ -39,7 +39,7 @@ package RA4M1_HAL.GPIO is
    --
    --  @param This The GPIO pin to read.
    --
-   --  Return True if This GPIO pin is currently high.
+   --  @return True if This GPIO pin is currently high.
    overriding
    function Set (This : GPIO_Point) return Boolean;
 

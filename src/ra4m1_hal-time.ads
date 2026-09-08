@@ -4,6 +4,7 @@
 --  SPDX-License-Identifier: LGPL-3.0-or-later
 --
 
+with HAL;
 with HAL.Time;
 
 package RA4M1_HAL.Time is
